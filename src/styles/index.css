@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* Primary colors */
+  --color-primary-50: #f8fafc;
+  --color-primary-100: #f1f5f9;
+  --color-primary-200: #e2e8f0;
+  --color-primary-300: #cbd5e1;
+  --color-primary-400: #94a3b8;
+  --color-primary-500: #64748b;
+  --color-primary-600: #475569;
+  --color-primary-700: #334155;
+  --color-primary-800: #1e293b;
+  --color-primary-900: #0f172a;
+
+  /* Success colors */
+  --color-success-50: #ecfdf5;
+  --color-success-100: #d1fae5;
+  --color-success-500: #10b981;
+  --color-success-600: #059669;
+  --color-success-700: #047857;
+
+  /* Warning colors */
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+
+  /* Danger colors */
+  --color-danger-50: #fef2f2;
+  --color-danger-100: #fee2e2;
+  --color-danger-500: #ef4444;
+  --color-danger-600: #dc2626;
+  --color-danger-700: #b91c1c;
+
+  /* Info colors */
+  --color-info-50: #eff6ff;
+  --color-info-100: #dbeafe;
+  --color-info-500: #3b82f6;
+  --color-info-600: #2563eb;
+  --color-info-700: #1d4ed8;
+
+  /* Badge colors */
+  --color-badge-slate-bg: #f1f5f9;
+  --color-badge-slate-text: #334155;
+  --color-badge-slate-border: #cbd5e1;
+
+  --color-badge-success-bg: #ecfdf5;
+  --color-badge-success-text: #166534;
+  --color-badge-success-border: #86efac;
+
+  --color-badge-warning-bg: #fffbeb;
+  --color-badge-warning-text: #92400e;
+  --color-badge-warning-border: #fcd34d;
+
+  --color-badge-danger-bg: #fef2f2;
+  --color-badge-danger-text: #991b1b;
+  --color-badge-danger-border: #fca5a5;
+
+  --color-badge-info-bg: #eff6ff;
+  --color-badge-info-text: #1e40af;
+  --color-badge-info-border: #93c5fd;
+}
+
+@layer base {
+  * {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    background-color: white;
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    letter-spacing: -0.01em;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .text-xs {
+    letter-spacing: 0.025em;
+  }
+}
+
+@layer components {
+  /* Base input styles */
+  .dx-input {
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+    background-color: white;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: #0f172a;
+    transition: all 150ms ease-in-out;
+  }
+
+  .dx-input::placeholder {
+    color: #94a3b8;
+  }
+
+  .dx-input:focus {
+    border-color: #cbd5e1;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.1);
+  }
+
+  .dx-input:disabled {
+    background-color: #f8fafc;
+    color: #94a3b8;
+    cursor: not-allowed;
+  }
+
+  /* Base button styles */
+  .dx-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 150ms ease-in-out;
+    cursor: pointer;
+  }
+
+  .dx-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@layer utilities {
+  /* Subtle icon animation */
+  @keyframes wiggle-sm {
+    0%, 100% {
+      transform: translateX(0) rotate(0deg);
+    }
+    25% {
+      transform: translateX(-1px) rotate(-2deg);
+    }
+    75% {
+      transform: translateX(1px) rotate(2deg);
+    }
+  }
+
+  .wiggle-icon {
+    transition: transform 150ms ease;
+  }
+
+  .hover-wiggle:hover .wiggle-icon {
+    animation: wiggle-sm 0.28s ease-in-out;
+  }
+}
+
