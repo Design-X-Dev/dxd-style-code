@@ -1,15 +1,22 @@
 <template>
   <span :class="allClasses" data-component="DXBadge" :data-variant="variant">
+    <DXIcon v-if="iconLeft" :icon="iconLeft" size="xs" animation="none" />
     <slot />
+    <DXIcon v-if="iconRight" :icon="iconRight" size="xs" animation="none" />
   </span>
 </template>
 
 <script setup>
 import { computed } from "vue";
+import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** Вариант оформления: slate | success | warning | danger | info */
   variant: { type: String, default: "slate" },
+  /** Иконка слева */
+  iconLeft: { type: Object, default: null },
+  /** Иконка справа */
+  iconRight: { type: Object, default: null },
 });
 
 const BASE_CLASSES = "inline-flex items-center gap-1 px-2 py-1 text-[11px] rounded-full border font-semibold";

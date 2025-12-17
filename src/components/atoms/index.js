@@ -24,5 +24,6 @@ export { default as DXTagsList } from './DXTags'; // Alias for backward compatib
 export { default as DXTextarea } from './DXTextarea';
 export { default as DXToast } from './DXToast';
 export { default as DXToggle } from './DXToggle';
+export { default as DXToggleButton } from './DXToggleButton';
 export { default as DXTooltip } from './DXTooltip';
 export { default as DXValidationIcon } from './DXValidationIcon';

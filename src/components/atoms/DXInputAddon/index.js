@@ -1,2 +1,2 @@
-export { default } from './DXInputGroupAddon.vue';
+export { default } from './DXInputAddon.vue';
 

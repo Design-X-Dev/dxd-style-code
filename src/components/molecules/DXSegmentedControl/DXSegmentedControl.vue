@@ -24,7 +24,12 @@
         :disabled="disabled"
         @click="select(option.value)"
       >
-        <component v-if="option.icon" :is="option.icon" class="w-4 h-4 flex-shrink-0" />
+        <DXIcon 
+          v-if="option.icon" 
+          :icon="option.icon" 
+          size="xs"
+          :animation="getIconAnimation(option)"
+        />
         <span v-if="option.label">{{ option.label }}</span>
         <span
           v-if="option.count !== undefined && option.count !== null"
@@ -42,6 +47,7 @@
 
 <script setup>
 import { ref, computed, watch, nextTick, onMounted } from "vue";
+import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 
 const props = defineProps({
   modelValue: [String, Number, Boolean],
@@ -50,6 +56,10 @@ const props = defineProps({
     required: true,
   },
   label: { type: String, default: "" },
+  /** Анимация иконок: none | wiggle | scale | rotate */
+  iconAnimation: { type: String, default: "none" },
+  /** Анимировать только активную иконку */
+  animateActiveOnly: { type: Boolean, default: true },
   disabled: { type: Boolean, default: false },
 });
 
@@ -79,6 +89,20 @@ const select = (value) => {
   if (!props.disabled) {
     emit("update:modelValue", value);
   }
+};
+
+// Определяет анимацию для иконки
+const getIconAnimation = (option) => {
+  // Если анимация отключена
+  if (props.iconAnimation === 'none') return 'none';
+  
+  // Если анимировать только активную иконку
+  if (props.animateActiveOnly) {
+    return props.modelValue === option.value ? props.iconAnimation : 'none';
+  }
+  
+  // Анимировать все иконки
+  return props.iconAnimation;
 };
 
 watch(() => props.modelValue, () => {

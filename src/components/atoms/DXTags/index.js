@@ -1,2 +1,2 @@
-export { default } from './DXTagsList.vue';
+export { default } from './DXTags.vue';
 

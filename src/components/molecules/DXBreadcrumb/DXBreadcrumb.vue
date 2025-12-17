@@ -1,20 +1,23 @@
 <template>
   <nav aria-label="Breadcrumb" data-component="DXBreadcrumb">
-    <ol class="flex items-center" :class="sizeClasses">
+    <ol class="flex items-center flex-wrap" :class="sizeClasses">
       <li v-for="(item, index) in items" :key="index" class="flex items-center">
         <!-- Separator -->
         <span v-if="index > 0" class="mx-2 text-slate-400" aria-hidden="true">
           <slot name="separator">
-            <svg v-if="separator === 'chevron'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
+            <DXIcon 
+              v-if="separator === 'chevron'" 
+              :icon="ChevronRightIcon" 
+              :size="iconSize"
+              animation="none"
+            />
             <span v-else>/</span>
           </slot>
         </span>
         
         <!-- Item -->
         <component
-          :is="item.href || item.to ? 'a' : 'span'"
+          :is="getLinkComponent(item)"
           :href="item.href"
           :to="item.to"
           :class="[
@@ -23,7 +26,13 @@
           ]"
           :aria-current="index === items.length - 1 ? 'page' : undefined"
         >
-          <component v-if="item.icon" :is="item.icon" class="w-4 h-4 mr-1" />
+          <DXIcon 
+            v-if="item.icon" 
+            :icon="item.icon" 
+            :size="iconSize"
+            :animation="getIconAnimation(item, index)"
+            class="mr-1.5"
+          />
           {{ item.label }}
         </component>
       </li>
@@ -33,14 +42,20 @@
 
 <script setup>
 import { computed } from "vue";
+import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import { ChevronRightIcon } from "@heroicons/vue/24/outline";
 
 const props = defineProps({
-  /** Элементы: [{ label, href?, to?, icon? }] */
+  /** Элементы: [{ label, href?, to?, icon?, iconAnimation? }] */
   items: { type: Array, required: true },
   /** Разделитель: slash | chevron */
   separator: { type: String, default: "chevron" },
   /** Размер: sm | md | lg */
   size: { type: String, default: "md" },
+  /** Анимация иконок: none | wiggle | scale | rotate */
+  iconAnimation: { type: String, default: "none" },
+  /** Анимировать только иконку текущей страницы */
+  animateCurrentOnly: { type: Boolean, default: false },
 });
 
 const sizes = {
@@ -51,6 +66,31 @@ const sizes = {
 
 const sizeClasses = computed(() => sizes[props.size] || sizes.md);
 
+const iconSize = computed(() => {
+  if (props.size === "sm") return "xs";
+  if (props.size === "lg") return "sm";
+  return "xs";
+});
+
 const itemClasses = "inline-flex items-center transition-colors";
+
+const getLinkComponent = (item) => {
+  if (item.to) return "router-link";
+  if (item.href) return "a";
+  return "span";
+};
+
+const getIconAnimation = (item, index) => {
+  // Если у элемента своя анимация
+  if (item.iconAnimation) return item.iconAnimation;
+  
+  // Если анимировать только текущую страницу
+  if (props.animateCurrentOnly) {
+    return index === props.items.length - 1 ? props.iconAnimation : "none";
+  }
+  
+  // Глобальная анимация для всех иконок
+  return props.iconAnimation;
+};
 </script>
 

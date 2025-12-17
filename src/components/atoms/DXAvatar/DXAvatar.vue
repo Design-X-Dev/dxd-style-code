@@ -10,9 +10,13 @@
     <span v-else-if="initials" class="font-medium" :class="initialsClasses">
       {{ initials }}
     </span>
-    <svg v-else class="w-1/2 h-1/2 text-slate-400" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-    </svg>
+    <DXIcon 
+      v-else 
+      :icon="fallbackIcon" 
+      :size="iconSize" 
+      :animation="iconAnimation" 
+      class="text-slate-400"
+    />
     <span
       v-if="status"
       class="absolute bottom-0 right-0 block rounded-full ring-2 ring-white"
@@ -23,6 +27,8 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { UserIcon } from "@heroicons/vue/24/solid";
+import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** URL изображения */
@@ -37,6 +43,10 @@ const props = defineProps({
   shape: { type: String, default: "circle" },
   /** Статус: online | offline | busy | away */
   status: { type: String, default: "" },
+  /** Кастомная иконка для fallback (по умолчанию UserIcon) */
+  icon: { type: Object, default: null },
+  /** Анимация иконки при hover: none | wiggle | scale | rotate */
+  iconAnimation: { type: String, default: "none" },
 });
 
 const imgError = ref(false);
@@ -79,9 +89,10 @@ const statusColors = {
 };
 
 const avatarClasses = computed(() => [
-  "relative inline-flex items-center justify-center overflow-hidden bg-slate-100",
+  "relative inline-flex items-center justify-center overflow-hidden bg-slate-100 transition-transform",
   sizeClasses[props.size] || sizeClasses.md,
   shapeClasses[props.shape] || shapeClasses.circle,
+  props.iconAnimation !== 'none' && 'hover:scale-105',
 ]);
 
 const initialsClasses = computed(() => [
@@ -93,5 +104,17 @@ const statusClasses = computed(() => [
   statusSize[props.size] || statusSize.md,
   statusColors[props.status] || "",
 ]);
+
+const fallbackIcon = computed(() => props.icon || UserIcon);
+
+const iconSizeMap = {
+  xs: "sm",
+  sm: "sm", 
+  md: "md",
+  lg: "lg",
+  xl: "xl",
+};
+
+const iconSize = computed(() => iconSizeMap[props.size] || "md");
 </script>
 

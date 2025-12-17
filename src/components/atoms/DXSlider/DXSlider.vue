@@ -8,6 +8,15 @@
     </div>
     
     <div class="relative">
+      <!-- Visual ticks (засечки на линии) -->
+      <div v-if="ticks" class="absolute top-1/2 left-0 right-0 flex justify-between pointer-events-none" style="transform: translateY(-50%)">
+        <div
+          v-for="(tick, index) in tickValues"
+          :key="`tick-${index}`"
+          class="w-0.5 h-3 bg-slate-400 rounded-full"
+        />
+      </div>
+      
       <input
         type="range"
         :value="modelValue"
@@ -15,14 +24,33 @@
         :max="max"
         :step="step"
         :disabled="disabled"
-        class="slider w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+        class="slider w-full appearance-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed relative z-10"
         @input="handleInput"
       />
     </div>
     
-    <div v-if="ticks" class="flex justify-between mt-1 px-1">
-      <span v-for="tick in tickValues" :key="tick" class="text-xs text-slate-500">
-        {{ tick }}
+    <!-- Labels for ticks -->
+    <div v-if="ticks && (showTickLabels || tickIcons)" class="flex justify-between mt-1 px-1">
+      <span 
+        v-for="(tick, index) in tickValues" 
+        :key="tick" 
+        class="flex flex-col items-center gap-0.5 transition-transform duration-200"
+        :class="{ 'scale-110': isActiveIcon(index) }"
+      >
+        <DXIcon 
+          v-if="tickIcons && tickIcons[index]" 
+          :icon="tickIcons[index]" 
+          size="sm" 
+          :animation="getIconAnimation(index)"
+          :class="isActiveIcon(index) ? 'text-slate-900' : 'text-slate-400'"
+        />
+        <span 
+          v-if="showTickLabels" 
+          class="text-xs transition-colors duration-200"
+          :class="isActiveIcon(index) ? 'text-slate-900 font-semibold' : 'text-slate-500'"
+        >
+          {{ tick }}{{ unit }}
+        </span>
       </span>
     </div>
     
@@ -32,6 +60,7 @@
 
 <script setup>
 import { computed } from "vue";
+import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** Значение (v-model) */
@@ -48,8 +77,16 @@ const props = defineProps({
   helper: { type: String, default: "" },
   /** Показывать текущее значение */
   showValue: { type: Boolean, default: true },
-  /** Показывать метки */
+  /** Показывать засечки (ticks) */
   ticks: { type: Boolean, default: false },
+  /** Показывать подписи к засечкам */
+  showTickLabels: { type: Boolean, default: true },
+  /** Количество засечек */
+  tickCount: { type: Number, default: 5 },
+  /** Массив иконок для засечек (Heroicon компоненты) */
+  tickIcons: { type: Array, default: null },
+  /** Анимация активной иконки: wiggle | scale | rotate | none */
+  tickIconAnimation: { type: String, default: "wiggle" },
   /** Единица измерения */
   unit: { type: String, default: "" },
   /** Отключенное состояние */
@@ -62,7 +99,7 @@ const displayValue = computed(() => `${props.modelValue}${props.unit}`);
 
 const tickValues = computed(() => {
   if (!props.ticks) return [];
-  const count = 5;
+  const count = props.tickCount;
   const step = (props.max - props.min) / (count - 1);
   return Array.from({ length: count }, (_, i) => Math.round(props.min + step * i));
 });
@@ -70,9 +107,53 @@ const tickValues = computed(() => {
 const handleInput = (event) => {
   emit("update:modelValue", Number(event.target.value));
 };
+
+// Определяет, какая иконка активна (ближайшая к текущему значению)
+const getClosestTickIndex = computed(() => {
+  if (!props.ticks || !tickValues.value.length) return -1;
+  
+  let closestIndex = 0;
+  let minDistance = Math.abs(props.modelValue - tickValues.value[0]);
+  
+  tickValues.value.forEach((tick, index) => {
+    const distance = Math.abs(props.modelValue - tick);
+    if (distance < minDistance) {
+      minDistance = distance;
+      closestIndex = index;
+    }
+  });
+  
+  return closestIndex;
+});
+
+const isActiveIcon = (index) => {
+  return getClosestTickIndex.value === index;
+};
+
+const getIconAnimation = (index) => {
+  // Активная иконка анимируется выбранной анимацией
+  if (isActiveIcon(index)) {
+    return props.tickIconAnimation;
+  }
+  return 'none';
+};
 </script>
 
 <style scoped>
+/* Input range base */
+.slider {
+  height: 20px; /* Высота для правильного центрирования thumb */
+  background: transparent;
+}
+
+/* Webkit (Chrome, Safari, Edge) */
+.slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+}
+
 .slider::-webkit-slider-thumb {
   appearance: none;
   width: 20px;
@@ -81,10 +162,28 @@ const handleInput = (event) => {
   background: #0f172a;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: transform 0.15s;
+  transition: transform 0.15s, box-shadow 0.15s;
+  margin-top: -6px; /* (thumb_height - track_height) / 2 = (20 - 8) / 2 = 6px */
 }
-.slider::-webkit-slider-thumb:hover { transform: scale(1.1); }
-.slider::-webkit-slider-thumb:active { transform: scale(0.95); }
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.slider::-webkit-slider-thumb:active {
+  transform: scale(0.95);
+}
+
+/* Firefox */
+.slider::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  border: none;
+}
+
 .slider::-moz-range-thumb {
   width: 20px;
   height: 20px;
@@ -93,11 +192,29 @@ const handleInput = (event) => {
   cursor: pointer;
   border: none;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: transform 0.15s;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
-.slider::-moz-range-thumb:hover { transform: scale(1.1); }
-.slider::-moz-range-thumb:active { transform: scale(0.95); }
-.slider::-webkit-slider-runnable-track { height: 8px; border-radius: 4px; }
-.slider::-moz-range-track { height: 8px; border-radius: 4px; }
+
+.slider::-moz-range-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.slider::-moz-range-thumb:active {
+  transform: scale(0.95);
+}
+
+/* Focus styles */
+.slider:focus {
+  outline: none;
+}
+
+.slider:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.slider:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
 </style>
 
