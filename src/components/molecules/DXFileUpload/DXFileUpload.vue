@@ -29,9 +29,7 @@
       
       <!-- Upload Icon & Text -->
       <div v-if="!files.length" class="text-center">
-        <svg class="w-12 h-12 mx-auto text-slate-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-        </svg>
+        <DXIcon :icon="CloudArrowUpIcon" size="xl" animation="none" class="mx-auto text-slate-400 mb-3 w-12 h-12" />
         <p class="text-sm font-medium text-slate-700 mb-1">
           Перетащите файлы сюда или 
           <button
@@ -67,9 +65,7 @@
               class="w-full h-full object-cover"
             />
           </div>
-          <svg v-else class="w-6 h-6 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-          </svg>
+          <DXIcon v-else :icon="DocumentIcon" size="lg" animation="none" class="text-slate-400 flex-shrink-0" />
           
           <div class="flex-1 min-w-0">
             <p class="text-sm font-medium text-slate-900 truncate">
@@ -82,12 +78,11 @@
           
           <button
             type="button"
-            class="text-slate-400 hover:text-slate-600"
+            class="text-slate-400 hover:text-slate-600 transition-colors"
             @click="removeFile(index)"
+            aria-label="Удалить файл"
           >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <DXIcon :icon="XMarkIcon" size="md" animation="scale" />
           </button>
         </div>
         
@@ -99,9 +94,7 @@
           :disabled="disabled"
           @click="fileInput?.click()"
         >
-          <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-          </svg>
+          <DXIcon :icon="PlusIcon" size="sm" animation="none" class="inline mr-1" />
           Добавить ещё
         </button>
       </div>
@@ -114,6 +107,8 @@
 
 <script setup>
 import { ref, watch } from "vue";
+import { CloudArrowUpIcon, DocumentIcon, XMarkIcon, PlusIcon } from "@heroicons/vue/24/outline";
+import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 
 const props = defineProps({
   modelValue: [File, FileList, Array],

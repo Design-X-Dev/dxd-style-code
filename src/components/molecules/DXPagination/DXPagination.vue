@@ -8,9 +8,7 @@
       @click="goTo(modelValue - 1)"
       aria-label="Предыдущая"
     >
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-      </svg>
+      <DXIcon :icon="ChevronLeftIcon" size="sm" animation="none" />
     </button>
 
     <!-- Pages -->
@@ -35,15 +33,15 @@
       @click="goTo(modelValue + 1)"
       aria-label="Следующая"
     >
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-      </svg>
+      <DXIcon :icon="ChevronRightIcon" size="sm" animation="none" />
     </button>
   </nav>
 </template>
 
 <script setup>
 import { computed } from "vue";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/outline";
+import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** Текущая страница (v-model) */

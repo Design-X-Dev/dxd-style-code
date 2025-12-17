@@ -1,8 +1,8 @@
-import DXTagsList from './DXTagsList.vue';
+import DXTags from './DXTags.vue';
 
 export default {
-  title: 'Atoms/DXTagsList',
-  component: DXTagsList,
+  title: 'Atoms/DXTags',
+  component: DXTags,
   tags: ['autodocs'],
 };
 

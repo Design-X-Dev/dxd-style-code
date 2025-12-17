@@ -14,9 +14,7 @@
         </option>
       </select>
       <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-        <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
+        <DXIcon :icon="ChevronDownIcon" size="md" animation="none" class="text-slate-400" />
       </div>
     </div>
     <p v-if="helper" class="mt-1 text-xs text-slate-500">{{ helper }}</p>
@@ -25,6 +23,8 @@
 
 <script setup>
 import { computed } from "vue";
+import { ChevronDownIcon } from "@heroicons/vue/24/outline";
+import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** Значение (v-model) */

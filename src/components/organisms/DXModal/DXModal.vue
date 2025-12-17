@@ -25,16 +25,12 @@
               </button>
             </div>
 
-            <button 
+            <DXCloseButton 
               v-if="closable" 
-              class="text-slate-400 hover:text-slate-600 transition-colors flex-shrink-0" 
+              size="md"
+              variant="default"
               @click="$emit('close')"
-              aria-label="Закрыть"
-            >
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+            />
           </div>
           <div class="text-slate-700 overflow-y-auto flex-1 min-h-0">
             <slot />
@@ -49,13 +45,14 @@
 </template>
 
 <script setup>
-import { computed, h } from "vue";
+import { computed } from "vue";
 import {
   Squares2X2Icon,
   ArrowsPointingOutIcon,
   ViewColumnsIcon,
   RectangleGroupIcon,
 } from "@heroicons/vue/24/outline";
+import DXCloseButton from "../../atoms/DXCloseButton/DXCloseButton.vue";
 
 const props = defineProps({
   /** Открыто/закрыто */

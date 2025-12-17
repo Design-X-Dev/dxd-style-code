@@ -10,7 +10,7 @@
       @click="$emit('update:modelValue', tab.value)"
     >
       <span class="flex items-center gap-2">
-        <component v-if="tab.icon" :is="tab.icon" class="w-4 h-4" />
+        <DXIcon v-if="tab.icon" :icon="tab.icon" size="sm" animation="wiggle" />
         <span>{{ tab.label }}</span>
         <span
           v-if="tab.count !== undefined"
@@ -25,6 +25,8 @@
 </template>
 
 <script setup>
+import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+
 defineProps({
   /** Текущее значение (v-model) */
   modelValue: [String, Number],
@@ -35,19 +37,4 @@ defineProps({
 defineEmits(["update:modelValue"]);
 </script>
 
-<style scoped>
-@keyframes tab-wiggle {
-  0% { transform: translateX(0) rotate(0deg); }
-  25% { transform: translateX(-1px) rotate(-3deg); }
-  50% { transform: translateX(0) rotate(0deg); }
-  75% { transform: translateX(1px) rotate(3deg); }
-  100% { transform: translateX(0) rotate(0deg); }
-}
-.tab-btn svg {
-  transition: transform 150ms ease;
-}
-.tab-btn:hover svg {
-  animation: tab-wiggle 0.28s ease-in-out;
-}
-</style>
 

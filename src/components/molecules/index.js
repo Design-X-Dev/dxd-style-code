@@ -9,7 +9,6 @@ export { default as DXDatePicker } from './DXDatePicker';
 export { default as DXFileUpload } from './DXFileUpload';
 export { default as DXFilterGroup } from './DXFilterGroup';
 export { default as DXFormControl } from './DXFormControl';
-export { default as DXFormField } from './DXFormField';
 export { default as DXInputGroup } from './DXInputGroup';
 export { default as DXInputMask } from './DXInputMask';
 export { default as DXPagination } from './DXPagination';

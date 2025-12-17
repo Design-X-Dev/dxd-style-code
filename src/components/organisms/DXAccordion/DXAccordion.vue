@@ -14,18 +14,16 @@
         :aria-expanded="isOpen(index)"
       >
         <span class="flex items-center gap-2">
-          <component v-if="item.icon" :is="item.icon" class="w-5 h-5 text-slate-500" />
+          <DXIcon v-if="item.icon" :icon="item.icon" size="md" animation="none" class="text-slate-500" />
           <span class="text-slate-900">{{ item.title }}</span>
         </span>
-        <svg
-          class="w-5 h-5 text-slate-400 transition-transform duration-200"
+        <DXIcon
+          :icon="ChevronDownIcon"
+          size="md"
+          animation="none"
+          class="text-slate-400 transition-transform duration-200"
           :class="{ 'rotate-180': isOpen(index) }"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
+        />
       </button>
       
       <!-- Content -->
@@ -51,6 +49,8 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { ChevronDownIcon } from "@heroicons/vue/24/outline";
+import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** Элементы: [{ title, content?, icon? }] */

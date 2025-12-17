@@ -6,7 +6,7 @@
       @click="toggle"
     >
       <slot name="trigger">Меню</slot>
-      <span class="text-slate-400">▼</span>
+      <DXIcon :icon="ChevronDownIcon" size="sm" animation="wiggle" class="text-slate-400" />
     </button>
     <div
       v-if="open"
@@ -19,6 +19,8 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ChevronDownIcon } from "@heroicons/vue/24/outline";
+import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 
 const open = ref(false);
 const root = ref(null);
@@ -36,19 +38,4 @@ onMounted(() => document.addEventListener("click", onClickOutside));
 onBeforeUnmount(() => document.removeEventListener("click", onClickOutside));
 </script>
 
-<style scoped>
-@keyframes btn-wiggle {
-  0% { transform: translateX(0) rotate(0deg); }
-  25% { transform: translateX(-1px) rotate(-3deg); }
-  50% { transform: translateX(0) rotate(0deg); }
-  75% { transform: translateX(1px) rotate(3deg); }
-  100% { transform: translateX(0) rotate(0deg); }
-}
-.dropdown-btn :deep(svg) {
-  transition: transform 150ms ease;
-}
-.dropdown-btn:hover :deep(svg) {
-  animation: btn-wiggle 0.28s ease-in-out;
-}
-</style>
 
