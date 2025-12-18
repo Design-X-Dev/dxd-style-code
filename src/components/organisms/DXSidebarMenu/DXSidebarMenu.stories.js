@@ -27,7 +27,7 @@ export default {
 };
 
 export const Default = {
-  render: (args) => ({
+  render: () => ({
     components: { DXSidebarMenu },
     setup() {
       const activeItem = ref('/home');
@@ -88,12 +88,16 @@ export const Default = {
         activeItem.value = item.to || item.id;
       };
       
-      return { args, sections, activeItem, handleItemClick };
+      return { sections, activeItem, handleItemClick };
     },
     template: `
       <div class="h-screen flex">
         <DXSidebarMenu 
-          v-bind="args"
+          title="Меню"
+          width="md"
+          :collapsible="true"
+          :searchable="false"
+          :bordered="true"
           :sections="sections"
           :activeItem="activeItem"
           @item-click="handleItemClick"
@@ -105,14 +109,6 @@ export const Default = {
       </div>
     `,
   }),
-  args: {
-    title: 'Меню',
-    width: 'md',
-    collapsible: true,
-    searchable: false,
-    fixed: false,
-    bordered: true,
-  },
 };
 
 export const WithSearch = {
