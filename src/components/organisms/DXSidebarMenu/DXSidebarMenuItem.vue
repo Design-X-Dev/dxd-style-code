@@ -18,7 +18,7 @@
         />
         
         <!-- Текст -->
-        <span v-if="!compact" class="flex-1 text-sm font-medium">
+        <span v-if="!compact" class="flex-1 text-sm font-medium text-left">
           {{ item.label }}
         </span>
       </div>
@@ -46,7 +46,7 @@
             :is="item.icon" 
             :class="iconClasses"
           />
-          <span v-if="!compact" class="flex-1 text-sm font-medium">
+          <span v-if="!compact" class="flex-1 text-sm font-medium text-left">
             {{ item.label }}
           </span>
         </div>
@@ -140,7 +140,7 @@ const getChildLinkComponent = (child) => {
 };
 
 const itemClasses = computed(() => [
-  'w-full flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-200',
+  'w-full flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-200 text-left',
   props.active
     ? 'bg-slate-900 text-white shadow-lg shadow-slate-900/20'
     : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
@@ -155,7 +155,7 @@ const iconClasses = computed(() => [
 ]);
 
 const getChildItemClasses = (child) => [
-  'w-full flex items-center px-3 py-2 text-sm rounded-lg transition-colors',
+  'w-full flex items-center px-3 py-2 text-sm rounded-lg transition-colors text-left',
   child.active
     ? 'bg-slate-100 text-slate-900 font-medium'
     : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
