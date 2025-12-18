@@ -26,6 +26,7 @@
 
 <script setup>
 import { computed } from "vue";
+import { useComponentSize } from "@/composables/useComponentSize";
 import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({
@@ -55,15 +56,9 @@ const props = defineProps({
 
 defineEmits(["update:modelValue"]);
 
-const sizeClasses = {
-  sm: "h-8 px-3 py-1.5 text-xs",
-  md: "h-10 px-4 py-2.5 text-sm",
-  lg: "h-12 px-5 py-3 text-base",
-};
-
 const inputClasses = computed(() => [
   "w-full rounded-xl border border-slate-200 bg-white transition-colors",
-  sizeClasses[props.size] || sizeClasses.md,
+  useComponentSize(props.size, 'input'),
   "text-slate-700 placeholder:text-slate-400",
   !props.disabled && "hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300",
   props.disabled && "opacity-60 cursor-not-allowed bg-slate-50",

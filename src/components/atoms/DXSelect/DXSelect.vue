@@ -34,6 +34,7 @@
 
 <script setup>
 import { computed } from "vue";
+import { useComponentSize } from "@/composables/useComponentSize";
 import { ChevronDownIcon } from "@heroicons/vue/24/outline";
 import DXIcon from "../DXIcon/DXIcon.vue";
 
@@ -60,15 +61,9 @@ const props = defineProps({
 
 defineEmits(["update:modelValue"]);
 
-const sizeClasses = {
-  sm: "h-8 px-3 py-1.5 text-xs",
-  md: "h-10 px-4 py-2.5 text-sm",
-  lg: "h-12 px-5 py-3 text-base",
-};
-
 const selectClasses = computed(() => [
   "w-full appearance-none rounded-xl border border-slate-200 bg-white transition-colors pr-10",
-  sizeClasses[props.size] || sizeClasses.md,
+  useComponentSize(props.size, 'input'),
   "text-slate-700",
   props.prefixIcon && "pl-10",
   !props.disabled && "hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300",

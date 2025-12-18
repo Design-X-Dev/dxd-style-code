@@ -10,7 +10,7 @@
       @click="$emit('update:modelValue', tab.value)"
     >
       <span class="flex items-center gap-2">
-        <DXIcon v-if="tab.icon" :icon="tab.icon" size="sm" animation="wiggle" />
+        <DXIcon v-if="tab.icon" :icon="tab.icon" size="sm" :animation="getIconAnimation(tab)" />
         <span>{{ tab.label }}</span>
         <span
           v-if="tab.count !== undefined"
@@ -25,16 +25,34 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 
-defineProps({
+const props = defineProps({
   /** Текущее значение (v-model) */
   modelValue: [String, Number],
-  /** Табы: [{ value, label, icon?, count? }] */
+  /** Табы: [{ value, label, icon?, count?, iconAnimation? }] */
   tabs: { type: Array, default: () => [] },
+  /** Анимация иконок: none | wiggle | scale | rotate */
+  iconAnimation: { type: String, default: "wiggle" },
+  /** Анимировать только активную иконку */
+  animateActiveOnly: { type: Boolean, default: true },
 });
 
 defineEmits(["update:modelValue"]);
+
+const getIconAnimation = (tab) => {
+  // Если у таба своя анимация
+  if (tab.iconAnimation) return tab.iconAnimation;
+  
+  // Если анимировать только активный таб
+  if (props.animateActiveOnly) {
+    return props.modelValue === tab.value ? props.iconAnimation : "none";
+  }
+  
+  // Глобальная анимация
+  return props.iconAnimation;
+};
 </script>
 
 
