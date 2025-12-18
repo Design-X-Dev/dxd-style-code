@@ -5,7 +5,7 @@ Vue 3 UI Component Library с атомарной структурой и Tailwin
 ## Установка
 
 ```bash
-npm install dx-components
+npm install dxd-style-code
 ```
 
 ## Использование
@@ -13,68 +13,69 @@ npm install dx-components
 ### Глобальная регистрация (Plugin)
 
 ```js
-import { createApp } from 'vue';
-import App from './App.vue';
-import DXComponents from 'dx-components';
-import 'dx-components/style.css';
+import { createApp } from "vue";
+import App from "./App.vue";
+import DXComponents from "dxd-style-code";
+import "dxd-style-code/style.css";
 
 const app = createApp(App);
 app.use(DXComponents);
-app.mount('#app');
+app.mount("#app");
 ```
 
 ### Импорт отдельных компонентов
 
 ```js
-import { DXButton, DXInput, DXModal } from 'dx-components';
-import 'dx-components/style.css';
+import { DXButton, DXInput, DXModal } from "dxd-style-code";
+import "dxd-style-code/style.css";
 ```
 
 ## Компоненты
 
 ### Atoms (Базовые)
 
-| Компонент | Описание |
-|-----------|----------|
-| `DXButton` | Кнопка с вариантами: primary, ghost, danger, outline |
-| `DXInput` | Текстовое поле ввода |
-| `DXBadge` | Бейдж/метка со статусами |
-| `DXCheckbox` | Чекбокс |
-| `DXRadio` | Radio-кнопка |
-| `DXToggle` | Переключатель |
-| `DXSelect` | Выпадающий список |
-| `DXTextarea` | Многострочное поле |
-| `DXSlider` | Слайдер/ползунок |
-| `DXLoader` | Индикатор загрузки |
-| `DXSkeleton` | Скелетон для загрузки |
-| `DXToast` | Уведомление |
-| `DXCard` | Карточка-контейнер |
+| Компонент    | Описание                                             |
+| ------------ | ---------------------------------------------------- |
+| `DXButton`   | Кнопка с вариантами: primary, ghost, danger, outline |
+| `DXInput`    | Текстовое поле ввода                                 |
+| `DXBadge`    | Бейдж/метка со статусами                             |
+| `DXCheckbox` | Чекбокс                                              |
+| `DXRadio`    | Radio-кнопка                                         |
+| `DXToggle`   | Переключатель                                        |
+| `DXSelect`   | Выпадающий список                                    |
+| `DXTextarea` | Многострочное поле                                   |
+| `DXSlider`   | Слайдер/ползунок                                     |
+| `DXLoader`   | Индикатор загрузки                                   |
+| `DXSkeleton` | Скелетон для загрузки                                |
+| `DXToast`    | Уведомление                                          |
+| `DXCard`     | Карточка-контейнер                                   |
 
 ### Molecules (Составные)
 
-| Компонент | Описание |
-|-----------|----------|
-| `DXFormField` | Обертка поля формы с label и error |
-| `DXFormControl` | Расширенная обертка с валидацией |
-| `DXInputMask` | Input с маской ввода |
-| `DXPasswordInput` | Поле пароля с переключателем |
-| `DXSearchSelect` | Select с поиском |
-| `DXDatePicker` | Выбор даты/диапазона |
-| `DXButtonGroup` | Группа кнопок |
-| `DXRadioGroup` | Группа radio-кнопок |
-| `DXFilterGroup` | Группа фильтров |
-| `DXActionButtons` | Кнопки действий (Edit/Delete) |
-| `DXCopyField` | Поле с копированием |
+| Компонент         | Описание                           |
+| ----------------- | ---------------------------------- |
+| `DXFormField`     | Обертка поля формы с label и error |
+| `DXFormControl`   | Расширенная обертка с валидацией   |
+| `DXInputMask`     | Input с маской ввода               |
+| `DXPasswordInput` | Поле пароля с переключателем       |
+| `DXSearchSelect`  | Select с поиском                   |
+| `DXDatePicker`    | Выбор даты/диапазона               |
+| `DXButtonGroup`   | Группа кнопок                      |
+| `DXRadioGroup`    | Группа radio-кнопок                |
+| `DXFilterGroup`   | Группа фильтров                    |
+| `DXActionButtons` | Кнопки действий (Edit/Delete)      |
+| `DXCopyField`     | Поле с копированием                |
 
 ### Organisms (Сложные)
 
-| Компонент | Описание |
-|-----------|----------|
-| `DXModal` | Модальное окно (modal, fullscreen, sidebar) |
-| `DXTable` | Таблица |
-| `DXTabs` | Табы/вкладки |
-| `DXDropdown` | Выпадающее меню |
-| `DXEmptyState` | Пустое состояние |
+| Компонент      | Описание                                    |
+| -------------- | ------------------------------------------- |
+| `DXModal`      | Модальное окно (modal, fullscreen, sidebar) |
+| `DXSidebarMenu` | Боковое меню с навигацией, иконками, счетчиками |
+| `DXTable`      | Таблица                                     |
+| `DXTabs`       | Табы/вкладки                                |
+| `DXDropdown`   | Выпадающее меню                             |
+| `DXEmptyState` | Пустое состояние                            |
 
 ## Примеры
 
@@ -82,10 +83,8 @@ import 'dx-components/style.css';
 
 ```vue
 <template>
-  <DXButton variant="primary" size="md">
-    Сохранить
-  </DXButton>
-  
+  <DXButton variant="primary" size="md"> Сохранить </DXButton>
+
   <DXButton variant="danger" @click="handleDelete">
     <TrashIcon class="w-4 h-4" />
     Удалить
@@ -94,6 +93,7 @@ import 'dx-components/style.css';
 ```
 
 **Props:**
+
 - `variant`: `'primary'` | `'ghost'` | `'danger'` | `'outline'`
 - `size`: `'sm'` | `'md'` | `'lg'`
 - `disabled`: `boolean`
@@ -115,6 +115,7 @@ import 'dx-components/style.css';
 ```
 
 **Props:**
+
 - `modelValue`: `string | number`
 - `label`: `string`
 - `placeholder`: `string`
@@ -128,30 +129,27 @@ import 'dx-components/style.css';
 ```vue
 <template>
   <DXButton @click="showModal = true">Открыть</DXButton>
-  
-  <DXModal 
-    :open="showModal" 
+
+  <DXModal
+    :open="showModal"
     variant="modal"
     width="md"
     @close="showModal = false"
   >
     <template #title>Заголовок</template>
-    
+
     <p>Контент модального окна</p>
-    
+
     <template #actions>
-      <DXButton variant="ghost" @click="showModal = false">
-        Отмена
-      </DXButton>
-      <DXButton @click="save">
-        Сохранить
-      </DXButton>
+      <DXButton variant="ghost" @click="showModal = false"> Отмена </DXButton>
+      <DXButton @click="save"> Сохранить </DXButton>
     </template>
   </DXModal>
 </template>
 ```
 
 **Props:**
+
 - `open`: `boolean`
 - `variant`: `'modal'` | `'fullscreen'` | `'sidebar-right'` | `'half-right'`
 - `width`: `'sm'` | `'md'` | `'lg'` | `'xl'`
@@ -185,7 +183,7 @@ npm run storybook
 ## Структура проекта
 
 ```
-dx-components/
+dxd-style-code/
 ├── src/
 │   ├── components/
 │   │   ├── atoms/          # Базовые компоненты
@@ -203,4 +201,3 @@ dx-components/
 ## Лицензия
 
 MIT
-

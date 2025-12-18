@@ -32,7 +32,7 @@ export const Default = {
 
 export const Code = {
   args: { 
-    value: 'npm install dx-components', 
+    value: 'npm install dxd-style-code', 
     label: 'Installation' 
   },
 };
@@ -57,7 +57,7 @@ export const WiggleAnimation = {
 // С анимацией scale (по умолчанию)
 export const ScaleAnimation = {
   args: {
-    value: 'npm install dx-components',
+    value: 'npm install dxd-style-code',
     label: 'Installation',
     copyIconAnimation: 'scale',
     copiedIconAnimation: 'scale',
@@ -112,7 +112,7 @@ export const CustomIcons = {
         />
         
         <DXCopyField
-          value="import { DXButton } from 'dx-components'"
+          value="import { DXButton } from 'dxd-style-code'"
           label="Import Code"
           :copy-icon="CodeBracketIcon"
           copy-icon-animation="rotate"
@@ -157,7 +157,7 @@ export const AllVariants = {
         <div>
           <h3 class="text-sm font-semibold text-slate-900 mb-3">Wiggle Animation</h3>
           <DXCopyField
-            value="npm install dx-components"
+            value="npm install dxd-style-code"
             label="Installation"
             copy-icon-animation="wiggle"
             copied-icon-animation="wiggle"
@@ -213,7 +213,7 @@ export const Interactive = {
             @copied="(val) => console.log('Copied:', val)"
           />
           <DXCopyField
-            value="npm install dx-components"
+            value="npm install dxd-style-code"
             label="Installation Command"
             copy-icon-animation="wiggle"
           />

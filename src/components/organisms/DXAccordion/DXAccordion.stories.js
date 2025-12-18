@@ -11,7 +11,7 @@ export default {
 
 const items = [
   { title: 'What is DX Components?', content: 'DX Components is a Vue 3 UI component library built with Tailwind CSS.' },
-  { title: 'How to install?', content: 'Run npm install dx-components to add the library to your project.' },
+  { title: 'How to install?', content: 'Run npm install dxd-style-code to add the library to your project.' },
   { title: 'Is it customizable?', content: 'Yes, all components are fully customizable using Tailwind CSS classes.' },
 ];
 

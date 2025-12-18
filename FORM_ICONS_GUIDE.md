@@ -4,17 +4,17 @@
 
 ## 📋 Поддержка иконок в компонентах
 
-| Компонент | Prefix Icon | Suffix Icon | Особенности |
-|-----------|-------------|-------------|-------------|
-| `DXInput` | ✅ | ✅ | Полная поддержка с обеих сторон |
-| `DXTextarea` | ✅ | ✅ | Иконки в верхних углах + счетчик символов |
-| `DXSelect` | ✅ | ✅ (chevron) | Префикс + автоматический chevron |
-| `DXPasswordInput` | - | ✅ (toggle) | Встроенная иконка показа/скрытия |
-| `DXSearchSelect` | ✅ (search) | - | Встроенная иконка поиска |
-| `DXDatePicker` | ✅ (calendar) | - | Встроенная иконка календаря |
-| `DXCheckbox` | - | ✅ (check) | Встроенная галочка |
-| `DXRadio` | - | ✅ (check) | Встроенная галочка |
-| `DXToggle` | ✅ | ✅ | Кастомные иконки для вкл/выкл |
+| Компонент         | Prefix Icon   | Suffix Icon  | Особенности                               |
+| ----------------- | ------------- | ------------ | ----------------------------------------- |
+| `DXInput`         | ✅            | ✅           | Полная поддержка с обеих сторон           |
+| `DXTextarea`      | ✅            | ✅           | Иконки в верхних углах + счетчик символов |
+| `DXSelect`        | ✅            | ✅ (chevron) | Префикс + автоматический chevron          |
+| `DXPasswordInput` | -             | ✅ (toggle)  | Встроенная иконка показа/скрытия          |
+| `DXSearchSelect`  | ✅ (search)   | -            | Встроенная иконка поиска                  |
+| `DXDatePicker`    | ✅ (calendar) | -            | Встроенная иконка календаря               |
+| `DXCheckbox`      | -             | ✅ (check)   | Встроенная галочка                        |
+| `DXRadio`         | -             | ✅ (check)   | Встроенная галочка                        |
+| `DXToggle`        | ✅            | ✅           | Кастомные иконки для вкл/выкл             |
 
 ## 🚀 Примеры использования
 
@@ -22,8 +22,8 @@
 
 ```vue
 <script setup>
-import { ref } from 'vue';
-import { DXInput } from 'dx-components';
+import { ref } from "vue";
+import { DXInput } from "dxd-style-code";
 import {
   MagnifyingGlassIcon,
   EnvelopeIcon,
@@ -33,11 +33,11 @@ import {
   CreditCardIcon,
   MapPinIcon,
   CurrencyDollarIcon,
-} from '@heroicons/vue/24/outline';
+} from "@heroicons/vue/24/outline";
 
-const search = ref('');
-const email = ref('');
-const name = ref('');
+const search = ref("");
+const email = ref("");
+const name = ref("");
 </script>
 
 <template>
@@ -47,7 +47,7 @@ const name = ref('');
     placeholder="Search..."
     :prefix-icon="MagnifyingGlassIcon"
   />
-  
+
   <!-- Email -->
   <DXInput
     v-model="email"
@@ -56,7 +56,7 @@ const name = ref('');
     placeholder="example@mail.com"
     :prefix-icon="EnvelopeIcon"
   />
-  
+
   <!-- Имя пользователя -->
   <DXInput
     v-model="name"
@@ -69,35 +69,35 @@ const name = ref('');
 
 #### Популярные комбинации для DXInput:
 
-| Тип поля | Иконка | Импорт |
-|----------|--------|--------|
-| Поиск | `MagnifyingGlassIcon` | `@heroicons/vue/24/outline` |
-| Email | `EnvelopeIcon` | `@heroicons/vue/24/outline` |
-| Телефон | `PhoneIcon` | `@heroicons/vue/24/outline` |
-| Имя/Username | `UserIcon` | `@heroicons/vue/24/outline` |
-| Пароль | `LockClosedIcon` | `@heroicons/vue/24/outline` |
-| Карта | `CreditCardIcon` | `@heroicons/vue/24/outline` |
-| Адрес | `MapPinIcon` | `@heroicons/vue/24/outline` |
-| Цена | `CurrencyDollarIcon` | `@heroicons/vue/24/outline` |
-| Дата | `CalendarIcon` | `@heroicons/vue/24/outline` |
-| Сайт | `GlobeAltIcon` | `@heroicons/vue/24/outline` |
-| Тег | `TagIcon` или `HashtagIcon` | `@heroicons/vue/24/outline` |
-| Ссылка | `LinkIcon` | `@heroicons/vue/24/outline` |
+| Тип поля     | Иконка                      | Импорт                      |
+| ------------ | --------------------------- | --------------------------- |
+| Поиск        | `MagnifyingGlassIcon`       | `@heroicons/vue/24/outline` |
+| Email        | `EnvelopeIcon`              | `@heroicons/vue/24/outline` |
+| Телефон      | `PhoneIcon`                 | `@heroicons/vue/24/outline` |
+| Имя/Username | `UserIcon`                  | `@heroicons/vue/24/outline` |
+| Пароль       | `LockClosedIcon`            | `@heroicons/vue/24/outline` |
+| Карта        | `CreditCardIcon`            | `@heroicons/vue/24/outline` |
+| Адрес        | `MapPinIcon`                | `@heroicons/vue/24/outline` |
+| Цена         | `CurrencyDollarIcon`        | `@heroicons/vue/24/outline` |
+| Дата         | `CalendarIcon`              | `@heroicons/vue/24/outline` |
+| Сайт         | `GlobeAltIcon`              | `@heroicons/vue/24/outline` |
+| Тег          | `TagIcon` или `HashtagIcon` | `@heroicons/vue/24/outline` |
+| Ссылка       | `LinkIcon`                  | `@heroicons/vue/24/outline` |
 
 ### 2. **DXTextarea - Многострочные поля**
 
 ```vue
 <script setup>
-import { ref } from 'vue';
-import { DXTextarea } from 'dx-components';
+import { ref } from "vue";
+import { DXTextarea } from "dxd-style-code";
 import {
   ChatBubbleLeftIcon,
   DocumentTextIcon,
   PencilIcon,
-} from '@heroicons/vue/24/outline';
+} from "@heroicons/vue/24/outline";
 
-const message = ref('');
-const description = ref('');
+const message = ref("");
+const description = ref("");
 </script>
 
 <template>
@@ -109,7 +109,7 @@ const description = ref('');
     :prefix-icon="ChatBubbleLeftIcon"
     :rows="4"
   />
-  
+
   <!-- Описание с счетчиком -->
   <DXTextarea
     v-model="description"
@@ -132,39 +132,39 @@ const description = ref('');
 
 #### Популярные иконки для DXTextarea:
 
-| Тип поля | Иконка |
-|----------|--------|
-| Сообщение/Комментарий | `ChatBubbleLeftIcon` |
-| Описание | `DocumentTextIcon` или `PencilIcon` |
-| Заметка | `PencilSquareIcon` |
-| Отзыв | `StarIcon` |
+| Тип поля              | Иконка                              |
+| --------------------- | ----------------------------------- |
+| Сообщение/Комментарий | `ChatBubbleLeftIcon`                |
+| Описание              | `DocumentTextIcon` или `PencilIcon` |
+| Заметка               | `PencilSquareIcon`                  |
+| Отзыв                 | `StarIcon`                          |
 
 ### 3. **DXSelect - Выпадающие списки**
 
 ```vue
 <script setup>
-import { ref } from 'vue';
-import { DXSelect } from 'dx-components';
+import { ref } from "vue";
+import { DXSelect } from "dxd-style-code";
 import {
   GlobeAltIcon,
   CurrencyDollarIcon,
   MapPinIcon,
   BriefcaseIcon,
-} from '@heroicons/vue/24/outline';
+} from "@heroicons/vue/24/outline";
 
-const country = ref('');
-const currency = ref('');
+const country = ref("");
+const currency = ref("");
 
 const countries = [
-  { value: 'us', label: 'United States' },
-  { value: 'uk', label: 'United Kingdom' },
-  { value: 'ca', label: 'Canada' },
+  { value: "us", label: "United States" },
+  { value: "uk", label: "United Kingdom" },
+  { value: "ca", label: "Canada" },
 ];
 
 const currencies = [
-  { value: 'usd', label: 'USD' },
-  { value: 'eur', label: 'EUR' },
-  { value: 'gbp', label: 'GBP' },
+  { value: "usd", label: "USD" },
+  { value: "eur", label: "EUR" },
+  { value: "gbp", label: "GBP" },
 ];
 </script>
 
@@ -177,7 +177,7 @@ const currencies = [
     :prefix-icon="GlobeAltIcon"
     placeholder="Select country"
   />
-  
+
   <!-- Валюта -->
   <DXSelect
     v-model="currency"
@@ -191,15 +191,15 @@ const currencies = [
 
 #### Популярные иконки для DXSelect:
 
-| Тип списка | Иконка |
-|------------|--------|
+| Тип списка    | Иконка                          |
+| ------------- | ------------------------------- |
 | Страна/Регион | `GlobeAltIcon` или `MapPinIcon` |
-| Валюта | `CurrencyDollarIcon` |
-| Язык | `LanguageIcon` |
-| Категория | `FolderIcon` или `TagIcon` |
-| Должность | `BriefcaseIcon` |
-| Статус | `CheckBadgeIcon` |
-| Приоритет | `FlagIcon` |
+| Валюта        | `CurrencyDollarIcon`            |
+| Язык          | `LanguageIcon`                  |
+| Категория     | `FolderIcon` или `TagIcon`      |
+| Должность     | `BriefcaseIcon`                 |
+| Статус        | `CheckBadgeIcon`                |
+| Приоритет     | `FlagIcon`                      |
 
 ## 🎯 Лучшие практики
 
@@ -233,14 +233,17 @@ const currencies = [
 
 ```vue
 <!-- Не используйте слишком много разных иконок -->
-<DXInput :prefix-icon="Icon1" :suffix-icon="Icon2" /> <!-- Перегружено -->
+<DXInput :prefix-icon="Icon1" :suffix-icon="Icon2" />
+<!-- Перегружено -->
 
 <!-- Не используйте иконки без явной причины -->
-<DXInput label="Notes" :prefix-icon="QuestionMarkIcon" /> <!-- Неясно -->
+<DXInput label="Notes" :prefix-icon="QuestionMarkIcon" />
+<!-- Неясно -->
 
 <!-- Не смешивайте стили иконок (outline vs solid) -->
 <DXInput :prefix-icon="UserIconSolid" />
-<DXInput :prefix-icon="EnvelopeIconOutline" /> <!-- Несогласованно -->
+<DXInput :prefix-icon="EnvelopeIconOutline" />
+<!-- Несогласованно -->
 ```
 
 ## 📚 Полные примеры форм
@@ -249,7 +252,7 @@ const currencies = [
 
 ```vue
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 import {
   UserIcon,
   EnvelopeIcon,
@@ -257,15 +260,15 @@ import {
   LockClosedIcon,
   MapPinIcon,
   GlobeAltIcon,
-} from '@heroicons/vue/24/outline';
+} from "@heroicons/vue/24/outline";
 
 const form = ref({
-  name: '',
-  email: '',
-  phone: '',
-  password: '',
-  country: '',
-  bio: '',
+  name: "",
+  email: "",
+  phone: "",
+  password: "",
+  country: "",
+  bio: "",
 });
 </script>
 
@@ -278,7 +281,7 @@ const form = ref({
       placeholder="John Doe"
       required
     />
-    
+
     <DXInput
       v-model="form.email"
       label="Email"
@@ -287,7 +290,7 @@ const form = ref({
       placeholder="john@example.com"
       required
     />
-    
+
     <DXInput
       v-model="form.phone"
       label="Phone"
@@ -295,13 +298,9 @@ const form = ref({
       :prefix-icon="PhoneIcon"
       placeholder="+1 (555) 000-0000"
     />
-    
-    <DXPasswordInput
-      v-model="form.password"
-      label="Password"
-      required
-    />
-    
+
+    <DXPasswordInput v-model="form.password" label="Password" required />
+
     <DXSelect
       v-model="form.country"
       label="Country"
@@ -309,7 +308,7 @@ const form = ref({
       :options="countryOptions"
       placeholder="Select country"
     />
-    
+
     <DXTextarea
       v-model="form.bio"
       label="Bio"
@@ -327,19 +326,19 @@ const form = ref({
 
 ```vue
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 import {
   CreditCardIcon,
   CalendarIcon,
   LockClosedIcon,
   CurrencyDollarIcon,
-} from '@heroicons/vue/24/outline';
+} from "@heroicons/vue/24/outline";
 
 const payment = ref({
-  cardNumber: '',
-  expiry: '',
-  cvv: '',
-  amount: '',
+  cardNumber: "",
+  expiry: "",
+  cvv: "",
+  amount: "",
 });
 </script>
 
@@ -352,7 +351,7 @@ const payment = ref({
       placeholder="1234 5678 9012 3456"
       required
     />
-    
+
     <div class="grid grid-cols-2 gap-4">
       <DXInput
         v-model="payment.expiry"
@@ -361,7 +360,7 @@ const payment = ref({
         placeholder="MM/YY"
         required
       />
-      
+
       <DXInput
         v-model="payment.cvv"
         label="CVV"
@@ -372,7 +371,7 @@ const payment = ref({
         required
       />
     </div>
-    
+
     <DXInput
       v-model="payment.amount"
       label="Amount"
@@ -462,4 +461,3 @@ const payment = ref({
 ---
 
 ✨ **Все иконки взяты из [Heroicons](https://heroicons.com/) - официальной библиотеки иконок Tailwind CSS**
-

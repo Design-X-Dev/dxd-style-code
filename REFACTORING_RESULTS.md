@@ -142,7 +142,7 @@
 ### Композаблы
 
 ```js
-import { useComponentSize, useVariantConfig } from 'dx-components';
+import { useComponentSize, useVariantConfig } from 'dxd-style-code';
 
 // В computed свойстве компонента
 const sizeClasses = computed(() => useComponentSize(props.size, 'input'));
@@ -153,7 +153,7 @@ const config = computed(() => useVariantConfig(props.variant));
 
 ```vue
 <script setup>
-import { sizeProp, variantProp, iconAnimationProp } from 'dx-components';
+import { sizeProp, variantProp, iconAnimationProp } from 'dxd-style-code';
 
 defineProps({
   size: sizeProp,
@@ -167,7 +167,7 @@ defineProps({
 
 ```vue
 <script setup>
-import { DXToggleButton, TOGGLE_PRESETS } from 'dx-components';
+import { DXToggleButton, TOGGLE_PRESETS } from 'dxd-style-code';
 import { ref } from 'vue';
 
 const isFavorite = ref(false);

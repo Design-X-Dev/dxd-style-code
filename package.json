@@ -1,14 +1,14 @@
 {
-  "name": "dx-components",
-  "version": "0.1.0",
+  "name": "dxd-style-code",
+  "version": "0.1.1",
   "type": "module",
   "description": "DX Design System - Vue 3 UI Component Library",
-  "main": "./dist/dx-components.umd.cjs",
-  "module": "./dist/dx-components.js",
+  "main": "./dist/dxd-style-code.umd.cjs",
+  "module": "./dist/dxd-style-code.js",
   "exports": {
     ".": {
-      "import": "./dist/dx-components.js",
-      "require": "./dist/dx-components.umd.cjs"
+      "import": "./dist/dxd-style-code.js",
+      "require": "./dist/dxd-style-code.umd.cjs"
     },
     "./style.css": "./dist/style.css"
   },
@@ -20,12 +20,11 @@
     "build": "vite build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "vue": "^3.4.0"
-  },
-  "dependencies": {
+    "vue": "^3.4.0",
     "@heroicons/vue": "^2.2.0"
   },
   "devDependencies": {
@@ -52,5 +51,13 @@
     "tailwindcss"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Design-X-Dev/dxd-style-code.git"
+  },
+  "homepage": "https://github.com/Design-X-Dev/dxd-style-code#readme",
+  "bugs": {
+    "url": "https://github.com/Design-X-Dev/dxd-style-code/issues"
+  }
 }

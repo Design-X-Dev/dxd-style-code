@@ -13,7 +13,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.js'),
       name: 'DXComponents',
-      fileName: 'dx-components',
+      fileName: 'dxd-style-code',
     },
     rollupOptions: {
       external: ['vue', '@heroicons/vue'],
