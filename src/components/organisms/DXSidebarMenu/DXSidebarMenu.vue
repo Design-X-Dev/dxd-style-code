@@ -133,6 +133,12 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
+  /** Вариант отображения: sidebar | embedded */
+  variant: {
+    type: String,
+    default: 'sidebar',
+    validator: (value) => ['sidebar', 'embedded'].includes(value)
+  },
   /** Показывать бордер справа */
   bordered: {
     type: Boolean,
@@ -168,13 +174,23 @@ const widthClasses = {
   full: 'w-full'
 };
 
-const sidebarClasses = computed(() => [
-  'flex flex-col bg-white transition-all duration-300',
-  internalCompact.value ? 'w-20' : widthClasses[props.width],
-  props.fixed && 'fixed top-0 left-0 h-screen',
-  props.bordered && 'border-r border-slate-200',
-  'shadow-sm'
-]);
+const sidebarClasses = computed(() => {
+  const isEmbedded = props.variant === 'embedded';
+  
+  return [
+    'flex flex-col bg-white transition-all duration-300',
+    // Ширина только для sidebar режима
+    !isEmbedded && (internalCompact.value ? 'w-20' : widthClasses[props.width]),
+    // Фиксированная позиция только для sidebar
+    !isEmbedded && props.fixed && 'fixed top-0 left-0 h-screen',
+    // Бордер
+    props.bordered && (isEmbedded ? 'border border-slate-200 rounded-xl' : 'border-r border-slate-200'),
+    // Тень только для sidebar
+    !isEmbedded ? 'shadow-sm' : '',
+    // Для embedded - полная ширина и высота
+    isEmbedded && 'w-full h-full'
+  ];
+});
 
 const headerClasses = computed(() => [
   'flex items-center gap-2 border-b border-slate-200 flex-shrink-0',

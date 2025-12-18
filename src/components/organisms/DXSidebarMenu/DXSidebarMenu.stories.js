@@ -1,6 +1,7 @@
 import { ref } from 'vue';
 import DXSidebarMenu from './DXSidebarMenu.vue';
 import DXButton from '../../atoms/DXButton/DXButton.vue';
+import DXCard from '../../atoms/DXCard/DXCard.vue';
 import {
   HomeIcon,
   ChartBarIcon,
