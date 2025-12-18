@@ -11,9 +11,11 @@
     >
       <div class="flex items-center gap-3 flex-1">
         <!-- Иконка -->
-        <component 
+        <DXIcon 
           v-if="item.icon" 
-          :is="item.icon" 
+          :icon="item.icon" 
+          size="md"
+          animation="scale"
           :class="iconClasses"
         />
         
@@ -41,9 +43,11 @@
         @click="toggleSubmenu"
       >
         <div class="flex items-center gap-3 flex-1">
-          <component 
+          <DXIcon 
             v-if="item.icon" 
-            :is="item.icon" 
+            :icon="item.icon" 
+            size="md"
+            animation="scale"
             :class="iconClasses"
           />
           <span v-if="!compact" class="flex-1 text-sm font-medium text-left">
@@ -51,10 +55,12 @@
           </span>
         </div>
         
-        <component 
+        <DXIcon 
           v-if="!compact"
-          :is="ChevronDownIcon" 
-          class="w-4 h-4 transition-transform duration-200"
+          :icon="ChevronDownIcon" 
+          size="sm"
+          animation="none"
+          class="text-slate-400 transition-transform duration-200"
           :class="{ 'rotate-180': submenuOpen }"
         />
       </button>
@@ -100,6 +106,7 @@
 import { ref, computed, inject } from 'vue';
 import { ChevronDownIcon } from '@heroicons/vue/24/outline';
 import DXBadge from '../../atoms/DXBadge/DXBadge.vue';
+import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
 
 const props = defineProps({
   item: {
@@ -149,9 +156,8 @@ const itemClasses = computed(() => [
 ]);
 
 const iconClasses = computed(() => [
-  'w-5 h-5 flex-shrink-0 transition-transform',
-  props.active ? 'text-white' : 'text-slate-400',
-  !props.item.children && 'group-hover:scale-110'
+  'flex-shrink-0',
+  props.active ? 'text-white' : 'text-slate-400'
 ]);
 
 const getChildItemClasses = (child) => [

@@ -19,9 +19,11 @@
         @click="toggleCompact"
         :title="compact ? 'Развернуть' : 'Свернуть'"
       >
-        <component 
-          :is="compact ? ChevronDoubleRightIcon : ChevronDoubleLeftIcon" 
-          class="w-5 h-5 text-slate-600"
+        <DXIcon 
+          :icon="compact ? ChevronDoubleRightIcon : ChevronDoubleLeftIcon" 
+          size="md"
+          animation="scale"
+          class="text-slate-600"
         />
       </button>
     </div>
@@ -34,7 +36,7 @@
         size="sm"
       >
         <template #prefix>
-          <component :is="MagnifyingGlassIcon" class="w-4 h-4 text-slate-400" />
+          <DXIcon :icon="MagnifyingGlassIcon" size="sm" class="text-slate-400" />
         </template>
       </DXInput>
     </div>
@@ -55,7 +57,7 @@
         </div>
 
         <!-- Разделитель для compact режима -->
-        <div v-if="section.title && compact" class="h-px bg-slate-200 my-2 mx-4" />
+        <DXDivider v-if="section.title && compact" spacing="sm" />
 
         <!-- Пункты меню -->
         <DXSidebarMenuItem
@@ -86,6 +88,8 @@ import {
 } from '@heroicons/vue/24/outline';
 import DXSidebarMenuItem from './DXSidebarMenuItem.vue';
 import DXInput from '../../atoms/DXInput/DXInput.vue';
+import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
+import DXDivider from '../../atoms/DXDivider/DXDivider.vue';
 
 const props = defineProps({
   /** Заголовок сайдбара */
