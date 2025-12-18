@@ -472,3 +472,103 @@ export const EcommerceExample = {
     `,
   }),
 };
+
+export const InsideCard = {
+  render: () => ({
+    components: { DXSidebarMenu, DXCard },
+    setup() {
+      const activeItem = ref('/home');
+      
+      const sections = [
+        {
+          items: [
+            { 
+              id: 'home',
+              label: 'Главная', 
+              icon: HomeIcon, 
+              to: '/home',
+              badge: '5',
+              badgeVariant: 'danger'
+            },
+            { 
+              id: 'analytics',
+              label: 'Аналитика', 
+              icon: ChartBarIcon, 
+              to: '/analytics',
+            },
+            { 
+              id: 'users',
+              label: 'Пользователи', 
+              icon: UsersIcon, 
+              to: '/users',
+              badge: '12',
+              badgeVariant: 'info'
+            },
+          ],
+        },
+        {
+          title: 'Настройки',
+          items: [
+            { 
+              id: 'calendar',
+              label: 'Календарь', 
+              icon: CalendarIcon, 
+              to: '/calendar'
+            },
+            { 
+              id: 'settings',
+              label: 'Настройки', 
+              icon: Cog6ToothIcon,
+              children: [
+                { id: 'profile', label: 'Профиль', to: '/settings/profile' },
+                { id: 'security', label: 'Безопасность', to: '/settings/security' },
+                { id: 'notifications', label: 'Уведомления', to: '/settings/notifications' },
+              ]
+            },
+          ],
+        },
+      ];
+      
+      const handleItemClick = (item) => {
+        activeItem.value = item.to || item.id;
+      };
+      
+      return { sections, activeItem, handleItemClick };
+    },
+    template: `
+      <div class="p-8 bg-slate-50 min-h-screen">
+        <h1 class="text-2xl font-bold mb-6">Меню внутри карточки</h1>
+        
+        <div class="grid grid-cols-3 gap-6">
+          <!-- Меню в карточке -->
+          <DXCard class="col-span-1">
+            <DXSidebarMenu 
+              title="Навигация"
+              :sections="sections"
+              :activeItem="activeItem"
+              variant="embedded"
+              :collapsible="false"
+              :bordered="false"
+              @item-click="handleItemClick"
+            />
+          </DXCard>
+          
+          <!-- Основной контент -->
+          <div class="col-span-2">
+            <DXCard>
+              <h2 class="text-xl font-semibold mb-4">Контент страницы</h2>
+              <p class="text-slate-600 mb-4">
+                Меню находится в карточке слева. Используйте <code class="bg-slate-100 px-2 py-1 rounded">variant="embedded"</code> 
+                для встраивания меню в контейнеры.
+              </p>
+              <div class="p-4 bg-slate-50 rounded-lg">
+                <p class="text-sm font-medium text-slate-700 mb-2">Активный элемент:</p>
+                <code class="text-sm bg-white px-3 py-2 rounded border border-slate-200">{{ activeItem }}</code>
+              </div>
+            </DXCard>
+          </div>
+        </div>
+      </div>
+    `,
+  }),
+};
