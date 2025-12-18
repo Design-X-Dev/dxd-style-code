@@ -183,8 +183,10 @@ const sidebarClasses = computed(() => {
     !isEmbedded && (internalCompact.value ? 'w-20' : widthClasses[props.width]),
     // Фиксированная позиция только для sidebar
     !isEmbedded && props.fixed && 'fixed top-0 left-0 h-screen',
+    // Скругления для embedded - всегда
+    isEmbedded && 'rounded-xl',
     // Бордер
-    props.bordered && (isEmbedded ? 'border border-slate-200 rounded-xl' : 'border-r border-slate-200'),
+    props.bordered && (isEmbedded ? 'border border-slate-200' : 'border-r border-slate-200'),
     // Тень только для sidebar
     !isEmbedded ? 'shadow-sm' : '',
     // Для embedded - полная ширина и высота
