@@ -5,16 +5,17 @@
     :data-compact="compact"
   >
     <!-- Заголовок -->
-    <div v-if="$slots.header || title" :class="headerClasses">
-      <slot name="header">
-        <h2 class="text-lg font-bold text-slate-900">{{ title }}</h2>
+    <div v-if="($slots.header || title || collapsible)" :class="headerClasses">
+      <slot v-if="!compact" name="header">
+        <h2 v-if="title" class="text-lg font-bold text-slate-900">{{ title }}</h2>
       </slot>
       
       <!-- Кнопка переключения compact режима -->
       <button
         v-if="collapsible"
         type="button"
-        class="p-2 rounded-lg hover:bg-slate-100 transition-colors ml-auto"
+        class="p-2 rounded-lg hover:bg-slate-100 transition-colors"
+        :class="{ 'ml-auto': !compact }"
         @click="toggleCompact"
         :title="compact ? 'Развернуть' : 'Свернуть'"
       >
@@ -70,7 +71,7 @@
     </nav>
 
     <!-- Футер -->
-    <div v-if="$slots.footer" :class="footerClasses">
+    <div v-if="$slots.footer && !compact" :class="footerClasses">
       <slot name="footer" />
     </div>
   </aside>
@@ -140,6 +141,9 @@ const emit = defineEmits(['item-click', 'update:compact']);
 const searchQuery = ref('');
 const internalCompact = ref(props.compact);
 
+// Computed для использования в template
+const compact = computed(() => internalCompact.value);
+
 // Check if vue-router is available
 let hasRouter = false;
 onMounted(() => {
@@ -169,8 +173,8 @@ const sidebarClasses = computed(() => [
 ]);
 
 const headerClasses = computed(() => [
-  'flex items-center gap-2 px-4 py-5 border-b border-slate-200 flex-shrink-0',
-  internalCompact.value && 'justify-center px-2'
+  'flex items-center gap-2 border-b border-slate-200 flex-shrink-0',
+  internalCompact.value ? 'justify-center px-2 py-3' : 'px-4 py-5'
 ]);
 
 const menuClasses = computed(() => [
