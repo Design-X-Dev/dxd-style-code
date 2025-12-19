@@ -2,6 +2,7 @@
 export { default as DXActionButtons } from './DXActionButtons';
 export { default as DXAlert } from './DXAlert';
 export { default as DXMenu } from './DXMenu';
+export { default as DXBaseTable } from './DXBaseTable';
 export { default as DXBreadcrumb } from './DXBreadcrumb';
 export { default as DXButtonGroup } from './DXButtonGroup';
 export { default as DXComboBox } from './DXComboBox';
@@ -18,3 +19,5 @@ export { default as DXRadioCard } from './DXRadioCard';
 export { default as DXRadioGroup } from './DXRadioGroup';
 export { default as DXSearchSelect } from './DXSearchSelect';
 export { default as DXSegmentedControl } from './DXSegmentedControl';
+export { default as DXTableToolbar } from './DXTableToolbar';
+export { default as DXTablePagination } from './DXTablePagination';

@@ -44,6 +44,13 @@ export {
   useBooleanDataAttributes
 } from './composables/useDataAttributes';
 export { useMenu } from './composables/useMenu';
+export { useTableData } from './composables/useTableData';
+export { useTableSort } from './composables/useTableSort';
+export { useTableFilter } from './composables/useTableFilter';
+export { useTablePagination } from './composables/useTablePagination';
+export { useTableSelection } from './composables/useTableSelection';
+export { useTableColumns } from './composables/useTableColumns';
+export { useTabsScroll } from './composables/useTabsScroll';
 
 // Utilities
 export { 

@@ -54,7 +54,8 @@ const iconSize = computed(() => ICON_SIZES[props.size] || ICON_SIZES.md);
 const allClasses = computed(() =>
   useClassComposition(
     BASE_CLASSES,
-    `${SIZE_CLASSES[props.size]} ${VARIANT_CLASSES[props.variant]}`
+    SIZE_CLASSES[props.size],
+    VARIANT_CLASSES[props.variant]
   )
 );
 </script>

@@ -13,8 +13,8 @@ export default {
   tags: ['autodocs'],
   argTypes: {
     size: { control: { type: 'select' }, options: ['xs', 'sm', 'md', 'lg', 'xl'] },
-    shape: { control: { type: 'select' }, options: ['circle', 'square', 'rounded'] },
-    status: { control: { type: 'select' }, options: ['', 'online', 'offline', 'busy', 'away'] },
+    shape: { control: { type: 'select' }, options: ['circle', 'square'] },
+    iconAnimation: { control: { type: 'select' }, options: ['none', 'wiggle', 'scale', 'rotate'] },
   },
 };
 
@@ -41,20 +41,6 @@ export const Sizes = {
   }),
 };
 
-export const WithStatus = {
-  render: () => ({
-    components: { DXAvatar },
-    template: `
-      <div class="flex gap-4">
-        <DXAvatar initials="ON" status="online" />
-        <DXAvatar initials="OF" status="offline" />
-        <DXAvatar initials="BU" status="busy" />
-        <DXAvatar initials="AW" status="away" />
-      </div>
-    `,
-  }),
-};
-
 export const Shapes = {
   render: () => ({
     components: { DXAvatar },
@@ -62,7 +48,6 @@ export const Shapes = {
       <div class="flex gap-4">
         <DXAvatar initials="CI" shape="circle" />
         <DXAvatar initials="SQ" shape="square" />
-        <DXAvatar initials="RD" shape="rounded" />
       </div>
     `,
   }),
@@ -76,11 +61,10 @@ export const WithCustomIcons = {
     },
     template: `
       <div class="flex gap-4">
-        <DXAvatar :icon="UserIcon" />
-        <DXAvatar :icon="HeartIcon" size="md" />
-        <DXAvatar :icon="StarIcon" size="lg" />
-        <DXAvatar :icon="SparklesIcon" size="lg" shape="rounded" />
-        <DXAvatar :icon="RocketLaunchIcon" size="xl" shape="square" />
+        <DXAvatar :icon="HeartIcon"/>
+        <DXAvatar :icon="StarIcon"/>
+        <DXAvatar :icon="SparklesIcon" shape="square"/>
+        <DXAvatar :icon="RocketLaunchIcon" shape="square"/>
       </div>
     `,
   }),
@@ -143,21 +127,3 @@ export const WithAnimations = {
     `,
   }),
 };
-
-export const AnimatedWithStatus = {
-  render: () => ({
-    components: { DXAvatar },
-    setup() {
-      return { HeartIcon };
-    },
-    template: `
-      <div class="flex gap-4">
-        <DXAvatar :icon="HeartIcon" icon-animation="scale" status="online" size="lg" />
-        <DXAvatar :icon="HeartIcon" icon-animation="wiggle" status="busy" size="lg" />
-        <DXAvatar :icon="HeartIcon" icon-animation="scale" status="away" size="lg" />
-        <DXAvatar :icon="HeartIcon" icon-animation="rotate" status="offline" size="lg" />
-      </div>
-    `,
-  }),
-};
-

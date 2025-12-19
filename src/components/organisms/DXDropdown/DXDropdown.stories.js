@@ -5,6 +5,7 @@ import DXAvatar from '../../atoms/DXAvatar/DXAvatar.vue';
 import DXBadge from '../../atoms/DXBadge/DXBadge.vue';
 import DXButton from '../../atoms/DXButton/DXButton.vue';
 import DXInput from '../../atoms/DXInput/DXInput.vue';
+import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
 import { 
   UserIcon, 
   CogIcon, 
@@ -25,7 +26,9 @@ import {
   XCircleIcon,
   MagnifyingGlassIcon,
   InboxIcon,
-  EnvelopeIcon
+  EnvelopeIcon,
+  FunnelIcon,
+  EllipsisVerticalIcon
 } from '@heroicons/vue/24/outline';
 import { ref } from 'vue';
 
@@ -570,6 +573,223 @@ export const Interactive = {
           Удалить
         </DXDropdownItem>
       </DXDropdown>
+    `,
+  }),
+};
+
+// 16. WithoutChevronIcon - только иконка без стрелочки (используется для всех иконок)
+export const WithoutChevronIcon = {
+  render: () => ({
+    components: { DXDropdown, DXDropdownItem, DXDropdownDivider, DXIcon },
+    setup() {
+      return { 
+        EllipsisVerticalIcon, 
+        PencilIcon, 
+        TrashIcon, 
+        EyeIcon,
+        FunnelIcon,
+        BellIcon,
+        CogIcon,
+        UserIcon,
+        ShareIcon,
+        HeartIcon
+      };
+    },
+    template: `
+      <div class="p-4 space-y-6">
+        <div>
+          <h3 class="text-sm font-semibold mb-2">Иконки без стрелочки</h3>
+          <p class="text-xs text-slate-600 mb-4">
+            Используйте этот паттерн для всех иконок без стрелочки. Иконка является триггером для открытия меню.
+            Не используйте button внутри trigger - просто иконка.
+          </p>
+          
+          <div class="flex flex-wrap gap-6 items-center">
+            <!-- Пример 1: Три точки (действия) -->
+            <div>
+              <p class="text-xs text-slate-500 mb-2">Действия</p>
+              <DXDropdown :showChevron="false" position="right" width="auto" variant="minimal">
+                <template #trigger>
+                  <DXIcon :icon="EllipsisVerticalIcon" size="md" class="cursor-pointer text-slate-600 hover:text-slate-900" />
+                </template>
+                <DXDropdownItem :icon="EyeIcon">Просмотр</DXDropdownItem>
+                <DXDropdownItem :icon="PencilIcon">Редактировать</DXDropdownItem>
+                <DXDropdownDivider />
+                <DXDropdownItem :icon="TrashIcon" variant="danger">Удалить</DXDropdownItem>
+              </DXDropdown>
+            </div>
+
+            <!-- Пример 2: Фильтр -->
+            <div>
+              <p class="text-xs text-slate-500 mb-2">Фильтр</p>
+              <DXDropdown :showChevron="false" position="bottom" width="auto" variant="minimal">
+                <template #trigger>
+                  <DXIcon :icon="FunnelIcon" size="xs" class="cursor-pointer text-slate-400 hover:text-blue-600" />
+                </template>
+                <DXDropdownItem>Все</DXDropdownItem>
+                <DXDropdownItem>Активные</DXDropdownItem>
+                <DXDropdownItem>Неактивные</DXDropdownItem>
+              </DXDropdown>
+            </div>
+
+            <!-- Пример 3: Уведомления -->
+            <div>
+              <p class="text-xs text-slate-500 mb-2">Уведомления</p>
+              <DXDropdown :showChevron="false" position="right" width="auto" variant="minimal">
+                <template #trigger>
+                  <div class="relative cursor-pointer">
+                    <DXIcon :icon="BellIcon" size="md" class="text-slate-600 hover:text-slate-900" />
+                    <span class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                  </div>
+                </template>
+                <DXDropdownItem>Новое сообщение</DXDropdownItem>
+                <DXDropdownItem>Комментарий</DXDropdownItem>
+                <DXDropdownItem>Обновление</DXDropdownItem>
+              </DXDropdown>
+            </div>
+
+            <!-- Пример 4: Настройки -->
+            <div>
+              <p class="text-xs text-slate-500 mb-2">Настройки</p>
+              <DXDropdown :showChevron="false" position="right" width="auto" variant="minimal">
+                <template #trigger>
+                  <DXIcon :icon="CogIcon" size="md" class="cursor-pointer text-slate-600 hover:text-slate-900" />
+                </template>
+                <DXDropdownItem :icon="UserIcon">Профиль</DXDropdownItem>
+                <DXDropdownItem :icon="CogIcon">Настройки</DXDropdownItem>
+                <DXDropdownDivider />
+                <DXDropdownItem>Выход</DXDropdownItem>
+              </DXDropdown>
+            </div>
+
+            <!-- Пример 5: Поделиться -->
+            <div>
+              <p class="text-xs text-slate-500 mb-2">Поделиться</p>
+              <DXDropdown :showChevron="false" position="right" width="auto" variant="minimal">
+                <template #trigger>
+                  <DXIcon :icon="ShareIcon" size="md" class="cursor-pointer text-slate-600 hover:text-slate-900" />
+                </template>
+                <DXDropdownItem>Email</DXDropdownItem>
+                <DXDropdownItem>Социальные сети</DXDropdownItem>
+                <DXDropdownItem>Скопировать ссылку</DXDropdownItem>
+              </DXDropdown>
+            </div>
+
+            <!-- Пример 6: Избранное -->
+            <div>
+              <p class="text-xs text-slate-500 mb-2">Избранное</p>
+              <DXDropdown :showChevron="false" position="right" width="auto" variant="minimal">
+                <template #trigger>
+                  <DXIcon :icon="HeartIcon" size="md" class="cursor-pointer text-rose-500 hover:text-rose-600" />
+                </template>
+                <DXDropdownItem>Добавить в избранное</DXDropdownItem>
+                <DXDropdownItem>Удалить из избранного</DXDropdownItem>
+              </DXDropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+    `,
+  }),
+};
+
+// 17. WithoutChevronText - только текст без стрелочки
+export const WithoutChevronText = {
+  render: () => ({
+    components: { DXDropdown, DXDropdownItem },
+    setup() {
+      return { UserIcon, CogIcon, ArrowRightOnRectangleIcon };
+    },
+    template: `
+      <div class="p-4 space-y-4">
+        <div>
+          <h3 class="text-sm font-semibold mb-2">Только текст без стрелочки</h3>
+          <DXDropdown :showChevron="false">
+            <template #trigger>
+              <span class="text-slate-700 hover:text-slate-900 cursor-pointer">Меню</span>
+            </template>
+            <DXDropdownItem :icon="UserIcon">Профиль</DXDropdownItem>
+            <DXDropdownItem :icon="CogIcon">Настройки</DXDropdownItem>
+            <DXDropdownItem :icon="ArrowRightOnRectangleIcon" variant="danger">Выход</DXDropdownItem>
+          </DXDropdown>
+        </div>
+      </div>
+    `,
+  }),
+};
+
+// 18. WithoutChevronIconText - иконка + текст без стрелочки
+export const WithoutChevronIconText = {
+  render: () => ({
+    components: { DXDropdown, DXDropdownItem, DXDropdownDivider, DXIcon },
+    setup() {
+      return { BellIcon, InboxIcon, EnvelopeIcon, FlagIcon };
+    },
+    template: `
+      <div class="p-4 space-y-4">
+        <div>
+          <h3 class="text-sm font-semibold mb-2">Иконка + текст без стрелочки</h3>
+          <DXDropdown :showChevron="false">
+            <template #trigger>
+              <div class="flex items-center gap-2">
+                <DXIcon :icon="BellIcon" size="sm" />
+                <span>Уведомления</span>
+              </div>
+            </template>
+            <DXDropdownItem :icon="InboxIcon" badge="12" badge-variant="slate">
+              Входящие
+            </DXDropdownItem>
+            <DXDropdownItem :icon="BellIcon" badge="3" badge-variant="danger">
+              Уведомления
+            </DXDropdownItem>
+            <DXDropdownItem :icon="EnvelopeIcon" badge="5" badge-variant="info">
+              Письма
+            </DXDropdownItem>
+            <DXDropdownItem :icon="FlagIcon" badge="1" badge-variant="warning">
+              Важные
+            </DXDropdownItem>
+          </DXDropdown>
+        </div>
+      </div>
+    `,
+  }),
+};
+
+// 19. Comparison - сравнение с и без стрелочки
+export const Comparison = {
+  render: () => ({
+    components: { DXDropdown, DXDropdownItem },
+    template: `
+      <div class="p-4 space-y-6">
+        <div>
+          <h3 class="text-sm font-semibold mb-4">Сравнение: с стрелочкой и без</h3>
+          <div class="flex gap-4 items-center">
+            <div>
+              <p class="text-xs text-slate-500 mb-2">С стрелочкой (по умолчанию)</p>
+              <DXDropdown>
+                <template #trigger>
+                  <span>Меню</span>
+                </template>
+                <DXDropdownItem>Пункт 1</DXDropdownItem>
+                <DXDropdownItem>Пункт 2</DXDropdownItem>
+                <DXDropdownItem>Пункт 3</DXDropdownItem>
+              </DXDropdown>
+            </div>
+            
+            <div>
+              <p class="text-xs text-slate-500 mb-2">Без стрелочки</p>
+              <DXDropdown :showChevron="false">
+                <template #trigger>
+                  <span>Меню</span>
+                </template>
+                <DXDropdownItem>Пункт 1</DXDropdownItem>
+                <DXDropdownItem>Пункт 2</DXDropdownItem>
+                <DXDropdownItem>Пункт 3</DXDropdownItem>
+              </DXDropdown>
+            </div>
+          </div>
+        </div>
+      </div>
     `,
   }),
 };

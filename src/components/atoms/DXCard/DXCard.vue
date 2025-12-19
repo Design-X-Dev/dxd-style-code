@@ -47,7 +47,8 @@ const PADDING_CLASSES = {
 const allClasses = computed(() =>
   useClassComposition(
     BASE_CLASSES,
-    `${VARIANT_CLASSES[props.variant]} ${PADDING_CLASSES[props.padding]}`
+    VARIANT_CLASSES[props.variant],
+    PADDING_CLASSES[props.padding]
   )
 );
 </script>

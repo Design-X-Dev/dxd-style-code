@@ -45,7 +45,8 @@ const VARIANT_CLASSES = {
 const allClasses = computed(() => 
   useClassComposition(
     BASE_CLASSES,
-    `${SIZE_CLASSES[props.size] || SIZE_CLASSES.sm} ${VARIANT_CLASSES[props.variant] || VARIANT_CLASSES.slate}`
+    SIZE_CLASSES[props.size] || SIZE_CLASSES.sm,
+    VARIANT_CLASSES[props.variant] || VARIANT_CLASSES.slate
   )
 );
 </script>

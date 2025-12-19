@@ -1,6 +1,6 @@
 {
   "name": "dxd-style-code",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "type": "module",
   "description": "DX Design System - Vue 3 UI Component Library",
   "main": "./dist/dxd-style-code.umd.cjs",

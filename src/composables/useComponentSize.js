@@ -46,7 +46,6 @@ export function useComponentSize(size, type = 'input') {
       md: 'h-10 w-10',
       lg: 'h-12 w-12',
       xl: 'h-16 w-16',
-      '2xl': 'h-20 w-20',
     },
     spacing: {
       none: '',

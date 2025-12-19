@@ -23,8 +23,9 @@
       <!-- Slot для содержимого -->
       <slot name="trigger">Меню</slot>
       
-      <!-- Chevron всегда справа -->
+      <!-- Chevron справа (если showChevron === true) -->
       <DXIcon 
+        v-if="showChevron"
         :icon="ChevronDownIcon" 
         size="sm" 
         animation="none"
@@ -81,6 +82,11 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false
+  },
+  /** Показать стрелочку (chevron) */
+  showChevron: {
+    type: Boolean,
+    default: true
   }
 });
 
@@ -168,7 +174,8 @@ const handleKeyUp = () => {
 
 // Classes
 const triggerClasses = computed(() => [
-  "inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 text-sm font-semibold text-slate-700 hover:border-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-900/10",
+  "inline-flex items-center px-3 py-2 rounded-xl border border-slate-200 text-sm font-semibold text-slate-700 hover:border-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-900/10",
+  props.showChevron && "gap-2", // gap только если есть chevron
   props.disabled && "opacity-60 cursor-not-allowed hover:border-slate-200",
 ]);
 

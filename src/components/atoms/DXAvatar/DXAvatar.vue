@@ -4,16 +4,15 @@
     data-component="DXAvatar" 
     :data-size="size"
     :data-shape="shape"
-    :data-status="status"
   >
     <img
       v-if="src && !imgError"
       :src="src"
       :alt="alt"
-      class="w-full h-full object-cover"
+      :class="imgClasses"
       @error="imgError = true"
     />
-    <span v-else-if="initials" class="font-medium" :class="initialsClasses">
+    <span v-else-if="initials" :class="initialsClasses">
       {{ initials }}
     </span>
     <DXIcon 
@@ -21,21 +20,17 @@
       :icon="fallbackIcon" 
       :size="iconSize" 
       :animation="iconAnimation" 
-      class="text-slate-400"
-    />
-    <span
-      v-if="status"
-      class="absolute bottom-0 right-0 block rounded-full ring-2 ring-white"
-      :class="statusClasses"
+      :group-hover="iconAnimation !== 'none'"
+      :class="iconClasses"
     />
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { UserIcon } from "@heroicons/vue/24/solid";
 import { useComponentSize } from "@/composables/useComponentSize";
-import { useClassCompositionWithConditions } from "@/composables/useClassComposition";
+import { useClassComposition } from "@/composables/useClassComposition";
 import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({
@@ -45,26 +40,34 @@ const props = defineProps({
   alt: { type: String, default: "Avatar" },
   /** Инициалы (если нет изображения) */
   initials: { type: String, default: "" },
-  /** Размер: xs | sm | md | lg | xl | 2xl */
+  /** Размер: xs | sm | md | lg | xl */
   size: { type: String, default: "md" },
-  /** Форма: circle | square | rounded */
+  /** Форма: circle | square */
   shape: { type: String, default: "circle" },
-  /** Статус: online | offline | busy | away */
-  status: { type: String, default: "" },
   /** Кастомная иконка для fallback (по умолчанию UserIcon) */
   icon: { type: Object, default: null },
   /** Анимация иконки при hover: none | wiggle | scale | rotate */
-  iconAnimation: { type: String, default: "none" },
+  iconAnimation: { type: String, default: "wiggle" },
 });
 
 const imgError = ref(false);
 
-const BASE_CLASSES = "relative inline-flex items-center justify-center overflow-hidden bg-slate-100 transition-transform";
+// Сбрасываем ошибку при изменении src, чтобы новое изображение могло загрузиться
+watch(() => props.src, () => {
+  imgError.value = false;
+});
+
+const BASE_CLASSES = "relative inline-flex items-center justify-center overflow-hidden bg-slate-100 transition-transform group";
+
+const IMG_CLASSES = "w-full h-full object-cover";
+
+const INITIALS_BASE_CLASSES = "font-medium text-slate-600 uppercase";
+
+const ICON_CLASSES = "text-slate-400";
 
 const SHAPE_CLASSES = {
   circle: "rounded-full",
-  square: "rounded-none",
-  rounded: "rounded-lg",
+  square: "rounded-lg",
 };
 
 const INITIALS_SIZE_CLASSES = {
@@ -73,45 +76,24 @@ const INITIALS_SIZE_CLASSES = {
   md: "text-sm",
   lg: "text-base",
   xl: "text-lg",
-  '2xl': "text-xl",
 };
 
-const STATUS_SIZE_CLASSES = {
-  xs: "w-1.5 h-1.5",
-  sm: "w-2 h-2",
-  md: "w-2.5 h-2.5",
-  lg: "w-3 h-3",
-  xl: "w-4 h-4",
-  '2xl': "w-5 h-5",
-};
-
-const STATUS_COLORS = {
-  online: "bg-emerald-500",
-  offline: "bg-slate-400",
-  busy: "bg-rose-500",
-  away: "bg-amber-500",
-};
-
-const avatarClasses = computed(() =>
-  useClassCompositionWithConditions(
+const avatarClasses = computed(() => [
     BASE_CLASSES,
-    {
-      [useComponentSize(props.size, 'avatar')]: true,
-      [SHAPE_CLASSES[props.shape] || SHAPE_CLASSES.circle]: true,
-      'hover:scale-105': props.iconAnimation !== 'none',
-    }
-  )
+    useComponentSize(props.size, 'avatar'),
+    SHAPE_CLASSES[props.shape] || SHAPE_CLASSES.circle,
+    { 'hover:scale-105': props.iconAnimation !== 'none' }
+  ]
 );
 
+const imgClasses = computed(() => IMG_CLASSES);
+
 const initialsClasses = computed(() => [
-  "text-slate-600 uppercase",
+  INITIALS_BASE_CLASSES,
   INITIALS_SIZE_CLASSES[props.size] || INITIALS_SIZE_CLASSES.md,
 ]);
 
-const statusClasses = computed(() => [
-  STATUS_SIZE_CLASSES[props.size] || STATUS_SIZE_CLASSES.md,
-  STATUS_COLORS[props.status] || "",
-]);
+const iconClasses = computed(() => ICON_CLASSES);
 
 const fallbackIcon = computed(() => props.icon || UserIcon);
 
@@ -121,7 +103,6 @@ const iconSizeMap = {
   md: "md",
   lg: "lg",
   xl: "xl",
-  '2xl': "xl",
 };
 
 const iconSize = computed(() => iconSizeMap[props.size] || "md");
