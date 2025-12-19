@@ -3,6 +3,9 @@
     :is="tag"
     :class="textClasses"
     data-component="DXText"
+    :data-size="size"
+    :data-weight="weight"
+    :data-color="color"
   >
     <slot />
   </component>

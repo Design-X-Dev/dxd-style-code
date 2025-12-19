@@ -4,6 +4,8 @@
     :class="headingClasses"
     data-component="DXHeading"
     :data-level="level"
+    :data-weight="weight"
+    :data-color="color"
   >
     <slot />
   </component>

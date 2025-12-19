@@ -24,6 +24,26 @@ export {
   useVariantConfig, 
   VARIANT_CONFIGS 
 } from './composables/useVariant';
+export { 
+  useClassComposition, 
+  useClassCompositionWithConditions 
+} from './composables/useClassComposition';
+export { 
+  useTransition,
+  COLLAPSE_TRANSITION,
+  FADE_TRANSITION,
+  FADE_SCALE_TRANSITION,
+  SLIDE_RIGHT_TRANSITION,
+  SLIDE_LEFT_TRANSITION,
+  SLIDE_UP_TRANSITION,
+  SLIDE_DOWN_TRANSITION
+} from './composables/useTransition';
+export {
+  useDataAttributes,
+  useCustomDataAttributes,
+  useBooleanDataAttributes
+} from './composables/useDataAttributes';
+export { useMenu } from './composables/useMenu';
 
 // Utilities
 export { 

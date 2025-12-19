@@ -7,10 +7,13 @@
     :href="href"
     :target="target"
     :rel="rel"
-    class="btn inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60"
-    :class="[sizeClass, variantClass, { 'w-full': block, 'px-0 py-0': iconOnly }]"
+    :class="allClasses"
     data-component="DXButton"
     :data-variant="variant"
+    :data-size="size"
+    :data-disabled="disabled"
+    :data-icon-only="iconOnly"
+    :data-block="block"
   >
     <slot />
   </component>
@@ -18,6 +21,8 @@
 
 <script setup>
 import { computed } from "vue";
+import { useComponentSize } from "@/composables/useComponentSize";
+import { useClassCompositionWithConditions } from "@/composables/useClassComposition";
 
 const props = defineProps({
   /** Вариант оформления: primary | ghost | danger | outline */
@@ -48,29 +53,38 @@ const componentTag = computed(() => {
   return "button";
 });
 
+const BASE_CLASSES = "btn inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60";
+
+const VARIANT_CLASSES = {
+  primary: "bg-slate-800 text-white hover:bg-slate-700",
+  ghost: "border border-slate-200 text-slate-700 hover:border-slate-300 bg-white",
+  danger: "bg-rose-600 text-white hover:bg-rose-500",
+  outline: "border border-slate-200 text-slate-700 hover:border-slate-300 bg-white",
+};
+
 const sizeClass = computed(() => {
   if (props.iconOnly) {
-    if (props.size === "sm") return "h-9 w-9 text-xs";
-    if (props.size === "lg") return "h-12 w-12 text-sm";
-    return "h-10 w-10 text-sm";
+    const iconSizes = {
+      sm: "h-9 w-9 text-xs",
+      md: "h-10 w-10 text-sm",
+      lg: "h-12 w-12 text-sm",
+    };
+    return iconSizes[props.size] || iconSizes.md;
   }
-  if (props.size === "sm") return "px-3 py-2 text-xs";
-  if (props.size === "lg") return "px-5 py-3 text-base";
-  return "px-4 py-2 text-sm";
+  return useComponentSize(props.size, 'button');
 });
 
-const variantClass = computed(() => {
-  switch (props.variant) {
-    case "ghost":
-      return "border border-slate-200 text-slate-700 hover:border-slate-300 bg-white";
-    case "danger":
-      return "bg-rose-600 text-white hover:bg-rose-500";
-    case "outline":
-      return "border border-slate-200 text-slate-700 hover:border-slate-300 bg-white";
-    default:
-      return "bg-slate-800 text-white hover:bg-slate-700";
-  }
-});
+const allClasses = computed(() => 
+  useClassCompositionWithConditions(
+    BASE_CLASSES,
+    {
+      [VARIANT_CLASSES[props.variant] || VARIANT_CLASSES.primary]: true,
+      [sizeClass.value]: true,
+      'w-full': props.block,
+      'px-0 py-0': props.iconOnly,
+    }
+  )
+);
 </script>
 
 <style scoped>

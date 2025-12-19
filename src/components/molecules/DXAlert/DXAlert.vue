@@ -60,7 +60,9 @@ const dismiss = () => {
   emit("dismiss");
 };
 
-const variantStyles = {
+const BASE_CLASSES = "rounded-xl border p-4";
+
+const VARIANT_STYLES = {
   info: {
     bg: "bg-blue-50 border-blue-200",
     icon: "text-blue-500",
@@ -95,14 +97,14 @@ const variantStyles = {
   },
 };
 
-const styles = computed(() => variantStyles[props.variant] || variantStyles.info);
+const styles = computed(() => VARIANT_STYLES[props.variant] || VARIANT_STYLES.info);
 const iconToShow = computed(() => {
   if (!props.showIcon) return null;
   return props.icon !== undefined ? props.icon : styles.value.defaultIcon;
 });
 
 const alertClasses = computed(() => [
-  "rounded-xl border p-4",
+  BASE_CLASSES,
   styles.value.bg,
 ]);
 

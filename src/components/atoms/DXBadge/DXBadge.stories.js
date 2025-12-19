@@ -22,6 +22,11 @@ export default {
       options: ['slate', 'success', 'warning', 'danger', 'info'],
       description: 'Вариант оформления',
     },
+    size: {
+      control: 'select',
+      options: ['sm', 'md'],
+      description: 'Размер бейджа',
+    },
   },
 };
 
@@ -143,6 +148,48 @@ export const WithBothIcons = {
         <DXBadge variant="info" :icon-left="SparklesIcon" :icon-right="SparklesIcon">
           Премиум
         </DXBadge>
+      </div>
+    `,
+  }),
+};
+
+export const Sizes = {
+  render: () => ({
+    components: { DXBadge },
+    setup() {
+      return { CheckCircleIcon };
+    },
+    template: `
+      <div class="space-y-4">
+        <div>
+          <p class="text-sm font-medium text-slate-700 mb-2">Small (sm, default)</p>
+          <div class="flex flex-wrap gap-2 items-center">
+            <DXBadge variant="slate" size="sm">Slate</DXBadge>
+            <DXBadge variant="success" size="sm" :icon-left="CheckCircleIcon">Success</DXBadge>
+            <DXBadge variant="warning" size="sm">Warning</DXBadge>
+            <DXBadge variant="danger" size="sm">Danger</DXBadge>
+            <DXBadge variant="info" size="sm">Info</DXBadge>
+          </div>
+        </div>
+        
+        <div>
+          <p class="text-sm font-medium text-slate-700 mb-2">Medium (md)</p>
+          <div class="flex flex-wrap gap-2 items-center">
+            <DXBadge variant="slate" size="md">Slate</DXBadge>
+            <DXBadge variant="success" size="md" :icon-left="CheckCircleIcon">Success</DXBadge>
+            <DXBadge variant="warning" size="md">Warning</DXBadge>
+            <DXBadge variant="danger" size="md">Danger</DXBadge>
+            <DXBadge variant="info" size="md">Info</DXBadge>
+          </div>
+        </div>
+        
+        <div>
+          <p class="text-sm font-medium text-slate-700 mb-2">Size Comparison</p>
+          <div class="flex flex-wrap gap-3 items-center">
+            <DXBadge variant="info" size="sm">Small Badge</DXBadge>
+            <DXBadge variant="info" size="md">Medium Badge</DXBadge>
+          </div>
+        </div>
       </div>
     `,
   }),

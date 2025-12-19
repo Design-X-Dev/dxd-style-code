@@ -1,11 +1,23 @@
 <template>
-  <div class="w-full" data-component="DXInput">
-    <label v-if="label" class="block text-sm text-slate-600 mb-1 font-medium">{{ label }}</label>
+  <DXFormLabel
+    :label="label"
+    :error="error"
+    :helper="helper"
+    :required="required"
+    data-component="DXInput"
+    :data-size="size"
+    :data-disabled="disabled"
+    :data-error="!!error"
+  >
     <div class="relative">
-      <div v-if="prefixIcon || $slots.prefix" class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
-        <DXIcon v-if="prefixIcon" :icon="prefixIcon" size="sm" animation="none" />
-        <slot v-else name="prefix" />
-      </div>
+      <DXIconWrapper
+        v-if="prefixIcon || $slots.prefix"
+        position="left"
+        :icon="prefixIcon"
+      >
+        <slot name="prefix" />
+      </DXIconWrapper>
+      
       <input
         :type="type"
         :placeholder="placeholder"
@@ -14,20 +26,24 @@
         :class="inputClasses"
         @input="$emit('update:modelValue', $event.target.value)"
       />
-      <div v-if="suffixIcon || $slots.suffix" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">
-        <DXIcon v-if="suffixIcon" :icon="suffixIcon" size="sm" animation="none" />
-        <slot v-else name="suffix" />
-      </div>
+      
+      <DXIconWrapper
+        v-if="suffixIcon || $slots.suffix"
+        position="right"
+        :icon="suffixIcon"
+      >
+        <slot name="suffix" />
+      </DXIconWrapper>
     </div>
-    <p v-if="error" class="mt-1 text-xs text-rose-500">{{ error }}</p>
-    <p v-else-if="helper" class="mt-1 text-xs text-slate-500">{{ helper }}</p>
-  </div>
+  </DXFormLabel>
 </template>
 
 <script setup>
 import { computed } from "vue";
 import { useComponentSize } from "@/composables/useComponentSize";
-import DXIcon from "../DXIcon/DXIcon.vue";
+import { useClassCompositionWithConditions } from "@/composables/useClassComposition";
+import DXFormLabel from "../DXFormLabel/DXFormLabel.vue";
+import DXIconWrapper from "../DXIconWrapper/DXIconWrapper.vue";
 
 const props = defineProps({
   /** Значение поля (v-model) */
@@ -38,6 +54,8 @@ const props = defineProps({
   placeholder: { type: String, default: "" },
   /** Лейбл над полем */
   label: { type: String, default: "" },
+  /** Обязательное поле */
+  required: { type: Boolean, default: false },
   /** Отключенное состояние */
   disabled: { type: Boolean, default: false },
   /** Текст ошибки */
@@ -56,16 +74,21 @@ const props = defineProps({
 
 defineEmits(["update:modelValue"]);
 
-const inputClasses = computed(() => [
-  "w-full rounded-xl border border-slate-200 bg-white transition-colors",
-  useComponentSize(props.size, 'input'),
-  "text-slate-700 placeholder:text-slate-400",
-  !props.disabled && "hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300",
-  props.disabled && "opacity-60 cursor-not-allowed bg-slate-50",
-  props.error && "border-rose-300 focus:ring-rose-500/10",
-  (props.prefixIcon || props.$slots?.prefix) && "pl-10",
-  (props.suffixIcon || props.$slots?.suffix) && "pr-10",
-  props.inputClass,
-]);
+const BASE_CLASSES = "w-full rounded-xl border border-slate-200 bg-white transition-colors text-slate-700 placeholder:text-slate-400";
+
+const inputClasses = computed(() => 
+  useClassCompositionWithConditions(
+    BASE_CLASSES,
+    {
+      [useComponentSize(props.size, 'input')]: true,
+      'hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300': !props.disabled,
+      'opacity-60 cursor-not-allowed bg-slate-50': props.disabled,
+      'border-rose-300 focus:ring-rose-500/10': props.error,
+      'pl-10': props.prefixIcon || props.$slots?.prefix,
+      'pr-10': props.suffixIcon || props.$slots?.suffix,
+    },
+    props.inputClass
+  )
+);
 </script>
 

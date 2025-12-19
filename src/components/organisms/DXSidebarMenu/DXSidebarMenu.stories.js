@@ -23,6 +23,14 @@ export default {
   component: DXSidebarMenu,
   tags: ['autodocs'],
   argTypes: {
+    showHeader: {
+      control: { type: 'boolean' },
+      description: 'Показывать header (undefined = автоматически)'
+    },
+    headerSize: {
+      control: { type: 'select' },
+      options: ['sm', 'md', 'lg']
+    },
     width: { control: { type: 'select' }, options: ['sm', 'md', 'lg', 'full'] },
   },
 };
@@ -567,6 +575,153 @@ export const InsideCard = {
               </div>
             </DXCard>
           </div>
+        </div>
+      </div>
+    `,
+  }),
+};
+
+// 10. NoHeader - без header
+export const NoHeader = {
+  render: () => ({
+    components: { DXSidebarMenu },
+    setup() {
+      const activeItem = ref('/home');
+      const sections = [
+        {
+          items: [
+            { id: 'home', label: 'Главная', icon: HomeIcon, to: '/home' },
+            { id: 'analytics', label: 'Аналитика', icon: ChartBarIcon, to: '/analytics' },
+            { id: 'users', label: 'Пользователи', icon: UsersIcon, to: '/users' },
+          ],
+        },
+      ];
+      const handleItemClick = (item) => {
+        activeItem.value = item.to || item.id;
+      };
+      return { sections, activeItem, handleItemClick };
+    },
+    template: `
+      <div class="h-screen flex">
+        <DXSidebarMenu 
+          :sections="sections"
+          :activeItem="activeItem"
+          :showHeader="false"
+          @item-click="handleItemClick"
+        />
+        <div class="flex-1 p-8">
+          <h2 class="text-2xl font-bold">Sidebar без header</h2>
+        </div>
+      </div>
+    `,
+  }),
+};
+
+// 11. SmallHeader - компактный header
+export const SmallHeader = {
+  render: () => ({
+    components: { DXSidebarMenu },
+    setup() {
+      const activeItem = ref('/home');
+      const sections = [
+        {
+          items: [
+            { id: 'home', label: 'Главная', icon: HomeIcon, to: '/home' },
+            { id: 'analytics', label: 'Аналитика', icon: ChartBarIcon, to: '/analytics' },
+            { id: 'users', label: 'Пользователи', icon: UsersIcon, to: '/users' },
+          ],
+        },
+      ];
+      const handleItemClick = (item) => {
+        activeItem.value = item.to || item.id;
+      };
+      return { sections, activeItem, handleItemClick };
+    },
+    template: `
+      <div class="h-screen flex">
+        <DXSidebarMenu 
+          title="Компактный"
+          :sections="sections"
+          :activeItem="activeItem"
+          headerSize="sm"
+          @item-click="handleItemClick"
+        />
+        <div class="flex-1 p-8">
+          <h2 class="text-2xl font-bold">Маленький header (sm)</h2>
+        </div>
+      </div>
+    `,
+  }),
+};
+
+// 12. LargeHeader - большой header
+export const LargeHeader = {
+  render: () => ({
+    components: { DXSidebarMenu },
+    setup() {
+      const activeItem = ref('/home');
+      const sections = [
+        {
+          items: [
+            { id: 'home', label: 'Главная', icon: HomeIcon, to: '/home' },
+            { id: 'analytics', label: 'Аналитика', icon: ChartBarIcon, to: '/analytics' },
+            { id: 'users', label: 'Пользователи', icon: UsersIcon, to: '/users' },
+          ],
+        },
+      ];
+      const handleItemClick = (item) => {
+        activeItem.value = item.to || item.id;
+      };
+      return { sections, activeItem, handleItemClick };
+    },
+    template: `
+      <div class="h-screen flex">
+        <DXSidebarMenu 
+          title="Большой заголовок"
+          :sections="sections"
+          :activeItem="activeItem"
+          headerSize="lg"
+          @item-click="handleItemClick"
+        />
+        <div class="flex-1 p-8">
+          <h2 class="text-2xl font-bold">Большой header (lg)</h2>
+        </div>
+      </div>
+    `,
+  }),
+};
+
+// 13. AutoHideHeader - автоматическое скрытие header
+export const AutoHideHeader = {
+  render: () => ({
+    components: { DXSidebarMenu },
+    setup() {
+      const activeItem = ref('/home');
+      const sections = [
+        {
+          items: [
+            { id: 'home', label: 'Главная', icon: HomeIcon, to: '/home' },
+            { id: 'analytics', label: 'Аналитика', icon: ChartBarIcon, to: '/analytics' },
+            { id: 'users', label: 'Пользователи', icon: UsersIcon, to: '/users' },
+          ],
+        },
+      ];
+      const handleItemClick = (item) => {
+        activeItem.value = item.to || item.id;
+      };
+      return { sections, activeItem, handleItemClick };
+    },
+    template: `
+      <div class="h-screen flex">
+        <DXSidebarMenu 
+          :sections="sections"
+          :activeItem="activeItem"
+          :collapsible="false"
+          @item-click="handleItemClick"
+        />
+        <div class="flex-1 p-8">
+          <h2 class="text-2xl font-bold">Header скрывается автоматически</h2>
+          <p class="text-slate-600 mt-2">Нет title, слота header и collapsible=false</p>
         </div>
       </div>
     `,

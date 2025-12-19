@@ -1,14 +1,20 @@
 <template>
-  <div class="w-full" data-component="DXPasswordInput">
-    <label v-if="label" class="block text-sm text-slate-600 mb-1 font-medium">{{ label }}</label>
+  <DXFormLabel
+    :label="label"
+    :error="error"
+    :helper="helper"
+    :required="required"
+    data-component="DXPasswordInput"
+    :data-disabled="disabled"
+    :data-error="!!error"
+  >
     <div class="relative">
       <input
         :type="showPassword ? 'text' : 'password'"
         :placeholder="placeholder"
         :value="modelValue"
         :disabled="disabled"
-        class="w-full pr-11 h-10 px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-white text-slate-700 placeholder:text-slate-400 transition-colors hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:bg-slate-50"
-        :class="{ 'border-rose-300 focus:ring-rose-500/10': error }"
+        :class="inputClasses"
         @input="$emit('update:modelValue', $event.target.value)"
       />
       <button
@@ -21,21 +27,23 @@
         <DXIcon :icon="showPassword ? EyeSlashIcon : EyeIcon" size="md" animation="scale" />
       </button>
     </div>
-    <p v-if="error" class="mt-1 text-xs text-rose-500">{{ error }}</p>
-    <p v-else-if="helper" class="mt-1 text-xs text-slate-500">{{ helper }}</p>
-  </div>
+  </DXFormLabel>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/vue/24/outline";
+import { useClassCompositionWithConditions } from "@/composables/useClassComposition";
+import DXFormLabel from "../../atoms/DXFormLabel/DXFormLabel.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 
-defineProps({
+const props = defineProps({
   /** Значение (v-model) */
   modelValue: { type: String, default: "" },
   /** Лейбл */
   label: { type: String, default: "" },
+  /** Обязательное поле */
+  required: { type: Boolean, default: false },
   /** Placeholder */
   placeholder: { type: String, default: "" },
   /** Текст ошибки */
@@ -49,5 +57,18 @@ defineProps({
 defineEmits(["update:modelValue"]);
 
 const showPassword = ref(false);
+
+const BASE_CLASSES = "w-full pr-11 h-10 px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-white text-slate-700 placeholder:text-slate-400 transition-colors";
+
+const inputClasses = computed(() =>
+  useClassCompositionWithConditions(
+    BASE_CLASSES,
+    {
+      'hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300': !props.disabled,
+      'opacity-60 cursor-not-allowed bg-slate-50': props.disabled,
+      'border-rose-300 focus:ring-rose-500/10': props.error,
+    }
+  )
+);
 </script>
 

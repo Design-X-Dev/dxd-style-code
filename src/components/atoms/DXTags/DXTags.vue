@@ -4,7 +4,7 @@
       v-for="(tag, index) in normalizedTags"
       :key="getTagKey(tag, index)"
       :class="getTagClasses(tag)"
-      class="inline-flex items-center gap-1.5 transition-all duration-200"
+      class="group inline-flex items-center gap-1.5 transition-all duration-200"
     >
       <!-- Left Icon -->
       <DXIcon
@@ -12,6 +12,7 @@
         :icon="tag.icon"
         :size="variant === 'large' ? 'sm' : 'xs'"
         :animation="tag.iconAnimation || 'none'"
+        :group-hover="true"
       />
       
       <!-- Tag Label -->

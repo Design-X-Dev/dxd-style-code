@@ -1,14 +1,20 @@
 <template>
-  <div class="w-full" data-component="DXSelect">
-    <label v-if="label" class="block text-sm text-slate-600 mb-1 font-medium">{{ label }}</label>
+  <DXFormLabel
+    :label="label"
+    :error="error"
+    :helper="helper"
+    :required="required"
+    data-component="DXSelect"
+    :data-size="size"
+    :data-disabled="disabled"
+    :data-error="!!error"
+  >
     <div class="relative">
-      <!-- Prefix Icon -->
-      <div
+      <DXIconWrapper
         v-if="prefixIcon"
-        class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400"
-      >
-        <DXIcon :icon="prefixIcon" size="sm" animation="none" />
-      </div>
+        position="left"
+        :icon="prefixIcon"
+      />
       
       <select
         :value="modelValue"
@@ -27,15 +33,16 @@
         <DXIcon :icon="ChevronDownIcon" size="sm" animation="none" class="text-slate-400" />
       </div>
     </div>
-    <p v-if="error" class="mt-1 text-xs text-rose-500">{{ error }}</p>
-    <p v-else-if="helper" class="mt-1 text-xs text-slate-500">{{ helper }}</p>
-  </div>
+  </DXFormLabel>
 </template>
 
 <script setup>
 import { computed } from "vue";
 import { useComponentSize } from "@/composables/useComponentSize";
+import { useClassCompositionWithConditions } from "@/composables/useClassComposition";
 import { ChevronDownIcon } from "@heroicons/vue/24/outline";
+import DXFormLabel from "../DXFormLabel/DXFormLabel.vue";
+import DXIconWrapper from "../DXIconWrapper/DXIconWrapper.vue";
 import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({
@@ -45,6 +52,8 @@ const props = defineProps({
   options: { type: Array, default: () => [] },
   /** Лейбл */
   label: { type: String, default: "" },
+  /** Обязательное поле */
+  required: { type: Boolean, default: false },
   /** Placeholder */
   placeholder: { type: String, default: "" },
   /** Текст ошибки */
@@ -61,14 +70,19 @@ const props = defineProps({
 
 defineEmits(["update:modelValue"]);
 
-const selectClasses = computed(() => [
-  "w-full appearance-none rounded-xl border border-slate-200 bg-white transition-colors pr-10",
-  useComponentSize(props.size, 'input'),
-  "text-slate-700",
-  props.prefixIcon && "pl-10",
-  !props.disabled && "hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300",
-  props.disabled && "opacity-60 cursor-not-allowed bg-slate-50",
-  props.error && "border-rose-300 focus:ring-rose-500/10",
-]);
+const BASE_CLASSES = "w-full appearance-none rounded-xl border border-slate-200 bg-white transition-colors pr-10 text-slate-700";
+
+const selectClasses = computed(() =>
+  useClassCompositionWithConditions(
+    BASE_CLASSES,
+    {
+      [useComponentSize(props.size, 'input')]: true,
+      'pl-10': props.prefixIcon,
+      'hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300': !props.disabled,
+      'opacity-60 cursor-not-allowed bg-slate-50': props.disabled,
+      'border-rose-300 focus:ring-rose-500/10': props.error,
+    }
+  )
+);
 </script>
 

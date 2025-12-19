@@ -1,36 +1,42 @@
 <template>
-  <div class="space-y-2" data-component="DXRadioGroup">
+  <div 
+    class="space-y-2" 
+    data-component="DXRadioGroup"
+    :data-size="size"
+    :data-layout="layout"
+    :data-disabled="disabled"
+    :data-variant="variant"
+    :data-color="color"
+  >
     <p v-if="label" class="text-sm font-medium text-slate-700 mb-3">{{ label }}</p>
-    <div :class="layout === 'horizontal' ? 'flex flex-wrap gap-3' : 'space-y-2'">
-      <label
+    
+    <div :class="layoutClasses">
+      <DXRadio
         v-for="option in options"
         :key="option.value"
-        class="inline-flex items-center gap-2 cursor-pointer"
-        :class="{ 'opacity-60 cursor-not-allowed': disabled || option.disabled }"
-      >
-        <input
-          type="radio"
-          :value="option.value"
-          :checked="modelValue === option.value"
-          :disabled="disabled || option.disabled"
-          class="rounded-full border-slate-300 text-slate-900 focus:ring-slate-900/10 focus:ring-2 transition"
-          :class="sizeClass"
-          @change="$emit('update:modelValue', option.value)"
-        />
-        <span class="text-sm text-slate-700 select-none">{{ option.label }}</span>
-      </label>
+        :model-value="modelValue"
+        :value="option.value"
+        :label="option.label"
+        :disabled="disabled || option.disabled"
+        :size="size"
+        :variant="variant"
+        :color="option.color || color"
+        @update:model-value="$emit('update:modelValue', $event)"
+      />
     </div>
+    
     <p v-if="helper" class="text-xs text-slate-500 mt-1">{{ helper }}</p>
   </div>
 </template>
 
 <script setup>
 import { computed } from "vue";
+import DXRadio from "../../atoms/DXRadio/DXRadio.vue";
 
 const props = defineProps({
   /** Текущее значение (v-model) */
-  modelValue: [String, Number, Boolean],
-  /** Опции: [{ value, label, disabled? }] */
+  modelValue: { type: [String, Number, Boolean], default: null },
+  /** Опции: [{ value, label, disabled?, color? }] */
   options: { type: Array, required: true },
   /** Лейбл группы */
   label: { type: String, default: "" },
@@ -42,16 +48,26 @@ const props = defineProps({
   size: { type: String, default: "md" },
   /** Расположение: vertical | horizontal */
   layout: { type: String, default: "vertical" },
+  /** Вариант: default | custom */
+  variant: { 
+    type: String, 
+    default: "default",
+    validator: (value) => ['default', 'custom'].includes(value)
+  },
+  /** Цвет для custom variant: slate | primary | success | danger | warning | info */
+  color: {
+    type: String,
+    default: "primary",
+    validator: (value) => ['slate', 'primary', 'success', 'danger', 'warning', 'info'].includes(value)
+  },
 });
 
 defineEmits(["update:modelValue"]);
 
-const sizeClass = computed(() => {
-  switch (props.size) {
-    case "sm": return "h-3.5 w-3.5";
-    case "lg": return "h-5 w-5";
-    default: return "h-4 w-4";
-  }
-});
+const layoutClasses = computed(() => 
+  props.layout === 'horizontal' 
+    ? 'flex flex-wrap items-center' 
+    : 'flex flex-col'
+);
 </script>
 

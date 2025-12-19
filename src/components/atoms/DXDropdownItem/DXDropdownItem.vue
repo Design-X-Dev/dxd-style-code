@@ -1,62 +1,111 @@
 <template>
   <button
     type="button"
-    class="dropdown-item w-full flex items-center gap-3 px-4 py-2 text-sm text-left transition"
-    :class="[
-      danger
-        ? 'text-rose-600 hover:bg-rose-50'
-        : 'text-slate-700 hover:bg-slate-50',
-      disabled && 'opacity-60 cursor-not-allowed',
-    ]"
+    :class="allClasses"
+    class="group"
     :disabled="disabled"
     @click="handleClick"
+    @keydown.enter="handleClick"
     data-component="DXDropdownItem"
+    :data-variant="variant"
+    :data-size="size"
+    :data-disabled="disabled"
   >
-    <component v-if="icon" :is="icon" class="w-4 h-4 flex-shrink-0" />
-    <span class="flex-1">
+    <DXIcon 
+      v-if="icon" 
+      :icon="icon" 
+      :size="iconSize" 
+      :animation="iconAnimation"
+      :group-hover="true"
+      class="flex-shrink-0" 
+    />
+    <span class="flex-1 text-left">
       <slot />
     </span>
-    <svg v-if="submenu" class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-    </svg>
+    <DXIcon 
+      v-if="submenu" 
+      :icon="ChevronRightIcon" 
+      size="xs" 
+      :animation="iconAnimation"
+      :group-hover="true"
+      class="text-slate-400 flex-shrink-0" 
+    />
+    <DXBadge v-if="badge" :variant="badgeVariant" size="sm" class="flex-shrink-0">{{ badge }}</DXBadge>
   </button>
 </template>
 
 <script setup>
-import { inject } from "vue";
+import { inject, computed } from "vue";
+import { ChevronRightIcon } from "@heroicons/vue/24/outline";
+import DXIcon from "../DXIcon/DXIcon.vue";
+import DXBadge from "../DXBadge/DXBadge.vue";
 
 const props = defineProps({
+  /** Иконка (Heroicon компонент) */
   icon: { type: Object, default: null },
-  danger: { type: Boolean, default: false },
+  /** Вариант: default | danger | success */
+  variant: { 
+    type: String, 
+    default: 'default',
+    validator: (value) => ['default', 'danger', 'success'].includes(value)
+  },
+  /** Размер: sm | md */
+  size: {
+    type: String,
+    default: 'md',
+    validator: (value) => ['sm', 'md'].includes(value)
+  },
+  /** Отключенное состояние */
   disabled: { type: Boolean, default: false },
+  /** Показать индикатор подменю */
   submenu: { type: Boolean, default: false },
+  /** Закрыть dropdown при клике */
   closeOnClick: { type: Boolean, default: true },
+  /** Текст badge */
+  badge: { type: [String, Number], default: null },
+  /** Вариант badge */
+  badgeVariant: { type: String, default: 'slate' },
+  /** Анимация иконки: none | wiggle | scale | rotate */
+  iconAnimation: {
+    type: String,
+    default: 'wiggle',
+    validator: (value) => ['none', 'wiggle', 'scale', 'rotate'].includes(value)
+  },
 });
 
 const emit = defineEmits(["click"]);
 
 const dropdown = inject("dropdown", null);
 
+const BASE_CLASSES = "w-full flex items-center gap-3 rounded-lg transition-colors";
+
+const VARIANT_CLASSES = {
+  default: "text-slate-700 hover:bg-slate-50",
+  danger: "text-rose-600 hover:bg-rose-50",
+  success: "text-emerald-600 hover:bg-emerald-50",
+};
+
+const SIZE_CLASSES = {
+  sm: "px-3 py-1.5 text-xs",
+  md: "px-4 py-2 text-sm",
+};
+
+const allClasses = computed(() => [
+  BASE_CLASSES,
+  VARIANT_CLASSES[props.variant] || VARIANT_CLASSES.default,
+  SIZE_CLASSES[props.size] || SIZE_CLASSES.md,
+  props.disabled && "opacity-60 cursor-not-allowed",
+]);
+
+const iconSize = computed(() => props.size === 'sm' ? 'xs' : 'sm');
+
 const handleClick = (event) => {
   if (props.disabled) return;
   
   emit("click", event);
   
-  if (props.closeOnClick && dropdown) {
+  if (props.closeOnClick && dropdown?.close) {
     dropdown.close();
   }
 };
 </script>
-
-<style scoped>
-.dropdown-item:hover :deep(svg) {
-  animation: wiggle 0.28s ease-in-out;
-}
-
-@keyframes wiggle {
-  0%, 100% { transform: translateX(0) rotate(0); }
-  25% { transform: translateX(-1px) rotate(-3deg); }
-  75% { transform: translateX(1px) rotate(3deg); }
-}
-</style>
-

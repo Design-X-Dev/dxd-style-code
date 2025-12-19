@@ -1,13 +1,17 @@
 // Atom components - basic building blocks
 export { default as DXAvatar } from './DXAvatar';
+export { default as DXBackdrop } from './DXBackdrop';
 export { default as DXBadge } from './DXBadge';
 export { default as DXButton } from './DXButton';
 export { default as DXCard } from './DXCard';
 export { default as DXCheckbox } from './DXCheckbox';
 export { default as DXCloseButton } from './DXCloseButton';
 export { default as DXDivider } from './DXDivider';
+export { default as DXDropdownDivider } from './DXDropdownDivider';
 export { default as DXDropdownItem } from './DXDropdownItem';
+export { default as DXFormLabel } from './DXFormLabel';
 export { default as DXIcon } from './DXIcon';
+export { default as DXIconWrapper } from './DXIconWrapper';
 export { default as DXInput } from './DXInput';
 export { default as DXInputAddon } from './DXInputAddon';
 export { default as DXLoader } from './DXLoader';

@@ -1,5 +1,12 @@
 <template>
-  <div :class="stackClasses" data-component="DXStack" :data-direction="direction">
+  <div 
+    :class="stackClasses" 
+    data-component="DXStack" 
+    :data-direction="direction"
+    :data-gap="gap"
+    :data-align="align"
+    :data-justify="justify"
+  >
     <slot />
   </div>
 </template>

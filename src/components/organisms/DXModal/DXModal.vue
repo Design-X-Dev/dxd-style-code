@@ -1,7 +1,22 @@
 <template>
-  <teleport to="body">
+  <DXBackdrop 
+    :show="open && variant !== 'half-right'"
+    :blur="backdropBlur"
+    :opacity="backdropOpacity"
+    :color="backdropColor"
+    :z-index="variant === 'half-right' ? 20 : 50"
+    :lock-scroll="backdropLockScroll"
+    :dismissible="closable && variant !== 'half-right'"
+    @close="$emit('close')"
+  >
     <Transition :name="transitionName" @after-enter="$emit('opened')" @after-leave="$emit('closed')">
-      <div v-if="open" :class="overlayClass" @click.self="handleOverlayClick" data-component="DXModal" :data-variant="variant">
+      <div 
+        v-if="open" 
+        :class="containerWrapperClass" 
+        @click.self="closable && $emit('close')"
+        data-component="DXModal" 
+        :data-variant="variant"
+      >
         <div :class="containerClass">
           <div class="flex items-center justify-between flex-shrink-0 mb-4 gap-4">
             <h3 class="text-lg font-semibold tracking-tight text-slate-900 flex-1">
@@ -41,7 +56,7 @@
         </div>
       </div>
     </Transition>
-  </teleport>
+  </DXBackdrop>
 </template>
 
 <script setup>
@@ -52,6 +67,7 @@ import {
   ViewColumnsIcon,
   RectangleGroupIcon,
 } from "@heroicons/vue/24/outline";
+import DXBackdrop from "../../atoms/DXBackdrop/DXBackdrop.vue";
 import DXCloseButton from "../../atoms/DXCloseButton/DXCloseButton.vue";
 
 const props = defineProps({
@@ -65,6 +81,28 @@ const props = defineProps({
   closable: { type: Boolean, default: true },
   /** Показывать переключатель режимов */
   showModeSwitcher: { type: Boolean, default: false },
+  
+  /** Размытие backdrop: none | sm | md | lg | xl | 2xl | 3xl */
+  backdropBlur: {
+    type: String,
+    default: 'sm',
+    validator: (v) => ['none', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'].includes(v)
+  },
+  /** Прозрачность backdrop: 0-100 */
+  backdropOpacity: {
+    type: [String, Number],
+    default: '40'
+  },
+  /** Цвет backdrop: slate-900 | gray-900 | black | white */
+  backdropColor: {
+    type: String,
+    default: 'slate-900'
+  },
+  /** Блокировать скролл body */
+  backdropLockScroll: {
+    type: Boolean,
+    default: true
+  }
 });
 
 const emit = defineEmits(["close", "opened", "closed", "update:variant"]);
@@ -75,12 +113,6 @@ const viewModes = [
   { value: "sidebar-right", label: "Боковая панель", icon: ViewColumnsIcon },
   { value: "half-right", label: "Половина справа", icon: RectangleGroupIcon },
 ];
-
-const handleOverlayClick = () => {
-  if (props.closable && props.variant !== 'half-right') {
-    emit("close");
-  }
-};
 
 const handleVariantChange = (newVariant) => {
   emit("update:variant", newVariant);
@@ -96,16 +128,16 @@ const transitionName = computed(() => {
   }
 });
 
-const overlayClass = computed(() => {
+const containerWrapperClass = computed(() => {
   switch (props.variant) {
     case "fullscreen":
-      return "fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-0";
+      return "fixed inset-0 flex items-center justify-center p-0";
     case "sidebar-right":
-      return "fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-end justify-end";
+      return "fixed inset-0 flex items-end justify-end";
     case "half-right":
       return "fixed top-[73px] bottom-0 right-0 z-20 flex w-1/2 pointer-events-none";
     default:
-      return "fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center px-4 py-4 overflow-y-auto";
+      return "fixed inset-0 flex items-center justify-center px-4 py-4 overflow-y-auto";
   }
 });
 

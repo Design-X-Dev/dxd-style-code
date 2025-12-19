@@ -5,9 +5,9 @@
     :data-compact="compact"
   >
     <!-- Заголовок -->
-    <div v-if="($slots.header || title || collapsible)" :class="headerClasses">
+    <div v-if="shouldShowHeader" :class="headerClasses">
       <slot v-if="!compact" name="header">
-        <h2 v-if="title" class="text-lg font-bold text-slate-900">{{ title }}</h2>
+        <h2 v-if="title" :class="headerTitleClasses">{{ title }}</h2>
       </slot>
       
       <!-- Кнопка переключения compact режима -->
@@ -20,7 +20,7 @@
         :title="compact ? 'Развернуть' : 'Свернуть'"
       >
         <DXIcon 
-          :icon="compact ? ChevronDoubleRightIcon : ChevronDoubleLeftIcon" 
+          :icon="compact ? ChevronRightIcon : ChevronLeftIcon" 
           size="md"
           animation="scale"
           class="text-slate-600"
@@ -80,16 +80,19 @@
 </template>
 
 <script setup>
-import { ref, computed, provide, onMounted } from 'vue';
-import { 
-  ChevronDoubleLeftIcon, 
-  ChevronDoubleRightIcon,
-  MagnifyingGlassIcon 
+import { computed, useSlots } from 'vue';
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  MagnifyingGlassIcon
 } from '@heroicons/vue/24/outline';
+import { useMenu } from '@/composables/useMenu';
 import DXSidebarMenuItem from './DXSidebarMenuItem.vue';
 import DXInput from '../../atoms/DXInput/DXInput.vue';
 import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
 import DXDivider from '../../atoms/DXDivider/DXDivider.vue';
+
+const $slots = useSlots();
 
 const props = defineProps({
   /** Заголовок сайдбара */
@@ -122,6 +125,17 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
+  /** Показывать header (если undefined - автоматически) */
+  showHeader: {
+    type: Boolean,
+    default: undefined
+  },
+  /** Размер header: sm, md, lg */
+  headerSize: {
+    type: String,
+    default: 'md',
+    validator: (v) => ['sm', 'md', 'lg'].includes(v)
+  },
   /** Ширина: sm | md | lg | full */
   width: {
     type: String,
@@ -133,12 +147,6 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  /** Вариант отображения: sidebar | embedded */
-  variant: {
-    type: String,
-    default: 'sidebar',
-    validator: (value) => ['sidebar', 'embedded'].includes(value)
-  },
   /** Показывать бордер справа */
   bordered: {
     type: Boolean,
@@ -148,24 +156,46 @@ const props = defineProps({
 
 const emit = defineEmits(['item-click', 'update:compact']);
 
-const searchQuery = ref('');
-const internalCompact = ref(props.compact);
+const {
+  searchQuery,
+  internalCompact,
+  compact,
+  filteredSections,
+  isItemActive,
+  toggleCompact,
+  handleItemClick
+} = useMenu(props, emit);
 
-// Computed для использования в template
-const compact = computed(() => internalCompact.value);
-
-// Check if vue-router is available
-let hasRouter = false;
-onMounted(() => {
-  try {
-    // Try to detect router
-    hasRouter = !!window?.$router || false;
-  } catch (e) {
-    hasRouter = false;
+// Размеры header
+const HEADER_SIZE_CLASSES = {
+  sm: {
+    container: 'px-3 py-2',
+    title: 'text-base'
+  },
+  md: {
+    container: 'px-4 py-5',
+    title: 'text-lg'
+  },
+  lg: {
+    container: 'px-6 py-8',
+    title: 'text-xl'
   }
-});
+};
 
-provide('hasRouter', hasRouter);
+// Автоматическое определение видимости header
+const shouldShowHeader = computed(() => {
+  // Если явно указано showHeader, используем его
+  if (props.showHeader !== undefined) {
+    return props.showHeader;
+  }
+  
+  // Иначе показываем если есть контент
+  return !!(
+    $slots.header || 
+    props.title || 
+    props.collapsible
+  );
+});
 
 const widthClasses = {
   sm: 'w-64',
@@ -174,29 +204,24 @@ const widthClasses = {
   full: 'w-full'
 };
 
-const sidebarClasses = computed(() => {
-  const isEmbedded = props.variant === 'embedded';
-  
-  return [
-    'flex flex-col bg-white transition-all duration-300',
-    // Ширина только для sidebar режима
-    !isEmbedded && (internalCompact.value ? 'w-20' : widthClasses[props.width]),
-    // Фиксированная позиция только для sidebar
-    !isEmbedded && props.fixed && 'fixed top-0 left-0 h-screen',
-    // Скругления для embedded - всегда
-    isEmbedded && 'rounded-xl',
-    // Бордер
-    props.bordered && (isEmbedded ? 'border border-slate-200' : 'border-r border-slate-200'),
-    // Тень только для sidebar
-    !isEmbedded ? 'shadow-sm' : '',
-    // Для embedded - полная ширина и высота
-    isEmbedded && 'w-full h-full'
-  ];
-});
+const sidebarClasses = computed(() => [
+  'flex flex-col bg-white transition-all duration-300',
+  internalCompact.value ? 'w-20' : widthClasses[props.width],
+  props.fixed && 'fixed top-0 left-0 h-screen',
+  props.bordered && 'border-r border-slate-200',
+  'shadow-sm'
+]);
 
 const headerClasses = computed(() => [
   'flex items-center gap-2 border-b border-slate-200 flex-shrink-0',
-  internalCompact.value ? 'justify-center px-2 py-3' : 'px-4 py-5'
+  internalCompact.value 
+    ? 'justify-center px-2 py-3' 
+    : HEADER_SIZE_CLASSES[props.headerSize].container
+]);
+
+const headerTitleClasses = computed(() => [
+  'font-bold text-slate-900',
+  HEADER_SIZE_CLASSES[props.headerSize].title
 ]);
 
 const menuClasses = computed(() => [
@@ -208,51 +233,6 @@ const footerClasses = computed(() => [
   'px-4 py-4 border-t border-slate-200 flex-shrink-0',
   internalCompact.value && 'px-2'
 ]);
-
-const filteredSections = computed(() => {
-  if (!searchQuery.value.trim()) return props.sections;
-
-  const query = searchQuery.value.toLowerCase();
-  return props.sections
-    .map(section => ({
-      ...section,
-      items: section.items.filter(item => {
-        const labelMatch = item.label?.toLowerCase().includes(query);
-        const childrenMatch = item.children?.some(child => 
-          child.label?.toLowerCase().includes(query)
-        );
-        return labelMatch || childrenMatch;
-      })
-    }))
-    .filter(section => section.items.length > 0);
-});
-
-const isItemActive = (item) => {
-  if (!props.activeItem) return false;
-  
-  // Проверка основного элемента
-  if (item.to === props.activeItem || item.id === props.activeItem) {
-    return true;
-  }
-  
-  // Проверка дочерних элементов
-  if (item.children) {
-    return item.children.some(child => 
-      child.to === props.activeItem || child.id === props.activeItem
-    );
-  }
-  
-  return false;
-};
-
-const toggleCompact = () => {
-  internalCompact.value = !internalCompact.value;
-  emit('update:compact', internalCompact.value);
-};
-
-const handleItemClick = (item, event) => {
-  emit('item-click', item, event);
-};
 </script>
 
 <style scoped>

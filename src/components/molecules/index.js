@@ -1,6 +1,7 @@
 // Molecule components - composed from atoms
 export { default as DXActionButtons } from './DXActionButtons';
 export { default as DXAlert } from './DXAlert';
+export { default as DXMenu } from './DXMenu';
 export { default as DXBreadcrumb } from './DXBreadcrumb';
 export { default as DXButtonGroup } from './DXButtonGroup';
 export { default as DXComboBox } from './DXComboBox';

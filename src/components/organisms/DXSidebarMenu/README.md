@@ -1,6 +1,20 @@
 # DXSidebarMenu
 
-Полнофункциональный компонент боковой панели меню с поддержкой вложенных элементов, иконок, счетчиков, поиска и компактного режима.
+Полнофункциональный компонент боковой панели меню для полноэкранных sidebar с поддержкой вложенных элементов, иконок, счетчиков, поиска и компактного режима.
+
+> **Примечание:** Для встраивания меню в карточки используйте компонент [`DXMenu`](../../molecules/DXMenu/README.md).
+
+## Отличия от DXMenu
+
+| Характеристика | DXSidebarMenu | DXMenu |
+|----------------|---------------|--------|
+| **Назначение** | Полноэкранная боковая панель | Встраиваемое меню в карточках |
+| **Размеры** | Фиксированная ширина (sm/md/lg) | `w-full h-full` (100% контейнера) |
+| **Скругления** | Без скруглений | `rounded-xl` (всегда) |
+| **Бордер** | `border-r` (только справа) | `border` (со всех сторон) |
+| **Тень** | `shadow-sm` | Без тени |
+| **Fixed position** | Поддерживается | Не поддерживается |
+| **Width prop** | sm / md / lg / full | Не поддерживается |
 
 ## Возможности
 
@@ -102,6 +116,41 @@ const currentPage = ref('/home');
 </script>
 ```
 
+### Управление header
+
+```vue
+<!-- Без header -->
+<DXSidebarMenu 
+  :sections="sections"
+  :activeItem="currentPage"
+  :showHeader="false"
+/>
+
+<!-- С компактным header -->
+<DXSidebarMenu 
+  title="Меню"
+  :sections="sections"
+  :activeItem="currentPage"
+  headerSize="sm"
+/>
+
+<!-- С большим header -->
+<DXSidebarMenu 
+  title="Большой заголовок"
+  :sections="sections"
+  :activeItem="currentPage"
+  headerSize="lg"
+/>
+
+<!-- Автоматическое скрытие header -->
+<!-- Header не отображается, так как нет title, слота header и collapsible=false -->
+<DXSidebarMenu 
+  :sections="sections"
+  :activeItem="currentPage"
+  :collapsible="false"
+/>
+```
+
 ### С кастомным header и footer
 
 ```vue
@@ -141,6 +190,8 @@ const currentPage = ref('/home');
 | `compact` | Boolean | `false` | Компактный режим (только иконки) |
 | `collapsible` | Boolean | `true` | Можно ли сворачивать |
 | `searchable` | Boolean | `false` | Показывать поиск |
+| `showHeader` | Boolean | `undefined` | Показывать header (undefined = автоматически) |
+| `headerSize` | String | `'md'` | Размер header: sm, md, lg |
 | `width` | String | `'md'` | Ширина: sm, md, lg, full |
 | `fixed` | Boolean | `false` | Фиксированная позиция |
 | `bordered` | Boolean | `true` | Показывать бордер справа |
@@ -254,4 +305,29 @@ const handleNavigation = (item) => {
 - ARIA атрибуты для состояний
 - Поддержка клавиатурной навигации
 - Правильные role атрибуты
+
+## Композиция
+
+`DXSidebarMenu` использует общий composable `useMenu` с `DXMenu`, что обеспечивает:
+- Единую бизнес-логику
+- Одинаковое поведение
+- Легкую поддержку
+
+## Когда использовать DXSidebarMenu vs DXMenu
+
+**Используйте DXSidebarMenu когда:**
+- Нужна полноэкранная боковая панель
+- Требуется фиксированная позиция (fixed)
+- Меню должно быть отдельным layout элементом
+- Нужна тень и бордер только справа
+
+**Используйте DXMenu когда:**
+- Нужно встроить меню в карточку или контейнер
+- Меню является частью layout, а не отдельной панелью
+- Требуется адаптивность к размерам контейнера
+- Нужны скругленные углы и бордер со всех сторон
+
+## См. также
+
+- [`DXMenu`](../../molecules/DXMenu/README.md) - встраиваемое меню для карточек
 

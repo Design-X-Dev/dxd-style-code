@@ -7,13 +7,14 @@
       </span>
     </div>
     
-    <div class="relative">
+    <div class="relative pt-2 pb-2">
       <!-- Visual ticks (засечки на линии) -->
-      <div v-if="ticks" class="absolute top-1/2 left-0 right-0 flex justify-between pointer-events-none" style="transform: translateY(-50%)">
+      <div v-if="ticks" class="absolute top-1/2 w-full pointer-events-none" style="transform: translateY(-50%)">
         <div
           v-for="(tick, index) in tickValues"
           :key="`tick-${index}`"
-          class="w-0.5 h-3 bg-slate-400 rounded-full"
+          class="absolute w-0.5 h-3 bg-slate-400 rounded-full"
+          :style="getTickStyle(tick)"
         />
       </div>
       
@@ -30,12 +31,13 @@
     </div>
     
     <!-- Labels for ticks -->
-    <div v-if="ticks && (showTickLabels || tickIcons)" class="flex justify-between mt-1 px-1">
+    <div v-if="ticks && (showTickLabels || tickIcons)" class="relative mt-1 w-full" style="min-height: 3rem;">
       <span 
         v-for="(tick, index) in tickValues" 
         :key="tick" 
-        class="flex flex-col items-center gap-0.5 transition-transform duration-200"
+        class="absolute flex flex-col items-center gap-0.5 transition-transform duration-200"
         :class="{ 'scale-110': isActiveIcon(index) }"
+        :style="getTickStyle(tick)"
       >
         <DXIcon 
           v-if="tickIcons && tickIcons[index]" 
@@ -46,7 +48,7 @@
         />
         <span 
           v-if="showTickLabels" 
-          class="text-xs transition-colors duration-200"
+          class="text-xs transition-colors duration-200 whitespace-nowrap"
           :class="isActiveIcon(index) ? 'text-slate-900 font-semibold' : 'text-slate-500'"
         >
           {{ tick }}{{ unit }}
@@ -136,6 +138,29 @@ const getIconAnimation = (index) => {
     return props.tickIconAnimation;
   }
   return 'none';
+};
+
+// Рассчитывает позицию засечки с учетом размера thumb
+// Thumb имеет ширину 20px, поэтому нужно учитывать offset
+const getTickStyle = (tickValue) => {
+  const range = props.max - props.min;
+  if (range === 0) return { left: '0', transform: 'translateX(-50%)' };
+  
+  // Процент от диапазона значений
+  const percentage = ((tickValue - props.min) / range) * 100;
+  
+  // Размер thumb в пикселях
+  const thumbSize = 20;
+  
+  // Вычисляем offset в процентах от ширины контейнера
+  // На краях thumb центрируется, поэтому его половина выходит за край
+  // Формула: процент * (1 - thumbSize/containerWidth) + половина thumbSize
+  // Упрощенная формула для CSS: используем calc
+  
+  return {
+    left: `calc(${percentage}% + ${(0.5 - percentage / 100) * thumbSize}px)`,
+    transform: 'translateX(-50%)'
+  };
 };
 </script>
 

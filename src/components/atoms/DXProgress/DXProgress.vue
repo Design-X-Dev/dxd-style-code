@@ -1,5 +1,12 @@
 <template>
-  <div class="w-full" data-component="DXProgress">
+  <div 
+    class="w-full" 
+    data-component="DXProgress"
+    :data-size="size"
+    :data-color="color"
+    :data-animated="animated"
+    :data-striped="striped"
+  >
     <div v-if="showLabel || $slots.label" class="flex justify-between items-center mb-1">
       <span class="text-sm font-medium text-slate-700">
         <slot name="label">{{ label }}</slot>
@@ -60,14 +67,14 @@ const percentage = computed(() => {
 
 const displayValue = computed(() => `${Math.round(percentage.value)}%`);
 
-const sizeClasses = {
+const SIZE_CLASSES = {
   xs: "h-1",
   sm: "h-2",
   md: "h-3",
   lg: "h-4",
 };
 
-const colorClasses = {
+const COLOR_CLASSES = {
   default: "bg-slate-800",
   success: "bg-emerald-500",
   warning: "bg-amber-500",
@@ -77,12 +84,12 @@ const colorClasses = {
 
 const trackClasses = computed(() => [
   "w-full bg-slate-200 rounded-full overflow-hidden",
-  sizeClasses[props.size] || sizeClasses.md,
+  SIZE_CLASSES[props.size] || SIZE_CLASSES.md,
 ]);
 
 const barClasses = computed(() => [
   "h-full rounded-full transition-all duration-300 flex items-center justify-end",
-  colorClasses[props.color] || colorClasses.default,
+  COLOR_CLASSES[props.color] || COLOR_CLASSES.default,
   props.striped && "bg-stripes",
   props.animated && props.striped && "animate-stripes",
 ]);

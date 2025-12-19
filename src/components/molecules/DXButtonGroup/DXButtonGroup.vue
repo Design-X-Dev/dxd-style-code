@@ -1,5 +1,11 @@
 <template>
-  <div class="inline-flex" data-component="DXButtonGroup">
+  <div 
+    class="inline-flex" 
+    data-component="DXButtonGroup"
+    :data-size="size"
+    :data-multiple="multiple"
+    :data-disabled="disabled"
+  >
     <p v-if="label" class="text-sm font-medium text-slate-700 mb-2">{{ label }}</p>
     <div
       class="inline-flex border border-slate-200 rounded-xl overflow-hidden divide-x divide-slate-200"
@@ -28,13 +34,13 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
-const sizeClass = computed(() => {
-  switch (props.size) {
-    case "sm": return "h-8";
-    case "lg": return "h-12";
-    default: return "h-10";
-  }
-});
+const SIZE_CLASSES = {
+  sm: "h-8",
+  md: "h-10",
+  lg: "h-12",
+};
+
+const sizeClass = computed(() => SIZE_CLASSES[props.size] || SIZE_CLASSES.md);
 
 const handleSelect = (value) => {
   if (props.disabled) return;

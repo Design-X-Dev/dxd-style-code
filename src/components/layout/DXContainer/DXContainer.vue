@@ -1,5 +1,11 @@
 <template>
-  <div :class="containerClasses" data-component="DXContainer" :data-size="size">
+  <div 
+    :class="containerClasses" 
+    data-component="DXContainer" 
+    :data-size="size"
+    :data-padding="padding"
+    :data-center="center"
+  >
     <slot />
   </div>
 </template>

@@ -1,14 +1,23 @@
 <template>
-  <div class="w-full" data-component="DXTextarea">
-    <label v-if="label" class="block text-sm text-slate-600 mb-1 font-medium">{{ label }}</label>
+  <DXFormLabel
+    :label="label"
+    :error="error"
+    :helper="helper"
+    :required="required"
+    :maxLength="maxLength"
+    :currentLength="currentLength"
+    :showCount="showCount"
+    data-component="DXTextarea"
+    :data-disabled="disabled"
+    :data-error="!!error"
+  >
     <div class="relative">
-      <!-- Prefix Icon (top-left corner) -->
-      <div
+      <DXIconWrapper
         v-if="prefixIcon"
-        class="absolute left-3 top-3 text-slate-400 z-10"
-      >
-        <DXIcon :icon="prefixIcon" size="sm" animation="none" />
-      </div>
+        position="left"
+        verticalAlign="top"
+        :icon="prefixIcon"
+      />
       
       <textarea
         :rows="rows"
@@ -20,30 +29,21 @@
         @input="handleInput"
       />
       
-      <!-- Suffix Icon (top-right corner) -->
-      <div
+      <DXIconWrapper
         v-if="suffixIcon"
-        class="absolute right-3 top-3 text-slate-400 z-10"
-      >
-        <DXIcon :icon="suffixIcon" size="sm" animation="none" />
-      </div>
-      
-      <!-- Character count -->
-      <div
-        v-if="maxLength && showCount"
-        class="absolute right-3 bottom-3 text-xs text-slate-400"
-      >
-        {{ currentLength }} / {{ maxLength }}
-      </div>
+        position="right"
+        verticalAlign="top"
+        :icon="suffixIcon"
+      />
     </div>
-    <p v-if="error" class="mt-1 text-xs text-rose-500">{{ error }}</p>
-    <p v-else-if="helper" class="mt-1 text-xs text-slate-500">{{ helper }}</p>
-  </div>
+  </DXFormLabel>
 </template>
 
 <script setup>
 import { computed, ref, watch } from "vue";
-import DXIcon from "../DXIcon/DXIcon.vue";
+import { useClassCompositionWithConditions } from "@/composables/useClassComposition";
+import DXFormLabel from "../DXFormLabel/DXFormLabel.vue";
+import DXIconWrapper from "../DXIconWrapper/DXIconWrapper.vue";
 
 const props = defineProps({
   /** Значение (v-model) */
@@ -54,6 +54,8 @@ const props = defineProps({
   rows: { type: Number, default: 3 },
   /** Лейбл */
   label: { type: String, default: "" },
+  /** Обязательное поле */
+  required: { type: Boolean, default: false },
   /** Отключенное состояние */
   disabled: { type: Boolean, default: false },
   /** Текст ошибки */
@@ -92,12 +94,18 @@ watch(() => props.modelValue, (newValue) => {
   currentLength.value = newValue?.length || 0;
 });
 
-const textareaClasses = computed(() => [
-  "w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-colors disabled:opacity-60 disabled:cursor-not-allowed disabled:bg-slate-50",
-  props.prefixIcon && "pl-10",
-  props.suffixIcon && "pr-10",
-  props.maxLength && props.showCount && "pb-8",
-  props.error && "border-rose-300 focus:ring-rose-500/10",
-]);
+const BASE_CLASSES = "w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-colors";
+
+const textareaClasses = computed(() =>
+  useClassCompositionWithConditions(
+    BASE_CLASSES,
+    {
+      'opacity-60 cursor-not-allowed bg-slate-50': props.disabled,
+      'pl-10': props.prefixIcon,
+      'pr-10': props.suffixIcon,
+      'border-rose-300 focus:ring-rose-500/10': props.error,
+    }
+  )
+);
 </script>
 
