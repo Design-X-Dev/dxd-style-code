@@ -1,6 +1,6 @@
 import DXBackdrop from './DXBackdrop.vue';
 import DXButton from '../DXButton/DXButton.vue';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 export default {
   title: 'Atoms/DXBackdrop',
@@ -9,30 +9,21 @@ export default {
   argTypes: {
     blur: {
       control: 'select',
-      options: ['none', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'],
+      options: ['none', 'sm', 'md', 'lg', 'xl'],
       description: 'Уровень размытия backdrop'
     },
-    color: {
-      control: 'select',
-      options: ['slate-900', 'gray-900', 'black', 'white'],
-      description: 'Цвет фона backdrop'
-    },
-    opacity: {
-      control: { type: 'range', min: 0, max: 100, step: 5 },
-      description: 'Прозрачность фона (0-100)'
+    backgroundColor: {
+      control: 'text',
+      description: 'Цвет фона (Tailwind класс или CSS значение): bg-slate-900/40 | bg-black/50 | rgb(...)'
     },
     zIndex: {
-      control: 'number',
+      control: 'select',
+      options: ['0', '10', '20', '30', '40', '50', 'auto'],
       description: 'z-index backdrop'
     },
     dismissible: {
       control: 'boolean',
       description: 'Можно ли закрыть кликом'
-    },
-    transition: {
-      control: 'select',
-      options: ['fade', 'none'],
-      description: 'Тип анимации'
     },
     lockScroll: {
       control: 'boolean',
@@ -106,7 +97,11 @@ export const Colors = {
         { name: 'White', value: 'white' }
       ];
       const currentColor = ref(null);
-      return { colors, currentColor };
+      const backgroundColor = computed(() => {
+        if (!currentColor.value) return 'bg-slate-900/40';
+        return `bg-${currentColor.value.value}/40`;
+      });
+      return { colors, currentColor, backgroundColor };
     },
     template: `
       <div class="flex flex-wrap gap-4">
@@ -120,7 +115,7 @@ export const Colors = {
         </DXButton>
         <DXBackdrop 
           :show="currentColor !== null" 
-          :color="currentColor?.value"
+          :background-color="backgroundColor"
           @close="currentColor = null"
         >
           <div class="flex items-center justify-center h-full">
@@ -211,7 +206,7 @@ export const CustomZIndex = {
         <DXButton @click="show1 = true">Backdrop z-10</DXButton>
         <DXButton @click="show2 = true">Backdrop z-20</DXButton>
         
-        <DXBackdrop :show="show1" :z-index="10" @close="show1 = false" color="slate-900" opacity="30">
+        <DXBackdrop :show="show1" z-index="10" @close="show1 = false" background-color="bg-slate-900/30">
           <div class="flex items-center justify-center h-full">
             <div class="bg-white rounded-2xl p-6 max-w-md shadow-2xl">
               <h3 class="font-bold mb-2">z-index: 10</h3>
@@ -221,7 +216,7 @@ export const CustomZIndex = {
           </div>
         </DXBackdrop>
         
-        <DXBackdrop :show="show2" :z-index="20" @close="show2 = false">
+        <DXBackdrop :show="show2" z-index="20" @close="show2 = false">
           <div class="flex items-center justify-center h-full">
             <div class="bg-white rounded-2xl p-6 max-w-md shadow-2xl">
               <h3 class="font-bold mb-2">z-index: 20</h3>
@@ -246,7 +241,7 @@ export const NoBlur = {
     template: `
       <div>
         <DXButton @click="show = true">Без размытия</DXButton>
-        <DXBackdrop :show="show" blur="none" opacity="60" @close="show = false">
+        <DXBackdrop :show="show" blur="none" background-color="bg-slate-900/60" @close="show = false">
           <div class="flex items-center justify-center h-full">
             <div class="text-center text-white">
               <div class="text-3xl font-bold mb-2">Без размытия</div>
@@ -269,7 +264,22 @@ export const Interactive = {
       const opacity = ref('40');
       const color = ref('slate-900');
       
-      return { show, blur, opacity, color };
+      const backgroundColor = computed(() => {
+        const tailwindOpacities = ['0', '5', '10', '20', '30', '40', '50', '60', '70', '80', '90', '95', '100'];
+        if (tailwindOpacities.includes(String(opacity.value))) {
+          return `bg-${color.value}/${opacity.value}`;
+        }
+        const colorMap = {
+          'slate-900': 'rgb(15 23 42',
+          'gray-900': 'rgb(17 24 39',
+          'black': 'rgb(0 0 0',
+          'white': 'rgb(255 255 255',
+        };
+        const rgb = colorMap[color.value] || colorMap['slate-900'];
+        return `${rgb} / ${opacity.value}%)`;
+      });
+      
+      return { show, blur, opacity, color, backgroundColor };
     },
     template: `
       <div>
@@ -307,8 +317,7 @@ export const Interactive = {
         <DXBackdrop 
           :show="show" 
           :blur="blur"
-          :opacity="opacity"
-          :color="color"
+          :background-color="backgroundColor"
           @close="show = false"
         >
           <div class="flex items-center justify-center h-full">

@@ -1,10 +1,9 @@
 <template>
   <Teleport to="body">
-    <Transition :name="transitionName">
+    <Transition v-bind="FADE_TRANSITION">
       <div
         v-if="show"
         :class="backdropClasses"
-        :style="backdropStyles"
         @click="handleClick"
         data-component="DXBackdrop"
         :data-blur="blur"
@@ -19,97 +18,64 @@
 <script setup>
 import { computed, watch, onBeforeUnmount } from 'vue';
 
+// Fade transition configuration (Tailwind classes)
+const FADE_TRANSITION = {
+  enterActiveClass: 'transition-opacity duration-200 ease-out',
+  enterFromClass: 'opacity-0',
+  enterToClass: 'opacity-100',
+  leaveActiveClass: 'transition-opacity duration-200 ease-in',
+  leaveFromClass: 'opacity-100',
+  leaveToClass: 'opacity-0',
+};
+
 const props = defineProps({
   /** Показать/скрыть backdrop */
-  show: { 
-    type: Boolean, 
-    default: false 
-  },
-  
-  /** Уровень размытия: none | sm | md | lg | xl | 2xl | 3xl */
-  blur: { 
+  show: { type: Boolean, default: false },
+  /** Уровень размытия: none | sm | md | lg | xl */
+  blur: { type: String, default: 'sm', validator: (v) => ['none', 'sm', 'md', 'lg', 'xl'].includes(v)},
+  /** Цвет фона (Tailwind класс): bg-slate-900/40 | bg-black/50 */
+  backgroundColor: { type: String, default: 'bg-slate-900/40' },
+  /** z-index: 0 | 10 | 20 | 30 | 40 | 50 | auto */
+  zIndex: { 
     type: String, 
-    default: 'sm',
-    validator: (v) => ['none', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'].includes(v)
+    default: '50',
+    validator: (v) => ['0', '10', '20', '30', '40', '50', 'auto'].includes(v)
   },
-  
-  /** Цвет фона: slate-900 | gray-900 | black | white */
-  color: {
-    type: String,
-    default: 'slate-900'
-  },
-  
-  /** Прозрачность фона: 0-100 */
-  opacity: {
-    type: [String, Number],
-    default: '40'
-  },
-  
-  /** z-index */
-  zIndex: {
-    type: [String, Number],
-    default: '50'
-  },
-  
   /** Можно ли закрыть кликом */
-  dismissible: {
-    type: Boolean,
-    default: true
-  },
-  
-  /** Тип анимации: fade | none */
-  transition: {
-    type: String,
-    default: 'fade',
-    validator: (v) => ['fade', 'none'].includes(v)
-  },
-  
+  dismissible: { type: Boolean, default: true },
   /** Блокировать скролл body */
-  lockScroll: {
-    type: Boolean,
-    default: true
-  }
+  lockScroll: { type: Boolean, default: true }
 });
 
 const emit = defineEmits(['click', 'close']);
 
 // Blur classes mapping
 const BLUR_CLASSES = {
-  none: '',
+  none: 'backdrop-blur-none',
   sm: 'backdrop-blur-sm',
   md: 'backdrop-blur',
   lg: 'backdrop-blur-lg',
   xl: 'backdrop-blur-xl',
-  '2xl': 'backdrop-blur-2xl',
-  '3xl': 'backdrop-blur-3xl',
+};
+
+// Z-index classes mapping
+const Z_INDEX_CLASSES = {
+  '0': 'z-0',
+  '10': 'z-10',
+  '20': 'z-20',
+  '30': 'z-30',
+  '40': 'z-40',
+  '50': 'z-50',
+  'auto': 'z-auto',
 };
 
 const backdropClasses = computed(() => [
   'fixed inset-0',
   BLUR_CLASSES[props.blur],
+  props.backgroundColor || 'bg-slate-900/40',
+  Z_INDEX_CLASSES[props.zIndex] || 'z-50',
   props.dismissible && 'cursor-pointer',
 ]);
-
-const backdropStyles = computed(() => ({
-  backgroundColor: getBackgroundColor(),
-  zIndex: props.zIndex,
-}));
-
-const getBackgroundColor = () => {
-  // Map common color names to rgba values
-  const colorMap = {
-    'slate-900': 'rgb(15 23 42 / ' + props.opacity + '%)',
-    'gray-900': 'rgb(17 24 39 / ' + props.opacity + '%)',
-    'black': 'rgb(0 0 0 / ' + props.opacity + '%)',
-    'white': 'rgb(255 255 255 / ' + props.opacity + '%)',
-  };
-  
-  return colorMap[props.color] || colorMap['slate-900'];
-};
-
-const transitionName = computed(() => 
-  props.transition === 'fade' ? 'backdrop-fade' : ''
-);
 
 const handleClick = (event) => {
   if (event.target === event.currentTarget) {
@@ -123,30 +89,14 @@ const handleClick = (event) => {
 // Lock/unlock body scroll
 watch(() => props.show, (isShown) => {
   if (props.lockScroll) {
-    if (isShown) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.classList.toggle('overflow-hidden', isShown);
   }
 }, { immediate: true });
 
 onBeforeUnmount(() => {
   if (props.lockScroll) {
-    document.body.style.overflow = '';
+    document.body.classList.remove('overflow-hidden');
   }
 });
 </script>
-
-<style scoped>
-.backdrop-fade-enter-active,
-.backdrop-fade-leave-active {
-  transition: opacity 200ms ease;
-}
-
-.backdrop-fade-enter-from,
-.backdrop-fade-leave-to {
-  opacity: 0;
-}
-</style>
 

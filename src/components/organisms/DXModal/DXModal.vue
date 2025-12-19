@@ -2,9 +2,8 @@
   <DXBackdrop 
     :show="open && variant !== 'half-right'"
     :blur="backdropBlur"
-    :opacity="backdropOpacity"
-    :color="backdropColor"
-    :z-index="variant === 'half-right' ? 20 : 50"
+    :background-color="backdropBackgroundColor"
+    :z-index="variant === 'half-right' ? '20' : '50'"
     :lock-scroll="backdropLockScroll"
     :dismissible="closable && variant !== 'half-right'"
     @close="$emit('close')"
@@ -82,11 +81,11 @@ const props = defineProps({
   /** Показывать переключатель режимов */
   showModeSwitcher: { type: Boolean, default: false },
   
-  /** Размытие backdrop: none | sm | md | lg | xl | 2xl | 3xl */
+  /** Размытие backdrop: none | sm | md | lg | xl */
   backdropBlur: {
     type: String,
     default: 'sm',
-    validator: (v) => ['none', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'].includes(v)
+    validator: (v) => ['none', 'sm', 'md', 'lg', 'xl'].includes(v)
   },
   /** Прозрачность backdrop: 0-100 */
   backdropOpacity: {
@@ -163,6 +162,24 @@ const widthClass = computed(() => {
     case "xl": return "max-w-5xl";
     default: return "max-w-xl";
   }
+});
+
+// Формируем backgroundColor из color и opacity для совместимости
+const backdropBackgroundColor = computed(() => {
+  // Если opacity - стандартное значение Tailwind, используем класс
+  const tailwindOpacities = ['0', '5', '10', '20', '30', '40', '50', '60', '70', '80', '90', '95', '100'];
+  if (tailwindOpacities.includes(String(props.backdropOpacity))) {
+    return `bg-${props.backdropColor}/${props.backdropOpacity}`;
+  }
+  // Иначе формируем CSS значение
+  const colorMap = {
+    'slate-900': 'rgb(15 23 42',
+    'gray-900': 'rgb(17 24 39',
+    'black': 'rgb(0 0 0',
+    'white': 'rgb(255 255 255',
+  };
+  const rgb = colorMap[props.backdropColor] || colorMap['slate-900'];
+  return `${rgb} / ${props.backdropOpacity}%)`;
 });
 </script>
 
