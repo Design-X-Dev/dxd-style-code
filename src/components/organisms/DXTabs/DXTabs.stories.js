@@ -1,19 +1,16 @@
-import DXTabs from './DXTabs.vue';
 import { ref } from 'vue';
+import DXTabs from './DXTabs.vue';
 import {
   HomeIcon,
   UserIcon,
   Cog6ToothIcon,
-  BellIcon,
-  EnvelopeIcon,
-  ChartBarIcon,
   DocumentTextIcon,
   PhotoIcon,
   VideoCameraIcon,
-  MusicalNoteIcon,
-  ShoppingCartIcon,
-  HeartIcon,
-  ClipboardDocumentListIcon,
+  ChartBarIcon,
+  BellIcon,
+  EnvelopeIcon,
+  FolderIcon,
 } from '@heroicons/vue/24/outline';
 
 export default {
@@ -21,6 +18,14 @@ export default {
   component: DXTabs,
   tags: ['autodocs'],
   argTypes: {
+    variant: {
+      control: 'select',
+      options: ['buttons', 'tabs-top', 'tabs-bottom'],
+    },
+    align: {
+      control: 'select',
+      options: ['left', 'center', 'right'],
+    },
     iconAnimation: {
       control: 'select',
       options: ['none', 'wiggle', 'scale', 'rotate'],
@@ -28,247 +33,375 @@ export default {
   },
 };
 
-const tabs = [
+// Sample data
+const simpleTabs = [
   { value: 'overview', label: 'Overview' },
   { value: 'features', label: 'Features' },
   { value: 'pricing', label: 'Pricing' },
   { value: 'faq', label: 'FAQ' },
 ];
 
+const tabsWithCounts = [
+  { value: 'all', label: 'All', count: 42 },
+  { value: 'active', label: 'Active', count: 28 },
+  { value: 'archived', label: 'Archived', count: 14 },
+];
+
+const tabsWithIcons = [
+  { value: 'home', label: 'Home', icon: HomeIcon },
+  { value: 'profile', label: 'Profile', icon: UserIcon },
+  { value: 'settings', label: 'Settings', icon: Cog6ToothIcon },
+];
+
+const tabsWithIconsAndCounts = [
+  { value: 'all', label: 'All', icon: DocumentTextIcon, count: 156 },
+  { value: 'photos', label: 'Photos', icon: PhotoIcon, count: 89 },
+  { value: 'videos', label: 'Videos', icon: VideoCameraIcon, count: 45 },
+];
+
+const manyTabs = [
+  { value: 'dashboard', label: 'Dashboard', icon: ChartBarIcon },
+  { value: 'notifications', label: 'Notifications', icon: BellIcon, count: 12 },
+  { value: 'messages', label: 'Messages', icon: EnvelopeIcon, count: 5 },
+  { value: 'documents', label: 'Documents', icon: DocumentTextIcon, count: 156 },
+  { value: 'photos', label: 'Photos', icon: PhotoIcon, count: 89 },
+  { value: 'videos', label: 'Videos', icon: VideoCameraIcon, count: 45 },
+  { value: 'files', label: 'Files', icon: FolderIcon, count: 234 },
+  { value: 'settings', label: 'Settings', icon: Cog6ToothIcon },
+];
+
+// 1. Default (Buttons variant)
 export const Default = {
   render: () => ({
     components: { DXTabs },
     setup() {
       const activeTab = ref('overview');
-      return { activeTab, tabs };
+      return { activeTab, tabs: simpleTabs };
     },
     template: '<DXTabs v-model="activeTab" :tabs="tabs" />',
   }),
 };
 
-export const WithCounts = {
+// 2. Tabs Top Variant
+export const TabsTopVariant = {
   render: () => ({
     components: { DXTabs },
     setup() {
-      const activeTab = ref('all');
-      const tabsWithCount = [
-        { value: 'all', label: 'All', count: 42 },
-        { value: 'active', label: 'Active', count: 28 },
-        { value: 'archived', label: 'Archived', count: 14 },
-      ];
-      return { activeTab, tabsWithCount };
+      const activeTab = ref('overview');
+      return { activeTab, tabs: simpleTabs };
     },
-    template: '<DXTabs v-model="activeTab" :tabs="tabsWithCount" />',
+    template: '<DXTabs v-model="activeTab" :tabs="tabs" variant="tabs-top" />',
   }),
 };
 
-// С иконками
-export const WithIcons = {
+// 3. Tabs Bottom Variant
+export const TabsBottomVariant = {
   render: () => ({
     components: { DXTabs },
     setup() {
-      const activeTab = ref('home');
-      const tabsWithIcons = [
-        { value: 'home', label: 'Home', icon: HomeIcon },
-        { value: 'profile', label: 'Profile', icon: UserIcon },
-        { value: 'settings', label: 'Settings', icon: Cog6ToothIcon },
-      ];
-      return { activeTab, tabsWithIcons };
+      const activeTab = ref('overview');
+      return { activeTab, tabs: simpleTabs };
     },
-    template: '<DXTabs v-model="activeTab" :tabs="tabsWithIcons" />',
+    template: '<DXTabs v-model="activeTab" :tabs="tabs" variant="tabs-bottom" />',
   }),
 };
 
-// Только иконки
-export const IconsOnly = {
+// 4. All Variants Comparison
+export const AllVariants = {
   render: () => ({
     components: { DXTabs },
     setup() {
-      const activeTab = ref('home');
-      const iconTabs = [
-        { value: 'home', label: 'Home', icon: HomeIcon },
-        { value: 'notifications', label: 'Notifications', icon: BellIcon },
-        { value: 'messages', label: 'Messages', icon: EnvelopeIcon },
-        { value: 'settings', label: 'Settings', icon: Cog6ToothIcon },
-      ];
-      return { activeTab, iconTabs };
-    },
-    template: '<DXTabs v-model="activeTab" :tabs="iconTabs" />',
-  }),
-};
-
-// Иконки + счетчики
-export const IconsWithCounts = {
-  render: () => ({
-    components: { DXTabs },
-    setup() {
-      const activeTab = ref('all');
-      const tabs = [
-        { value: 'all', label: 'All', icon: ClipboardDocumentListIcon, count: 42 },
-        { value: 'favorites', label: 'Favorites', icon: HeartIcon, count: 12 },
-        { value: 'cart', label: 'Cart', icon: ShoppingCartIcon, count: 3 },
-      ];
-      return { activeTab, tabs };
-    },
-    template: '<DXTabs v-model="activeTab" :tabs="tabs" />',
-  }),
-};
-
-// Медиа типы
-export const MediaTabs = {
-  render: () => ({
-    components: { DXTabs },
-    setup() {
-      const activeTab = ref('all');
-      const tabs = [
-        { value: 'all', label: 'All', icon: DocumentTextIcon, count: 156 },
-        { value: 'photos', label: 'Photos', icon: PhotoIcon, count: 89 },
-        { value: 'videos', label: 'Videos', icon: VideoCameraIcon, count: 45 },
-        { value: 'audio', label: 'Audio', icon: MusicalNoteIcon, count: 22 },
-      ];
-      return { activeTab, tabs };
-    },
-    template: '<DXTabs v-model="activeTab" :tabs="tabs" />',
-  }),
-};
-
-// Анимации
-export const AnimatedIcons = {
-  render: () => ({
-    components: { DXTabs },
-    setup() {
-      const wiggle = ref('home');
-      const scale = ref('home');
-      const rotate = ref('home');
-      const tabs = [
-        { value: 'home', label: 'Home', icon: HomeIcon },
-        { value: 'analytics', label: 'Analytics', icon: ChartBarIcon },
-        { value: 'settings', label: 'Settings', icon: Cog6ToothIcon },
-      ];
-      return { wiggle, scale, rotate, tabs };
+      const tab1 = ref('overview');
+      const tab2 = ref('overview');
+      const tab3 = ref('overview');
+      return { tab1, tab2, tab3, tabs: simpleTabs };
     },
     template: `
-      <div class="space-y-6">
+      <div class="space-y-8">
         <div>
-          <p class="text-xs text-slate-500 mb-2">Wiggle Animation (default)</p>
-          <DXTabs v-model="wiggle" :tabs="tabs" icon-animation="wiggle" />
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">Buttons (default)</h3>
+          <DXTabs v-model="tab1" :tabs="tabs" variant="buttons" />
         </div>
         
         <div>
-          <p class="text-xs text-slate-500 mb-2">Scale Animation</p>
-          <DXTabs v-model="scale" :tabs="tabs" icon-animation="scale" />
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">Tabs Top</h3>
+          <DXTabs v-model="tab2" :tabs="tabs" variant="tabs-top" />
         </div>
         
         <div>
-          <p class="text-xs text-slate-500 mb-2">Rotate Animation</p>
-          <DXTabs v-model="rotate" :tabs="tabs" icon-animation="rotate" />
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">Tabs Bottom</h3>
+          <DXTabs v-model="tab3" :tabs="tabs" variant="tabs-bottom" />
         </div>
       </div>
     `,
   }),
 };
 
-// Анимация всех иконок
-export const AnimateAll = {
+// 5. With Alignment
+export const WithAlignment = {
   render: () => ({
     components: { DXTabs },
     setup() {
-      const activeTab = ref('home');
-      const tabs = [
-        { value: 'home', label: 'Home', icon: HomeIcon },
-        { value: 'profile', label: 'Profile', icon: UserIcon },
-        { value: 'messages', label: 'Messages', icon: EnvelopeIcon },
-        { value: 'notifications', label: 'Notifications', icon: BellIcon },
-      ];
-      return { activeTab, tabs };
+      const tab1 = ref('overview');
+      const tab2 = ref('overview');
+      const tab3 = ref('overview');
+      return { tab1, tab2, tab3, tabs: simpleTabs };
     },
     template: `
-      <DXTabs 
-        v-model="activeTab" 
-        :tabs="tabs" 
-        icon-animation="scale"
-        :animate-active-only="false"
-      />
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">Left (default)</h3>
+          <DXTabs v-model="tab1" :tabs="tabs" variant="tabs-top" align="left" />
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">Center</h3>
+          <DXTabs v-model="tab2" :tabs="tabs" variant="tabs-top" align="center" />
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">Right</h3>
+          <DXTabs v-model="tab3" :tabs="tabs" variant="tabs-top" align="right" />
+        </div>
+      </div>
     `,
   }),
 };
 
-// Кастомные анимации для каждого таба
+// 6. With Counts
+export const WithCounts = {
+  render: () => ({
+    components: { DXTabs },
+    setup() {
+      const activeTab = ref('all');
+      return { activeTab, tabs: tabsWithCounts };
+    },
+    template: '<DXTabs v-model="activeTab" :tabs="tabs" />',
+  }),
+};
+
+// 7. With Icons
+export const WithIcons = {
+  render: () => ({
+    components: { DXTabs },
+    setup() {
+      const activeTab = ref('home');
+      return { activeTab, tabs: tabsWithIcons };
+    },
+    template: '<DXTabs v-model="activeTab" :tabs="tabs" />',
+  }),
+};
+
+// 8. With Icons and Counts
+export const WithIconsAndCounts = {
+  render: () => ({
+    components: { DXTabs },
+    setup() {
+      const activeTab = ref('all');
+      return { activeTab, tabs: tabsWithIconsAndCounts };
+    },
+    template: '<DXTabs v-model="activeTab" :tabs="tabs" icon-animation="scale" />',
+  }),
+};
+
+// 9. With Scrolling
+export const WithScrolling = {
+  render: () => ({
+    components: { DXTabs },
+    setup() {
+      const activeTab = ref('dashboard');
+      return { activeTab, tabs: manyTabs };
+    },
+    template: `
+      <div class="max-w-2xl">
+        <DXTabs 
+          v-model="activeTab" 
+          :tabs="tabs" 
+          variant="tabs-top"
+          :scrollable="true"
+        />
+      </div>
+    `,
+  }),
+};
+
+
+// 11. Compact Mode - Icon Only
+export const CompactModeIconOnly = {
+  render: () => ({
+    components: { DXTabs },
+    setup() {
+      const activeTab = ref('all');
+      return { activeTab, tabs: tabsWithIconsAndCounts };
+    },
+    template: `
+      <div>
+        <p class="text-sm text-slate-600 mb-4">Наведите на таб или выберите его, чтобы увидеть полный текст</p>
+        <DXTabs 
+          v-model="activeTab" 
+          :tabs="tabs" 
+          :compact="true"
+          compactDisplay="icon"
+        />
+      </div>
+    `,
+  }),
+};
+
+// 12. Compact Mode - Icon and Badge
+export const CompactModeIconBadge = {
+  render: () => ({
+    components: { DXTabs },
+    setup() {
+      const activeTab = ref('all');
+      return { activeTab, tabs: tabsWithIconsAndCounts };
+    },
+    template: `
+      <div>
+        <p class="text-sm text-slate-600 mb-4">Наведите на таб или выберите его, чтобы увидеть полный текст</p>
+        <DXTabs 
+          v-model="activeTab" 
+          :tabs="tabs" 
+          :compact="true"
+          compactDisplay="icon-badge"
+        />
+      </div>
+    `,
+  }),
+};
+
+// 13. Compact with Tabs Top
+export const CompactTabsTop = {
+  render: () => ({
+    components: { DXTabs },
+    setup() {
+      const activeTab = ref('dashboard');
+      return { activeTab, tabs: manyTabs };
+    },
+    template: `
+      <div>
+        <p class="text-sm text-slate-600 mb-4">Компактный режим с классическими табами</p>
+        <DXTabs 
+          v-model="activeTab" 
+          :tabs="tabs" 
+          variant="tabs-top"
+          :compact="true"
+          compactDisplay="icon-badge"
+        />
+      </div>
+    `,
+  }),
+};
+
+// 14. Compact with Scrolling
+export const CompactWithScrolling = {
+  render: () => ({
+    components: { DXTabs },
+    setup() {
+      const activeTab = ref('dashboard');
+      return { activeTab, tabs: manyTabs };
+    },
+    template: `
+      <div class="max-w-xl">
+        <p class="text-sm text-slate-600 mb-4">Компактный режим с прокруткой</p>
+        <DXTabs 
+          v-model="activeTab" 
+          :tabs="tabs" 
+          variant="tabs-top"
+          :compact="true"
+          compactDisplay="icon-badge"
+          :scrollable="true"
+        />
+      </div>
+    `,
+  }),
+};
+
+// 15. Custom Icon Animations
 export const CustomIconAnimations = {
   render: () => ({
     components: { DXTabs },
     setup() {
       const activeTab = ref('home');
       const tabs = [
-        { value: 'home', label: 'Home', icon: HomeIcon, iconAnimation: 'wiggle' },
-        { value: 'profile', label: 'Profile', icon: UserIcon, iconAnimation: 'scale' },
-        { value: 'settings', label: 'Settings', icon: Cog6ToothIcon, iconAnimation: 'rotate' },
+        { value: 'home', label: 'Wiggle', icon: HomeIcon, iconAnimation: 'wiggle' },
+        { value: 'profile', label: 'Scale', icon: UserIcon, iconAnimation: 'scale' },
+        { value: 'settings', label: 'Rotate', icon: Cog6ToothIcon, iconAnimation: 'rotate' },
+        { value: 'none', label: 'None', icon: DocumentTextIcon, iconAnimation: 'none' },
       ];
       return { activeTab, tabs };
     },
-    template: '<DXTabs v-model="activeTab" :tabs="tabs" />',
+    template: '<DXTabs v-model="activeTab" :tabs="tabs" :animateActiveOnly="false" />',
   }),
 };
 
-// Все варианты
-export const AllVariants = {
+// 16. All Features Combined
+export const AllFeatures = {
   render: () => ({
     components: { DXTabs },
     setup() {
-      const tab1 = ref('overview');
-      const tab2 = ref('all');
-      const tab3 = ref('home');
-      const tab4 = ref('all');
-      
-      const simple = [
-        { value: 'overview', label: 'Overview' },
-        { value: 'features', label: 'Features' },
-        { value: 'pricing', label: 'Pricing' },
-      ];
-      
-      const withCounts = [
-        { value: 'all', label: 'All', count: 42 },
-        { value: 'active', label: 'Active', count: 28 },
-        { value: 'archived', label: 'Archived', count: 14 },
-      ];
-      
-      const withIcons = [
-        { value: 'home', label: 'Home', icon: HomeIcon },
-        { value: 'profile', label: 'Profile', icon: UserIcon },
-        { value: 'settings', label: 'Settings', icon: Cog6ToothIcon },
-      ];
-      
-      const iconsCounts = [
-        { value: 'all', label: 'All', icon: DocumentTextIcon, count: 156 },
-        { value: 'photos', label: 'Photos', icon: PhotoIcon, count: 89 },
-        { value: 'videos', label: 'Videos', icon: VideoCameraIcon, count: 45 },
-      ];
-      
-      return { tab1, tab2, tab3, tab4, simple, withCounts, withIcons, iconsCounts };
+      const activeTab = ref('dashboard');
+      return { activeTab, tabs: manyTabs };
     },
     template: `
       <div class="space-y-8">
         <div>
-          <h3 class="text-sm font-semibold text-slate-900 mb-3">Simple</h3>
-          <DXTabs v-model="tab1" :tabs="simple" />
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">Buttons + Compact + Center</h3>
+          <DXTabs 
+            v-model="activeTab" 
+            :tabs="tabs" 
+            variant="buttons"
+            align="center"
+            :compact="true"
+            compactDisplay="icon-badge"
+          />
         </div>
         
-        <div>
-          <h3 class="text-sm font-semibold text-slate-900 mb-3">With Counts</h3>
-          <DXTabs v-model="tab2" :tabs="withCounts" />
+        <div class="max-w-2xl">
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">Tabs Top + Scroll + Compact</h3>
+          <DXTabs 
+            v-model="activeTab" 
+            :tabs="tabs" 
+            variant="tabs-top"
+            :compact="true"
+            compactDisplay="icon-badge"
+            :scrollable="true"
+          />
         </div>
         
-        <div>
-          <h3 class="text-sm font-semibold text-slate-900 mb-3">With Icons</h3>
-          <DXTabs v-model="tab3" :tabs="withIcons" />
-        </div>
-        
-        <div>
-          <h3 class="text-sm font-semibold text-slate-900 mb-3">Icons + Counts + Animation</h3>
-          <DXTabs v-model="tab4" :tabs="iconsCounts" icon-animation="scale" />
+        <div class="max-w-2xl">
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">Tabs Bottom + Scroll + Right Align</h3>
+          <DXTabs 
+            v-model="activeTab" 
+            :tabs="tabs" 
+            variant="tabs-bottom"
+            align="right"
+            :scrollable="true"
+          />
         </div>
       </div>
     `,
   }),
 };
 
+// 17. Playground
+export const Playground = {
+  args: {
+    variant: 'buttons',
+    align: 'left',
+    scrollable: true,
+    showScrollButtons: false,
+    compact: false,
+    compactDisplay: 'icon-badge',
+    iconAnimation: 'wiggle',
+    animateActiveOnly: true,
+  },
+  render: (args) => ({
+    components: { DXTabs },
+    setup() {
+      const activeTab = ref('all');
+      return { activeTab, tabs: tabsWithIconsAndCounts, args };
+    },
+    template: '<DXTabs v-model="activeTab" :tabs="tabs" v-bind="args" />',
+  }),
+};

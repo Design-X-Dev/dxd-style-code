@@ -17,6 +17,7 @@
         position="left"
         verticalAlign="top"
         :icon="prefixIcon"
+        size="md"
       />
       
       <textarea
@@ -34,6 +35,7 @@
         position="right"
         verticalAlign="top"
         :icon="suffixIcon"
+        size="md"
       />
     </div>
   </DXFormLabel>
@@ -96,13 +98,20 @@ watch(() => props.modelValue, (newValue) => {
 
 const BASE_CLASSES = "w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-colors";
 
+// Адаптивные отступы для иконок
+const getPaddingClasses = (hasIcon, position) => {
+  if (!hasIcon) return '';
+  // Для textarea используем средние отступы, так как размер не передается
+  return position === 'left' ? 'pl-11' : 'pr-11';
+};
+
 const textareaClasses = computed(() =>
   useClassCompositionWithConditions(
     BASE_CLASSES,
     {
       'opacity-60 cursor-not-allowed bg-slate-50': props.disabled,
-      'pl-10': props.prefixIcon,
-      'pr-10': props.suffixIcon,
+      [getPaddingClasses(props.prefixIcon, 'left')]: true,
+      [getPaddingClasses(props.suffixIcon, 'right')]: true,
       'border-rose-300 focus:ring-rose-500/10': props.error,
     }
   )

@@ -14,6 +14,7 @@
         v-if="prefixIcon || $slots.prefix"
         position="left"
         :icon="prefixIcon"
+        :size="getIconSize()"
       >
         <slot name="prefix" />
       </DXIconWrapper>
@@ -31,6 +32,7 @@
         v-if="suffixIcon || $slots.suffix"
         position="right"
         :icon="suffixIcon"
+        :size="getIconSize()"
       >
         <slot name="suffix" />
       </DXIconWrapper>
@@ -39,11 +41,13 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, useSlots } from "vue";
 import { useComponentSize } from "@/composables/useComponentSize";
 import { useClassCompositionWithConditions } from "@/composables/useClassComposition";
 import DXFormLabel from "../DXFormLabel/DXFormLabel.vue";
 import DXIconWrapper from "../DXIconWrapper/DXIconWrapper.vue";
+
+const slots = useSlots();
 
 const props = defineProps({
   /** Значение поля (v-model) */
@@ -74,7 +78,28 @@ const props = defineProps({
 
 defineEmits(["update:modelValue"]);
 
+// Размер иконки в зависимости от размера инпута
+const getIconSize = () => {
+  const sizeMap = {
+    sm: 'sm',
+    md: 'md',
+    lg: 'lg',
+  };
+  return sizeMap[props.size] || 'md';
+};
+
 const BASE_CLASSES = "w-full rounded-xl border border-slate-200 bg-white transition-colors text-slate-700 placeholder:text-slate-400";
+
+// Адаптивные отступы для иконок в зависимости от размера инпута
+const getPaddingClasses = (hasIcon, position) => {
+  if (!hasIcon) return '';
+  const paddingMap = {
+    sm: position === 'left' ? 'pl-10' : 'pr-10',
+    md: position === 'left' ? 'pl-11' : 'pr-11',
+    lg: position === 'left' ? 'pl-12' : 'pr-12',
+  };
+  return paddingMap[props.size] || paddingMap.md;
+};
 
 const inputClasses = computed(() => 
   useClassCompositionWithConditions(
@@ -84,8 +109,8 @@ const inputClasses = computed(() =>
       'hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300': !props.disabled,
       'opacity-60 cursor-not-allowed bg-slate-50': props.disabled,
       'border-rose-300 focus:ring-rose-500/10': props.error,
-      'pl-10': props.prefixIcon || props.$slots?.prefix,
-      'pr-10': props.suffixIcon || props.$slots?.suffix,
+      [getPaddingClasses(props.prefixIcon || slots.prefix, 'left')]: true,
+      [getPaddingClasses(props.suffixIcon || slots.suffix, 'right')]: true,
     },
     props.inputClass
   )

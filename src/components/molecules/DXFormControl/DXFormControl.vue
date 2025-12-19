@@ -21,7 +21,7 @@
       </div>
       
       <!-- Input/Select/Textarea -->
-      <div :class="{ 'pl-10': $slots.prefix || prefixIcon, 'pr-10': showValidationIcon }">
+      <div :class="{ 'pl-11': $slots.prefix || prefixIcon, 'pr-10': showValidationIcon }">
         <slot />
       </div>
       

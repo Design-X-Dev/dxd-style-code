@@ -14,6 +14,7 @@
         v-if="prefixIcon"
         position="left"
         :icon="prefixIcon"
+        :size="getIconSize()"
       />
       
       <select
@@ -70,14 +71,36 @@ const props = defineProps({
 
 defineEmits(["update:modelValue"]);
 
-const BASE_CLASSES = "w-full appearance-none rounded-xl border border-slate-200 bg-white transition-colors pr-10 text-slate-700";
+// Размер иконки в зависимости от размера инпута
+const getIconSize = () => {
+  const sizeMap = {
+    sm: 'sm',
+    md: 'md',
+    lg: 'lg',
+  };
+  return sizeMap[props.size] || 'md';
+};
+
+const BASE_CLASSES = "w-full appearance-none rounded-xl border border-slate-200 bg-white transition-colors text-slate-700";
+
+// Адаптивные отступы для иконок в зависимости от размера
+const getPaddingClasses = (hasIcon, position) => {
+  if (!hasIcon) return '';
+  const paddingMap = {
+    sm: position === 'left' ? 'pl-10' : 'pr-10',
+    md: position === 'left' ? 'pl-11' : 'pr-11',
+    lg: position === 'left' ? 'pl-12' : 'pr-12',
+  };
+  return paddingMap[props.size] || paddingMap.md;
+};
 
 const selectClasses = computed(() =>
   useClassCompositionWithConditions(
     BASE_CLASSES,
     {
       [useComponentSize(props.size, 'input')]: true,
-      'pl-10': props.prefixIcon,
+      [getPaddingClasses(props.prefixIcon, 'left')]: true,
+      'pr-10': true, // Всегда справа chevron
       'hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300': !props.disabled,
       'opacity-60 cursor-not-allowed bg-slate-50': props.disabled,
       'border-rose-300 focus:ring-rose-500/10': props.error,
