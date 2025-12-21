@@ -10,6 +10,8 @@
 
 <script setup>
 import { computed } from "vue";
+import { useSize } from "@/composables/useSize";
+import { useAnimation } from "@/composables/useAnimation";
 
 const props = defineProps({
   /** Heroicon компонент */
@@ -24,33 +26,9 @@ const props = defineProps({
   class: { type: [String, Array, Object], default: "" },
 });
 
-const sizeClasses = {
-  xs: "w-3 h-3",
-  sm: "w-4 h-4",
-  md: "w-5 h-5",
-  lg: "w-6 h-6",
-  xl: "w-8 h-8",
-};
-
-const animationClasses = {
-  none: "",
-  wiggle: "dx-icon-wiggle",
-  scale: "dx-icon-scale",
-  rotate: "dx-icon-rotate",
-};
-
-const animationGroupClasses = {
-  none: "",
-  wiggle: "dx-icon-wiggle-group",
-  scale: "dx-icon-scale-group",
-  rotate: "dx-icon-rotate-group",
-};
-
 const allClasses = computed(() => [
-  sizeClasses[props.size] || sizeClasses.md,
-  props.groupHover 
-    ? animationGroupClasses[props.animation] || ""
-    : animationClasses[props.animation] || "",
+  useSize(props.size, 'icon'),
+  useAnimation(props.animation, 'icon', props.groupHover),
   props.class,
 ]);
 </script>
