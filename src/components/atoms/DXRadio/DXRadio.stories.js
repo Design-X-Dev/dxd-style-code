@@ -13,7 +13,7 @@ export default {
     },
     size: {
       control: 'select',
-      options: ['sm', 'md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
       description: 'Radio size'
     },
     color: {
@@ -68,10 +68,27 @@ export const Sizes = {
       return { selected };
     },
     template: `
-      <div class="space-y-3">
-        <DXRadio v-model="selected" value="sm" size="sm" label="Small radio" />
-        <DXRadio v-model="selected" value="md" size="md" label="Medium radio (default)" />
-        <DXRadio v-model="selected" value="lg" size="lg" label="Large radio" />
+      <div class="space-y-4">
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Extra Small (12px)</p>
+          <DXRadio v-model="selected" value="xs" size="xs" label="Extra small radio" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Small (14px)</p>
+          <DXRadio v-model="selected" value="sm" size="sm" label="Small radio" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Medium (16px) - Default</p>
+          <DXRadio v-model="selected" value="md" size="md" label="Medium radio (default)" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Large (20px)</p>
+          <DXRadio v-model="selected" value="lg" size="lg" label="Large radio" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Extra Large (24px)</p>
+          <DXRadio v-model="selected" value="xl" size="xl" label="Extra large radio" />
+        </div>
       </div>
     `,
   }),
@@ -147,10 +164,27 @@ export const CustomSizes = {
       return { selected };
     },
     template: `
-      <div class="space-y-3">
-        <DXRadio v-model="selected" value="sm" variant="custom" size="sm" label="Small custom" />
-        <DXRadio v-model="selected" value="md" variant="custom" size="md" label="Medium custom" />
-        <DXRadio v-model="selected" value="lg" variant="custom" size="lg" label="Large custom" />
+      <div class="space-y-4">
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Extra Small (12px)</p>
+          <DXRadio v-model="selected" value="xs" variant="custom" size="xs" label="Extra small custom" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Small (14px)</p>
+          <DXRadio v-model="selected" value="sm" variant="custom" size="sm" label="Small custom" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Medium (16px) - Default</p>
+          <DXRadio v-model="selected" value="md" variant="custom" size="md" label="Medium custom" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Large (20px)</p>
+          <DXRadio v-model="selected" value="lg" variant="custom" size="lg" label="Large custom" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Extra Large (24px)</p>
+          <DXRadio v-model="selected" value="xl" variant="custom" size="xl" label="Extra large custom" />
+        </div>
       </div>
     `,
   }),

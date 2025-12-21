@@ -13,6 +13,7 @@
 
 <script setup>
 import { computed } from "vue";
+import { useVariantText } from "@/composables/useVariant";
 
 const props = defineProps({
   /** Тег: p | span | div */
@@ -46,15 +47,6 @@ const weightClasses = {
   bold: "font-bold",
 };
 
-const colorClasses = {
-  default: "text-slate-700",
-  muted: "text-slate-500",
-  primary: "text-slate-900",
-  success: "text-emerald-700",
-  warning: "text-amber-700",
-  danger: "text-rose-700",
-};
-
 const alignClasses = {
   left: "text-left",
   center: "text-center",
@@ -65,7 +57,7 @@ const alignClasses = {
 const textClasses = computed(() => [
   sizeClasses[props.size] || sizeClasses.md,
   weightClasses[props.weight] || weightClasses.normal,
-  colorClasses[props.color] || colorClasses.default,
+  useVariantText(props.color),
   alignClasses[props.align] || alignClasses.left,
   "leading-relaxed",
   props.truncate && "truncate",

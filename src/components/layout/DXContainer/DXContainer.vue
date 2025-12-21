@@ -12,13 +12,14 @@
 
 <script setup>
 import { computed } from "vue";
+import { useSpacing } from "@/composables/useSpacing";
 
 const props = defineProps({
   /** Максимальная ширина: sm | md | lg | xl | 2xl | full */
   size: { type: String, default: "lg" },
   /** Центрировать контейнер */
   center: { type: Boolean, default: true },
-  /** Горизонтальные отступы: none | sm | md | lg */
+  /** Горизонтальные отступы: none | xs | sm | md | lg | xl */
   padding: { type: String, default: "md" },
 });
 
@@ -31,17 +32,10 @@ const sizeClasses = {
   full: "max-w-full",
 };
 
-const paddingClasses = {
-  none: "",
-  sm: "px-4",
-  md: "px-6",
-  lg: "px-8",
-};
-
 const containerClasses = computed(() => [
   "w-full",
   sizeClasses[props.size] || sizeClasses.lg,
-  paddingClasses[props.padding] || paddingClasses.md,
+  useSpacing(props.padding, 'paddingX'),
   props.center && "mx-auto",
 ]);
 </script>

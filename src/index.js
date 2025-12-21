@@ -17,7 +17,7 @@ export * from './components/molecules';
 export * from './components/organisms';
 
 // Composables
-export { useComponentSize } from './composables/useComponentSize';
+export { useSize } from './composables/useSize';
 export { 
   useVariantClasses, 
   useVariantIcon, 

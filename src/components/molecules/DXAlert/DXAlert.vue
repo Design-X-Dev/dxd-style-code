@@ -36,7 +36,7 @@ import {
   XCircleIcon,
 } from "@heroicons/vue/24/solid";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
-import DXCloseButton from "../../atoms/DXCloseButton/DXCloseButton.vue";
+import DXCloseButton from "./DXCloseButton/DXCloseButton.vue";
 
 const props = defineProps({
   /** Вариант: info | success | warning | danger */

@@ -34,6 +34,7 @@
 
 <script setup>
 import { computed } from "vue";
+import { useVariantProgress } from "@/composables/useVariant";
 
 const props = defineProps({
   /** Текущее значение */
@@ -74,14 +75,6 @@ const SIZE_CLASSES = {
   lg: "h-4",
 };
 
-const COLOR_CLASSES = {
-  default: "bg-slate-800",
-  success: "bg-emerald-500",
-  warning: "bg-amber-500",
-  danger: "bg-rose-500",
-  info: "bg-blue-500",
-};
-
 const trackClasses = computed(() => [
   "w-full bg-slate-200 rounded-full overflow-hidden",
   SIZE_CLASSES[props.size] || SIZE_CLASSES.md,
@@ -89,7 +82,7 @@ const trackClasses = computed(() => [
 
 const barClasses = computed(() => [
   "h-full rounded-full transition-all duration-300 flex items-center justify-end",
-  COLOR_CLASSES[props.color] || COLOR_CLASSES.default,
+  useVariantProgress(props.color),
   props.striped && "bg-stripes",
   props.animated && props.striped && "animate-stripes",
 ]);

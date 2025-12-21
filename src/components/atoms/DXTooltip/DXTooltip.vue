@@ -23,6 +23,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { useVariantTooltip } from "@/composables/useVariant";
 
 const props = defineProps({
   /** Текст подсказки */
@@ -58,15 +59,10 @@ const arrowLightPositions = {
   right: "right-full top-1/2 -translate-y-1/2 border-r-white border-t-transparent border-b-transparent border-l-transparent",
 };
 
-const colorClasses = {
-  dark: "bg-slate-900 text-white",
-  light: "bg-white text-slate-900 border border-slate-200 shadow-lg",
-};
-
 const tooltipClasses = computed(() => [
   "absolute z-50 px-3 py-2 text-sm rounded-lg whitespace-normal",
   positionClasses[props.position] || positionClasses.top,
-  colorClasses[props.color] || colorClasses.dark,
+  useVariantTooltip(props.color),
 ]);
 
 const arrowClasses = computed(() => [

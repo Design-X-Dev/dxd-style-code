@@ -26,7 +26,7 @@ export function useClassComposition(baseClasses, ...additionalClasses) {
   additionalClasses.forEach(classSource => {
     if (classSource) {
       classes.push(classSource);
-    }
+  }
   });
   
   return classes;

@@ -67,7 +67,7 @@ import {
   RectangleGroupIcon,
 } from "@heroicons/vue/24/outline";
 import DXBackdrop from "../../atoms/DXBackdrop/DXBackdrop.vue";
-import DXCloseButton from "../../atoms/DXCloseButton/DXCloseButton.vue";
+import DXCloseButton from "../../molecules/DXCloseButton/DXCloseButton.vue";
 
 const props = defineProps({
   /** Открыто/закрыто */

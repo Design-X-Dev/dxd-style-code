@@ -256,7 +256,7 @@ import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
 import DXCheckbox from '../../atoms/DXCheckbox/DXCheckbox.vue';
 import DXDropdown from '../../organisms/DXDropdown/DXDropdown.vue';
 import DXDropdownItem from '../../atoms/DXDropdownItem/DXDropdownItem.vue';
-import DXDropdownDivider from '../../atoms/DXDropdownDivider/DXDropdownDivider.vue';
+import DXDropdownDivider from '../DXDropdownDivider/DXDropdownDivider.vue';
 import DXLoader from '../../atoms/DXLoader/DXLoader.vue';
 import DXSearchSelect from '../../molecules/DXSearchSelect/DXSearchSelect.vue';
 

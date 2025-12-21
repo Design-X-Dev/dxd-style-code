@@ -42,7 +42,7 @@
 
 <script setup>
 import { computed, useSlots } from "vue";
-import { useComponentSize } from "@/composables/useComponentSize";
+import { useSize } from "@/composables/useSize";
 import { useClassCompositionWithConditions } from "@/composables/useClassComposition";
 import DXFormLabel from "../DXFormLabel/DXFormLabel.vue";
 import DXIconWrapper from "../DXIconWrapper/DXIconWrapper.vue";
@@ -105,7 +105,7 @@ const inputClasses = computed(() =>
   useClassCompositionWithConditions(
     BASE_CLASSES,
     {
-      [useComponentSize(props.size, 'input')]: true,
+      [useSize(props.size, 'input')]: true,
       'hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300': !props.disabled,
       'opacity-60 cursor-not-allowed bg-slate-50': props.disabled,
       'border-rose-300 focus:ring-rose-500/10': props.error,

@@ -39,7 +39,7 @@
 
 <script setup>
 import { computed } from "vue";
-import { useComponentSize } from "@/composables/useComponentSize";
+import { useSize } from "@/composables/useSize";
 import { useClassCompositionWithConditions } from "@/composables/useClassComposition";
 import { ChevronDownIcon } from "@heroicons/vue/24/outline";
 import DXFormLabel from "../DXFormLabel/DXFormLabel.vue";
@@ -98,7 +98,7 @@ const selectClasses = computed(() =>
   useClassCompositionWithConditions(
     BASE_CLASSES,
     {
-      [useComponentSize(props.size, 'input')]: true,
+      [useSize(props.size, 'input')]: true,
       [getPaddingClasses(props.prefixIcon, 'left')]: true,
       'pr-10': true, // Всегда справа chevron
       'hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300': !props.disabled,

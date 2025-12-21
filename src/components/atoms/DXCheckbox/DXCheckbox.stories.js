@@ -21,7 +21,7 @@ export default {
     },
     size: {
       control: 'select',
-      options: ['sm', 'md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
       description: 'Checkbox size'
     },
     shape: {
@@ -83,16 +83,35 @@ export const Sizes = {
   render: () => ({
     components: { DXCheckbox },
     setup() {
+      const xs = ref(true);
       const sm = ref(true);
       const md = ref(true);
       const lg = ref(true);
-      return { sm, md, lg };
+      const xl = ref(true);
+      return { xs, sm, md, lg, xl };
     },
     template: `
-      <div class="space-y-3">
-        <DXCheckbox v-model="sm" size="sm" label="Small checkbox" />
-        <DXCheckbox v-model="md" size="md" label="Medium checkbox (default)" />
-        <DXCheckbox v-model="lg" size="lg" label="Large checkbox" />
+      <div class="space-y-4">
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Extra Small (12px)</p>
+          <DXCheckbox v-model="xs" size="xs" label="Extra small checkbox" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Small (16px)</p>
+          <DXCheckbox v-model="sm" size="sm" label="Small checkbox" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Medium (20px) - Default</p>
+          <DXCheckbox v-model="md" size="md" label="Medium checkbox (default)" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Large (24px)</p>
+          <DXCheckbox v-model="lg" size="lg" label="Large checkbox" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Extra Large (24px)</p>
+          <DXCheckbox v-model="xl" size="xl" label="Extra large checkbox" />
+        </div>
       </div>
     `,
   }),
@@ -148,51 +167,45 @@ export const CustomInlineLayout = {
   }),
 };
 
-// Custom variant with default check icon
-export const CustomDefault = {
+// Custom variants with different icons
+export const CustomIcons = {
   render: () => ({
     components: { DXCheckbox },
     setup() {
-      const checked = ref(true);
-      return { checked };
+      const defaultCheck = ref(true);
+      const xMark = ref(true);
+      const minus = ref(true);
+      const heart = ref(true);
+      return { 
+        defaultCheck, 
+        xMark, 
+        minus, 
+        heart,
+        XMarkIcon, 
+        MinusIcon, 
+        HeartIcon 
+      };
     },
-    template: '<DXCheckbox v-model="checked" variant="custom" label="Custom checkbox with check icon" />',
-  }),
-};
-
-// Custom with X mark icon
-export const CustomWithXMark = {
-  render: () => ({
-    components: { DXCheckbox },
-    setup() {
-      const checked = ref(true);
-      return { checked, XMarkIcon };
-    },
-    template: '<DXCheckbox v-model="checked" variant="custom" :checked-icon="XMarkIcon" label="Mark as deleted" color="danger" />',
-  }),
-};
-
-// Custom with minus icon (indeterminate style)
-export const CustomWithMinus = {
-  render: () => ({
-    components: { DXCheckbox },
-    setup() {
-      const checked = ref(true);
-      return { checked, MinusIcon };
-    },
-    template: '<DXCheckbox v-model="checked" variant="custom" :checked-icon="MinusIcon" label="Partially selected" color="warning" />',
-  }),
-};
-
-// Custom with heart icon
-export const CustomWithHeart = {
-  render: () => ({
-    components: { DXCheckbox },
-    setup() {
-      const liked = ref(true);
-      return { liked, HeartIcon };
-    },
-    template: '<DXCheckbox v-model="liked" variant="custom" :checked-icon="HeartIcon" label="Add to favorites" color="danger" shape="circle" />',
+    template: `
+      <div class="space-y-4">
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Default check icon</p>
+          <DXCheckbox v-model="defaultCheck" variant="custom" label="Custom checkbox with check icon" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">X mark icon</p>
+          <DXCheckbox v-model="xMark" variant="custom" :checked-icon="XMarkIcon" label="Mark as deleted" color="danger" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Minus icon (indeterminate style)</p>
+          <DXCheckbox v-model="minus" variant="custom" :checked-icon="MinusIcon" label="Partially selected" color="warning" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Heart icon (circle shape)</p>
+          <DXCheckbox v-model="heart" variant="custom" :checked-icon="HeartIcon" label="Add to favorites" color="danger" shape="circle" />
+        </div>
+      </div>
+    `,
   }),
 };
 
@@ -245,105 +258,37 @@ export const CustomSizes = {
   render: () => ({
     components: { DXCheckbox },
     setup() {
+      const xs = ref(true);
       const sm = ref(true);
       const md = ref(true);
       const lg = ref(true);
-      return { sm, md, lg };
+      const xl = ref(true);
+      return { xs, sm, md, lg, xl };
     },
     template: `
-      <div class="space-y-3">
-        <DXCheckbox v-model="sm" variant="custom" size="sm" label="Small custom" />
-        <DXCheckbox v-model="md" variant="custom" size="md" label="Medium custom" />
-        <DXCheckbox v-model="lg" variant="custom" size="lg" label="Large custom" />
-      </div>
-    `,
-  }),
-};
-
-// Icon showcase
-export const IconShowcase = {
-  render: () => ({
-    components: { DXCheckbox },
-    setup() {
-      const check = ref(true);
-      const xmark = ref(true);
-      const minus = ref(true);
-      const heart = ref(true);
-      const star = ref(true);
-      const bolt = ref(true);
-      return { 
-        check, xmark, minus, heart, star, bolt,
-        CheckIcon, XMarkIcon, MinusIcon, HeartIcon, StarIcon, BoltIcon
-      };
-    },
-    template: `
-      <div class="space-y-3">
-        <h3 class="text-sm font-semibold text-slate-700 mb-3">Different Icons</h3>
-        <DXCheckbox v-model="check" variant="custom" :checked-icon="CheckIcon" color="success" label="Completed" />
-        <DXCheckbox v-model="xmark" variant="custom" :checked-icon="XMarkIcon" color="danger" label="Rejected" />
-        <DXCheckbox v-model="minus" variant="custom" :checked-icon="MinusIcon" color="warning" label="Partial" />
-        <DXCheckbox v-model="heart" variant="custom" :checked-icon="HeartIcon" color="danger" shape="circle" label="Favorite" />
-        <DXCheckbox v-model="star" variant="custom" :checked-icon="StarIcon" color="warning" shape="circle" label="Featured" />
-        <DXCheckbox v-model="bolt" variant="custom" :checked-icon="BoltIcon" color="info" label="Priority" />
-      </div>
-    `,
-  }),
-};
-
-// Real-world example: Task list
-export const TaskList = {
-  render: () => ({
-    components: { DXCheckbox },
-    setup() {
-      const tasks = ref([
-        { id: 1, text: 'Design mockups', done: true },
-        { id: 2, text: 'Implement components', done: true },
-        { id: 3, text: 'Write tests', done: false },
-        { id: 4, text: 'Deploy to production', done: false },
-      ]);
-      return { tasks, CheckIcon };
-    },
-    template: `
-      <div class="bg-white p-6 rounded-xl border border-slate-200 max-w-md">
-        <h3 class="text-lg font-semibold text-slate-900 mb-4">Project Tasks</h3>
-        <div class="space-y-3">
-          <DXCheckbox 
-            v-for="task in tasks" 
-            :key="task.id"
-            v-model="task.done" 
-            variant="custom"
-            color="success"
-            :label="task.text"
-          />
+      <div class="space-y-4">
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Extra Small (12px)</p>
+          <DXCheckbox v-model="xs" variant="custom" size="xs" label="Extra small custom" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Small (16px)</p>
+          <DXCheckbox v-model="sm" variant="custom" size="sm" label="Small custom" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Medium (20px) - Default</p>
+          <DXCheckbox v-model="md" variant="custom" size="md" label="Medium custom" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Large (24px)</p>
+          <DXCheckbox v-model="lg" variant="custom" size="lg" label="Large custom" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-xs font-medium text-slate-500">Extra Large (24px)</p>
+          <DXCheckbox v-model="xl" variant="custom" size="xl" label="Extra large custom" />
         </div>
       </div>
     `,
   }),
 };
 
-// Real-world example: Filters
-export const FilterExample = {
-  render: () => ({
-    components: { DXCheckbox },
-    setup() {
-      const filters = ref({
-        inStock: true,
-        onSale: false,
-        freeShipping: true,
-        newArrivals: false,
-      });
-      return { filters };
-    },
-    template: `
-      <div class="bg-white p-6 rounded-xl border border-slate-200 max-w-md">
-        <h3 class="text-lg font-semibold text-slate-900 mb-4">Filters</h3>
-        <div class="space-y-3">
-          <DXCheckbox v-model="filters.inStock" variant="custom" color="success" label="In Stock" />
-          <DXCheckbox v-model="filters.onSale" variant="custom" color="danger" label="On Sale" />
-          <DXCheckbox v-model="filters.freeShipping" variant="custom" color="info" label="Free Shipping" />
-          <DXCheckbox v-model="filters.newArrivals" variant="custom" color="warning" label="New Arrivals" />
-        </div>
-      </div>
-    `,
-  }),
-};

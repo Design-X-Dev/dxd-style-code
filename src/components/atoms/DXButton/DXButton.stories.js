@@ -9,12 +9,12 @@ export default {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'ghost', 'danger', 'outline'],
+      options: ['primary', 'secondary', 'ghost', 'outline', 'success', 'warning', 'danger', 'info', 'link', 'soft'],
       description: 'Вариант оформления кнопки',
     },
     size: {
       control: 'select',
-      options: ['sm', 'md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
       description: 'Размер кнопки',
     },
     disabled: {
@@ -32,10 +32,9 @@ export default {
   },
 };
 
-export const Primary = {
+export const Default = {
   args: {
     variant: 'primary',
-    default: 'Кнопка',
   },
   render: (args) => ({
     components: { DXButton },
@@ -44,36 +43,36 @@ export const Primary = {
   }),
 };
 
-export const Ghost = {
-  args: {
-    variant: 'ghost',
-  },
-  render: (args) => ({
+export const Variants = {
+  render: () => ({
     components: { DXButton },
-    setup() { return { args }; },
-    template: '<DXButton v-bind="args">Ghost кнопка</DXButton>',
-  }),
-};
-
-export const Danger = {
-  args: {
-    variant: 'danger',
-  },
-  render: (args) => ({
-    components: { DXButton },
-    setup() { return { args }; },
-    template: '<DXButton v-bind="args">Удалить</DXButton>',
-  }),
-};
-
-export const Outline = {
-  args: {
-    variant: 'outline',
-  },
-  render: (args) => ({
-    components: { DXButton },
-    setup() { return { args }; },
-    template: '<DXButton v-bind="args">Outline</DXButton>',
+    template: `
+      <div class="flex flex-col items-start gap-6">
+        <div class="flex flex-col gap-4">
+          <h3 class="text-sm font-semibold text-slate-700">Основные варианты</h3>
+          <div class="flex items-center gap-4 flex-wrap">
+            <DXButton variant="primary">Primary</DXButton>
+            <DXButton variant="secondary">Secondary</DXButton>
+            <DXButton variant="ghost">Ghost</DXButton>
+            <DXButton variant="outline">Outline</DXButton>
+            <DXButton variant="soft">Soft</DXButton>
+            <DXButton variant="link">Link</DXButton>
+          </div>
+        </div>
+        <div class="flex flex-col gap-4">
+          <h3 class="text-sm font-semibold text-slate-700">Семантические варианты</h3>
+          <div class="flex items-center gap-4 flex-wrap">
+            <DXButton variant="success">Success</DXButton>
+            <DXButton variant="warning">Warning</DXButton>
+            <DXButton variant="danger">Danger</DXButton>
+            <DXButton variant="info">Info</DXButton>
+          </div>
+        </div>
+        <div class="text-sm text-slate-600">
+          Все варианты: primary | secondary | ghost | outline | soft | link | success | warning | danger | info
+        </div>
+      </div>
+    `,
   }),
 };
 
@@ -81,10 +80,17 @@ export const Sizes = {
   render: () => ({
     components: { DXButton },
     template: `
-      <div class="flex items-center gap-4">
-        <DXButton size="sm">Small</DXButton>
-        <DXButton size="md">Medium</DXButton>
-        <DXButton size="lg">Large</DXButton>
+      <div class="flex flex-col items-start gap-4">
+        <div class="flex items-center gap-4">
+          <DXButton size="xs">Extra Small</DXButton>
+          <DXButton size="sm">Small</DXButton>
+          <DXButton size="md">Medium</DXButton>
+          <DXButton size="lg">Large</DXButton>
+          <DXButton size="xl">Extra Large</DXButton>
+        </div>
+        <div class="text-sm text-slate-600">
+          Все размеры: xs (28px) | sm (32px) | md (40px) | lg (48px) | xl (56px)
+        </div>
       </div>
     `,
   }),
@@ -144,16 +150,27 @@ export const IconOnly = {
       return { PlusIcon, TrashIcon, HeartIcon };
     },
     template: `
-      <div class="flex items-center gap-4">
-        <DXButton icon-only size="sm">
-          <DXIcon :icon="PlusIcon" size="sm" />
-        </DXButton>
-        <DXButton icon-only>
-          <DXIcon :icon="HeartIcon" size="sm" />
-        </DXButton>
-        <DXButton icon-only size="lg">
-          <DXIcon :icon="TrashIcon" size="md" />
-        </DXButton>
+      <div class="flex flex-col items-start gap-4">
+        <div class="flex items-center gap-4">
+          <DXButton icon-only size="xs">
+            <DXIcon :icon="PlusIcon" size="xs" />
+          </DXButton>
+          <DXButton icon-only size="sm">
+            <DXIcon :icon="PlusIcon" size="sm" />
+          </DXButton>
+          <DXButton icon-only>
+            <DXIcon :icon="HeartIcon" size="sm" />
+          </DXButton>
+          <DXButton icon-only size="lg">
+            <DXIcon :icon="TrashIcon" size="md" />
+          </DXButton>
+          <DXButton icon-only size="xl">
+            <DXIcon :icon="TrashIcon" size="lg" />
+          </DXButton>
+        </div>
+        <div class="text-sm text-slate-600">
+          Квадратные кнопки с иконками: xs (28×28px) | sm (32×32px) | md (40×40px) | lg (48×48px) | xl (56×56px)
+        </div>
       </div>
     `,
   }),

@@ -13,6 +13,7 @@
 
 <script setup>
 import { computed } from "vue";
+import { useVariantText } from "@/composables/useVariant";
 
 const props = defineProps({
   /** Уровень заголовка: 1-6 */
@@ -56,19 +57,10 @@ const weightClasses = {
   bold: "font-bold",
 };
 
-const colorClasses = {
-  default: "text-slate-900",
-  muted: "text-slate-500",
-  primary: "text-slate-800",
-  success: "text-emerald-700",
-  warning: "text-amber-700",
-  danger: "text-rose-700",
-};
-
 const headingClasses = computed(() => [
   props.size ? sizeClasses[props.size] : levelSizes[props.level],
   weightClasses[props.weight] || weightClasses.semibold,
-  colorClasses[props.color] || colorClasses.default,
+  useVariantText(props.color),
   "tracking-tight",
   props.truncate && "truncate",
 ]);

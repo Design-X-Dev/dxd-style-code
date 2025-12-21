@@ -11,6 +11,7 @@
 
 <script setup>
 import { computed } from "vue";
+import { useVariantText } from "@/composables/useVariant";
 
 const props = defineProps({
   /** ID связанного input */
@@ -38,17 +39,11 @@ const weightClasses = {
   semibold: "font-semibold",
 };
 
-const colorClasses = {
-  default: "text-slate-700",
-  muted: "text-slate-500",
-  primary: "text-slate-900",
-};
-
 const labelClasses = computed(() => [
   "block",
   sizeClasses[props.size] || sizeClasses.sm,
   weightClasses[props.weight] || weightClasses.medium,
-  colorClasses[props.color] || colorClasses.default,
+  useVariantText(props.color),
 ]);
 </script>
 

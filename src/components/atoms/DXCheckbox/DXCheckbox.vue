@@ -7,6 +7,7 @@
     :data-checked="isChecked"
     :data-variant="variant"
     :data-shape="shape"
+    @click="variant === 'custom' && !disabled && handleToggle(!isChecked)"
   >
     <!-- Нативный checkbox (default variant) -->
     <input
@@ -23,25 +24,25 @@
     <div
       v-else
       :class="customCheckboxClasses"
-      @click="handleCustomChange"
+      @click.stop="handleToggle(!isChecked)"
       role="checkbox"
       :aria-checked="isChecked"
       :aria-disabled="disabled"
       tabindex="0"
-      @keydown.space.prevent="handleCustomChange"
+      @keydown.space.prevent="handleToggle(!isChecked)"
     >
-      <Transition name="checkbox-icon" mode="out-in">
+      <Transition v-bind="CHECKBOX_TRANSITION" mode="out-in">
         <DXIcon
           v-if="isChecked && iconToShow"
           :icon="iconToShow"
-          :size="iconSize"
+          :size="getIconSize(props.size)"
           :animation="iconAnimation"
           class="text-white absolute"
         />
       </Transition>
     </div>
     
-    <span v-if="label" class="text-sm text-slate-700 select-none">
+    <span v-if="label" :class="labelTextClasses">
       {{ label }}
     </span>
   </label>
@@ -50,8 +51,8 @@
 <script setup>
 import { computed } from "vue";
 import { CheckIcon } from "@heroicons/vue/24/solid";
-import { useComponentSize } from "@/composables/useComponentSize";
-import { useClassCompositionWithConditions } from "@/composables/useClassComposition";
+import { useSize } from "@/composables/useSize";
+import { useVariantCheckbox } from "@/composables/useVariant";
 import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({
@@ -63,7 +64,7 @@ const props = defineProps({
   label: { type: String, default: "" },
   /** Отключенное состояние */
   disabled: { type: Boolean, default: false },
-  /** Размер: sm | md | lg */
+  /** Размер: xs | sm | md | lg | xl */
   size: { type: String, default: "md" },
   /** Вариант: default | custom */
   variant: { 
@@ -97,6 +98,16 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
+// Transition configuration (Tailwind classes)
+const CHECKBOX_TRANSITION = {
+  enterActiveClass: 'transition-opacity transition-transform duration-150 ease-out',
+  enterFromClass: 'opacity-0 scale-50',
+  enterToClass: 'opacity-100 scale-100',
+  leaveActiveClass: 'transition-opacity transition-transform duration-150 ease-in',
+  leaveFromClass: 'opacity-100 scale-100',
+  leaveToClass: 'opacity-0 scale-50',
+};
+
 const BASE_LABEL_CLASSES = "inline-flex items-center gap-2 cursor-pointer mr-4";
 const BASE_INPUT_CLASSES = "rounded border-slate-300 text-slate-900 focus:ring-slate-900/10 focus:ring-2 transition flex-shrink-0";
 const BASE_CUSTOM_CLASSES = "relative flex items-center justify-center border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 flex-shrink-0";
@@ -106,91 +117,41 @@ const SHAPE_CLASSES = {
   circle: "rounded-full",
 };
 
-const SIZE_CLASSES = {
-  sm: "w-4 h-4 min-w-[1rem] min-h-[1rem]",
-  md: "w-5 h-5 min-w-[1.25rem] min-h-[1.25rem]",
-  lg: "w-6 h-6 min-w-[1.5rem] min-h-[1.5rem]",
+// Icon size mapping: checkbox size -> icon size
+const getIconSize = (size) => {
+  const map = { xs: 'xs', sm: 'xs', md: 'sm', lg: 'md', xl: 'md' };
+  return map[size] || 'sm';
 };
 
-const ICON_SIZES = {
-  sm: "xs",
-  md: "sm",
-  lg: "md",
-};
 
-const COLOR_CLASSES = {
-  slate: {
-    unchecked: "border-slate-300 bg-white hover:border-slate-400",
-    checked: "border-slate-700 bg-slate-700 hover:bg-slate-600",
-    ring: "focus:ring-slate-900/10",
-  },
-  primary: {
-    unchecked: "border-slate-300 bg-white hover:border-slate-400",
-    checked: "border-slate-900 bg-slate-900 hover:bg-slate-800",
-    ring: "focus:ring-slate-900/10",
-  },
-  success: {
-    unchecked: "border-slate-300 bg-white hover:border-emerald-400",
-    checked: "border-emerald-600 bg-emerald-600 hover:bg-emerald-500",
-    ring: "focus:ring-emerald-500/10",
-  },
-  danger: {
-    unchecked: "border-slate-300 bg-white hover:border-rose-400",
-    checked: "border-rose-600 bg-rose-600 hover:bg-rose-500",
-    ring: "focus:ring-rose-500/10",
-  },
-  warning: {
-    unchecked: "border-slate-300 bg-white hover:border-amber-400",
-    checked: "border-amber-600 bg-amber-600 hover:bg-amber-500",
-    ring: "focus:ring-amber-500/10",
-  },
-  info: {
-    unchecked: "border-slate-300 bg-white hover:border-blue-400",
-    checked: "border-blue-600 bg-blue-600 hover:bg-blue-500",
-    ring: "focus:ring-blue-500/10",
-  },
-};
+const labelClasses = computed(() => [
+  BASE_LABEL_CLASSES,
+  { 'opacity-60 cursor-not-allowed': props.disabled }
+]);
 
-const labelClasses = computed(() =>
-  useClassCompositionWithConditions(
-    BASE_LABEL_CLASSES,
-    {
-      'opacity-60 cursor-not-allowed': props.disabled,
-    }
-  )
-);
+const labelTextClasses = computed(() => [
+  useSize(props.size, 'text'),
+  'text-slate-700 select-none'
+]);
 
-const inputClasses = computed(() =>
-  useClassCompositionWithConditions(
-    BASE_INPUT_CLASSES,
-    {
-      [useComponentSize(props.size, 'checkbox')]: true,
-    }
-  )
-);
+const inputClasses = computed(() => [
+  BASE_INPUT_CLASSES,
+  useSize(props.size, 'checkbox')
+]);
 
 const customCheckboxClasses = computed(() => {
-  const colorClasses = COLOR_CLASSES[props.color] || COLOR_CLASSES.primary;
-  return useClassCompositionWithConditions(
+  const colorClasses = useVariantCheckbox(props.color);
+  return [
     BASE_CUSTOM_CLASSES,
+    useSize(props.size, 'checkbox'),
+    SHAPE_CLASSES[props.shape],
     {
-      [SIZE_CLASSES[props.size] || SIZE_CLASSES.md]: true,
-      [SHAPE_CLASSES[props.shape]]: true,
       [colorClasses.unchecked]: !isChecked.value && !props.disabled,
       [colorClasses.checked]: isChecked.value && !props.disabled,
       [colorClasses.ring]: !props.disabled,
       'opacity-50 cursor-not-allowed': props.disabled,
     }
-  );
-});
-
-const iconSize = computed(() => ICON_SIZES[props.size] || ICON_SIZES.md);
-
-const iconToShow = computed(() => {
-  if (isChecked.value) {
-    return props.checkedIcon || CheckIcon;
-  }
-  return props.uncheckedIcon;
+  ];
 });
 
 const isChecked = computed(() => {
@@ -200,68 +161,31 @@ const isChecked = computed(() => {
   return props.modelValue;
 });
 
-const handleChange = (event) => {
+const iconToShow = computed(() => 
+  isChecked.value ? (props.checkedIcon || CheckIcon) : props.uncheckedIcon
+);
+
+const handleToggle = (newChecked) => {
   if (props.disabled) return;
   
   if (Array.isArray(props.modelValue)) {
     const newValue = [...props.modelValue];
-    if (event.target.checked) {
-      newValue.push(props.value);
+    if (newChecked) {
+      if (!newValue.includes(props.value)) {
+        newValue.push(props.value);
+      }
     } else {
       const index = newValue.indexOf(props.value);
-      if (index > -1) {
-        newValue.splice(index, 1);
-      }
+      if (index > -1) newValue.splice(index, 1);
     }
     emit("update:modelValue", newValue);
   } else {
-    emit("update:modelValue", event.target.checked);
+    emit("update:modelValue", newChecked);
   }
 };
 
-const handleCustomChange = () => {
-  if (props.disabled) return;
-  
-  if (Array.isArray(props.modelValue)) {
-    const newValue = [...props.modelValue];
-    const isCurrentlyChecked = newValue.includes(props.value);
-    
-    if (!isCurrentlyChecked) {
-      newValue.push(props.value);
-    } else {
-      const index = newValue.indexOf(props.value);
-      if (index > -1) {
-        newValue.splice(index, 1);
-      }
-    }
-    emit("update:modelValue", newValue);
-  } else {
-    emit("update:modelValue", !props.modelValue);
-  }
+const handleChange = (event) => {
+  handleToggle(event.target.checked);
 };
 </script>
-
-<style scoped>
-/* Анимация появления/исчезновения иконки */
-.checkbox-icon-enter-active,
-.checkbox-icon-leave-active {
-  transition: opacity 150ms ease, transform 150ms ease;
-}
-
-.checkbox-icon-enter-from {
-  opacity: 0;
-  transform: scale(0.5);
-}
-
-.checkbox-icon-leave-to {
-  opacity: 0;
-  transform: scale(0.5);
-}
-
-.checkbox-icon-enter-to,
-.checkbox-icon-leave-from {
-  opacity: 1;
-  transform: scale(1);
-}
-</style>
 

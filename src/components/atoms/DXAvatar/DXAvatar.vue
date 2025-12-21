@@ -29,7 +29,7 @@
 <script setup>
 import { ref, computed, watch } from "vue";
 import { UserIcon } from "@heroicons/vue/24/solid";
-import { useComponentSize } from "@/composables/useComponentSize";
+import { useSize } from "@/composables/useSize";
 import { useClassComposition } from "@/composables/useClassComposition";
 import DXIcon from "../DXIcon/DXIcon.vue";
 
@@ -80,7 +80,7 @@ const INITIALS_SIZE_CLASSES = {
 
 const avatarClasses = computed(() => [
     BASE_CLASSES,
-    useComponentSize(props.size, 'avatar'),
+    useSize(props.size, 'avatar'),
     SHAPE_CLASSES[props.shape] || SHAPE_CLASSES.circle,
     { 'hover:scale-105': props.iconAnimation !== 'none' }
   ]

@@ -2,26 +2,30 @@
   <div 
     :class="dividerClasses" 
     data-component="DXDivider" 
-    :data-orientation="orientation"
-    :data-color="color"
-    :data-thickness="thickness"
-    :data-spacing="spacing"
+    :data-orientation="props.orientation"
+    :data-color="props.color"
+    :data-thickness="props.thickness"
+    :data-spacing="props.spacing"
   >
-    <div v-if="$slots.default && orientation === 'horizontal'" class="flex items-center w-full">
+    <!-- Горизонтальный divider с текстом -->
+    <div v-if="hasText && isHorizontal" class="flex items-center w-full">
       <div :class="lineClasses" />
       <span class="px-3 text-sm text-slate-500 whitespace-nowrap">
         <slot />
       </span>
       <div :class="lineClasses" />
     </div>
-    <template v-else>
-      <div :class="lineClasses" />
-    </template>
+    <!-- Горизонтальный divider без текста -->
+    <div v-else-if="isHorizontal" :class="lineClasses" />
+    <!-- Вертикальный divider -->
+    <div v-else :class="lineClasses" />
   </div>
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, useSlots } from "vue";
+import { useSpacing } from "@/composables/useSpacing";
+import { useVariantDividerBorder } from "@/composables/useVariant";
 
 const props = defineProps({
   /** Ориентация: horizontal | vertical */
@@ -34,51 +38,37 @@ const props = defineProps({
   spacing: { type: String, default: "md" },
 });
 
-const COLOR_CLASSES = {
-  light: "border-slate-100",
-  default: "border-slate-200",
-  dark: "border-slate-300",
-};
-
-const THICKNESS_CLASSES = {
-  thin: "border-t",
-  default: "border-t",
-  thick: "border-t-2",
-};
-
-const VERTICAL_THICKNESS = {
-  thin: "border-l",
-  default: "border-l",
-  thick: "border-l-2",
-};
-
-const SPACING_CLASSES = {
-  none: "",
-  sm: "my-2",
-  md: "my-4",
-  lg: "my-6",
-};
-
-const VERTICAL_SPACING = {
-  none: "",
-  sm: "mx-2",
-  md: "mx-4",
-  lg: "mx-6",
-};
+const slots = useSlots();
+const isHorizontal = computed(() => props.orientation === 'horizontal');
+const hasText = computed(() => !!slots.default);
 
 const dividerClasses = computed(() => [
   props.orientation === "vertical" ? "inline-flex h-full" : "w-full",
   props.orientation === "horizontal" 
-    ? SPACING_CLASSES[props.spacing] 
-    : VERTICAL_SPACING[props.spacing],
+    ? useSpacing(props.spacing, 'marginY')
+    : useSpacing(props.spacing, 'marginX'),
 ]);
 
-const lineClasses = computed(() => [
-  props.orientation === "vertical" ? "h-full" : "flex-1",
-  COLOR_CLASSES[props.color] || COLOR_CLASSES.default,
-  props.orientation === "vertical"
-    ? VERTICAL_THICKNESS[props.thickness]
-    : THICKNESS_CLASSES[props.thickness],
-]);
+const lineClasses = computed(() => {
+  const borderClass = useVariantDividerBorder(
+    props.orientation,
+    props.thickness,
+    props.color
+  );
+  
+  if (props.orientation === "vertical") {
+    // Вертикальный divider: нужна минимальная ширина и высота
+    return [
+      "h-full min-h-[1rem] w-0",
+      borderClass,
+    ];
+  } else {
+    // Горизонтальный divider: нужна минимальная высота и ширина
+    return [
+      "flex-1 min-w-[1rem] h-0",
+      borderClass,
+    ];
+  }
+});
 </script>
 

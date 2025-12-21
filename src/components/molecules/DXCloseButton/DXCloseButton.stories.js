@@ -1,7 +1,7 @@
 import DXCloseButton from './DXCloseButton.vue';
 
 export default {
-  title: 'Atoms/DXCloseButton',
+  title: 'Molecules/DXCloseButton',
   component: DXCloseButton,
   tags: ['autodocs'],
   argTypes: {

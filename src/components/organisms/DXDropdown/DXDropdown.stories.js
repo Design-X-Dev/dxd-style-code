@@ -1,6 +1,6 @@
 import DXDropdown from './DXDropdown.vue';
 import DXDropdownItem from '../../atoms/DXDropdownItem/DXDropdownItem.vue';
-import DXDropdownDivider from '../../atoms/DXDropdownDivider/DXDropdownDivider.vue';
+import DXDropdownDivider from '../../molecules/DXDropdownDivider/DXDropdownDivider.vue';
 import DXAvatar from '../../atoms/DXAvatar/DXAvatar.vue';
 import DXBadge from '../../atoms/DXBadge/DXBadge.vue';
 import DXButton from '../../atoms/DXButton/DXButton.vue';
