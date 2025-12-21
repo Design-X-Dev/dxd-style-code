@@ -37,8 +37,8 @@
 <script setup>
 import { inject, computed } from "vue";
 import { ChevronRightIcon } from "@heroicons/vue/24/outline";
-import DXIcon from "../DXIcon/DXIcon.vue";
-import DXBadge from "../DXBadge/DXBadge.vue";
+import DXIcon from "../v2/DXIcon/DXIcon.vue";
+import DXBadge from "../v2/DXBadge/DXBadge.vue";
 
 const props = defineProps({
   /** Иконка (Heroicon компонент) */

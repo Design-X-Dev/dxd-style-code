@@ -1,8 +1,8 @@
 import DXFormLabel from './DXFormLabel.vue';
-import DXInput from '../DXInput/DXInput.vue';
+import DXInput from '../../molecules/DXInput/DXInput.vue';
 
 export default {
-  title: 'Atoms/DXFormLabel',
+  title: 'Atoms/v1/DXFormLabel',
   component: DXFormLabel,
   tags: ['autodocs'],
   argTypes: {

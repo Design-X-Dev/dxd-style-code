@@ -32,7 +32,7 @@
 <script setup>
 import { computed } from 'vue';
 import DXPagination from '../DXPagination/DXPagination.vue';
-import DXSelect from '../../atoms/DXSelect/DXSelect.vue';
+import DXSelect from '../DXSelect/DXSelect.vue';
 
 const props = defineProps({
   /** Размер элементов управления */

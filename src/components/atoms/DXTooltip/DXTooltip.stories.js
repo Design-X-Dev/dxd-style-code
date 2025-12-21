@@ -1,7 +1,7 @@
 import DXTooltip from './DXTooltip.vue';
 
 export default {
-  title: 'Atoms/DXTooltip',
+  title: 'Atoms/v1/DXTooltip',
   component: DXTooltip,
   tags: ['autodocs'],
   argTypes: {

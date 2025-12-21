@@ -1,7 +1,7 @@
 import DXToast from './DXToast.vue';
 
 export default {
-  title: 'Atoms/DXToast',
+  title: 'Atoms/v1/DXToast',
   component: DXToast,
   tags: ['autodocs'],
 };

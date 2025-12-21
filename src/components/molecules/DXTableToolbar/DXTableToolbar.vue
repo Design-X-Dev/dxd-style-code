@@ -58,7 +58,7 @@
 
 <script setup>
 import { MagnifyingGlassIcon, ViewColumnsIcon } from '@heroicons/vue/24/outline';
-import DXInput from '../../atoms/DXInput/DXInput.vue';
+import DXInput from '../DXInput/DXInput.vue';
 import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
 import DXCheckbox from '../../atoms/DXCheckbox/DXCheckbox.vue';
 import DXDropdown from '../../organisms/DXDropdown/DXDropdown.vue';

@@ -2,7 +2,7 @@ import DXIconWrapper from './DXIconWrapper.vue';
 import { MagnifyingGlassIcon, UserIcon, EnvelopeIcon, LockClosedIcon } from '@heroicons/vue/24/outline';
 
 export default {
-  title: 'Atoms/DXIconWrapper',
+  title: 'Atoms/v1/DXIconWrapper',
   component: DXIconWrapper,
   tags: ['autodocs'],
   argTypes: {

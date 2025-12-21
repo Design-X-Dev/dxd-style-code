@@ -62,7 +62,7 @@
 
 <script setup>
 import { computed } from "vue";
-import DXIcon from "../DXIcon/DXIcon.vue";
+import DXIcon from "../v2/DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** Значение (v-model) */

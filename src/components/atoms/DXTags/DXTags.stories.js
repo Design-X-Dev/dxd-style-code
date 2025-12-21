@@ -14,7 +14,7 @@ import {
 } from '@heroicons/vue/24/outline';
 
 export default {
-  title: 'Atoms/DXTags',
+  title: 'Atoms/v1/DXTags',
   component: DXTags,
   tags: ['autodocs'],
 };

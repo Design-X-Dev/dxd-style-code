@@ -1,7 +1,7 @@
 /**
  * Композабл для унификации размеров компонентов
  * @param {string} size - xs | sm | md | lg | xl (для spacing также доступен none)
- * @param {string} type - button | buttonIcon | input | icon | text | checkbox | radio | avatar | spacing
+ * @param {string} type - button | buttonIcon | input | icon | text | checkbox | radio | avatar | spacing | loader | progress
  * @returns {string} Tailwind CSS классы
  */
 export function useSize(size, type = 'input') {
@@ -61,6 +61,19 @@ export function useSize(size, type = 'input') {
       md: 'h-10 w-10',
       lg: 'h-12 w-12',
       xl: 'h-16 w-16',
+    },
+    loader: {
+      xs: 'w-2 h-2',
+      sm: 'w-3 h-3',
+      md: 'w-4 h-4',
+      lg: 'w-5 h-5',
+      xl: 'w-6 h-6',
+    },
+    progress: {
+      xs: 'h-1',
+      sm: 'h-2',
+      md: 'h-3',
+      lg: 'h-4',
     },
     spacing: {
       none: 'gap-0',

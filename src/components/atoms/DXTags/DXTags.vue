@@ -38,7 +38,7 @@
 
 <script setup>
 import { computed } from "vue";
-import DXIcon from "../DXIcon/DXIcon.vue";
+import DXIcon from "../v2/DXIcon/DXIcon.vue";
 import { XMarkIcon } from "@heroicons/vue/24/solid";
 import { useVariantTag } from "@/composables/useVariant";
 

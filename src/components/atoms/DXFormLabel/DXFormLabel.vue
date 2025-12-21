@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import DXValidationIcon from '../DXValidationIcon/DXValidationIcon.vue';
+import DXValidationIcon from '../../molecules/DXValidationIcon/DXValidationIcon.vue';
 
 const props = defineProps({
   /** Label text */

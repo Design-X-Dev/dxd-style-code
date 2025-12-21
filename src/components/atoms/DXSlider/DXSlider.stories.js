@@ -14,7 +14,7 @@ import {
 } from '@heroicons/vue/24/outline';
 
 export default {
-  title: 'Atoms/DXSlider',
+  title: 'Atoms/v1/DXSlider',
   component: DXSlider,
   tags: ['autodocs'],
 };

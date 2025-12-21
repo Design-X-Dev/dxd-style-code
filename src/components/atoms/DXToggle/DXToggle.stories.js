@@ -2,7 +2,7 @@ import DXToggle from './DXToggle.vue';
 import { ref } from 'vue';
 
 export default {
-  title: 'Atoms/DXToggle',
+  title: 'Atoms/v1/DXToggle',
   component: DXToggle,
   tags: ['autodocs'],
 };

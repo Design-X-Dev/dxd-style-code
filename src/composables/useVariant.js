@@ -22,6 +22,12 @@ export const VARIANT_CONFIGS = {
     progress: 'bg-slate-800',
     // Для divider
     divider: 'border-slate-200',
+    // Для лоадера
+    loader: {
+      border: 'border-slate-300',
+      borderTop: 'border-t-slate-900',
+      text: 'text-slate-600',
+    },
   },
   slate: {
     bg: 'bg-slate-50',
@@ -50,6 +56,12 @@ export const VARIANT_CONFIGS = {
     progress: 'bg-slate-800',
     // Для divider
     divider: 'border-slate-200',
+    // Для лоадера
+    loader: {
+      border: 'border-slate-300',
+      borderTop: 'border-t-slate-700',
+      text: 'text-slate-700',
+    },
   },
   primary: {
     bg: 'bg-slate-50',
@@ -78,6 +90,12 @@ export const VARIANT_CONFIGS = {
     progress: 'bg-slate-800',
     // Для divider
     divider: 'border-slate-200',
+    // Для лоадера
+    loader: {
+      border: 'border-slate-300',
+      borderTop: 'border-t-slate-900',
+      text: 'text-slate-900',
+    },
   },
   info: {
     bg: 'bg-blue-50',
@@ -106,6 +124,12 @@ export const VARIANT_CONFIGS = {
     progress: 'bg-blue-500',
     // Для divider
     divider: 'border-blue-200',
+    // Для лоадера
+    loader: {
+      border: 'border-blue-300',
+      borderTop: 'border-t-blue-600',
+      text: 'text-blue-700',
+    },
   },
   success: {
     bg: 'bg-emerald-50',
@@ -134,6 +158,12 @@ export const VARIANT_CONFIGS = {
     progress: 'bg-emerald-500',
     // Для divider
     divider: 'border-emerald-200',
+    // Для лоадера
+    loader: {
+      border: 'border-emerald-300',
+      borderTop: 'border-t-emerald-600',
+      text: 'text-emerald-700',
+    },
   },
   warning: {
     bg: 'bg-amber-50',
@@ -162,6 +192,12 @@ export const VARIANT_CONFIGS = {
     progress: 'bg-amber-500',
     // Для divider
     divider: 'border-amber-200',
+    // Для лоадера
+    loader: {
+      border: 'border-amber-300',
+      borderTop: 'border-t-amber-600',
+      text: 'text-amber-700',
+    },
   },
   danger: {
     bg: 'bg-rose-50',
@@ -190,6 +226,12 @@ export const VARIANT_CONFIGS = {
     progress: 'bg-rose-500',
     // Для divider
     divider: 'border-rose-200',
+    // Для лоадера
+    loader: {
+      border: 'border-rose-300',
+      borderTop: 'border-t-rose-600',
+      text: 'text-rose-700',
+    },
   },
   // Специальные варианты для текста
   muted: {
@@ -291,6 +333,16 @@ export function useVariantTag(color) {
 export function useVariantProgress(color) {
   const config = VARIANT_CONFIGS[color] || VARIANT_CONFIGS.default;
   return config.progress || VARIANT_CONFIGS.default.progress;
+}
+
+/**
+ * Возвращает конфигурацию для лоадера
+ * @param {string} color - default | primary | success | warning | danger | info | slate
+ * @returns {Object} { border, borderTop, text }
+ */
+export function useVariantLoader(color) {
+  const config = VARIANT_CONFIGS[color] || VARIANT_CONFIGS.default;
+  return config.loader || VARIANT_CONFIGS.default.loader;
 }
 
 /**

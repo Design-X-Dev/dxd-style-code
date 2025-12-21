@@ -1,7 +1,7 @@
 /**
  * Универсальный composable для управления классами анимаций
- * @param {string} animation - тип анимации (none | wiggle | scale | rotate | fade | slide | bounce | pulse | spin | shake)
- * @param {string} type - тип компонента (icon | button | general) - определяет префикс классов
+ * @param {string} animation - тип анимации (none | wiggle | scale | rotate | fade | slide | bounce | pulse | spin | shake | stripes)
+ * @param {string} type - тип компонента (icon | button | general | progress) - определяет префикс классов
  * @param {boolean} groupHover - использовать group-hover вместо обычного hover (только для hover-анимаций)
  * @returns {string} CSS класс для анимации
  */
@@ -48,6 +48,12 @@ export function useAnimation(animation = 'none', type = 'icon', groupHover = fal
     shake: "dx-animate-shake",
   };
 
+  // Анимации для progress bar
+  const progressAnimations = {
+    none: "",
+    stripes: "dx-animate-stripes",
+  };
+
   // Выбор правильного набора анимаций
   if (type === 'icon') {
     return groupHover 
@@ -59,6 +65,10 @@ export function useAnimation(animation = 'none', type = 'icon', groupHover = fal
     return groupHover
       ? (buttonGroupAnimations[animation] || "")
       : (buttonAnimations[animation] || "");
+  }
+
+  if (type === 'progress') {
+    return progressAnimations[animation] || "";
   }
 
   // Для general типа не используется groupHover

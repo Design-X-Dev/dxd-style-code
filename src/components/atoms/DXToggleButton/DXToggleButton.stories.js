@@ -25,7 +25,7 @@ import {
 } from '@heroicons/vue/24/solid';
 
 export default {
-  title: 'Atoms/DXToggleButton',
+  title: 'Atoms/v1/DXToggleButton',
   component: DXToggleButton,
   tags: ['autodocs'],
   argTypes: {

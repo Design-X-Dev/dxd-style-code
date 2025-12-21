@@ -4,7 +4,7 @@ import DXDropdownDivider from '../../molecules/DXDropdownDivider/DXDropdownDivid
 import DXAvatar from '../../atoms/DXAvatar/DXAvatar.vue';
 import DXBadge from '../../atoms/DXBadge/DXBadge.vue';
 import DXButton from '../../atoms/DXButton/DXButton.vue';
-import DXInput from '../../atoms/DXInput/DXInput.vue';
+import DXInput from '../../molecules/DXInput/DXInput.vue';
 import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
 import { 
   UserIcon, 

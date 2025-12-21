@@ -41,8 +41,8 @@
 
 <script setup>
 import { computed } from "vue";
-import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
-import DXValidationIcon from "../../atoms/DXValidationIcon/DXValidationIcon.vue";
+import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
+import DXValidationIcon from "../DXValidationIcon/DXValidationIcon.vue";
 
 const props = defineProps({
   /** Лейбл */

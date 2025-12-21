@@ -150,7 +150,7 @@ import {
 import { useMenu } from '@/composables/useMenu';
 import DXCard from '../../atoms/DXCard/DXCard.vue';
 import DXSidebarMenuItem from '../../organisms/DXSidebarMenu/DXSidebarMenuItem.vue';
-import DXInput from '../../atoms/DXInput/DXInput.vue';
+import DXInput from '../DXInput/DXInput.vue';
 import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
 import DXDivider from '../../atoms/DXDivider/DXDivider.vue';
 
