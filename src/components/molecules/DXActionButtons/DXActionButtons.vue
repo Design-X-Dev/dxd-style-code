@@ -46,7 +46,7 @@
 
 <script setup>
 import { computed } from "vue";
-import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
 import { PencilIcon, TrashIcon, EyeIcon } from "@heroicons/vue/24/outline";
 
 const props = defineProps({

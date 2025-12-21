@@ -41,7 +41,7 @@
 <script setup>
 import { computed } from "vue";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/outline";
-import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** Текущая страница (v-model) */

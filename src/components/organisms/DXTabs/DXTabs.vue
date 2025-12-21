@@ -53,7 +53,7 @@
 
 <script setup>
 import { computed, ref, watch, nextTick } from 'vue';
-import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
+import DXIcon from '../../atoms/v2/DXIcon/DXIcon.vue';
 
 const props = defineProps({
   /** Текущее значение (v-model) */

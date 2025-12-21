@@ -35,7 +35,7 @@
 <script setup>
 import { computed } from 'vue';
 import { FunnelIcon, XCircleIcon } from '@heroicons/vue/24/outline';
-import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
+import DXIcon from '../../atoms/v2/DXIcon/DXIcon.vue';
 import DXTags from '../../atoms/DXTags/DXTags.vue';
 
 const props = defineProps({

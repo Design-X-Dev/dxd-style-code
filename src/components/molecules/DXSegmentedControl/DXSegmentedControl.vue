@@ -47,7 +47,7 @@
 
 <script setup>
 import { ref, computed, watch, nextTick, onMounted } from "vue";
-import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
 
 const props = defineProps({
   modelValue: [String, Number, Boolean],

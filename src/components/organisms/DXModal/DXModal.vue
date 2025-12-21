@@ -66,7 +66,7 @@ import {
   ViewColumnsIcon,
   RectangleGroupIcon,
 } from "@heroicons/vue/24/outline";
-import DXBackdrop from "../../atoms/DXBackdrop/DXBackdrop.vue";
+import DXBackdrop from "../../atoms/v2/DXBackdrop/DXBackdrop.vue";
 import DXCloseButton from "../../molecules/DXCloseButton/DXCloseButton.vue";
 
 const props = defineProps({

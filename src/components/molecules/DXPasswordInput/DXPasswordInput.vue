@@ -33,9 +33,9 @@
 <script setup>
 import { ref, computed } from "vue";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/vue/24/outline";
-import { useClassCompositionWithConditions } from "@/composables/useClassComposition";
-import DXFormLabel from "../../atoms/DXFormLabel/DXFormLabel.vue";
-import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import { useClassComposition } from "@/composables/useClassComposition";
+import DXFormLabel from "../../atoms/v2/DXFormLabel/DXFormLabel.vue";
+import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** Значение (v-model) */
@@ -61,7 +61,7 @@ const showPassword = ref(false);
 const BASE_CLASSES = "w-full pr-11 h-10 px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-white text-slate-700 placeholder:text-slate-400 transition-colors";
 
 const inputClasses = computed(() =>
-  useClassCompositionWithConditions(
+  useClassComposition(
     BASE_CLASSES,
     {
       'hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300': !props.disabled,

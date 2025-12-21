@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import DXBaseTable from './DXBaseTable.vue';
-import DXBadge from '../../atoms/DXBadge/DXBadge.vue';
+import DXBadge from '../../atoms/v2/DXBadge/DXBadge.vue';
 
 export default {
   title: 'Molecules/DXBaseTable',

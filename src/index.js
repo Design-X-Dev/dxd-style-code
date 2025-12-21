@@ -22,22 +22,27 @@ export {
   useVariantClasses, 
   useVariantIcon, 
   useVariantConfig, 
+  useVariantTooltip,
+  useTooltipPosition,
+  useTooltipArrow,
+  useVariantToggle,
   VARIANT_CONFIGS 
 } from './composables/useVariant';
-export { 
-  useClassComposition, 
-  useClassCompositionWithConditions 
-} from './composables/useClassComposition';
+export { useClassComposition } from './composables/useClassComposition';
 export { 
   useTransition,
+  useAnimationTransition,
+  useTooltipCustomTransition,
+  useAnimation,
   COLLAPSE_TRANSITION,
   FADE_TRANSITION,
   FADE_SCALE_TRANSITION,
   SLIDE_RIGHT_TRANSITION,
   SLIDE_LEFT_TRANSITION,
   SLIDE_UP_TRANSITION,
-  SLIDE_DOWN_TRANSITION
-} from './composables/useTransition';
+  SLIDE_DOWN_TRANSITION,
+  TOOLTIP_CUSTOM_TRANSITION
+} from './composables/useAnimation';
 export {
   useDataAttributes,
   useCustomDataAttributes,

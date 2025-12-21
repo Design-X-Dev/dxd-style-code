@@ -52,7 +52,7 @@
 <script setup>
 import { ref, computed, provide, onMounted, onBeforeUnmount, nextTick } from "vue";
 import { ChevronDownIcon } from "@heroicons/vue/24/outline";
-import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** Позиционирование: left | right | center */

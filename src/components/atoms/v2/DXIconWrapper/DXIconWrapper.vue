@@ -1,8 +1,7 @@
 <template>
   <div 
     :class="wrapperClasses"
-    data-component="DXIconWrapper"
-    :data-position="position"
+    v-bind="dataAttrs"
   >
     <DXIcon 
       v-if="icon" 
@@ -17,7 +16,9 @@
 
 <script setup>
 import { computed } from 'vue';
-import DXIcon from '../v2/DXIcon/DXIcon.vue';
+import { useClassComposition } from '@/composables/useClassComposition';
+import { useCustomDataAttributes } from '@/composables/useDataAttributes';
+import DXIcon from '../DXIcon/DXIcon.vue';
 
 const props = defineProps({
   /** Position: left | right */
@@ -54,11 +55,25 @@ const props = defineProps({
   },
 });
 
-const wrapperClasses = computed(() => [
-  'absolute',
-  props.position === 'left' ? 'left-3' : 'right-3',
-  props.verticalAlign === 'center' ? 'top-1/2 -translate-y-1/2' : 'top-3',
-  'pointer-events-none',
-]);
+const BASE_CLASSES = 'absolute pointer-events-none';
+
+const wrapperClasses = computed(() =>
+  useClassComposition(
+    BASE_CLASSES,
+    {
+      'left-3': props.position === 'left',
+      'right-3': props.position === 'right',
+      'top-1/2 -translate-y-1/2': props.verticalAlign === 'center',
+      'top-3': props.verticalAlign === 'top',
+    }
+  )
+);
+
+const dataAttrs = computed(() =>
+  useCustomDataAttributes({
+    component: 'DXIconWrapper',
+    position: props.position,
+  })
+);
 </script>
 

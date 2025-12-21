@@ -42,10 +42,35 @@
 </template>
 
 <script setup>
-import { computed, ref, watch } from "vue";
-import { useClassCompositionWithConditions } from "@/composables/useClassComposition";
-import DXFormLabel from "../../atoms/DXFormLabel/DXFormLabel.vue";
-import DXIconWrapper from "../../atoms/DXIconWrapper/DXIconWrapper.vue";
+import { computed, ref, watch, inject, onMounted, onUnmounted } from "vue";
+import { useClassComposition } from "@/composables/useClassComposition";
+import DXFormLabel from "../../atoms/v2/DXFormLabel/DXFormLabel.vue";
+import DXIconWrapper from "../../atoms/v2/DXIconWrapper/DXIconWrapper.vue";
+
+const inputGroup = inject("inputGroup", null);
+
+// Генерируем уникальный ID для регистрации
+const componentId = Date.now() + Math.random();
+
+onMounted(() => {
+  if (inputGroup?.registerComponent) {
+    inputGroup.registerComponent('textarea', componentId);
+  }
+});
+
+onUnmounted(() => {
+  if (inputGroup?.unregisterComponent) {
+    inputGroup.unregisterComponent(componentId);
+  }
+});
+
+// Получаем информацию о позиции addon
+const addonPosition = computed(() => {
+  if (!inputGroup?.getComponentPosition) {
+    return { hasLeftAddon: false, hasRightAddon: false };
+  }
+  return inputGroup.getComponentPosition(componentId);
+});
 
 const props = defineProps({
   /** Значение (v-model) */
@@ -96,7 +121,7 @@ watch(() => props.modelValue, (newValue) => {
   currentLength.value = newValue?.length || 0;
 });
 
-const BASE_CLASSES = "w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-colors";
+const BASE_CLASSES = "w-full border border-slate-200 px-4 py-3 text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-colors";
 
 // Адаптивные отступы для иконок
 const getPaddingClasses = (hasIcon, position) => {
@@ -105,9 +130,22 @@ const getPaddingClasses = (hasIcon, position) => {
   return position === 'left' ? 'pl-11' : 'pr-11';
 };
 
+// Получаем классы скругления в зависимости от позиции addon
+const getBorderRadiusClasses = () => {
+  if (addonPosition.value.hasLeftAddon && addonPosition.value.hasRightAddon) {
+    return 'rounded-none'; // Оба addon - без скругления
+  } else if (addonPosition.value.hasLeftAddon) {
+    return 'rounded-l-none rounded-r-xl'; // Только слева
+  } else if (addonPosition.value.hasRightAddon) {
+    return 'rounded-l-xl rounded-r-none'; // Только справа
+  } else {
+    return 'rounded-xl'; // Нет addon - полное скругление
+  }
+};
+
 const textareaClasses = computed(() =>
-  useClassCompositionWithConditions(
-    BASE_CLASSES,
+  useClassComposition(
+    `${BASE_CLASSES} ${getBorderRadiusClasses()}`,
     {
       'opacity-60 cursor-not-allowed bg-slate-50': props.disabled,
       [getPaddingClasses(props.prefixIcon, 'left')]: true,

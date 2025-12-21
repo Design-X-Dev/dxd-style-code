@@ -108,7 +108,7 @@
 <script setup>
 import { ref, watch } from "vue";
 import { CloudArrowUpIcon, DocumentIcon, XMarkIcon, PlusIcon } from "@heroicons/vue/24/outline";
-import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
 
 const props = defineProps({
   modelValue: [File, FileList, Array],

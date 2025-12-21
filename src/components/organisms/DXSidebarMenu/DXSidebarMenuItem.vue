@@ -137,9 +137,9 @@
 <script setup>
 import { ref, computed, inject } from 'vue';
 import { ChevronDownIcon } from '@heroicons/vue/24/outline';
-import { useTransition } from "@/composables/useTransition";
-import DXBadge from '../../atoms/DXBadge/DXBadge.vue';
-import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
+import { useTransition } from "@/composables/useAnimation";
+import DXBadge from '../../atoms/v2/DXBadge/DXBadge.vue';
+import DXIcon from '../../atoms/v2/DXIcon/DXIcon.vue';
 import DXDropdown from '../../organisms/DXDropdown/DXDropdown.vue';
 import DXDropdownItem from '../../atoms/DXDropdownItem/DXDropdownItem.vue';
 

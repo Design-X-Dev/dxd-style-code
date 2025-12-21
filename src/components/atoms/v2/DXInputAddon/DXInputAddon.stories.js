@@ -1,24 +1,29 @@
-import DXInputGroup from './DXInputGroup.vue';
-import DXInputAddon from '../../atoms/v2/DXInputAddon/DXInputAddon.vue';
-import DXInput from '../DXInput/DXInput.vue';
-import DXSelect from '../DXSelect/DXSelect.vue';
-import DXTextarea from '../DXTextarea/DXTextarea.vue';
+import DXInputAddon from './DXInputAddon.vue';
+import DXInputGroup from '../../../molecules/DXInputGroup/DXInputGroup.vue';
+import DXInput from '../../../molecules/DXInput/DXInput.vue';
 import { ref } from 'vue';
 import {
-  GlobeAltIcon,
-  CurrencyDollarIcon,
   MagnifyingGlassIcon,
+  CurrencyDollarIcon,
+  AtSymbolIcon,
+  GlobeAltIcon,
 } from '@heroicons/vue/24/outline';
 
 export default {
-  title: 'Molecules/DXInputGroup',
-  component: DXInputGroup,
+  title: 'Atoms/v2/DXInputAddon',
+  component: DXInputAddon,
   tags: ['autodocs'],
+  argTypes: {
+    icon: {
+      control: false,
+      description: 'Heroicon компонент для отображения иконки',
+    },
+  },
 };
 
 export const Default = {
   render: () => ({
-    components: { DXInputGroup, DXInputAddon, DXInput },
+    components: { DXInputAddon, DXInputGroup, DXInput },
     setup() {
       const url = ref('');
       return { url };
@@ -34,7 +39,7 @@ export const Default = {
 
 export const WithSuffix = {
   render: () => ({
-    components: { DXInputGroup, DXInputAddon, DXInput },
+    components: { DXInputAddon, DXInputGroup, DXInput },
     setup() {
       const price = ref('');
       return { price };
@@ -48,9 +53,41 @@ export const WithSuffix = {
   }),
 };
 
+export const WithIcon = {
+  render: () => ({
+    components: { DXInputAddon, DXInputGroup, DXInput },
+    setup() {
+      const search = ref('');
+      return { search, MagnifyingGlassIcon };
+    },
+    template: `
+      <DXInputGroup label="Search">
+        <DXInputAddon :icon="MagnifyingGlassIcon" />
+        <DXInput v-model="search" placeholder="Search..." />
+      </DXInputGroup>
+    `,
+  }),
+};
+
+export const WithIconAndText = {
+  render: () => ({
+    components: { DXInputAddon, DXInputGroup, DXInput },
+    setup() {
+      const email = ref('');
+      return { email, AtSymbolIcon };
+    },
+    template: `
+      <DXInputGroup label="Email">
+        <DXInputAddon :icon="AtSymbolIcon">@</DXInputAddon>
+        <DXInput v-model="email" type="email" placeholder="username" />
+      </DXInputGroup>
+    `,
+  }),
+};
+
 export const BothSides = {
   render: () => ({
-    components: { DXInputGroup, DXInputAddon, DXInput },
+    components: { DXInputAddon, DXInputGroup, DXInput },
     setup() {
       const amount = ref('');
       return { amount, CurrencyDollarIcon };
@@ -59,45 +96,7 @@ export const BothSides = {
       <DXInputGroup label="Amount">
         <DXInputAddon :icon="CurrencyDollarIcon">$</DXInputAddon>
         <DXInput v-model="amount" type="number" placeholder="0.00" />
-        <DXInputAddon>.00</DXInputAddon>
-      </DXInputGroup>
-    `,
-  }),
-};
-
-export const WithSelect = {
-  render: () => ({
-    components: { DXInputGroup, DXInputAddon, DXSelect },
-    setup() {
-      const country = ref('');
-      const countries = [
-        { value: 'us', label: 'United States' },
-        { value: 'uk', label: 'United Kingdom' },
-        { value: 'ca', label: 'Canada' },
-        { value: 'de', label: 'Germany' },
-      ];
-      return { country, countries, GlobeAltIcon };
-    },
-    template: `
-      <DXInputGroup label="Country">
-        <DXInputAddon :icon="GlobeAltIcon" />
-        <DXSelect v-model="country" :options="countries" placeholder="Select country" />
-      </DXInputGroup>
-    `,
-  }),
-};
-
-export const WithTextarea = {
-  render: () => ({
-    components: { DXInputGroup, DXInputAddon, DXTextarea },
-    setup() {
-      const message = ref('');
-      return { message, MagnifyingGlassIcon };
-    },
-    template: `
-      <DXInputGroup label="Message">
-        <DXInputAddon :icon="MagnifyingGlassIcon" />
-        <DXTextarea v-model="message" placeholder="Enter your message..." :rows="4" />
+        <DXInputAddon>USD</DXInputAddon>
       </DXInputGroup>
     `,
   }),
@@ -105,7 +104,7 @@ export const WithTextarea = {
 
 export const Sizes = {
   render: () => ({
-    components: { DXInputGroup, DXInputAddon, DXInput },
+    components: { DXInputAddon, DXInputGroup, DXInput },
     setup() {
       const small = ref('');
       const medium = ref('');
@@ -135,7 +134,7 @@ export const Sizes = {
 
 export const Disabled = {
   render: () => ({
-    components: { DXInputGroup, DXInputAddon, DXInput },
+    components: { DXInputAddon, DXInputGroup, DXInput },
     setup() {
       const url = ref('example.com');
       const price = ref('100.00');
@@ -160,7 +159,7 @@ export const Disabled = {
 
 export const WithError = {
   render: () => ({
-    components: { DXInputGroup, DXInputAddon, DXInput },
+    components: { DXInputAddon, DXInputGroup, DXInput },
     setup() {
       const url = ref('invalid-url');
       const price = ref('abc');
@@ -185,23 +184,21 @@ export const WithError = {
 
 export const UseCases = {
   render: () => ({
-    components: { DXInputGroup, DXInputAddon, DXInput, DXSelect },
+    components: { DXInputAddon, DXInputGroup, DXInput },
     setup() {
       const website = ref('');
       const price = ref('');
-      const country = ref('');
-      const countries = [
-        { value: 'us', label: 'United States' },
-        { value: 'uk', label: 'United Kingdom' },
-        { value: 'ca', label: 'Canada' },
-      ];
+      const search = ref('');
+      const email = ref('');
       return {
         website,
         price,
-        country,
-        countries,
+        search,
+        email,
         GlobeAltIcon,
         CurrencyDollarIcon,
+        MagnifyingGlassIcon,
+        AtSymbolIcon,
       };
     },
     template: `
@@ -217,9 +214,14 @@ export const UseCases = {
           <DXInputAddon>USD</DXInputAddon>
         </DXInputGroup>
         
-        <DXInputGroup label="Country">
-          <DXInputAddon :icon="GlobeAltIcon" />
-          <DXSelect v-model="country" :options="countries" placeholder="Select country" />
+        <DXInputGroup label="Search">
+          <DXInputAddon :icon="MagnifyingGlassIcon" />
+          <DXInput v-model="search" placeholder="Search..." />
+        </DXInputGroup>
+        
+        <DXInputGroup label="Email">
+          <DXInputAddon :icon="AtSymbolIcon">@</DXInputAddon>
+          <DXInput v-model="email" type="email" placeholder="username" />
         </DXInputGroup>
       </div>
     `,

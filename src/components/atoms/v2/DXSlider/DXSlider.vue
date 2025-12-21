@@ -1,19 +1,24 @@
 <template>
-  <div class="w-full" data-component="DXSlider">
-    <div class="flex items-center justify-between mb-2">
-      <label v-if="label" class="text-sm font-medium text-slate-700">{{ label }}</label>
-      <span v-if="showValue" class="text-sm font-semibold text-slate-900">
+  <div 
+    class="w-full" 
+    data-component="DXSlider"
+    :data-size="size"
+    :data-variant="variant"
+  >
+    <div :class="['flex items-center justify-between', labelSpacing]">
+      <label v-if="label" :class="[textSize, 'font-medium', sliderVariant.text]">{{ label }}</label>
+      <span v-if="showValue" :class="[textSize, 'font-semibold', sliderVariant.textValue]">
         {{ displayValue }}
       </span>
     </div>
     
-    <div class="relative pt-2 pb-2">
+    <div :class="['relative', trackSpacing]">
       <!-- Visual ticks (засечки на линии) -->
       <div v-if="ticks" class="absolute top-1/2 w-full pointer-events-none" style="transform: translateY(-50%)">
         <div
           v-for="(tick, index) in tickValues"
           :key="`tick-${index}`"
-          class="absolute w-0.5 h-3 bg-slate-400 rounded-full"
+          :class="['absolute w-0.5 h-3 rounded-full', sliderVariant.tick]"
           :style="getTickStyle(tick)"
         />
       </div>
@@ -26,12 +31,13 @@
         :step="step"
         :disabled="disabled"
         class="slider w-full appearance-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed relative z-10"
+        :style="sliderStyles"
         @input="handleInput"
       />
     </div>
     
     <!-- Labels for ticks -->
-    <div v-if="ticks && (showTickLabels || tickIcons)" class="relative mt-1 w-full" style="min-height: 3rem;">
+    <div v-if="ticks && (showTickLabels || tickIcons)" :class="['relative w-full', tickLabelSpacing]" style="min-height: 3rem;">
       <span 
         v-for="(tick, index) in tickValues" 
         :key="tick" 
@@ -42,27 +48,33 @@
         <DXIcon 
           v-if="tickIcons && tickIcons[index]" 
           :icon="tickIcons[index]" 
-          size="sm" 
+          :size="size" 
           :animation="getIconAnimation(index)"
-          :class="isActiveIcon(index) ? 'text-slate-900' : 'text-slate-400'"
+          :class="isActiveIcon(index) ? sliderVariant.textActive : sliderVariant.text"
         />
         <span 
           v-if="showTickLabels" 
-          class="text-xs transition-colors duration-200 whitespace-nowrap"
-          :class="isActiveIcon(index) ? 'text-slate-900 font-semibold' : 'text-slate-500'"
+          :class="[
+            textSize, 
+            'transition-colors duration-200 whitespace-nowrap',
+            isActiveIcon(index) ? [sliderVariant.textActive, 'font-semibold'] : sliderVariant.text
+          ]"
         >
           {{ tick }}{{ unit }}
         </span>
       </span>
     </div>
     
-    <p v-if="helper" class="mt-1 text-xs text-slate-500">{{ helper }}</p>
+    <p v-if="helper" :class="[textSize, tickLabelSpacing, sliderVariant.text]">{{ helper }}</p>
   </div>
 </template>
 
 <script setup>
 import { computed } from "vue";
-import DXIcon from "../v2/DXIcon/DXIcon.vue";
+import { useSize } from "@/composables/useSize";
+import { useVariantSlider } from "@/composables/useVariant";
+import { useSpacing } from "@/composables/useSpacing";
+import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** Значение (v-model) */
@@ -93,11 +105,91 @@ const props = defineProps({
   unit: { type: String, default: "" },
   /** Отключенное состояние */
   disabled: { type: Boolean, default: false },
+  /** Размер: xs | sm | md | lg | xl */
+  size: { 
+    type: String, 
+    default: "md",
+    validator: (v) => ['xs', 'sm', 'md', 'lg', 'xl'].includes(v)
+  },
+  /** Вариант цвета: slate | primary | success | danger | warning | info */
+  variant: { 
+    type: String, 
+    default: "primary",
+    validator: (v) => ['slate', 'primary', 'success', 'danger', 'warning', 'info', 'default'].includes(v)
+  },
+  /** Отступы между элементами: none | xs | sm | md | lg | xl */
+  spacing: { 
+    type: String, 
+    default: "sm",
+    validator: (v) => ['none', 'xs', 'sm', 'md', 'lg', 'xl'].includes(v)
+  },
 });
 
 const emit = defineEmits(["update:modelValue"]);
 
+// Используем composables
+const sliderVariant = useVariantSlider(props.variant);
+const trackHeight = useSize(props.size, 'sliderTrack');
+const thumbSize = useSize(props.size, 'sliderThumb');
+const textSize = useSize(props.size, 'text');
+const labelSpacing = useSpacing(props.spacing, 'marginY');
+const trackSpacing = useSpacing(props.spacing, 'paddingY');
+const tickLabelSpacing = useSpacing(props.spacing, 'marginTop');
+
+// Получаем размер thumb в пикселях для расчета позиций
+const thumbSizePx = computed(() => {
+  const sizeMap = { xs: 12, sm: 16, md: 20, lg: 24, xl: 28 };
+  return sizeMap[props.size] || 20;
+});
+
+// Получаем высоту трека в пикселях
+const trackHeightPx = computed(() => {
+  const heightMap = { xs: 4, sm: 6, md: 8, lg: 10, xl: 12 };
+  return heightMap[props.size] || 8;
+});
+
 const displayValue = computed(() => `${props.modelValue}${props.unit}`);
+
+// CSS переменные для динамических стилей
+const sliderStyles = computed(() => {
+  // Извлекаем цвета из классов Tailwind
+  const getColorFromClass = (className) => {
+    // Простая маппинг для основных цветов
+    const colorMap = {
+      'bg-slate-200': '#e2e8f0',
+      'bg-slate-900': '#0f172a',
+      'bg-slate-800': '#1e293b',
+      'bg-slate-700': '#334155',
+      'bg-slate-600': '#475569',
+      'bg-blue-200': '#bfdbfe',
+      'bg-blue-600': '#2563eb',
+      'bg-blue-500': '#3b82f6',
+      'bg-blue-400': '#60a5fa',
+      'bg-emerald-200': '#a7f3d0',
+      'bg-emerald-600': '#059669',
+      'bg-emerald-500': '#10b981',
+      'bg-emerald-400': '#34d399',
+      'bg-amber-200': '#fde68a',
+      'bg-amber-600': '#d97706',
+      'bg-amber-500': '#f59e0b',
+      'bg-amber-400': '#fbbf24',
+      'bg-rose-200': '#fecdd3',
+      'bg-rose-600': '#e11d48',
+      'bg-rose-500': '#f43f5e',
+      'bg-rose-400': '#fb7185',
+    };
+    return colorMap[className] || '#0f172a';
+  };
+
+  return {
+    '--slider-track-color': getColorFromClass(sliderVariant.track),
+    '--slider-thumb-color': getColorFromClass(sliderVariant.thumb),
+    '--slider-thumb-hover-color': getColorFromClass(sliderVariant.thumbHover),
+    '--slider-thumb-size': `${thumbSizePx.value}px`,
+    '--slider-track-height': `${trackHeightPx.value}px`,
+    '--slider-thumb-margin-top': `${(thumbSizePx.value - trackHeightPx.value) / 2}px`,
+  };
+});
 
 const tickValues = computed(() => {
   if (!props.ticks) return [];
@@ -141,7 +233,6 @@ const getIconAnimation = (index) => {
 };
 
 // Рассчитывает позицию засечки с учетом размера thumb
-// Thumb имеет ширину 20px, поэтому нужно учитывать offset
 const getTickStyle = (tickValue) => {
   const range = props.max - props.min;
   if (range === 0) return { left: '0', transform: 'translateX(-50%)' };
@@ -149,8 +240,8 @@ const getTickStyle = (tickValue) => {
   // Процент от диапазона значений
   const percentage = ((tickValue - props.min) / range) * 100;
   
-  // Размер thumb в пикселях
-  const thumbSize = 20;
+  // Используем динамический размер thumb
+  const thumbSize = thumbSizePx.value;
   
   // Вычисляем offset в процентах от ширины контейнера
   // На краях thumb центрируется, поэтому его половина выходит за край
@@ -167,32 +258,33 @@ const getTickStyle = (tickValue) => {
 <style scoped>
 /* Input range base */
 .slider {
-  height: 20px; /* Высота для правильного центрирования thumb */
+  height: var(--slider-thumb-size, 20px); /* Высота для правильного центрирования thumb */
   background: transparent;
 }
 
 /* Webkit (Chrome, Safari, Edge) */
 .slider::-webkit-slider-runnable-track {
   width: 100%;
-  height: 8px;
-  background: #e2e8f0;
+  height: var(--slider-track-height, 8px);
+  background: var(--slider-track-color, #e2e8f0);
   border-radius: 4px;
 }
 
 .slider::-webkit-slider-thumb {
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: var(--slider-thumb-size, 20px);
+  height: var(--slider-thumb-size, 20px);
   border-radius: 50%;
-  background: #0f172a;
+  background: var(--slider-thumb-color, #0f172a);
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: transform 0.15s, box-shadow 0.15s;
-  margin-top: -6px; /* (thumb_height - track_height) / 2 = (20 - 8) / 2 = 6px */
+  transition: transform 0.15s, box-shadow 0.15s, background-color 0.15s;
+  margin-top: calc(var(--slider-thumb-margin-top, -6px) * -1);
 }
 
 .slider::-webkit-slider-thumb:hover {
   transform: scale(1.1);
+  background: var(--slider-thumb-hover-color, var(--slider-thumb-color, #0f172a));
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
@@ -203,25 +295,26 @@ const getTickStyle = (tickValue) => {
 /* Firefox */
 .slider::-moz-range-track {
   width: 100%;
-  height: 8px;
-  background: #e2e8f0;
+  height: var(--slider-track-height, 8px);
+  background: var(--slider-track-color, #e2e8f0);
   border-radius: 4px;
   border: none;
 }
 
 .slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: var(--slider-thumb-size, 20px);
+  height: var(--slider-thumb-size, 20px);
   border-radius: 50%;
-  background: #0f172a;
+  background: var(--slider-thumb-color, #0f172a);
   cursor: pointer;
   border: none;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: transform 0.15s, box-shadow 0.15s, background-color 0.15s;
 }
 
 .slider::-moz-range-thumb:hover {
   transform: scale(1.1);
+  background: var(--slider-thumb-hover-color, var(--slider-thumb-color, #0f172a));
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 

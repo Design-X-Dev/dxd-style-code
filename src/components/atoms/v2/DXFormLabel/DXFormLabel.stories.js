@@ -1,8 +1,7 @@
 import DXFormLabel from './DXFormLabel.vue';
-import DXInput from '../../molecules/DXInput/DXInput.vue';
 
 export default {
-  title: 'Atoms/v1/DXFormLabel',
+  title: 'Atoms/v2/DXFormLabel',
   component: DXFormLabel,
   tags: ['autodocs'],
   argTypes: {
@@ -52,7 +51,7 @@ export const Default = {
     helper: 'We will never share your email with anyone else.',
   },
   render: (args) => ({
-    components: { DXFormLabel, DXInput },
+    components: { DXFormLabel },
     setup() {
       return { args };
     },

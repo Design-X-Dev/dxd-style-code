@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import DXTableToolbar from './DXTableToolbar.vue';
-import DXButton from '../../atoms/DXButton/DXButton.vue';
+import DXButton from '../../atoms/v2/DXButton/DXButton.vue';
 
 export default {
   title: 'Molecules/DXTableToolbar',

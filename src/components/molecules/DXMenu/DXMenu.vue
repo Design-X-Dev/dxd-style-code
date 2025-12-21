@@ -148,11 +148,11 @@ import {
   MagnifyingGlassIcon
 } from '@heroicons/vue/24/outline';
 import { useMenu } from '@/composables/useMenu';
-import DXCard from '../../atoms/DXCard/DXCard.vue';
+import DXCard from '../../atoms/v2/DXCard/DXCard.vue';
 import DXSidebarMenuItem from '../../organisms/DXSidebarMenu/DXSidebarMenuItem.vue';
 import DXInput from '../DXInput/DXInput.vue';
-import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
-import DXDivider from '../../atoms/DXDivider/DXDivider.vue';
+import DXIcon from '../../atoms/v2/DXIcon/DXIcon.vue';
+import DXDivider from '../../atoms/v2/DXDivider/DXDivider.vue';
 
 const $slots = useSlots();
 

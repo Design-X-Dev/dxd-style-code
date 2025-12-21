@@ -32,37 +32,4 @@ export function useClassComposition(baseClasses, ...additionalClasses) {
   return classes;
 }
 
-/**
- * Merges multiple class sources with conditional logic
- * 
- * @param {string} baseClasses - Base classes
- * @param {Object} conditionalClasses - Object of conditional classes { 'class-name': boolean }
- * @param {string|Array|Object} customClasses - Custom classes
- * @returns {Array} Array of classes
- * 
- * @example
- * const allClasses = computed(() =>
- *   useClassCompositionWithConditions(
- *     BASE_CLASSES,
- *     {
- *       'opacity-60': props.disabled,
- *       'w-full': props.block
- *     },
- *     props.class
- *   )
- * );
- */
-export function useClassCompositionWithConditions(baseClasses, conditionalClasses = {}, customClasses = '') {
-  const classes = [baseClasses];
-  
-  // Add conditional classes
-  classes.push(conditionalClasses);
-  
-  // Add custom classes
-  if (customClasses) {
-    classes.push(customClasses);
-  }
-  
-  return classes;
-}
 

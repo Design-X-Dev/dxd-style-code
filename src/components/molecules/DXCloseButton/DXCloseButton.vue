@@ -17,8 +17,8 @@
 <script setup>
 import { computed } from "vue";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
-import DXButton from "../../atoms/DXButton/DXButton.vue";
-import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXButton from "../../atoms/v2/DXButton/DXButton.vue";
+import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** Размер: sm | md | lg */

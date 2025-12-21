@@ -1,8 +1,8 @@
 /**
  * Композабл для унификации размеров компонентов
  * @param {string} size - xs | sm | md | lg | xl (для spacing также доступен none)
- * @param {string} type - button | buttonIcon | input | icon | text | checkbox | radio | avatar | spacing | loader | progress
- * @returns {string} Tailwind CSS классы
+ * @param {string} type - button | buttonIcon | input | icon | text | checkbox | radio | avatar | spacing | loader | progress | inputAddon | sliderTrack | sliderThumb | tooltip | toggle
+ * @returns {string|Object} Tailwind CSS классы или объект с классами для track и thumb (для toggle)
  */
 export function useSize(size, type = 'input') {
   const sizes = {
@@ -75,6 +75,27 @@ export function useSize(size, type = 'input') {
       md: 'h-3',
       lg: 'h-4',
     },
+    inputAddon: {
+      xs: 'h-7',
+      sm: 'h-8',
+      md: 'h-10',
+      lg: 'h-12',
+      xl: 'h-14',
+    },
+    sliderTrack: {
+      xs: 'h-1',    // 4px
+      sm: 'h-1.5',  // 6px
+      md: 'h-2',    // 8px
+      lg: 'h-2.5',  // 10px
+      xl: 'h-3',    // 12px
+    },
+    sliderThumb: {
+      xs: 'w-3 h-3',    // 12px
+      sm: 'w-4 h-4',    // 16px
+      md: 'w-5 h-5',    // 20px
+      lg: 'w-6 h-6',    // 24px
+      xl: 'w-7 h-7',    // 28px
+    },
     spacing: {
       none: 'gap-0',
       xs: 'gap-1',
@@ -83,7 +104,26 @@ export function useSize(size, type = 'input') {
       lg: 'gap-6',
       xl: 'gap-8',
     },
+    tooltip: {
+      xs: 'px-2 py-1 text-xs',
+      sm: 'px-2.5 py-1.5 text-xs',
+      md: 'px-3 py-2 text-sm',
+      lg: 'px-4 py-3 text-base',
+      xl: 'px-5 py-4 text-lg',
+    },
+    toggle: {
+      xs: { track: 'h-4 w-7', thumb: 'h-3 w-3' },
+      sm: { track: 'h-5 w-9', thumb: 'h-3.5 w-3.5' },
+      md: { track: 'h-6 w-11', thumb: 'h-4 w-4' },
+      lg: { track: 'h-7 w-14', thumb: 'h-5 w-5' },
+      xl: { track: 'h-8 w-16', thumb: 'h-6 w-6' },
+    },
   };
+  
+  // Для toggle возвращаем объект, для остальных - строку
+  if (type === 'toggle') {
+    return sizes[type]?.[size] || sizes[type]?.md || { track: '', thumb: '' };
+  }
   
   return sizes[type]?.[size] || sizes[type]?.md || '';
 }

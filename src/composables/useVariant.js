@@ -28,6 +28,16 @@ export const VARIANT_CONFIGS = {
       borderTop: 'border-t-slate-900',
       text: 'text-slate-600',
     },
+    // Для слайдера
+    slider: {
+      track: 'bg-slate-200',
+      thumb: 'bg-slate-900',
+      thumbHover: 'bg-slate-800',
+      tick: 'bg-slate-400',
+      text: 'text-slate-700',
+      textActive: 'text-slate-900',
+      textValue: 'text-slate-900',
+    },
   },
   slate: {
     bg: 'bg-slate-50',
@@ -62,6 +72,22 @@ export const VARIANT_CONFIGS = {
       borderTop: 'border-t-slate-700',
       text: 'text-slate-700',
     },
+    // Для слайдера
+    slider: {
+      track: 'bg-slate-200',
+      thumb: 'bg-slate-700',
+      thumbHover: 'bg-slate-600',
+      tick: 'bg-slate-400',
+      text: 'text-slate-700',
+      textActive: 'text-slate-900',
+      textValue: 'text-slate-900',
+    },
+    // Для toggle
+    toggle: {
+      checked: 'bg-slate-700',
+      unchecked: 'bg-slate-200',
+      ring: 'focus:ring-slate-700/10',
+    },
   },
   primary: {
     bg: 'bg-slate-50',
@@ -90,11 +116,29 @@ export const VARIANT_CONFIGS = {
     progress: 'bg-slate-800',
     // Для divider
     divider: 'border-slate-200',
+    // Для tooltip
+    tooltip: 'bg-slate-900 text-white',
     // Для лоадера
     loader: {
       border: 'border-slate-300',
       borderTop: 'border-t-slate-900',
       text: 'text-slate-900',
+    },
+    // Для слайдера
+    slider: {
+      track: 'bg-slate-200',
+      thumb: 'bg-slate-900',
+      thumbHover: 'bg-slate-800',
+      tick: 'bg-slate-400',
+      text: 'text-slate-700',
+      textActive: 'text-slate-900',
+      textValue: 'text-slate-900',
+    },
+    // Для toggle
+    toggle: {
+      checked: 'bg-slate-900',
+      unchecked: 'bg-slate-200',
+      ring: 'focus:ring-slate-900/10',
     },
   },
   info: {
@@ -124,11 +168,29 @@ export const VARIANT_CONFIGS = {
     progress: 'bg-blue-500',
     // Для divider
     divider: 'border-blue-200',
+    // Для tooltip
+    tooltip: 'bg-blue-600 text-white',
     // Для лоадера
     loader: {
       border: 'border-blue-300',
       borderTop: 'border-t-blue-600',
       text: 'text-blue-700',
+    },
+    // Для слайдера
+    slider: {
+      track: 'bg-blue-200',
+      thumb: 'bg-blue-600',
+      thumbHover: 'bg-blue-500',
+      tick: 'bg-blue-400',
+      text: 'text-blue-700',
+      textActive: 'text-blue-900',
+      textValue: 'text-blue-900',
+    },
+    // Для toggle
+    toggle: {
+      checked: 'bg-blue-600',
+      unchecked: 'bg-slate-200',
+      ring: 'focus:ring-blue-500/10',
     },
   },
   success: {
@@ -158,11 +220,29 @@ export const VARIANT_CONFIGS = {
     progress: 'bg-emerald-500',
     // Для divider
     divider: 'border-emerald-200',
+    // Для tooltip
+    tooltip: 'bg-emerald-600 text-white',
     // Для лоадера
     loader: {
       border: 'border-emerald-300',
       borderTop: 'border-t-emerald-600',
       text: 'text-emerald-700',
+    },
+    // Для слайдера
+    slider: {
+      track: 'bg-emerald-200',
+      thumb: 'bg-emerald-600',
+      thumbHover: 'bg-emerald-500',
+      tick: 'bg-emerald-400',
+      text: 'text-emerald-700',
+      textActive: 'text-emerald-900',
+      textValue: 'text-emerald-900',
+    },
+    // Для toggle
+    toggle: {
+      checked: 'bg-emerald-600',
+      unchecked: 'bg-slate-200',
+      ring: 'focus:ring-emerald-500/10',
     },
   },
   warning: {
@@ -192,11 +272,29 @@ export const VARIANT_CONFIGS = {
     progress: 'bg-amber-500',
     // Для divider
     divider: 'border-amber-200',
+    // Для tooltip
+    tooltip: 'bg-amber-600 text-white',
     // Для лоадера
     loader: {
       border: 'border-amber-300',
       borderTop: 'border-t-amber-600',
       text: 'text-amber-700',
+    },
+    // Для слайдера
+    slider: {
+      track: 'bg-amber-200',
+      thumb: 'bg-amber-600',
+      thumbHover: 'bg-amber-500',
+      tick: 'bg-amber-400',
+      text: 'text-amber-700',
+      textActive: 'text-amber-900',
+      textValue: 'text-amber-900',
+    },
+    // Для toggle
+    toggle: {
+      checked: 'bg-amber-600',
+      unchecked: 'bg-slate-200',
+      ring: 'focus:ring-amber-500/10',
     },
   },
   danger: {
@@ -226,11 +324,29 @@ export const VARIANT_CONFIGS = {
     progress: 'bg-rose-500',
     // Для divider
     divider: 'border-rose-200',
+    // Для tooltip
+    tooltip: 'bg-rose-600 text-white',
     // Для лоадера
     loader: {
       border: 'border-rose-300',
       borderTop: 'border-t-rose-600',
       text: 'text-rose-700',
+    },
+    // Для слайдера
+    slider: {
+      track: 'bg-rose-200',
+      thumb: 'bg-rose-600',
+      thumbHover: 'bg-rose-500',
+      tick: 'bg-rose-400',
+      text: 'text-rose-700',
+      textActive: 'text-rose-900',
+      textValue: 'text-rose-900',
+    },
+    // Для toggle
+    toggle: {
+      checked: 'bg-rose-600',
+      unchecked: 'bg-slate-200',
+      ring: 'focus:ring-rose-500/10',
     },
   },
   // Специальные варианты для текста
@@ -415,7 +531,7 @@ export function useVariantDivider(color) {
 
 /**
  * Возвращает классы для tooltip
- * @param {string} color - dark | light
+ * @param {string} color - dark | light | primary | success | danger | warning | info
  * @returns {string} Tailwind CSS классы
  */
 export function useVariantTooltip(color) {
@@ -424,5 +540,104 @@ export function useVariantTooltip(color) {
   }
   const config = VARIANT_CONFIGS[color] || VARIANT_CONFIGS.dark;
   return config.tooltip || VARIANT_CONFIGS.dark.tooltip;
+}
+
+/**
+ * Возвращает классы для позиционирования tooltip
+ * @param {string} position - top | bottom | left | right
+ * @returns {string} Tailwind CSS классы для позиционирования
+ */
+export function useTooltipPosition(position = 'top') {
+  const positionClasses = {
+    top: 'bottom-full left-1/2 -translate-x-1/2 mb-2',
+    bottom: 'top-full left-1/2 -translate-x-1/2 mt-2',
+    left: 'right-full top-1/2 -translate-y-1/2 mr-2',
+    right: 'left-full top-1/2 -translate-y-1/2 ml-2',
+  };
+
+  return positionClasses[position] || positionClasses.top;
+}
+
+/**
+ * Возвращает классы для стрелки tooltip
+ * @param {string} position - top | bottom | left | right
+ * @param {string} color - dark | light | primary | success | danger | warning | info
+ * @returns {string} Tailwind CSS классы
+ */
+export function useTooltipArrow(position, color) {
+  const baseClasses = 'absolute w-0 h-0 border-4';
+  
+  // Все комбинации позиций и цветов
+  const arrowClasses = {
+    top: {
+      dark: 'top-full left-1/2 -translate-x-1/2 border-t-slate-900 border-l-transparent border-r-transparent border-b-transparent',
+      light: 'top-full left-1/2 -translate-x-1/2 border-t-white border-l-transparent border-r-transparent border-b-transparent',
+      primary: 'top-full left-1/2 -translate-x-1/2 border-t-slate-900 border-l-transparent border-r-transparent border-b-transparent',
+      info: 'top-full left-1/2 -translate-x-1/2 border-t-blue-600 border-l-transparent border-r-transparent border-b-transparent',
+      success: 'top-full left-1/2 -translate-x-1/2 border-t-emerald-600 border-l-transparent border-r-transparent border-b-transparent',
+      warning: 'top-full left-1/2 -translate-x-1/2 border-t-amber-600 border-l-transparent border-r-transparent border-b-transparent',
+      danger: 'top-full left-1/2 -translate-x-1/2 border-t-rose-600 border-l-transparent border-r-transparent border-b-transparent',
+    },
+    bottom: {
+      dark: 'bottom-full left-1/2 -translate-x-1/2 border-b-slate-900 border-l-transparent border-r-transparent border-t-transparent',
+      light: 'bottom-full left-1/2 -translate-x-1/2 border-b-white border-l-transparent border-r-transparent border-t-transparent',
+      primary: 'bottom-full left-1/2 -translate-x-1/2 border-b-slate-900 border-l-transparent border-r-transparent border-t-transparent',
+      info: 'bottom-full left-1/2 -translate-x-1/2 border-b-blue-600 border-l-transparent border-r-transparent border-t-transparent',
+      success: 'bottom-full left-1/2 -translate-x-1/2 border-b-emerald-600 border-l-transparent border-r-transparent border-t-transparent',
+      warning: 'bottom-full left-1/2 -translate-x-1/2 border-b-amber-600 border-l-transparent border-r-transparent border-t-transparent',
+      danger: 'bottom-full left-1/2 -translate-x-1/2 border-b-rose-600 border-l-transparent border-r-transparent border-t-transparent',
+    },
+    left: {
+      dark: 'left-full top-1/2 -translate-y-1/2 border-l-slate-900 border-t-transparent border-b-transparent border-r-transparent',
+      light: 'left-full top-1/2 -translate-y-1/2 border-l-white border-t-transparent border-b-transparent border-r-transparent',
+      primary: 'left-full top-1/2 -translate-y-1/2 border-l-slate-900 border-t-transparent border-b-transparent border-r-transparent',
+      info: 'left-full top-1/2 -translate-y-1/2 border-l-blue-600 border-t-transparent border-b-transparent border-r-transparent',
+      success: 'left-full top-1/2 -translate-y-1/2 border-l-emerald-600 border-t-transparent border-b-transparent border-r-transparent',
+      warning: 'left-full top-1/2 -translate-y-1/2 border-l-amber-600 border-t-transparent border-b-transparent border-r-transparent',
+      danger: 'left-full top-1/2 -translate-y-1/2 border-l-rose-600 border-t-transparent border-b-transparent border-r-transparent',
+    },
+    right: {
+      dark: 'right-full top-1/2 -translate-y-1/2 border-r-slate-900 border-t-transparent border-b-transparent border-l-transparent',
+      light: 'right-full top-1/2 -translate-y-1/2 border-r-white border-t-transparent border-b-transparent border-l-transparent',
+      primary: 'right-full top-1/2 -translate-y-1/2 border-r-slate-900 border-t-transparent border-b-transparent border-l-transparent',
+      info: 'right-full top-1/2 -translate-y-1/2 border-r-blue-600 border-t-transparent border-b-transparent border-l-transparent',
+      success: 'right-full top-1/2 -translate-y-1/2 border-r-emerald-600 border-t-transparent border-b-transparent border-l-transparent',
+      warning: 'right-full top-1/2 -translate-y-1/2 border-r-amber-600 border-t-transparent border-b-transparent border-l-transparent',
+      danger: 'right-full top-1/2 -translate-y-1/2 border-r-rose-600 border-t-transparent border-b-transparent border-l-transparent',
+    },
+  };
+
+  const colorKey = color || 'dark';
+  const positionKey = position || 'top';
+  
+  return `${baseClasses} ${arrowClasses[positionKey]?.[colorKey] || arrowClasses.top.dark}`;
+}
+
+/**
+ * Возвращает конфигурацию для слайдера
+ * @param {string} variant - slate | primary | success | danger | warning | info | default
+ * @returns {Object} { track, thumb, thumbHover, tick, text, textActive, textValue }
+ */
+export function useVariantSlider(variant) {
+  const config = VARIANT_CONFIGS[variant] || VARIANT_CONFIGS.primary;
+  return config.slider || VARIANT_CONFIGS.primary.slider;
+}
+
+/**
+ * Возвращает классы для toggle
+ * @param {string} color - slate | primary | success | danger | warning | info
+ * @param {boolean} checked - состояние toggle
+ * @returns {Object} { checked, unchecked, ring }
+ */
+export function useVariantToggle(color, checked = false) {
+  const config = VARIANT_CONFIGS[color] || VARIANT_CONFIGS.slate;
+  const toggleConfig = config.toggle || VARIANT_CONFIGS.slate.toggle;
+  
+  return {
+    checked: toggleConfig.checked,
+    unchecked: toggleConfig.unchecked,
+    ring: toggleConfig.ring,
+    current: checked ? toggleConfig.checked : toggleConfig.unchecked,
+  };
 }
 
