@@ -1,14 +1,20 @@
-import DXToggle from './DXToggle.vue';
-import { ref } from 'vue';
+import DXToggle from "./DXToggle.vue";
+import { ref } from "vue";
 
 export default {
-  title: 'Atoms/v1/DXToggle',
+  title: "Atoms/DXToggle",
   component: DXToggle,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
-    size: { control: { type: 'select' }, options: ['xs', 'sm', 'md', 'lg', 'xl'] },
-    color: { control: { type: 'select' }, options: ['slate', 'primary', 'success', 'danger', 'warning', 'info'] },
-    animation: { control: { type: 'select' }, options: ['none', 'smooth'] },
+    size: {
+      control: { type: "select" },
+      options: ["xs", "sm", "md", "lg", "xl"],
+    },
+    color: {
+      control: { type: "select" },
+      options: ["slate", "primary", "success", "danger", "warning", "info"],
+    },
+    animation: { control: { type: "select" }, options: ["none", "smooth"] },
   },
 };
 
@@ -135,4 +141,3 @@ export const Disabled = {
     template: '<DXToggle v-model="enabled" label="Disabled toggle" disabled />',
   }),
 };
-

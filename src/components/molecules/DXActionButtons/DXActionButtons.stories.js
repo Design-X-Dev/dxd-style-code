@@ -1,6 +1,6 @@
 import DXActionButtons from './DXActionButtons.vue';
-import DXButton from '../../atoms/v2/DXButton/DXButton.vue';
-import DXIcon from '../../atoms/v2/DXIcon/DXIcon.vue';
+import DXButton from '../../atoms/DXButton/DXButton.vue';
+import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
 import { ShareIcon, ArrowDownTrayIcon, PrinterIcon } from '@heroicons/vue/24/outline';
 
 export default {

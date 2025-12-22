@@ -1,5 +1,5 @@
-import DXTags from './DXTags.vue';
-import { ref } from 'vue';
+import DXTags from "./DXTags.vue";
+import { ref } from "vue";
 import {
   TagIcon,
   CodeBracketIcon,
@@ -11,34 +11,34 @@ import {
   CheckBadgeIcon,
   ExclamationTriangleIcon,
   FireIcon,
-} from '@heroicons/vue/24/outline';
+} from "@heroicons/vue/24/outline";
 
 export default {
-  title: 'Atoms/v1/DXTags',
+  title: "Atoms/DXTags",
   component: DXTags,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export const Default = {
-  args: { 
-    tags: ['Vue.js', 'React', 'Angular', 'TypeScript'] 
+  args: {
+    tags: ["Vue.js", "React", "Angular", "TypeScript"],
   },
 };
 
 export const Large = {
-  args: { 
-    tags: ['Frontend', 'Backend', 'DevOps'], 
-    variant: 'large' 
+  args: {
+    tags: ["Frontend", "Backend", "DevOps"],
+    variant: "large",
   },
 };
 
 export const WithIcons = {
   args: {
     tags: [
-      { label: 'Frontend', icon: CodeBracketIcon },
-      { label: 'Backend', icon: CpuChipIcon },
-      { label: 'Cloud', icon: CloudIcon },
-      { label: 'Security', icon: LockClosedIcon },
+      { label: "Frontend", icon: CodeBracketIcon },
+      { label: "Backend", icon: CpuChipIcon },
+      { label: "Cloud", icon: CloudIcon },
+      { label: "Security", icon: LockClosedIcon },
     ],
   },
 };
@@ -46,23 +46,23 @@ export const WithIcons = {
 export const WithAnimatedIcons = {
   args: {
     tags: [
-      { label: 'Vue.js', icon: CodeBracketIcon, iconAnimation: 'wiggle' },
-      { label: 'React', icon: CodeBracketIcon, iconAnimation: 'scale' },
-      { label: 'Angular', icon: CodeBracketIcon, iconAnimation: 'rotate' },
+      { label: "Vue.js", icon: CodeBracketIcon, iconAnimation: "wiggle" },
+      { label: "React", icon: CodeBracketIcon, iconAnimation: "scale" },
+      { label: "Angular", icon: CodeBracketIcon, iconAnimation: "rotate" },
     ],
-    variant: 'large',
+    variant: "large",
   },
 };
 
 export const Colored = {
   args: {
     tags: [
-      { label: 'Default', color: 'default' },
-      { label: 'Primary', color: 'primary' },
-      { label: 'Success', color: 'success' },
-      { label: 'Warning', color: 'warning' },
-      { label: 'Danger', color: 'danger' },
-      { label: 'Info', color: 'info' },
+      { label: "Default", color: "default" },
+      { label: "Primary", color: "primary" },
+      { label: "Success", color: "success" },
+      { label: "Warning", color: "warning" },
+      { label: "Danger", color: "danger" },
+      { label: "Info", color: "info" },
     ],
   },
 };
@@ -70,12 +70,12 @@ export const Colored = {
 export const ColoredWithIcons = {
   args: {
     tags: [
-      { label: 'Verified', icon: CheckBadgeIcon, color: 'success' },
-      { label: 'Warning', icon: ExclamationTriangleIcon, color: 'warning' },
-      { label: 'Critical', icon: FireIcon, color: 'danger' },
-      { label: 'Info', icon: SparklesIcon, color: 'info' },
+      { label: "Verified", icon: CheckBadgeIcon, color: "success" },
+      { label: "Warning", icon: ExclamationTriangleIcon, color: "warning" },
+      { label: "Critical", icon: FireIcon, color: "danger" },
+      { label: "Info", icon: SparklesIcon, color: "info" },
     ],
-    variant: 'large',
+    variant: "large",
   },
 };
 
@@ -83,12 +83,12 @@ export const Closable = {
   render: () => ({
     components: { DXTags },
     setup() {
-      const tags = ref(['Vue.js', 'React', 'Angular', 'TypeScript', 'Node.js']);
-      
+      const tags = ref(["Vue.js", "React", "Angular", "TypeScript", "Node.js"]);
+
       const handleRemove = ({ index }) => {
         tags.value.splice(index, 1);
       };
-      
+
       return { tags, handleRemove };
     },
     template: `
@@ -107,16 +107,16 @@ export const ClosableWithIcons = {
     components: { DXTags },
     setup() {
       const tags = ref([
-        { label: 'Frontend', icon: CodeBracketIcon },
-        { label: 'Backend', icon: CpuChipIcon },
-        { label: 'Cloud', icon: CloudIcon },
-        { label: 'Security', icon: LockClosedIcon },
+        { label: "Frontend", icon: CodeBracketIcon },
+        { label: "Backend", icon: CpuChipIcon },
+        { label: "Cloud", icon: CloudIcon },
+        { label: "Security", icon: LockClosedIcon },
       ]);
-      
+
       const handleRemove = ({ index }) => {
         tags.value.splice(index, 1);
       };
-      
+
       return { tags, handleRemove };
     },
     template: `
@@ -128,12 +128,27 @@ export const ClosableWithIcons = {
 export const MixedStyles = {
   args: {
     tags: [
-      { label: 'Active', icon: CheckBadgeIcon, color: 'success', closable: false },
-      { label: 'Pending', icon: SparklesIcon, color: 'warning', closable: true },
-      { label: 'Featured', icon: RocketLaunchIcon, color: 'primary', iconAnimation: 'wiggle' },
-      { label: 'Hot', icon: FireIcon, color: 'danger', iconAnimation: 'scale' },
+      {
+        label: "Active",
+        icon: CheckBadgeIcon,
+        color: "success",
+        closable: false,
+      },
+      {
+        label: "Pending",
+        icon: SparklesIcon,
+        color: "warning",
+        closable: true,
+      },
+      {
+        label: "Featured",
+        icon: RocketLaunchIcon,
+        color: "primary",
+        iconAnimation: "wiggle",
+      },
+      { label: "Hot", icon: FireIcon, color: "danger", iconAnimation: "scale" },
     ],
-    variant: 'large',
+    variant: "large",
   },
 };
 
@@ -141,26 +156,26 @@ export const AllVariants = {
   render: () => ({
     components: { DXTags },
     setup() {
-      const simpleTags = ref(['Vue', 'React', 'Angular']);
+      const simpleTags = ref(["Vue", "React", "Angular"]);
       const iconTags = [
-        { label: 'Frontend', icon: CodeBracketIcon },
-        { label: 'Backend', icon: CpuChipIcon },
+        { label: "Frontend", icon: CodeBracketIcon },
+        { label: "Backend", icon: CpuChipIcon },
       ];
       const coloredTags = [
-        { label: 'Success', color: 'success' },
-        { label: 'Warning', color: 'warning' },
-        { label: 'Danger', color: 'danger' },
+        { label: "Success", color: "success" },
+        { label: "Warning", color: "warning" },
+        { label: "Danger", color: "danger" },
       ];
       const closableTags = ref([
-        { label: 'Tag 1', icon: TagIcon },
-        { label: 'Tag 2', icon: TagIcon },
-        { label: 'Tag 3', icon: TagIcon },
+        { label: "Tag 1", icon: TagIcon },
+        { label: "Tag 2", icon: TagIcon },
+        { label: "Tag 3", icon: TagIcon },
       ]);
-      
+
       const handleRemove = ({ index }) => {
         closableTags.value.splice(index, 1);
       };
-      
+
       return { simpleTags, iconTags, coloredTags, closableTags, handleRemove };
     },
     template: `
@@ -189,4 +204,3 @@ export const AllVariants = {
     `,
   }),
 };
-

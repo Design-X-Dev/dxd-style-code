@@ -38,9 +38,11 @@
 
 <script setup>
 import { computed } from "vue";
-import DXIcon from "../v2/DXIcon/DXIcon.vue";
-import { XMarkIcon } from "@heroicons/vue/24/solid";
+import { useSize } from "@/composables/useSize";
 import { useVariantTag } from "@/composables/useVariant";
+import { useClassComposition } from "@/composables/useClassComposition";
+import { XMarkIcon } from "@heroicons/vue/24/solid";
+import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** Массив тегов: строки или объекты { label, icon?, closable?, color?, iconAnimation? } */
@@ -55,7 +57,9 @@ const props = defineProps({
 
 const emit = defineEmits(["remove"]);
 
-// Нормализация тегов: строки преобразуются в объекты
+/**
+ * Нормализация тегов: строки преобразуются в объекты
+ */
 const normalizedTags = computed(() => {
   return props.tags.map(tag => {
     if (typeof tag === "string") {
@@ -77,20 +81,29 @@ const normalizedTags = computed(() => {
   });
 });
 
+/**
+ * Получить ключ для тега
+ */
 const getTagKey = (tag, index) => {
   return `${tag.label}-${index}`;
 };
 
+/**
+ * Получить классы для тега
+ */
 const getTagClasses = (tag) => {
-  const sizeClasses = props.variant === 'large' 
-    ? 'px-3 py-1.5 text-sm'
-    : 'px-2 py-1 text-xs';
+  const tagSize = props.variant === 'large' ? 'md' : 'sm';
   
-  const colors = useVariantTag(tag.color);
-  
-  return `${sizeClasses} ${colors} rounded-full border`;
+  return useClassComposition(
+    'rounded-full border',
+    useSize(tagSize, 'badge'),
+    useVariantTag(tag.color)
+  );
 };
 
+/**
+ * Обработчик удаления тега
+ */
 const handleRemove = (tag, index) => {
   emit("remove", { tag, index });
 };

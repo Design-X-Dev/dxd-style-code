@@ -57,6 +57,17 @@ export const Disabled = {
   }),
 };
 
+export const WithError = {
+  render: () => ({
+    components: { DXTextarea },
+    setup() {
+      const value = ref('Invalid content');
+      return { value };
+    },
+    template: '<DXTextarea v-model="value" label="Description" error="This field is required" />',
+  }),
+};
+
 // С иконками
 export const WithPrefixIcon = {
   render: () => ({
@@ -71,6 +82,45 @@ export const WithPrefixIcon = {
         label="Message"
         placeholder="Write your message..."
         :prefix-icon="ChatBubbleLeftIcon"
+        :rows="4"
+      />
+    `,
+  }),
+};
+
+export const WithSuffixIcon = {
+  render: () => ({
+    components: { DXTextarea },
+    setup() {
+      const note = ref('');
+      return { note, StarIcon };
+    },
+    template: `
+      <DXTextarea
+        v-model="note"
+        label="Note"
+        placeholder="Add a note..."
+        :suffix-icon="StarIcon"
+        :rows="3"
+      />
+    `,
+  }),
+};
+
+export const WithBothIcons = {
+  render: () => ({
+    components: { DXTextarea },
+    setup() {
+      const text = ref('');
+      return { text, ChatBubbleLeftIcon, StarIcon };
+    },
+    template: `
+      <DXTextarea
+        v-model="text"
+        label="Message with Icons"
+        placeholder="Type your message..."
+        :prefix-icon="ChatBubbleLeftIcon"
+        :suffix-icon="StarIcon"
         :rows="4"
       />
     `,

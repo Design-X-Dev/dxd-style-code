@@ -1,5 +1,5 @@
-import DXToggleButton from './DXToggleButton.vue';
-import { ref } from 'vue';
+import DXToggleButton from "./DXToggleButton.vue";
+import { ref } from "vue";
 import {
   HeartIcon as HeartOutline,
   BookmarkIcon as BookmarkOutline,
@@ -11,7 +11,7 @@ import {
   SpeakerWaveIcon,
   PlayIcon,
   LightBulbIcon,
-} from '@heroicons/vue/24/outline';
+} from "@heroicons/vue/24/outline";
 import {
   HeartIcon as HeartSolid,
   BookmarkIcon as BookmarkSolid,
@@ -22,28 +22,28 @@ import {
   MoonIcon,
   SpeakerXMarkIcon,
   PauseIcon,
-} from '@heroicons/vue/24/solid';
+} from "@heroicons/vue/24/solid";
 
 export default {
-  title: 'Atoms/v1/DXToggleButton',
+  title: "Atoms/DXToggleButton",
   component: DXToggleButton,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
+      control: "select",
+      options: ["sm", "md", "lg"],
     },
     iconAnimation: {
-      control: 'select',
-      options: ['none', 'wiggle', 'scale', 'rotate'],
+      control: "select",
+      options: ["none", "wiggle", "scale", "rotate"],
     },
     activeVariant: {
-      control: 'select',
-      options: ['primary', 'ghost', 'danger', 'success', 'warning', 'outline'],
+      control: "select",
+      options: ["primary", "ghost", "danger", "success", "warning", "outline"],
     },
     inactiveVariant: {
-      control: 'select',
-      options: ['primary', 'ghost', 'danger', 'success', 'warning', 'outline'],
+      control: "select",
+      options: ["primary", "ghost", "danger", "success", "warning", "outline"],
     },
   },
 };
@@ -387,14 +387,20 @@ export const InteractiveDemo = {
     setup() {
       const favorites = ref([false, false, false, false]);
       const totalLikes = ref(42);
-      
+
       const toggleFavorite = (index) => {
         const wasActive = favorites.value[index];
         favorites.value[index] = !favorites.value[index];
         totalLikes.value += wasActive ? -1 : 1;
       };
-      
-      return { favorites, totalLikes, toggleFavorite, HeartOutline, HeartSolid };
+
+      return {
+        favorites,
+        totalLikes,
+        toggleFavorite,
+        HeartOutline,
+        HeartSolid,
+      };
     },
     template: `
       <div class="p-6 bg-slate-50 rounded-xl space-y-4">
@@ -432,14 +438,23 @@ export const AllVariants = {
       const star = ref(true);
       const bell = ref(true);
       const visible = ref(true);
-      
-      return { 
-        like, bookmark, star, bell, visible,
-        HeartOutline, HeartSolid,
-        BookmarkOutline, BookmarkSolid,
-        StarOutline, StarSolid,
-        BellOutline, BellSolid,
-        EyeOutline, EyeSlashIcon,
+
+      return {
+        like,
+        bookmark,
+        star,
+        bell,
+        visible,
+        HeartOutline,
+        HeartSolid,
+        BookmarkOutline,
+        BookmarkSolid,
+        StarOutline,
+        StarSolid,
+        BellOutline,
+        BellSolid,
+        EyeOutline,
+        EyeSlashIcon,
       };
     },
     template: `
@@ -496,4 +511,3 @@ export const AllVariants = {
     `,
   }),
 };
-

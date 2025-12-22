@@ -46,7 +46,7 @@
 
 <script setup>
 import { computed } from "vue";
-import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
+import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 import { PencilIcon, TrashIcon, EyeIcon } from "@heroicons/vue/24/outline";
 
 const props = defineProps({
@@ -65,11 +65,11 @@ const props = defineProps({
   deleteLabel: { type: String, default: "Удалить" },
   
   /** Иконка для кнопки просмотра */
-  viewIcon: { type: Object, default: () => EyeIcon },
+  viewIcon: { type: [Object, Function], default: () => EyeIcon },
   /** Иконка для кнопки редактирования */
-  editIcon: { type: Object, default: () => PencilIcon },
+  editIcon: { type: [Object, Function], default: () => PencilIcon },
   /** Иконка для кнопки удаления */
-  deleteIcon: { type: Object, default: () => TrashIcon },
+  deleteIcon: { type: [Object, Function], default: () => TrashIcon },
   
   /** Размер кнопок: xs | sm | md */
   size: { type: String, default: "sm" },

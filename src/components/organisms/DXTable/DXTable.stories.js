@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import DXTable from './DXTable.vue';
-import DXButton from '../../atoms/v2/DXButton/DXButton.vue';
-import DXBadge from '../../atoms/v2/DXBadge/DXBadge.vue';
+import DXButton from '../../atoms/DXButton/DXButton.vue';
+import DXBadge from '../../atoms/DXBadge/DXBadge.vue';
 
 export default {
   title: 'Organisms/DXTable',

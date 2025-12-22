@@ -62,7 +62,7 @@ defineProps({
   value: { type: [String, Number, Boolean], required: true },
   title: { type: String, required: true },
   description: { type: String, default: "" },
-  icon: { type: Object, default: null },
+  icon: { type: [Object, Function], default: null },
   disabled: { type: Boolean, default: false },
 });
 

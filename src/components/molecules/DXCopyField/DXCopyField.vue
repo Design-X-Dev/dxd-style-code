@@ -34,7 +34,7 @@
 
 <script setup>
 import { ref } from "vue";
-import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
+import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 import { ClipboardDocumentIcon, ClipboardDocumentCheckIcon, CheckIcon } from "@heroicons/vue/24/outline";
 
 const props = defineProps({
@@ -43,9 +43,9 @@ const props = defineProps({
   /** Значение для копирования */
   value: { type: String, default: "" },
   /** Иконка для копирования */
-  copyIcon: { type: Object, default: () => ClipboardDocumentIcon },
+  copyIcon: { type: [Object, Function], default: () => ClipboardDocumentIcon },
   /** Иконка успешного копирования */
-  successIcon: { type: Object, default: () => ClipboardDocumentCheckIcon },
+  successIcon: { type: [Object, Function], default: () => ClipboardDocumentCheckIcon },
   /** Анимация иконки копирования: none | wiggle | scale | rotate */
   copyIconAnimation: { type: String, default: "scale" },
   /** Анимация иконки успеха: none | wiggle | scale | rotate */

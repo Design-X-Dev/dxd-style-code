@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import DXDivider from '../../atoms/v2/DXDivider/DXDivider.vue';
+import DXDivider from '../../atoms/DXDivider/DXDivider.vue';
 
 const props = defineProps({
   /** Цвет разделителя: light | default | dark */

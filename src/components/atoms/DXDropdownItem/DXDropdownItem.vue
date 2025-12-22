@@ -36,13 +36,16 @@
 
 <script setup>
 import { inject, computed } from "vue";
+import { useSize } from "@/composables/useSize";
+import { useVariantDropdownItem } from "@/composables/useVariant";
+import { useClassComposition } from "@/composables/useClassComposition";
 import { ChevronRightIcon } from "@heroicons/vue/24/outline";
-import DXIcon from "../v2/DXIcon/DXIcon.vue";
-import DXBadge from "../v2/DXBadge/DXBadge.vue";
+import DXIcon from "../DXIcon/DXIcon.vue";
+import DXBadge from "../DXBadge/DXBadge.vue";
 
 const props = defineProps({
   /** Иконка (Heroicon компонент) */
-  icon: { type: Object, default: null },
+  icon: { type: [Object, Function], default: null },
   /** Вариант: default | danger | success */
   variant: { 
     type: String, 
@@ -79,26 +82,28 @@ const dropdown = inject("dropdown", null);
 
 const BASE_CLASSES = "w-full flex items-center gap-3 rounded-lg transition-colors";
 
-const VARIANT_CLASSES = {
-  default: "text-slate-700 hover:bg-slate-50",
-  danger: "text-rose-600 hover:bg-rose-50",
-  success: "text-emerald-600 hover:bg-emerald-50",
-};
+/**
+ * Все классы для dropdown item
+ */
+const allClasses = computed(() => 
+  useClassComposition(
+    BASE_CLASSES,
+    useVariantDropdownItem(props.variant),
+    useSize(props.size, 'button'),
+    {
+      'opacity-60 cursor-not-allowed': props.disabled,
+    }
+  )
+);
 
-const SIZE_CLASSES = {
-  sm: "px-3 py-1.5 text-xs",
-  md: "px-4 py-2 text-sm",
-};
-
-const allClasses = computed(() => [
-  BASE_CLASSES,
-  VARIANT_CLASSES[props.variant] || VARIANT_CLASSES.default,
-  SIZE_CLASSES[props.size] || SIZE_CLASSES.md,
-  props.disabled && "opacity-60 cursor-not-allowed",
-]);
-
+/**
+ * Размер иконки в зависимости от размера item
+ */
 const iconSize = computed(() => props.size === 'sm' ? 'xs' : 'sm');
 
+/**
+ * Обработчик клика
+ */
 const handleClick = (event) => {
   if (props.disabled) return;
   

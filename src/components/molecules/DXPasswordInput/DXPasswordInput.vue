@@ -34,8 +34,8 @@
 import { ref, computed } from "vue";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/vue/24/outline";
 import { useClassComposition } from "@/composables/useClassComposition";
-import DXFormLabel from "../../atoms/v2/DXFormLabel/DXFormLabel.vue";
-import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
+import DXFormLabel from "../../atoms/DXFormLabel/DXFormLabel.vue";
+import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** Значение (v-model) */

@@ -50,7 +50,7 @@ import { ref, computed } from "vue";
 import { ChevronDownIcon } from "@heroicons/vue/24/outline";
 import { useTransition } from "@/composables/useAnimation";
 import { useClassComposition } from "@/composables/useClassComposition";
-import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
+import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 
 const collapseTransition = useTransition('collapse');
 

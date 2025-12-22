@@ -42,9 +42,9 @@ import { computed, inject, onMounted, onUnmounted } from "vue";
 import { useSize } from "@/composables/useSize";
 import { useClassComposition } from "@/composables/useClassComposition";
 import { ChevronDownIcon } from "@heroicons/vue/24/outline";
-import DXFormLabel from "../../atoms/v2/DXFormLabel/DXFormLabel.vue";
-import DXIconWrapper from "../../atoms/v2/DXIconWrapper/DXIconWrapper.vue";
-import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
+import DXFormLabel from "../../atoms/DXFormLabel/DXFormLabel.vue";
+import DXIconWrapper from "../../atoms/DXIconWrapper/DXIconWrapper.vue";
+import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 
 const inputGroup = inject("inputGroup", null);
 
@@ -87,7 +87,7 @@ const props = defineProps({
   /** Вспомогательный текст */
   helper: { type: String, default: "" },
   /** Иконка слева (Heroicon компонент) */
-  prefixIcon: { type: Object, default: null },
+  prefixIcon: { type: [Object, Function], default: null },
   /** Отключенное состояние */
   disabled: { type: Boolean, default: false },
   /** Размер: sm | md | lg */

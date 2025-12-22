@@ -18,7 +18,7 @@ import {
   ExclamationTriangleIcon,
   InformationCircleIcon,
 } from "@heroicons/vue/24/solid";
-import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
+import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** Состояние: success | error | warning | info */

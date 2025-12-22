@@ -1,5 +1,5 @@
 import DXInputGroup from './DXInputGroup.vue';
-import DXInputAddon from '../../atoms/v2/DXInputAddon/DXInputAddon.vue';
+import DXInputAddon from '../../atoms/DXInputAddon/DXInputAddon.vue';
 import DXInput from '../DXInput/DXInput.vue';
 import DXSelect from '../DXSelect/DXSelect.vue';
 import DXTextarea from '../DXTextarea/DXTextarea.vue';

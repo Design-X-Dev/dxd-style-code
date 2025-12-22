@@ -31,7 +31,7 @@
 
 <script setup>
 import { computed } from "vue";
-import DXRadio from "../../atoms/v2/DXRadio/DXRadio.vue";
+import DXRadio from "../../atoms/DXRadio/DXRadio.vue";
 
 const props = defineProps({
   /** Текущее значение (v-model) */

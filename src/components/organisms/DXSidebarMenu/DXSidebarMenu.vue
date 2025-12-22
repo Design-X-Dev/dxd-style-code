@@ -89,8 +89,8 @@ import {
 import { useMenu } from '@/composables/useMenu';
 import DXSidebarMenuItem from './DXSidebarMenuItem.vue';
 import DXInput from '../../molecules/DXInput/DXInput.vue';
-import DXIcon from '../../atoms/v2/DXIcon/DXIcon.vue';
-import DXDivider from '../../atoms/v2/DXDivider/DXDivider.vue';
+import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
+import DXDivider from '../../atoms/DXDivider/DXDivider.vue';
 
 const $slots = useSlots();
 

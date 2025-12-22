@@ -252,12 +252,12 @@ import {
 } from '@heroicons/vue/24/outline';
 
 // Components
-import DXIcon from '../../atoms/v2/DXIcon/DXIcon.vue';
-import DXCheckbox from '../../atoms/v2/DXCheckbox/DXCheckbox.vue';
+import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
+import DXCheckbox from '../../atoms/DXCheckbox/DXCheckbox.vue';
 import DXDropdown from '../../organisms/DXDropdown/DXDropdown.vue';
 import DXDropdownItem from '../../atoms/DXDropdownItem/DXDropdownItem.vue';
 import DXDropdownDivider from '../DXDropdownDivider/DXDropdownDivider.vue';
-import DXLoader from '../../atoms/v2/DXLoader/DXLoader.vue';
+import DXLoader from '../../atoms/DXLoader/DXLoader.vue';
 import DXSearchSelect from '../../molecules/DXSearchSelect/DXSearchSelect.vue';
 
 const props = defineProps({

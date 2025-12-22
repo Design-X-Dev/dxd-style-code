@@ -15,7 +15,7 @@
 <script setup>
 import { computed } from "vue";
 import { useVariantConfig } from "@/composables/useVariant";
-import DXIcon from "../v2/DXIcon/DXIcon.vue";
+import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({
   /** Вариант: info | success | warning | danger */

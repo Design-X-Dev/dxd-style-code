@@ -26,6 +26,9 @@ export {
   useTooltipPosition,
   useTooltipArrow,
   useVariantToggle,
+  useVariantBadge,
+  useVariantButton,
+  useVariantDropdownItem,
   VARIANT_CONFIGS 
 } from './composables/useVariant';
 export { useClassComposition } from './composables/useClassComposition';

@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import DXModal from './DXModal.vue';
-import DXButton from '../../atoms/v2/DXButton/DXButton.vue';
+import DXButton from '../../atoms/DXButton/DXButton.vue';
 
 export default {
   title: 'Organisms/DXModal',

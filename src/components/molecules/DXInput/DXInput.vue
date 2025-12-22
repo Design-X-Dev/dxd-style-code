@@ -44,8 +44,8 @@
 import { computed, useSlots, inject, onMounted, onUnmounted } from "vue";
 import { useSize } from "@/composables/useSize";
 import { useClassComposition } from "@/composables/useClassComposition";
-import DXFormLabel from "../../atoms/v2/DXFormLabel/DXFormLabel.vue";
-import DXIconWrapper from "../../atoms/v2/DXIconWrapper/DXIconWrapper.vue";
+import DXFormLabel from "../../atoms/DXFormLabel/DXFormLabel.vue";
+import DXIconWrapper from "../../atoms/DXIconWrapper/DXIconWrapper.vue";
 
 const slots = useSlots();
 const inputGroup = inject("inputGroup", null);
@@ -95,9 +95,9 @@ const props = defineProps({
   /** Дополнительные классы */
   inputClass: { type: [String, Array, Object], default: "" },
   /** Иконка слева (Heroicon компонент) */
-  prefixIcon: { type: Object, default: null },
+  prefixIcon: { type: [Object, Function], default: null },
   /** Иконка справа (Heroicon компонент) */
-  suffixIcon: { type: Object, default: null },
+  suffixIcon: { type: [Object, Function], default: null },
 });
 
 defineEmits(["update:modelValue"]);

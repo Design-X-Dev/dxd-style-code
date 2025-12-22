@@ -1,7 +1,7 @@
 /**
  * Композабл для унификации размеров компонентов
  * @param {string} size - xs | sm | md | lg | xl (для spacing также доступен none)
- * @param {string} type - button | buttonIcon | input | icon | text | checkbox | radio | avatar | spacing | loader | progress | inputAddon | sliderTrack | sliderThumb | tooltip | toggle
+ * @param {string} type - button | buttonIcon | input | icon | text | checkbox | radio | avatar | spacing | loader | progress | inputAddon | sliderTrack | sliderThumb | tooltip | toggle | badge
  * @returns {string|Object} Tailwind CSS классы или объект с классами для track и thumb (для toggle)
  */
 export function useSize(size, type = 'input') {
@@ -117,6 +117,10 @@ export function useSize(size, type = 'input') {
       md: { track: 'h-6 w-11', thumb: 'h-4 w-4' },
       lg: { track: 'h-7 w-14', thumb: 'h-5 w-5' },
       xl: { track: 'h-8 w-16', thumb: 'h-6 w-6' },
+    },
+    badge: {
+      sm: 'px-2 py-1 text-[11px]',
+      md: 'px-2.5 py-1.5 text-xs',
     },
   };
   

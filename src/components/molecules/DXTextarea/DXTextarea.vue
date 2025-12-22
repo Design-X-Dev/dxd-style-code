@@ -25,7 +25,7 @@
         :placeholder="placeholder"
         :value="modelValue"
         :disabled="disabled"
-        :maxlength="maxLength"
+        :maxlength="maxLength > 0 ? maxLength : null"
         :class="textareaClasses"
         @input="handleInput"
       />
@@ -44,8 +44,8 @@
 <script setup>
 import { computed, ref, watch, inject, onMounted, onUnmounted } from "vue";
 import { useClassComposition } from "@/composables/useClassComposition";
-import DXFormLabel from "../../atoms/v2/DXFormLabel/DXFormLabel.vue";
-import DXIconWrapper from "../../atoms/v2/DXIconWrapper/DXIconWrapper.vue";
+import DXFormLabel from "../../atoms/DXFormLabel/DXFormLabel.vue";
+import DXIconWrapper from "../../atoms/DXIconWrapper/DXIconWrapper.vue";
 
 const inputGroup = inject("inputGroup", null);
 
@@ -90,9 +90,9 @@ const props = defineProps({
   /** Вспомогательный текст */
   helper: { type: String, default: "" },
   /** Иконка слева (в верхнем левом углу) */
-  prefixIcon: { type: Object, default: null },
+  prefixIcon: { type: [Object, Function], default: null },
   /** Иконка справа (в верхнем правом углу) */
-  suffixIcon: { type: Object, default: null },
+  suffixIcon: { type: [Object, Function], default: null },
   /** Максимальная длина */
   maxLength: { type: Number, default: 0 },
   /** Показывать счетчик символов */
@@ -121,7 +121,7 @@ watch(() => props.modelValue, (newValue) => {
   currentLength.value = newValue?.length || 0;
 });
 
-const BASE_CLASSES = "w-full border border-slate-200 px-4 py-3 text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-colors";
+const BASE_CLASSES = "w-full border border-slate-200 px-4 py-3 text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-colors resize-y";
 
 // Адаптивные отступы для иконок
 const getPaddingClasses = (hasIcon, position) => {
@@ -148,10 +148,10 @@ const textareaClasses = computed(() =>
     `${BASE_CLASSES} ${getBorderRadiusClasses()}`,
     {
       'opacity-60 cursor-not-allowed bg-slate-50': props.disabled,
-      [getPaddingClasses(props.prefixIcon, 'left')]: true,
-      [getPaddingClasses(props.suffixIcon, 'right')]: true,
       'border-rose-300 focus:ring-rose-500/10': props.error,
-    }
+    },
+    getPaddingClasses(props.prefixIcon, 'left'),
+    getPaddingClasses(props.suffixIcon, 'right')
   )
 );
 </script>

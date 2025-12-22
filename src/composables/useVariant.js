@@ -641,3 +641,60 @@ export function useVariantToggle(color, checked = false) {
   };
 }
 
+/**
+ * Возвращает классы для badge
+ * @param {string} variant - slate | success | warning | danger | info
+ * @returns {string} Tailwind CSS классы
+ */
+export function useVariantBadge(variant) {
+  const badgeClasses = {
+    slate: "bg-slate-50 text-slate-700 border-slate-100",
+    success: "bg-emerald-50 text-emerald-700 border-emerald-100",
+    warning: "bg-amber-50 text-amber-700 border-amber-100",
+    danger: "bg-rose-50 text-rose-700 border-rose-100",
+    info: "bg-blue-50 text-blue-700 border-blue-100",
+  };
+  
+  return badgeClasses[variant] || badgeClasses.slate;
+}
+
+/**
+ * Возвращает классы для button
+ * @param {string} variant - primary | secondary | ghost | outline | success | warning | danger | info | link | soft
+ * @returns {string} Tailwind CSS классы
+ */
+export function useVariantButton(variant) {
+  const buttonClasses = {
+    // Основные варианты
+    primary: "bg-slate-800 text-white hover:bg-slate-700",
+    secondary: "bg-slate-200 text-slate-700 hover:bg-slate-300",
+    ghost: "text-slate-700 hover:bg-slate-100 bg-transparent",
+    outline: "border border-slate-200 text-slate-700 hover:border-slate-300 bg-white",
+    // Семантические варианты
+    success: "bg-emerald-600 text-white hover:bg-emerald-500",
+    warning: "bg-amber-600 text-white hover:bg-amber-500",
+    danger: "bg-rose-600 text-white hover:bg-rose-500",
+    info: "bg-blue-600 text-white hover:bg-blue-500",
+    // Дополнительные варианты
+    link: "text-blue-600 hover:text-blue-700 underline-offset-2 hover:underline bg-transparent",
+    soft: "bg-slate-50 text-slate-700 hover:bg-slate-100",
+  };
+  
+  return buttonClasses[variant] || buttonClasses.primary;
+}
+
+/**
+ * Возвращает классы для dropdown item
+ * @param {string} variant - default | danger | success
+ * @returns {string} Tailwind CSS классы
+ */
+export function useVariantDropdownItem(variant) {
+  const dropdownItemClasses = {
+    default: "text-slate-700 hover:bg-slate-50",
+    danger: "text-rose-600 hover:bg-rose-50",
+    success: "text-emerald-600 hover:bg-emerald-50",
+  };
+  
+  return dropdownItemClasses[variant] || dropdownItemClasses.default;
+}
+

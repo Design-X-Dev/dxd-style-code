@@ -17,7 +17,7 @@
 <script setup>
 defineProps({
   /** Иконка (компонент) */
-  icon: { type: Object, required: true },
+  icon: { type: [Object, Function], required: true },
   /** Заголовок */
   title: { type: String, required: true },
   /** Описание */

@@ -35,8 +35,8 @@ import {
   ExclamationTriangleIcon,
   XCircleIcon,
 } from "@heroicons/vue/24/solid";
-import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
-import DXCloseButton from "../DXCloseButton";
+import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXCloseButton from "../DXCloseButton/DXCloseButton.vue";
 
 const props = defineProps({
   /** Вариант: info | success | warning | danger */
@@ -44,7 +44,7 @@ const props = defineProps({
   /** Заголовок */
   title: { type: String, default: "" },
   /** Иконка (компонент), если null - используется иконка по умолчанию для variant */
-  icon: { type: Object, default: undefined },
+  icon: { type: [Object, Function], default: undefined },
   /** Показывать иконку */
   showIcon: { type: Boolean, default: true },
   /** Можно закрыть */

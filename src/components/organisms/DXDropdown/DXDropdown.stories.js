@@ -1,11 +1,11 @@
 import DXDropdown from './DXDropdown.vue';
 import DXDropdownItem from '../../atoms/DXDropdownItem/DXDropdownItem.vue';
 import DXDropdownDivider from '../../molecules/DXDropdownDivider/DXDropdownDivider.vue';
-import DXAvatar from '../../atoms/v2/DXAvatar/DXAvatar.vue';
-import DXBadge from '../../atoms/v2/DXBadge/DXBadge.vue';
-import DXButton from '../../atoms/v2/DXButton/DXButton.vue';
+import DXAvatar from '../../atoms/DXAvatar/DXAvatar.vue';
+import DXBadge from '../../atoms/DXBadge/DXBadge.vue';
+import DXButton from '../../atoms/DXButton/DXButton.vue';
 import DXInput from '../../molecules/DXInput/DXInput.vue';
-import DXIcon from '../../atoms/v2/DXIcon/DXIcon.vue';
+import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
 import { 
   UserIcon, 
   CogIcon, 

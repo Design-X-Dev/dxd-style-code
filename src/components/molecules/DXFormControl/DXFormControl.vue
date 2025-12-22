@@ -41,7 +41,7 @@
 
 <script setup>
 import { computed } from "vue";
-import DXIcon from "../../atoms/v2/DXIcon/DXIcon.vue";
+import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 import DXValidationIcon from "../DXValidationIcon/DXValidationIcon.vue";
 
 const props = defineProps({
@@ -56,7 +56,7 @@ const props = defineProps({
   /** Состояние валидации: success | error | '' */
   validationState: { type: String, default: "" },
   /** Иконка-префикс */
-  prefixIcon: { type: Object, default: null },
+  prefixIcon: { type: [Object, Function], default: null },
   /** Максимальная длина */
   maxLength: { type: Number, default: 0 },
   /** Текущая длина */
