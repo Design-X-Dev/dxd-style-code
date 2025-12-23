@@ -115,12 +115,6 @@ DXFormWizard предоставляет структуру для создани
   },
 };
 
-const defaultSteps = [
-  { id: 1, title: 'Личная информация', description: 'Основные данные' },
-  { id: 2, title: 'Работа', description: 'Профессиональная информация' },
-  { id: 3, title: 'Дополнительно', description: 'Дополнительные сведения' },
-];
-
 export const Default = {
   args: {
     currentStep: 0,

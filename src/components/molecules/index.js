@@ -9,6 +9,7 @@ export { default as DXBreadcrumb } from './DXBreadcrumb';
 export { default as DXButtonGroup } from './DXButtonGroup';
 export { default as DXComboBox } from './DXComboBox';
 export { default as DXCopyField } from './DXCopyField';
+export { default as DXDataFilter } from './DXDataFilter';
 export { default as DXDatePicker } from './DXDatePicker';
 export { default as DXFileUpload } from './DXFileUpload';
 export { default as DXFilterGroup } from './DXFilterGroup';

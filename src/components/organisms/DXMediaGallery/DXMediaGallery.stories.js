@@ -149,51 +149,6 @@ DXMediaGallery предоставляет компонент для отобра
   },
 };
 
-const defaultItems = [
-  {
-    id: 1,
-    src: 'https://via.placeholder.com/800x600',
-    thumbnail: 'https://via.placeholder.com/300x300',
-    title: 'Изображение 1',
-    type: 'image',
-  },
-  {
-    id: 2,
-    src: 'https://via.placeholder.com/800x600/0066CC',
-    thumbnail: 'https://via.placeholder.com/300x300/0066CC',
-    title: 'Изображение 2',
-    type: 'image',
-  },
-  {
-    id: 3,
-    src: 'https://via.placeholder.com/800x600/CC6600',
-    thumbnail: 'https://via.placeholder.com/300x300/CC6600',
-    title: 'Изображение 3',
-    type: 'image',
-  },
-  {
-    id: 4,
-    src: 'https://via.placeholder.com/800x600/00CC66',
-    thumbnail: 'https://via.placeholder.com/300x300/00CC66',
-    title: 'Изображение 4',
-    type: 'image',
-  },
-  {
-    id: 5,
-    src: 'https://via.placeholder.com/800x600/CC0066',
-    thumbnail: 'https://via.placeholder.com/300x300/CC0066',
-    title: 'Изображение 5',
-    type: 'image',
-  },
-  {
-    id: 6,
-    src: 'https://via.placeholder.com/800x600/6600CC',
-    thumbnail: 'https://via.placeholder.com/300x300/6600CC',
-    title: 'Изображение 6',
-    type: 'image',
-  },
-];
-
 export const Default = {
   args: {
     layout: 'grid',
@@ -321,9 +276,6 @@ export const CustomColumns = {
   },
   render: () => ({
     components: { DXMediaGallery },
-    setup() {
-      return {};
-    },
     setup() {
       const defaultItems = ref([
         {
