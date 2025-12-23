@@ -29,7 +29,7 @@
 <script setup>
 import { ref, computed, watch } from "vue";
 import { UserIcon } from "@heroicons/vue/24/solid";
-import { useSize } from "@/composables/useSize";
+import { useSize } from "../../../composables/useSize";
 import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({

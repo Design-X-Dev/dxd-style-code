@@ -46,8 +46,8 @@
 
 <script setup>
 import { computed } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useVariantRadio } from "@/composables/useVariant";
+import { useSize } from "../../../composables/useSize";
+import { useVariantRadio } from "../../../composables/useVariant";
 
 const props = defineProps({
   /** Текущее значение группы (v-model) */

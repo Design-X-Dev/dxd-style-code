@@ -24,9 +24,9 @@
 
 <script setup>
 import { ref, computed, onUnmounted, useSlots } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useVariantTooltip, useTooltipArrow, useTooltipPosition } from "@/composables/useVariant";
-import { useAnimationTransition, useTooltipCustomTransition } from "@/composables/useAnimation";
+import { useSize } from "../../../composables/useSize";
+import { useVariantTooltip, useTooltipArrow, useTooltipPosition } from "../../../composables/useVariant";
+import { useAnimationTransition, useTooltipCustomTransition } from "../../../composables/useAnimation";
 
 const props = defineProps({
   /** Текст подсказки */

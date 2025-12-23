@@ -99,7 +99,7 @@
 
 <script setup>
 import { ref, computed, watch } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useClassComposition } from "../../../composables/useClassComposition";
 import DXTable from "../DXTable/DXTable.vue";
 import DXInput from "../../molecules/DXInput/DXInput.vue";
 import DXSelect from "../../molecules/DXSelect/DXSelect.vue";

@@ -147,7 +147,7 @@ import {
   ChevronRightIcon,
   MagnifyingGlassIcon
 } from '@heroicons/vue/24/outline';
-import { useMenu } from '@/composables/useMenu';
+import { useMenu } from '../../../composables/useMenu';
 import DXCard from '../../atoms/DXCard/DXCard.vue';
 import DXSidebarMenuItem from '../../organisms/DXSidebarMenu/DXSidebarMenuItem.vue';
 import DXInput from '../DXInput/DXInput.vue';

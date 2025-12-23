@@ -25,10 +25,10 @@
 
 <script setup>
 import { computed } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useVariantToggle } from "@/composables/useVariant";
-import { useAnimation } from "@/composables/useAnimation";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useSize } from "../../../composables/useSize";
+import { useVariantToggle } from "../../../composables/useVariant";
+import { useAnimation } from "../../../composables/useAnimation";
+import { useClassComposition } from "../../../composables/useClassComposition";
 
 const props = defineProps({
   /** Значение (v-model) */

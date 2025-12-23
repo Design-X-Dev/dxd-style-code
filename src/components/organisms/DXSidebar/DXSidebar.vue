@@ -35,7 +35,7 @@
 
 <script setup>
 import { computed, watch } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useClassComposition } from "../../../composables/useClassComposition";
 import DXBackdrop from "../../atoms/DXBackdrop/DXBackdrop.vue";
 
 const props = defineProps({

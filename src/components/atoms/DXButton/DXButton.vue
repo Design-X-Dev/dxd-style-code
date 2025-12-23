@@ -21,9 +21,9 @@
 
 <script setup>
 import { computed } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useVariantButton } from "@/composables/useVariant";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useSize } from "../../../composables/useSize";
+import { useVariantButton } from "../../../composables/useVariant";
+import { useClassComposition } from "../../../composables/useClassComposition";
 
 const props = defineProps({
   /** Вариант оформления: primary | secondary | ghost | outline | success | warning | danger | info | link | soft */

@@ -2,7 +2,7 @@ import { ref, inject, computed } from 'vue';
 import DXBreakpointProvider from './DXBreakpointProvider.vue';
 import DXCard from '../../atoms/DXCard/DXCard.vue';
 import DXButton from '../../atoms/DXButton/DXButton.vue';
-import DXGrid from '../../layout/DXGrid/DXGrid.vue';
+import DXGrid from '../../atoms/DXGrid/DXGrid.vue';
 
 export default {
   title: 'Utilities/DXBreakpointProvider',

@@ -14,7 +14,7 @@
 
 <script setup>
 import { computed } from "vue";
-import { useVariantConfig } from "@/composables/useVariant";
+import { useVariantConfig } from "../../../composables/useVariant";
 import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({

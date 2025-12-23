@@ -71,9 +71,9 @@
 
 <script setup>
 import { computed } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useVariantSlider } from "@/composables/useVariant";
-import { useSpacing } from "@/composables/useSpacing";
+import { useSize } from "../../../composables/useSize";
+import { useVariantSlider } from "../../../composables/useVariant";
+import { useSpacing } from "../../../composables/useSpacing";
 import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({

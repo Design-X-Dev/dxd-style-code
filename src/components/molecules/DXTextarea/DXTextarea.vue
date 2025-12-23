@@ -43,7 +43,7 @@
 
 <script setup>
 import { computed, ref, watch, inject, onMounted, onUnmounted } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useClassComposition } from "../../../composables/useClassComposition";
 import DXFormLabel from "../../atoms/DXFormLabel/DXFormLabel.vue";
 import DXIconWrapper from "../../atoms/DXIconWrapper/DXIconWrapper.vue";
 

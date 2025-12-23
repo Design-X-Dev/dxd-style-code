@@ -126,8 +126,8 @@
 
 <script setup>
 import { ref, computed, watch, onMounted } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
-import { useSpacing } from "@/composables/useSpacing";
+import { useClassComposition } from "../../../composables/useClassComposition";
+import { useSpacing } from "../../../composables/useSpacing";
 import DXProgress from "../../atoms/DXProgress/DXProgress.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";

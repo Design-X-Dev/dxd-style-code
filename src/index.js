@@ -1,13 +1,7 @@
 // DX Components - Vue 3 UI Component Library
 // Export all components
 
-// Typography
-export * from './components/typography';
-
-// Layout
-export * from './components/layout';
-
-// Atoms
+// Atoms - basic building blocks (includes typography and layout components)
 export * from './components/atoms';
 
 // Molecules

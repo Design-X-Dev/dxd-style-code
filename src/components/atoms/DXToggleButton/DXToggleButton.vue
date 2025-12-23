@@ -23,9 +23,9 @@
 
 <script setup>
 import { computed } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useVariantButton } from "@/composables/useVariant";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useSize } from "../../../composables/useSize";
+import { useVariantButton } from "../../../composables/useVariant";
+import { useClassComposition } from "../../../composables/useClassComposition";
 import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({

@@ -14,7 +14,7 @@
 
 <script setup>
 import { computed } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useClassComposition } from "../../../composables/useClassComposition";
 import {
   FADE_TRANSITION,
   FADE_SCALE_TRANSITION,
@@ -22,7 +22,7 @@ import {
   SLIDE_LEFT_TRANSITION,
   SLIDE_UP_TRANSITION,
   SLIDE_DOWN_TRANSITION,
-} from "@/composables/useAnimation";
+} from "../../../composables/useAnimation";
 
 const props = defineProps({
   /**

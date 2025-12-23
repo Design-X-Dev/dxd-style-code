@@ -126,8 +126,8 @@
 
 <script setup>
 import { ref, computed, watch } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
-import { useSpacing } from "@/composables/useSpacing";
+import { useClassComposition } from "../../../composables/useClassComposition";
+import { useSpacing } from "../../../composables/useSpacing";
 import DXInput from "../DXInput/DXInput.vue";
 import DXSelect from "../DXSelect/DXSelect.vue";
 import DXDatePicker from "../DXDatePicker/DXDatePicker.vue";

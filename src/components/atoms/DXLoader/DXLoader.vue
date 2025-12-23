@@ -14,8 +14,8 @@
 
 <script setup>
 import { computed, useSlots } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useVariantLoader } from "@/composables/useVariant";
+import { useSize } from "../../../composables/useSize";
+import { useVariantLoader } from "../../../composables/useVariant";
 
 const props = defineProps({
   /** Размер: xs | sm | md | lg | xl */

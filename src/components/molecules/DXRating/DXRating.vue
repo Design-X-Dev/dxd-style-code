@@ -51,8 +51,8 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useSize } from "../../../composables/useSize";
+import { useClassComposition } from "../../../composables/useClassComposition";
 import {
   StarIcon,
   HeartIcon,

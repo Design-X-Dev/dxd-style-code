@@ -155,8 +155,8 @@
 
 <script setup>
 import { ref, computed, watch, nextTick, onMounted } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
-import { useSpacing } from "@/composables/useSpacing";
+import { useClassComposition } from "../../../composables/useClassComposition";
+import { useSpacing } from "../../../composables/useSpacing";
 import DXAvatar from "../../atoms/DXAvatar/DXAvatar.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";

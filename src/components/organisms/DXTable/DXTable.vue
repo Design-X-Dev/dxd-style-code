@@ -86,12 +86,12 @@ import DXTablePagination from '../../molecules/DXTablePagination/DXTablePaginati
 import DXTableFiltersPanel from '../../molecules/DXTableFiltersPanel/DXTableFiltersPanel.vue';
 
 // Composables
-import { useTableData } from '@/composables/useTableData';
-import { useTableSort } from '@/composables/useTableSort';
-import { useTableFilter } from '@/composables/useTableFilter';
-import { useTablePagination } from '@/composables/useTablePagination';
-import { useTableSelection } from '@/composables/useTableSelection';
-import { useTableColumns } from '@/composables/useTableColumns';
+import { useTableData } from '../../../composables/useTableData';
+import { useTableSort } from '../../../composables/useTableSort';
+import { useTableFilter } from '../../../composables/useTableFilter';
+import { useTablePagination } from '../../../composables/useTablePagination';
+import { useTableSelection } from '../../../composables/useTableSelection';
+import { useTableColumns } from '../../../composables/useTableColumns';
 
 const props = defineProps({
   // Data

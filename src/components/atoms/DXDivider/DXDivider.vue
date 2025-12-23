@@ -24,8 +24,8 @@
 
 <script setup>
 import { computed, useSlots } from "vue";
-import { useSpacing } from "@/composables/useSpacing";
-import { useVariantDividerBorder } from "@/composables/useVariant";
+import { useSpacing } from "../../../composables/useSpacing";
+import { useVariantDividerBorder } from "../../../composables/useVariant";
 
 const props = defineProps({
   /** Ориентация: horizontal | vertical */

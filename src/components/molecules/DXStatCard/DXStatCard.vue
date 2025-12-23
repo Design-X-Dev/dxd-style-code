@@ -56,10 +56,10 @@
 
 <script setup>
 import { computed } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useSpacing } from "@/composables/useSpacing";
-import { useClassComposition } from "@/composables/useClassComposition";
-import { useVariantButton } from "@/composables/useVariant";
+import { useSize } from "../../../composables/useSize";
+import { useSpacing } from "../../../composables/useSpacing";
+import { useClassComposition } from "../../../composables/useClassComposition";
+import { useVariantButton } from "../../../composables/useVariant";
 import DXCard from "../../atoms/DXCard/DXCard.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/vue/24/outline";

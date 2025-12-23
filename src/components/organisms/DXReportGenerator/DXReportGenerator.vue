@@ -87,8 +87,8 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
-import { useSpacing } from "@/composables/useSpacing";
+import { useClassComposition } from "../../../composables/useClassComposition";
+import { useSpacing } from "../../../composables/useSpacing";
 import DXCard from "../../atoms/DXCard/DXCard.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXTable from "../DXTable/DXTable.vue";

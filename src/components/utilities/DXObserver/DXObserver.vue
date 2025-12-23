@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useClassComposition } from "../../../composables/useClassComposition";
 
 const props = defineProps({
   /**

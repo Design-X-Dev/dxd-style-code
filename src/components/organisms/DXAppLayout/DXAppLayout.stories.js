@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import DXAppLayout from './DXAppLayout.vue';
 import DXHeaderBar from '../DXHeaderBar/DXHeaderBar.vue';
 import DXSidebarMenu from '../DXSidebarMenu/DXSidebarMenu.vue';
-import DXContainer from '../../layout/DXContainer/DXContainer.vue';
+import DXContainer from '../../atoms/DXContainer/DXContainer.vue';
 import DXLink from '../../atoms/DXLink/DXLink.vue';
 import DXButton from '../../atoms/DXButton/DXButton.vue';
 import DXAvatar from '../../atoms/DXAvatar/DXAvatar.vue';

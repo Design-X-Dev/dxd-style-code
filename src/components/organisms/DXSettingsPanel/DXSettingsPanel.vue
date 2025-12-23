@@ -145,8 +145,8 @@
 
 <script setup>
 import { ref, computed, watch } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
-import { useSpacing } from "@/composables/useSpacing";
+import { useClassComposition } from "../../../composables/useClassComposition";
+import { useSpacing } from "../../../composables/useSpacing";
 import DXInput from "../../molecules/DXInput/DXInput.vue";
 import DXSelect from "../../molecules/DXSelect/DXSelect.vue";
 import DXToggle from "../../atoms/DXToggle/DXToggle.vue";

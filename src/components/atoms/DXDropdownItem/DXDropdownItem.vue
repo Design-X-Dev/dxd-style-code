@@ -36,9 +36,9 @@
 
 <script setup>
 import { inject, computed } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useVariantDropdownItem } from "@/composables/useVariant";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useSize } from "../../../composables/useSize";
+import { useVariantDropdownItem } from "../../../composables/useVariant";
+import { useClassComposition } from "../../../composables/useClassComposition";
 import { ChevronRightIcon } from "@heroicons/vue/24/outline";
 import DXIcon from "../DXIcon/DXIcon.vue";
 import DXBadge from "../DXBadge/DXBadge.vue";

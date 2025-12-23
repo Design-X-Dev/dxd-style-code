@@ -16,8 +16,8 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useClassComposition } from '@/composables/useClassComposition';
-import { useCustomDataAttributes } from '@/composables/useDataAttributes';
+import { useClassComposition } from '../../../composables/useClassComposition';
+import { useCustomDataAttributes } from '../../../composables/useDataAttributes';
 import DXIcon from '../DXIcon/DXIcon.vue';
 
 const props = defineProps({

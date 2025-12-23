@@ -67,9 +67,9 @@
 
 <script setup>
 import { computed, watch, ref, onMounted } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
-import { useSpacing } from "@/composables/useSpacing";
-import { useCustomDataAttributes } from "@/composables/useDataAttributes";
+import { useClassComposition } from "../../../composables/useClassComposition";
+import { useSpacing } from "../../../composables/useSpacing";
+import { useCustomDataAttributes } from "../../../composables/useDataAttributes";
 import DXBackdrop from "../../atoms/DXBackdrop/DXBackdrop.vue";
 
 const props = defineProps({

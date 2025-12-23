@@ -143,7 +143,7 @@
 
 <script setup>
 import { ref, computed, watch } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useClassComposition } from "../../../composables/useClassComposition";
 import DXProgress from "../../atoms/DXProgress/DXProgress.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";

@@ -51,8 +51,8 @@
 <script setup>
 import { computed } from "vue";
 import { CheckIcon } from "@heroicons/vue/24/solid";
-import { useSize } from "@/composables/useSize";
-import { useVariantCheckbox } from "@/composables/useVariant";
+import { useSize } from "../../../composables/useSize";
+import { useVariantCheckbox } from "../../../composables/useVariant";
 import DXIcon from "../DXIcon/DXIcon.vue";
 
 const props = defineProps({

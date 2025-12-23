@@ -214,8 +214,8 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
-import { useSpacing } from "@/composables/useSpacing";
+import { useClassComposition } from "../../../composables/useClassComposition";
+import { useSpacing } from "../../../composables/useSpacing";
 import DXInput from "../../molecules/DXInput/DXInput.vue";
 import DXPasswordInput from "../../molecules/DXPasswordInput/DXPasswordInput.vue";
 import DXFormControl from "../../molecules/DXFormControl/DXFormControl.vue";

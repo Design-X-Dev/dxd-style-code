@@ -168,9 +168,9 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
-import { useSpacing } from "@/composables/useSpacing";
-import DXGrid from "../../layout/DXGrid/DXGrid.vue";
+import { useClassComposition } from "../../../composables/useClassComposition";
+import { useSpacing } from "../../../composables/useSpacing";
+import DXGrid from "../../atoms/DXGrid/DXGrid.vue";
 import DXModal from "../DXModal/DXModal.vue";
 import DXObserver from "../../utilities/DXObserver/DXObserver.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";

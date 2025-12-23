@@ -11,7 +11,7 @@
 
 <script setup>
 import { computed } from "vue";
-import { useSpacing } from "@/composables/useSpacing";
+import { useSpacing } from "../../../composables/useSpacing";
 
 const props = defineProps({
   /** Вариант: default | bordered | elevated | flat */

@@ -92,8 +92,8 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
-import DXContainer from "../../layout/DXContainer/DXContainer.vue";
+import { useClassComposition } from "../../../composables/useClassComposition";
+import DXContainer from "../../atoms/DXContainer/DXContainer.vue";
 import DXLink from "../../atoms/DXLink/DXLink.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";

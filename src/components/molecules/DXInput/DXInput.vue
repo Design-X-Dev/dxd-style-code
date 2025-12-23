@@ -42,8 +42,8 @@
 
 <script setup>
 import { computed, useSlots, inject, onMounted, onUnmounted } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useSize } from "../../../composables/useSize";
+import { useClassComposition } from "../../../composables/useClassComposition";
 import DXFormLabel from "../../atoms/DXFormLabel/DXFormLabel.vue";
 import DXIconWrapper from "../../atoms/DXIconWrapper/DXIconWrapper.vue";
 

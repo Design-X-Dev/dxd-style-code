@@ -123,8 +123,8 @@
 
 <script setup>
 import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useSize } from "../../../composables/useSize";
+import { useClassComposition } from "../../../composables/useClassComposition";
 import DXInput from "../DXInput/DXInput.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 import DXLoader from "../../atoms/DXLoader/DXLoader.vue";

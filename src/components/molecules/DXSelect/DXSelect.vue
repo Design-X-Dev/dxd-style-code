@@ -39,8 +39,8 @@
 
 <script setup>
 import { computed, inject, onMounted, onUnmounted } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useSize } from "../../../composables/useSize";
+import { useClassComposition } from "../../../composables/useClassComposition";
 import { ChevronDownIcon } from "@heroicons/vue/24/outline";
 import DXFormLabel from "../../atoms/DXFormLabel/DXFormLabel.vue";
 import DXIconWrapper from "../../atoms/DXIconWrapper/DXIconWrapper.vue";

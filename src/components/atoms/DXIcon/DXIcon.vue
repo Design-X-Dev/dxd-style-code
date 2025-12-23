@@ -10,8 +10,8 @@
 
 <script setup>
 import { computed } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useAnimation } from "@/composables/useAnimation";
+import { useSize } from "../../../composables/useSize";
+import { useAnimation } from "../../../composables/useAnimation";
 
 const props = defineProps({
   /** Heroicon компонент */

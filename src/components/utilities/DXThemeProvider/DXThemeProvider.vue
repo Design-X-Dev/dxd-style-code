@@ -10,7 +10,7 @@
 
 <script setup>
 import { ref, computed, watch, provide, onMounted } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useClassComposition } from "../../../composables/useClassComposition";
 
 const props = defineProps({
   /**

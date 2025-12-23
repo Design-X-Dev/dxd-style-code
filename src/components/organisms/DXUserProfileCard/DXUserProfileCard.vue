@@ -92,8 +92,8 @@
 
 <script setup>
 import { computed } from "vue";
-import { useClassComposition } from "@/composables/useClassComposition";
-import { useSize } from "@/composables/useSize";
+import { useClassComposition } from "../../../composables/useClassComposition";
+import { useSize } from "../../../composables/useSize";
 import DXCard from "../../atoms/DXCard/DXCard.vue";
 import DXAvatar from "../../atoms/DXAvatar/DXAvatar.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";

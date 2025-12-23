@@ -38,9 +38,9 @@
 
 <script setup>
 import { computed } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useVariantTag } from "@/composables/useVariant";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useSize } from "../../../composables/useSize";
+import { useVariantTag } from "../../../composables/useVariant";
+import { useClassComposition } from "../../../composables/useClassComposition";
 import { XMarkIcon } from "@heroicons/vue/24/solid";
 import DXIcon from "../DXIcon/DXIcon.vue";
 

@@ -34,9 +34,9 @@
 
 <script setup>
 import { computed } from "vue";
-import { useSize } from "@/composables/useSize";
-import { useAnimation } from "@/composables/useAnimation";
-import { useVariantProgress } from "@/composables/useVariant";
+import { useSize } from "../../../composables/useSize";
+import { useAnimation } from "../../../composables/useAnimation";
+import { useVariantProgress } from "../../../composables/useVariant";
 
 const props = defineProps({
   /** Текущее значение */

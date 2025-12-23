@@ -33,7 +33,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/vue/24/outline";
-import { useClassComposition } from "@/composables/useClassComposition";
+import { useClassComposition } from "../../../composables/useClassComposition";
 import DXFormLabel from "../../atoms/DXFormLabel/DXFormLabel.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 

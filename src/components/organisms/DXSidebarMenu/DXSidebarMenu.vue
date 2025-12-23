@@ -86,7 +86,7 @@ import {
   ChevronRightIcon,
   MagnifyingGlassIcon
 } from '@heroicons/vue/24/outline';
-import { useMenu } from '@/composables/useMenu';
+import { useMenu } from '../../../composables/useMenu';
 import DXSidebarMenuItem from './DXSidebarMenuItem.vue';
 import DXInput from '../../molecules/DXInput/DXInput.vue';
 import DXIcon from '../../atoms/DXIcon/DXIcon.vue';

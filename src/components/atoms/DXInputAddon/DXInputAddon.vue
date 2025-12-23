@@ -11,7 +11,7 @@
 
 <script setup>
 import { inject, computed, onMounted, onUnmounted } from "vue";
-import { useSize } from "@/composables/useSize";
+import { useSize } from "../../../composables/useSize";
 
 const props = defineProps({
   icon: { type: [Object, Function], default: null },
