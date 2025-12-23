@@ -7,7 +7,7 @@ import { computed } from "vue";
 import { useClassComposition } from "@/composables/useClassComposition";
 
 const props = defineProps({
-  /** Размер: xs | sm | md | lg | xl | 2xl или число в пикселях */
+  /** Размер: xs | sm | md | lg | xl или число в пикселях */
   size: { type: [String, Number], default: "md" },
   /** Направление: vertical | horizontal | both */
   direction: { type: String, default: "vertical" },
@@ -30,7 +30,6 @@ const sizeClasses = {
   md: { v: "h-4", h: "w-4" },
   lg: { v: "h-8", h: "w-8" },
   xl: { v: "h-12", h: "w-12" },
-  "2xl": { v: "h-16", h: "w-16" },
 };
 
 /**
