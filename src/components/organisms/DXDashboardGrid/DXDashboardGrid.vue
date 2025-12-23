@@ -45,7 +45,7 @@
 import { ref, computed, watch } from "vue";
 import { useClassComposition } from "@/composables/useClassComposition";
 import { useSpacing } from "@/composables/useSpacing";
-import vuedraggable from "vue-draggable-next";
+import { VueDraggableNext as vuedraggable } from "vue-draggable-next";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 import { Bars3Icon } from "@heroicons/vue/24/outline";
 

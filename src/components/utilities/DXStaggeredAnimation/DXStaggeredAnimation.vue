@@ -74,12 +74,6 @@ const containerClasses = computed(() => useClassComposition("w-full"));
  * @description
  * Применяет анимацию с задержкой к каждому дочернему элементу.
  */
-/**
- * Применение анимации к дочерним элементам
- * 
- * @description
- * Применяет анимацию с задержкой к каждому дочернему элементу.
- */
 function applyStaggeredAnimation() {
   nextTick(() => {
     const container = document.querySelector(
@@ -87,51 +81,51 @@ function applyStaggeredAnimation() {
     );
     if (!container) return;
 
-  const children = Array.from(container.children);
-  let completedCount = 0;
+    const children = Array.from(container.children);
+    let completedCount = 0;
 
-  children.forEach((child, index) => {
-    const delay = index * props.delay;
-    const childElement = child as HTMLElement;
+    children.forEach((child, index) => {
+      const delay = index * props.delay;
+      const childElement = child;
 
-    // Устанавливаем начальное состояние
-    childElement.style.opacity = "0";
-    childElement.style.transition = `all ${props.duration}ms ease-out`;
+      // Устанавливаем начальное состояние
+      childElement.style.opacity = "0";
+      childElement.style.transition = `all ${props.duration}ms ease-out`;
 
-    // Применяем начальные стили в зависимости от направления
-    switch (props.direction) {
-      case "top-to-bottom":
-        childElement.style.transform = "translateY(-20px)";
-        break;
-      case "bottom-to-top":
-        childElement.style.transform = "translateY(20px)";
-        break;
-      case "left-to-right":
-        childElement.style.transform = "translateX(-20px)";
-        break;
-      case "right-to-left":
-        childElement.style.transform = "translateX(20px)";
-        break;
-    }
+      // Применяем начальные стили в зависимости от направления
+      switch (props.direction) {
+        case "top-to-bottom":
+          childElement.style.transform = "translateY(-20px)";
+          break;
+        case "bottom-to-top":
+          childElement.style.transform = "translateY(20px)";
+          break;
+        case "left-to-right":
+          childElement.style.transform = "translateX(-20px)";
+          break;
+        case "right-to-left":
+          childElement.style.transform = "translateX(20px)";
+          break;
+      }
 
-    if (props.transition === "scale") {
-      childElement.style.transform += " scale(0.95)";
-    }
+      if (props.transition === "scale") {
+        childElement.style.transform += " scale(0.95)";
+      }
 
-    // Применяем анимацию с задержкой
-    setTimeout(() => {
-      childElement.style.opacity = "1";
-      childElement.style.transform = "translate(0, 0) scale(1)";
-
-      // Отслеживаем завершение анимации
+      // Применяем анимацию с задержкой
       setTimeout(() => {
-        completedCount++;
-        if (completedCount === children.length) {
-          emit("animation-complete");
-        }
-      }, props.duration);
-    }, delay);
-  });
+        childElement.style.opacity = "1";
+        childElement.style.transform = "translate(0, 0) scale(1)";
+
+        // Отслеживаем завершение анимации
+        setTimeout(() => {
+          completedCount++;
+          if (completedCount === children.length) {
+            emit("animation-complete");
+          }
+        }, props.duration);
+      }, delay);
+    });
   });
 }
 
@@ -142,11 +136,7 @@ onMounted(() => {
   }
 });
 
-// Очистка таймеров при размонтировании
-onBeforeUnmount(() => {
-  animationTimers.value.forEach((timer) => clearTimeout(timer));
-  animationTimers.value = [];
-});
+// Очистка при размонтировании (таймеры очищаются автоматически при размонтировании компонента)
 
 // Реакция на изменение delay или direction
 watch(

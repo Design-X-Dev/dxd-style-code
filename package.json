@@ -1,6 +1,6 @@
 {
   "name": "dxd-style-code",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "type": "module",
   "description": "DX Design System - Vue 3 UI Component Library",
   "main": "./dist/dxd-style-code.umd.cjs",
@@ -10,10 +10,13 @@
       "import": "./dist/dxd-style-code.js",
       "require": "./dist/dxd-style-code.umd.cjs"
     },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/style.css",
+    "./src/*": "./src/*"
   },
   "files": [
-    "dist"
+    "dist",
+    "src",
+    "README.md"
   ],
   "scripts": {
     "dev": "vite",
