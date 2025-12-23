@@ -12,6 +12,7 @@ export { default as DXIcon } from './DXIcon';
 export { default as DXIconWrapper } from './DXIconWrapper';
 export { default as DXInputAddon } from './DXInputAddon';
 export { default as DXLoader } from './DXLoader';
+export { default as DXLink } from './DXLink';
 export { default as DXProgress } from './DXProgress';
 export { default as DXRadio } from './DXRadio';
 export { default as DXSkeleton } from './DXSkeleton';

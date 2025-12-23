@@ -20,12 +20,13 @@
     "build": "vite build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build -o dxd-style-code",
+    "build-storybook:custom": "BASE_PATH=/file/dxd-style-code/ storybook build",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "vue": "^3.4.0",
-    "@heroicons/vue": "^2.2.0"
+    "@heroicons/vue": "^2.2.0",
+    "vue": "^3.4.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.4.0",
@@ -59,5 +60,8 @@
   "homepage": "https://github.com/Design-X-Dev/dxd-style-code#readme",
   "bugs": {
     "url": "https://github.com/Design-X-Dev/dxd-style-code/issues"
+  },
+  "dependencies": {
+    "vue-draggable-next": "^2.3.0"
   }
 }

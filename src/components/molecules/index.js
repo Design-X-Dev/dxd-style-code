@@ -26,4 +26,8 @@ export { default as DXSegmentedControl } from './DXSegmentedControl';
 export { default as DXTableToolbar } from './DXTableToolbar';
 export { default as DXTablePagination } from './DXTablePagination';
 export { default as DXTextarea } from './DXTextarea';
+export { default as DXTimePicker } from './DXTimePicker';
+export { default as DXRating } from './DXRating';
+export { default as DXSearchBar } from './DXSearchBar';
+export { default as DXStatCard } from './DXStatCard';
 export { default as DXValidationIcon } from './DXValidationIcon';

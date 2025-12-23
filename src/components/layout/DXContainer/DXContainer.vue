@@ -13,6 +13,7 @@
 <script setup>
 import { computed } from "vue";
 import { useSpacing } from "@/composables/useSpacing";
+import { useClassComposition } from "@/composables/useClassComposition";
 
 const props = defineProps({
   /** Максимальная ширина: sm | md | lg | xl | 2xl | full */
@@ -23,20 +24,60 @@ const props = defineProps({
   padding: { type: String, default: "md" },
 });
 
-const sizeClasses = {
-  sm: "max-w-screen-sm",
-  md: "max-w-screen-md",
-  lg: "max-w-screen-lg",
-  xl: "max-w-screen-xl",
-  "2xl": "max-w-screen-2xl",
-  full: "max-w-full",
-};
+const BASE_CLASSES = "w-full";
 
-const containerClasses = computed(() => [
-  "w-full",
-  sizeClasses[props.size] || sizeClasses.lg,
-  useSpacing(props.padding, 'paddingX'),
-  props.center && "mx-auto",
-]);
+/**
+ * Классы максимальной ширины контейнера
+ * 
+ * @description
+ * Определяет максимальную ширину контейнера в зависимости от размера экрана.
+ * Используется для ограничения ширины контента на больших экранах.
+ * 
+ * @returns {string} Tailwind CSS класс для максимальной ширины
+ */
+const sizeClass = computed(() => {
+  const sizeClasses = {
+    sm: "max-w-screen-sm",
+    md: "max-w-screen-md",
+    lg: "max-w-screen-lg",
+    xl: "max-w-screen-xl",
+    "2xl": "max-w-screen-2xl",
+    full: "max-w-full",
+  };
+  return sizeClasses[props.size] || sizeClasses.lg;
+});
+
+/**
+ * Классы горизонтальных отступов
+ * 
+ * @description
+ * Использует useSpacing composable для унификации отступов.
+ * Применяет горизонтальные отступы (padding-x) к контейнеру.
+ * 
+ * @returns {string} Tailwind CSS класс для горизонтальных отступов
+ */
+const paddingClass = computed(() => {
+  return useSpacing(props.padding, 'paddingX');
+});
+
+/**
+ * Все классы для контейнера
+ * 
+ * @description
+ * Объединяет базовые классы, размер, отступы и центрирование
+ * с использованием useClassComposition для единообразного подхода.
+ * 
+ * @returns {Array} Массив классов для применения к элементу
+ */
+const containerClasses = computed(() =>
+  useClassComposition(
+    BASE_CLASSES,
+    sizeClass.value,
+    paddingClass.value,
+    {
+      "mx-auto": props.center,
+    }
+  )
+);
 </script>
 

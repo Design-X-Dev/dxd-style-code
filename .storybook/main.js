@@ -14,7 +14,14 @@ const config = {
   docs: {
     autodocs: 'tag',
   },
+  // Настройка базового пути для деплоя в подпапку
+  viteFinal: async (config) => {
+    // Базовый путь для статических ресурсов
+    // Можно переопределить через переменную окружения BASE_PATH
+    const basePath = process.env.BASE_PATH || '/file/dxd-style-code/';
+    config.base = basePath;
+    return config;
+  },
 };
 
 export default config;
-

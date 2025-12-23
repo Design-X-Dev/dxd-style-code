@@ -6,6 +6,8 @@
 
 <script setup>
 import { computed } from "vue";
+import { useSize } from "@/composables/useSize";
+import { useClassComposition } from "@/composables/useClassComposition";
 
 const props = defineProps({
   /** Направление: row | row-reverse | col | col-reverse */
@@ -22,52 +24,126 @@ const props = defineProps({
   inline: { type: Boolean, default: false },
 });
 
-const directionClasses = {
-  row: "flex-row",
-  "row-reverse": "flex-row-reverse",
-  col: "flex-col",
-  "col-reverse": "flex-col-reverse",
-};
+const BASE_CLASSES = "";
 
-const justifyClasses = {
-  start: "justify-start",
-  center: "justify-center",
-  end: "justify-end",
-  between: "justify-between",
-  around: "justify-around",
-  evenly: "justify-evenly",
-};
+/**
+ * Базовый класс flex (inline-flex или flex)
+ * 
+ * @description
+ * Определяет, будет ли flex контейнер inline или block элементом.
+ * 
+ * @returns {string} Tailwind CSS класс для flex контейнера
+ */
+const flexBaseClass = computed(() => {
+  return props.inline ? "inline-flex" : "flex";
+});
 
-const alignClasses = {
-  start: "items-start",
-  center: "items-center",
-  end: "items-end",
-  stretch: "items-stretch",
-  baseline: "items-baseline",
-};
+/**
+ * Классы направления flex
+ * 
+ * @description
+ * Определяет направление главной оси flex контейнера.
+ * 
+ * @returns {string} Tailwind CSS класс для направления
+ */
+const directionClass = computed(() => {
+  const directionClasses = {
+    row: "flex-row",
+    "row-reverse": "flex-row-reverse",
+    col: "flex-col",
+    "col-reverse": "flex-col-reverse",
+  };
+  return directionClasses[props.direction] || directionClasses.row;
+});
 
-const wrapClasses = {
-  nowrap: "flex-nowrap",
-  wrap: "flex-wrap",
-  "wrap-reverse": "flex-wrap-reverse",
-};
+/**
+ * Классы выравнивания по главной оси
+ * 
+ * @description
+ * Определяет выравнивание элементов по главной оси (justify-content).
+ * 
+ * @returns {string} Tailwind CSS класс для justify-content
+ */
+const justifyClass = computed(() => {
+  const justifyClasses = {
+    start: "justify-start",
+    center: "justify-center",
+    end: "justify-end",
+    between: "justify-between",
+    around: "justify-around",
+    evenly: "justify-evenly",
+  };
+  return justifyClasses[props.justify] || justifyClasses.start;
+});
 
-const gapClasses = {
-  none: "gap-0",
-  xs: "gap-1",
-  sm: "gap-2",
-  md: "gap-4",
-  lg: "gap-6",
-  xl: "gap-8",
-};
+/**
+ * Классы выравнивания по поперечной оси
+ * 
+ * @description
+ * Определяет выравнивание элементов по поперечной оси (align-items).
+ * 
+ * @returns {string} Tailwind CSS класс для align-items
+ */
+const alignClass = computed(() => {
+  const alignClasses = {
+    start: "items-start",
+    center: "items-center",
+    end: "items-end",
+    stretch: "items-stretch",
+    baseline: "items-baseline",
+  };
+  return alignClasses[props.align] || alignClasses.center;
+});
 
-const flexClasses = computed(() => [
-  props.inline ? "inline-flex" : "flex",
-  directionClasses[props.direction] || directionClasses.row,
-  justifyClasses[props.justify] || justifyClasses.start,
-  alignClasses[props.align] || alignClasses.center,
-  wrapClasses[props.wrap] || wrapClasses.nowrap,
-  gapClasses[props.gap] || gapClasses.md,
-]);
+/**
+ * Классы переноса элементов
+ * 
+ * @description
+ * Определяет, будут ли элементы переноситься на новую строку (flex-wrap).
+ * 
+ * @returns {string} Tailwind CSS класс для flex-wrap
+ */
+const wrapClass = computed(() => {
+  const wrapClasses = {
+    nowrap: "flex-nowrap",
+    wrap: "flex-wrap",
+    "wrap-reverse": "flex-wrap-reverse",
+  };
+  return wrapClasses[props.wrap] || wrapClasses.nowrap;
+});
+
+/**
+ * Классы отступа между элементами
+ * 
+ * @description
+ * Использует useSize composable для вычисления gap между элементами.
+ * Gap в flex контейнере работает как spacing между элементами.
+ * 
+ * @returns {string} Tailwind CSS класс для gap
+ */
+const gapClass = computed(() => {
+  return useSize(props.gap, 'spacing') || 'gap-4';
+});
+
+/**
+ * Все классы для flex компонента
+ * 
+ * @description
+ * Объединяет все классы flex контейнера (базовый класс, направление,
+ * выравнивание, перенос, отступы) с использованием useClassComposition.
+ * 
+ * @returns {Array} Массив классов для применения к элементу
+ */
+const flexClasses = computed(() =>
+  useClassComposition(
+    BASE_CLASSES,
+    flexBaseClass.value,
+    directionClass.value,
+    justifyClass.value,
+    alignClass.value,
+    wrapClass.value,
+    gapClass.value
+  )
+);
 </script>
 

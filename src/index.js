@@ -16,6 +16,9 @@ export * from './components/molecules';
 // Organisms
 export * from './components/organisms';
 
+// Utilities
+export * from './components/utilities';
+
 // Composables
 export { useSize } from './composables/useSize';
 export { 
@@ -32,6 +35,7 @@ export {
   VARIANT_CONFIGS 
 } from './composables/useVariant';
 export { useClassComposition } from './composables/useClassComposition';
+export { useSpacing } from './composables/useSpacing';
 export { 
   useTransition,
   useAnimationTransition,
