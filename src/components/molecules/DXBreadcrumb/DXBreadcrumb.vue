@@ -1,9 +1,9 @@
 <template>
-  <nav aria-label="Breadcrumb" data-component="DXBreadcrumb">
+  <DXNav type="breadcrumb" data-component="DXBreadcrumb">
     <ol class="flex items-center flex-wrap" :class="sizeClasses">
       <li v-for="(item, index) in items" :key="index" class="flex items-center">
         <!-- Separator -->
-        <span v-if="index > 0" class="mx-2 text-slate-400" aria-hidden="true">
+        <span v-if="index > 0" class="mx-1 text-slate-400" aria-hidden="true">
           <slot name="separator">
             <DXIcon 
               v-if="separator === 'chevron'" 
@@ -16,14 +16,12 @@
         </span>
         
         <!-- Item -->
-        <component
-          :is="getLinkComponent(item)"
+        <DXLink
           :href="item.href"
           :to="item.to"
-          :class="[
-            itemClasses,
-            index === items.length - 1 ? 'text-slate-900 font-medium' : 'text-slate-500 hover:text-slate-700',
-          ]"
+          :size="linkSize"
+          :variant="variant"
+          :inactive="index === items.length - 1"
           :aria-current="index === items.length - 1 ? 'page' : undefined"
         >
           <DXIcon 
@@ -31,18 +29,20 @@
             :icon="item.icon" 
             :size="iconSize"
             :animation="getIconAnimation(item, index)"
-            class="mr-1.5"
+
           />
           {{ item.label }}
-        </component>
+        </DXLink>
       </li>
     </ol>
-  </nav>
+  </DXNav>
 </template>
 
 <script setup>
 import { computed } from "vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXLink from "../../atoms/DXLink/DXLink.vue";
+import DXNav from "../../atoms/DXNav/DXNav.vue";
 import { ChevronRightIcon } from "@heroicons/vue/24/outline";
 
 const props = defineProps({
@@ -52,6 +52,8 @@ const props = defineProps({
   separator: { type: String, default: "chevron" },
   /** Размер: sm | md | lg */
   size: { type: String, default: "md" },
+  /** Вариант стилизации ссылок: link | primary | secondary | ghost | outline */
+  variant: { type: String, default: "ghost" },
   /** Анимация иконок: none | wiggle | scale | rotate */
   iconAnimation: { type: String, default: "none" },
   /** Анимировать только иконку текущей страницы */
@@ -72,13 +74,15 @@ const iconSize = computed(() => {
   return "xs";
 });
 
-const itemClasses = "inline-flex items-center transition-colors";
-
-const getLinkComponent = (item) => {
-  if (item.to) return "router-link";
-  if (item.href) return "a";
-  return "span";
-};
+// Маппинг размера breadcrumb на размер DXLink
+const linkSize = computed(() => {
+  const sizeMap = {
+    sm: "xs",
+    md: "sm",
+    lg: "md",
+  };
+  return sizeMap[props.size] || "sm";
+});
 
 const getIconAnimation = (item, index) => {
   // Если у элемента своя анимация

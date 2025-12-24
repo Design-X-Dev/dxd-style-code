@@ -24,6 +24,7 @@ export { default as DXLabel } from './DXLabel';
 export { default as DXLink } from './DXLink';
 export { default as DXList } from './DXList';
 export { default as DXLoader } from './DXLoader';
+export { default as DXNav } from './DXNav';
 export { default as DXProgress } from './DXProgress';
 export { default as DXRadio } from './DXRadio';
 export { default as DXSkeleton } from './DXSkeleton';

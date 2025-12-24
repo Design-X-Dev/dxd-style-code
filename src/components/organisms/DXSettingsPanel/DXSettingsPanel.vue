@@ -73,7 +73,7 @@
       <div v-else-if="layout === 'sidebar'" class="flex gap-6">
         <!-- Sidebar -->
         <div :class="sidebarClasses">
-          <nav class="space-y-1">
+          <DXNav type="menu" class="space-y-1">
             <button
               v-for="category in categories"
               :key="category.id"
@@ -82,7 +82,7 @@
             >
               {{ category.label }}
             </button>
-          </nav>
+          </DXNav>
         </div>
 
         <!-- Content -->
@@ -154,6 +154,7 @@ import DXTabs from "../DXTabs/DXTabs.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXHeading from "../../atoms/DXHeading/DXHeading.vue";
 import DXText from "../../atoms/DXText/DXText.vue";
+import DXNav from "../../atoms/DXNav/DXNav.vue";
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
 
 const props = defineProps({

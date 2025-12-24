@@ -42,7 +42,7 @@
     </div>
 
     <!-- Меню -->
-    <nav :class="menuClasses">
+    <DXNav type="menu" :class="menuClasses">
       <div 
         v-for="(section, sectionIndex) in filteredSections" 
         :key="sectionIndex"
@@ -70,7 +70,7 @@
           @child-click="handleItemClick"
         />
       </div>
-    </nav>
+    </DXNav>
 
     <!-- Футер -->
     <div v-if="$slots.footer && !compact" :class="footerClasses">
@@ -92,6 +92,7 @@ import DXInput from '../../molecules/DXInput/DXInput.vue';
 import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
 import DXDivider from '../../atoms/DXDivider/DXDivider.vue';
 import DXHeading from '../../atoms/DXHeading/DXHeading.vue';
+import DXNav from '../../atoms/DXNav/DXNav.vue';
 
 const $slots = useSlots();
 

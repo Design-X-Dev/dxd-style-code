@@ -35,12 +35,13 @@
         </DXFlex>
 
         <!-- Навигация (desktop) -->
-        <nav
+        <DXNav
           v-if="$slots.navigation"
+          type="main"
           class="hidden md:flex items-center gap-1 flex-1"
         >
           <slot name="navigation" />
-        </nav>
+        </DXNav>
 
         <!-- Поиск (desktop) -->
         <DXFlex
@@ -129,6 +130,7 @@ import DXHeading from "../../atoms/DXHeading/DXHeading.vue";
 import DXLink from "../../atoms/DXLink/DXLink.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXNav from "../../atoms/DXNav/DXNav.vue";
 import DXAnimatePresence from "../../utilities/DXAnimatePresence/DXAnimatePresence.vue";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
 

@@ -83,7 +83,7 @@
       </div>
 
       <!-- Меню -->
-      <nav :class="navClasses">
+      <DXNav type="menu" :class="navClasses">
         <!-- Horizontal режим: items в строку без section titles -->
         <template v-if="direction === 'horizontal'">
           <template v-for="(section, sectionIndex) in filteredSections" :key="sectionIndex">
@@ -130,7 +130,7 @@
             />
           </div>
         </template>
-      </nav>
+      </DXNav>
 
       <!-- Футер (только для vertical) -->
       <div v-if="$slots.footer && !compact && direction === 'vertical'" :class="footerClasses">
@@ -154,6 +154,7 @@ import DXInput from '../DXInput/DXInput.vue';
 import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
 import DXDivider from '../../atoms/DXDivider/DXDivider.vue';
 import DXHeading from '../../atoms/DXHeading/DXHeading.vue';
+import DXNav from '../../atoms/DXNav/DXNav.vue';
 
 const $slots = useSlots();
 

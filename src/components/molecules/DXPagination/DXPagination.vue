@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex items-center gap-1" aria-label="Pagination" data-component="DXPagination">
+  <DXNav type="pagination" class="flex items-center gap-1" data-component="DXPagination">
     <!-- Previous -->
     <button
       type="button"
@@ -35,13 +35,14 @@
     >
       <DXIcon :icon="ChevronRightIcon" size="sm" animation="none" />
     </button>
-  </nav>
+  </DXNav>
 </template>
 
 <script setup>
 import { computed } from "vue";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/outline";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXNav from "../../atoms/DXNav/DXNav.vue";
 
 const props = defineProps({
   /** Текущая страница (v-model) */
