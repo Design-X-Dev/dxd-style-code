@@ -1,1 +1,0 @@
-function r(n,a="padding"){const g={none:"0",xs:"1",sm:"2",md:"4",lg:"6",xl:"8"},i={padding:"p",paddingX:"px",paddingY:"py",margin:"m",marginX:"mx",marginY:"my"};if(n==="none")return`${i[a]}-0`;const p=g[n];return p?`${i[a]}-${p}`:""}export{r as u};
