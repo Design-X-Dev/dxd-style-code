@@ -1,0 +1,41 @@
+# DX Design System - Vue 3 Component Library
+
+## Проект
+Библиотека компонентов Vue 3 с атомарной структурой (Atomic Design) и Tailwind CSS.
+
+## Архитектура
+- **Atoms** (`src/components/atoms/`) - базовые неделимые компоненты (Button, Input, Icon, etc.)
+- **Molecules** (`src/components/molecules/`) - композиции атомов (FormControl, InputGroup, etc.)
+- **Organisms** (`src/components/organisms/`) - сложные UI структуры (Table, Modal, SidebarMenu, etc.)
+- **Utilities** (`src/components/utilities/`) - утилитарные компоненты (Portal, Observer, etc.)
+
+## Стиль кода
+- Vue 3 Composition API с `<script setup>`
+- Tailwind CSS для стилизации
+- JSDoc комментарии для props
+- Именование: PascalCase для компонентов (DXButton), camelCase для composables (useSize)
+
+## Паттерны
+- Все компоненты экспортируются через `src/index.js`
+- Используются composables для переиспользования логики (`useSize`, `useVariant`, etc.)
+- Компоненты поддерживают data-атрибуты для отладки (`data-component`, `data-variant`)
+- Используется provide/inject для связи компонентов (например, DXButtonGroup)
+
+## Импорты
+- Компоненты: `import { DXButton, DXInput } from 'dxd-style-code'`
+- Стили: `import 'dxd-style-code/style.css'`
+- Composables: `import { useSize } from 'dxd-style-code'`
+
+## Правила
+- При создании компонентов следуй Atomic Design
+- Используй существующие composables вместо дублирования логики
+- Все props должны иметь JSDoc комментарии
+- Используй Tailwind классы, не inline стили
+- Компоненты должны быть доступными (ARIA атрибуты где нужно)
+
+## Документация
+Полная документация доступна в:
+- `CURSOR_AI_DOCS.md` - подробная документация для AI
+- `docs/COMPONENTS_ARCHITECTURE.md` - архитектура компонентов
+- `README.md` - основная документация
+
