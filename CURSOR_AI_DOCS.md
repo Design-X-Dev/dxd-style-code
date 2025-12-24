@@ -43,391 +43,191 @@ import "dxd-style-code/style.css";
 
 Библиотека следует принципам **Atomic Design** и разделяет компоненты на три основных уровня:
 
-### Atoms (Атомы) - 23 компонента
+### Atoms (Атомы) - 39 компонентов
 Базовые, неделимые компоненты. Не зависят от других компонентов библиотеки.
 
 **Основные компоненты:**
-- `DXButton` - универсальная кнопка
-- `DXInput` - базовое поле ввода (используется в Molecules)
-- `DXIcon` - компонент иконки
-- `DXBadge` - бейдж/метка
-- `DXCard` - карточка-контейнер
-- `DXAvatar` - аватар пользователя
-- `DXCheckbox` - чекбокс
-- `DXRadio` - радио-кнопка
-- `DXToggle` - переключатель
-- `DXLink` - ссылка
-- `DXLoader` - индикатор загрузки
-- `DXProgress` - индикатор прогресса
-- `DXTooltip` - всплывающая подсказка
-- `DXBackdrop` - затемнение фона
-- `DXFormLabel` - лейбл для полей форм
-- `DXIconWrapper` - обертка для позиционирования иконок
-- `DXInputAddon` - аддон для input групп
-- `DXDropdownItem` - элемент выпадающего меню
-- `DXDivider` - разделитель
-- `DXTags` - теги
-- `DXToast` - уведомление
-- `DXSkeleton` - скелетон загрузки
-- `DXSlider` - слайдер
+- [DX](./docs/api/atoms/DX.md) - Polymorphic компонент
+- [DXButton](./docs/api/atoms/DXButton.md) - универсальная кнопка
+- [DXIcon](./docs/api/atoms/DXIcon.md) - компонент иконки
+- [DXBadge](./docs/api/atoms/DXBadge.md) - бейдж/метка
+- [DXCard](./docs/api/atoms/DXCard.md) - карточка-контейнер
+- [DXAvatar](./docs/api/atoms/DXAvatar.md) - аватар пользователя
+- [DXImage](./docs/api/atoms/DXImage.md) - компонент изображения
+- [DXNav](./docs/api/atoms/DXNav.md) - универсальная обертка для навигации
+- [DXQuote](./docs/api/atoms/DXQuote.md) - inline цитата
+- [DXToggleButton](./docs/api/atoms/DXToggleButton.md) - кнопка-переключатель
+- DXCheckbox - чекбокс
+- DXRadio - радио-кнопка
+- DXToggle - переключатель
+- DXLink - ссылка
+- DXLoader - индикатор загрузки
+- DXProgress - индикатор прогресса
+- DXTooltip - всплывающая подсказка
+- DXBackdrop - затемнение фона
+- DXFormLabel - лейбл для полей форм
+- DXIconWrapper - обертка для позиционирования иконок
+- DXInputAddon - аддон для input групп
+- DXDropdownItem - элемент выпадающего меню
+- DXDivider - разделитель
+- DXTags - теги
+- DXToast - уведомление
+- DXSkeleton - скелетон загрузки
+- DXSlider - слайдер
 
 **Layout компоненты:**
-- `DXContainer` - контейнер с ограниченной шириной
-- `DXBox` - универсальный контейнер
-- `DXFlex` - Flexbox контейнер
-- `DXGrid` - сетка
-- `DXStack` - вертикальный стек
-- `DXSpacer` - гибкий отступ
+- DXContainer - контейнер с ограниченной шириной
+- DXBox - универсальный контейнер
+- DXFlex - Flexbox контейнер
+- DXGrid - сетка
+- DXStack - вертикальный стек
+- DXSpacer - гибкий отступ
 
 **Typography компоненты:**
-- `DXHeading` - заголовок
-- `DXText` - текст
-- `DXLabel` - лейбл
-- `DXCode` - код
-- `DXBlockquote` - цитата
-- `DXList` - список
+- DXHeading - заголовок
+- DXText - текст
+- DXLabel - лейбл
+- DXCode - код
+- DXBlockquote - цитата
+- DXList - список
 
-### Molecules (Молекулы) - 27 компонентов
+*Полная документация: [docs/api/atoms/](./docs/api/atoms/)*
+
+### Molecules (Молекулы) - 34 компонента
 Композиции атомов, выполняющие конкретную функцию.
 
 **Компоненты форм:**
-- `DXInput` - поле ввода с label, error, helper и иконками
-- `DXTextarea` - многострочное поле
-- `DXSelect` - выпадающий список
-- `DXInputGroup` - группа полей ввода с аддонами
-- `DXFormControl` - обертка для контролов форм
-- `DXPasswordInput` - поле пароля с переключателем видимости
-- `DXInputMask` - поле с маской ввода
-- `DXDatePicker` - выбор даты
-- `DXTimePicker` - выбор времени
-- `DXComboBox` - комбинированный список с поиском
-- `DXSearchSelect` - выпадающий список с поиском
-- `DXRadioGroup` - группа радио-кнопок
-- `DXRadioCard` - карточка с радио-кнопкой
-- `DXFilterGroup` - группа фильтров
-- `DXFileUpload` - загрузка файлов
-- `DXSegmentedControl` - сегментированный контрол
-- `DXValidationIcon` - иконка валидации
+- [DXInput](./docs/api/molecules/DXInput.md) - поле ввода с label, error, helper и иконками
+- DXTextarea - многострочное поле
+- DXSelect - выпадающий список
+- DXInputGroup - группа полей ввода с аддонами
+- DXFormControl - обертка для контролов форм
+- DXPasswordInput - поле пароля с переключателем видимости
+- DXInputMask - поле с маской ввода
+- DXDatePicker - выбор даты
+- DXTimePicker - выбор времени
+- DXComboBox - комбинированный список с поиском
+- DXSearchSelect - выпадающий список с поиском
+- DXRadioGroup - группа радио-кнопок
+- DXRadioCard - карточка с радио-кнопкой
+- DXFilterGroup - группа фильтров
+- DXFileUpload - загрузка файлов
+- DXSegmentedControl - сегментированный контрол
+- DXValidationIcon - иконка валидации
 
 **Навигация:**
-- `DXMenu` - меню
-- `DXBreadcrumb` - хлебные крошки
-- `DXButtonGroup` - группа кнопок
-- `DXActionButtons` - кнопки действий (Edit/Delete)
-- `DXCloseButton` - кнопка закрытия
-- `DXPagination` - пагинация
+- DXMenu - меню
+- DXBreadcrumb - хлебные крошки
+- DXButtonGroup - группа кнопок
+- DXActionButtons - кнопки действий (Edit/Delete)
+- DXCloseButton - кнопка закрытия
+- DXPagination - пагинация
 
 **Отображение:**
-- `DXAlert` - алерт/уведомление
-- `DXStatCard` - карточка статистики
-- `DXSearchBar` - поисковая строка
-- `DXCopyField` - поле с копированием
-- `DXRating` - рейтинг
+- DXAlert - алерт/уведомление
+- DXStatCard - карточка статистики
+- DXSearchBar - поисковая строка
+- DXCopyField - поле с копированием
+- DXRating - рейтинг
 
 **Таблицы (части):**
-- `DXBaseTable` - базовая таблица
-- `DXTableToolbar` - панель инструментов таблицы
-- `DXTablePagination` - пагинация таблицы
-- `DXTableFiltersPanel` - панель фильтров таблицы
+- [DXTableFiltersPanel](./docs/api/molecules/DXTableFiltersPanel.md) - панель фильтров таблицы
+- [DXDataFilter](./docs/api/molecules/DXDataFilter.md) - панель фильтрации данных
+- [DXDropdownDivider](./docs/api/molecules/DXDropdownDivider.md) - разделитель в выпадающем меню
+- DXTableToolbar - панель инструментов таблицы
+- DXTablePagination - пагинация таблицы
 
-### Organisms (Организмы) - 7+ компонентов
+*Полная документация: [docs/api/molecules/](./docs/api/molecules/)*
+
+### Organisms (Организмы) - 27 компонентов
 Сложные UI структуры, композиции молекул и атомов.
 
 **Основные:**
-- `DXTable` - полнофункциональная таблица с сортировкой, фильтрацией и пагинацией
-- `DXModal` - модальное окно (modal, fullscreen, sidebar)
-- `DXSidebarMenu` - боковое меню навигации
-- `DXDropdown` - выпадающее меню
-- `DXTabs` - вкладки
-- `DXAccordion` - аккордеон
-- `DXEmptyState` - пустое состояние
+- [DXTable](./docs/api/organisms/DXTable.md) - полнофункциональная таблица с сортировкой, фильтрацией и пагинацией
+- [DXModal](./docs/api/organisms/DXModal.md) - модальное окно (modal, fullscreen, sidebar)
+- [DXSidebarMenu](./docs/api/organisms/DXSidebarMenu.md) - боковое меню навигации
+- [DXBaseTable](./docs/api/organisms/DXBaseTable.md) - базовая таблица
+- DXDropdown - выпадающее меню
+- DXTabs - вкладки
+- DXAccordion - аккордеон
+- DXEmptyState - пустое состояние
 
 **Layout:**
-- `DXAppLayout` - главный layout приложения
-- `DXHeaderBar` - верхняя панель
-- `DXSidebar` - боковая панель
+- DXAppLayout - главный layout приложения
+- DXHeaderBar - верхняя панель
+- DXSidebar - боковая панель
 
 **Специализированные:**
-- `DXDataTable` - расширенная таблица данных
-- `DXFormWizard` - мастер форм (многошаговая форма)
-- `DXDashboardWidget` - виджет для дашборда
-- `DXChartContainer` - контейнер для графиков
-- `DXMediaGallery` - галерея медиа-файлов
-- `DXUserProfileCard` - карточка профиля
-- `DXNotificationCenter` - центр уведомлений
-- `DXChatInterface` - интерфейс чата
-- `DXCommentSection` - секция комментариев
-- `DXReportGenerator` - генератор отчетов
-- `DXSettingsPanel` - панель настроек
+- [DXAuthenticationForm](./docs/api/organisms/DXAuthenticationForm.md) - форма аутентификации
+- [DXDashboardGrid](./docs/api/organisms/DXDashboardGrid.md) - сетка для дашборда
+- [DXWizard](./docs/api/organisms/DXWizard.md) - мастер настройки
+- DXDataTable - расширенная таблица данных
+- DXFormWizard - мастер форм (многошаговая форма)
+- DXDashboardWidget - виджет для дашборда
+- DXChartContainer - контейнер для графиков
+- DXMediaGallery - галерея медиа-файлов
+- DXUserProfileCard - карточка профиля
+- DXNotificationCenter - центр уведомлений
+- DXChatInterface - интерфейс чата
+- DXCommentSection - секция комментариев
+- DXReportGenerator - генератор отчетов
+- DXSettingsPanel - панель настроек
+
+*Полная документация: [docs/api/organisms/](./docs/api/organisms/)*
 
 ### Utilities - утилитарные компоненты
-- `DXPortal` - портал для рендеринга вне DOM
-- `DXObserver` - Intersection Observer для lazy loading
-- `DXBreakpointProvider` - провайдер брейкпоинтов
-- `DXThemeProvider` - провайдер темы
-- `DXAnimatePresence` - анимации появления/исчезновения
-- `DXTransitionGroup` - групповые переходы
-- `DXStaggeredAnimation` - ступенчатая анимация
+- DXPortal - портал для рендеринга вне DOM
+- DXObserver - Intersection Observer для lazy loading
+- DXBreakpointProvider - провайдер брейкпоинтов
+- DXThemeProvider - провайдер темы
+- DXAnimatePresence - анимации появления/исчезновения
+- DXTransitionGroup - групповые переходы
+- DXStaggeredAnimation - ступенчатая анимация
 
-## API компонентов
+*Полная документация: [docs/api/utilities/](./docs/api/utilities/)*
 
-### DXButton
+## Документация компонентов
 
-**Назначение:** Универсальная кнопка с различными вариантами оформления.
+Детальная документация по каждому компоненту доступна в отдельных файлах:
 
-**Props:**
-- `variant`: `'primary' | 'secondary' | 'ghost' | 'outline' | 'success' | 'warning' | 'danger' | 'info' | 'link' | 'soft'` (default: `'primary'`)
-- `size`: `'xs' | 'sm' | 'md' | 'lg' | 'xl'` (default: `'md'`)
-- `block`: `boolean` - растянуть на всю ширину
-- `iconOnly`: `boolean` - квадратная кнопка только с иконкой
-- `disabled`: `boolean`
-- `type`: `'button' | 'submit' | 'reset'` (default: `'button'`)
-- `to`: `string | Object` - Vue Router путь (превращает в router-link)
-- `href`: `string` - обычная ссылка (превращает в `<a>`)
-- `target`: `string` - target для ссылки
-- `rel`: `string` - rel для ссылки
-- `value`: `string | number` - значение для использования в DXButtonGroup
+### Atoms (Атомы)
 
-**Использование:**
-```vue
-<template>
-  <DXButton variant="primary" size="md">Сохранить</DXButton>
-  <DXButton variant="danger" @click="handleDelete">Удалить</DXButton>
-  <DXButton :to="{ name: 'home' }">На главную</DXButton>
-  <DXButton href="https://example.com" target="_blank">Внешняя ссылка</DXButton>
-</template>
-```
+- [DX](./docs/api/atoms/DX.md) - Polymorphic компонент
+- [DXButton](./docs/api/atoms/DXButton.md) - Универсальная кнопка
+- [DXIcon](./docs/api/atoms/DXIcon.md) - Компонент иконки
+- [DXBadge](./docs/api/atoms/DXBadge.md) - Бейдж/метка
+- [DXAvatar](./docs/api/atoms/DXAvatar.md) - Аватар пользователя
+- [DXImage](./docs/api/atoms/DXImage.md) - Компонент изображения
+- [DXNav](./docs/api/atoms/DXNav.md) - Универсальная обертка для навигации
+- [DXQuote](./docs/api/atoms/DXQuote.md) - Inline цитата
+- [DXToggleButton](./docs/api/atoms/DXToggleButton.md) - Кнопка-переключатель
 
-**Особенности:**
-- Автоматически становится `<a>` при наличии `href`
-- Автоматически становится `router-link` при наличии `to`
-- Поддерживает интеграцию с `DXButtonGroup` через provide/inject
+*Полный список атомов см. в [docs/api/atoms/](./docs/api/atoms/)*
 
-### DXInput
+### Molecules (Молекулы)
 
-**Назначение:** Текстовое поле ввода с поддержкой label, error, helper и иконок.
+- [DXInput](./docs/api/molecules/DXInput.md) - Поле ввода с label, error, helper
+- [DXDataFilter](./docs/api/molecules/DXDataFilter.md) - Панель фильтрации данных
+- [DXDropdownDivider](./docs/api/molecules/DXDropdownDivider.md) - Разделитель в выпадающем меню
+- [DXTableFiltersPanel](./docs/api/molecules/DXTableFiltersPanel.md) - Панель активных фильтров таблицы
 
-**Props:**
-- `modelValue`: `string | number` - v-model значение
-- `type`: `string` (default: `'text'`)
-- `label`: `string` - метка поля
-- `placeholder`: `string`
-- `error`: `string` - текст ошибки
-- `helper`: `string` - вспомогательный текст
-- `disabled`: `boolean`
-- `size`: `'sm' | 'md' | 'lg'` (default: `'md'`)
-- `required`: `boolean`
-- `prefixIcon`: `Component` - иконка слева
-- `suffixIcon`: `Component` - иконка справа
-- `inputClass`: `string | Array | Object` - дополнительные классы
+*Полный список молекул см. в [docs/api/molecules/](./docs/api/molecules/)*
 
-**Slots:**
-- `prefix` - кастомный префикс
-- `suffix` - кастомный суффикс
+### Organisms (Организмы)
 
-**Использование:**
-```vue
-<template>
-  <DXInput
-    v-model="email"
-    label="Email"
-    type="email"
-    placeholder="example@mail.com"
-    :error="errors.email"
-    helper="Введите рабочий email"
-    :prefixIcon="MailIcon"
-  />
-</template>
-```
+- [DXTable](./docs/api/organisms/DXTable.md) - Полнофункциональная таблица
+- [DXModal](./docs/api/organisms/DXModal.md) - Модальное окно
+- [DXSidebarMenu](./docs/api/organisms/DXSidebarMenu.md) - Боковое меню навигации
+- [DXBaseTable](./docs/api/organisms/DXBaseTable.md) - Базовая таблица
+- [DXAuthenticationForm](./docs/api/organisms/DXAuthenticationForm.md) - Форма аутентификации
+- [DXDashboardGrid](./docs/api/organisms/DXDashboardGrid.md) - Сетка для дашборда
+- [DXWizard](./docs/api/organisms/DXWizard.md) - Мастер настройки
 
-**Использует:**
-- `DXFormLabel` - для отображения label, error, helper
-- `DXIconWrapper` - для позиционирования иконок
+*Полный список организмов см. в [docs/api/organisms/](./docs/api/organisms/)*
 
-### DXModal
+### Utilities (Утилиты)
 
-**Назначение:** Модальное окно с различными вариантами отображения.
-
-**Props:**
-- `open`: `boolean` - состояние открытия
-- `variant`: `'modal' | 'fullscreen' | 'sidebar-right' | 'half-right'` (default: `'modal'`)
-- `width`: `'sm' | 'md' | 'lg' | 'xl'` (default: `'md'`)
-- `closable`: `boolean` - показывать кнопку закрытия
-- `showModeSwitcher`: `boolean` - переключатель режимов
-- `backdropBlur`: `'none' | 'sm' | 'md' | 'lg' | 'xl'` (default: `'sm'`)
-- `backdropOpacity`: `string | number` (default: `'40'`)
-- `backdropColor`: `'slate-900' | 'gray-900' | 'black' | 'white'` (default: `'slate-900'`)
-- `backdropLockScroll`: `boolean` (default: `true`)
-
-**Events:**
-- `close` - закрытие модального окна
-- `opened` - модальное окно открыто
-- `closed` - модальное окно закрыто
-- `update:variant` - изменение варианта
-
-**Slots:**
-- `default` - контент модального окна
-- `title` - заголовок
-- `actions` - кнопки действий
-
-**Использование:**
-```vue
-<template>
-  <DXButton @click="showModal = true">Открыть</DXButton>
-
-  <DXModal
-    :open="showModal"
-    variant="modal"
-    width="md"
-    @close="showModal = false"
-  >
-    <template #title>Заголовок</template>
-    <p>Контент модального окна</p>
-    <template #actions>
-      <DXButton variant="ghost" @click="showModal = false">Отмена</DXButton>
-      <DXButton @click="save">Сохранить</DXButton>
-    </template>
-  </DXModal>
-</template>
-```
-
-**Использует:**
-- `DXBackdrop` - затемнение фона
-- `DXButton` или `DXCloseButton` - кнопка закрытия
-
-### DXTable
-
-**Назначение:** Полнофункциональная таблица с сортировкой, фильтрацией и пагинацией.
-
-**Props:**
-- `columns`: `Array` (required) - конфигурация колонок: `[{ key, label, sortable, filterable, filterOptions, width, align, format }]`
-- `data`: `Array` (default: `[]`) - данные таблицы
-- `mode`: `'local' | 'api'` (default: `'local'`) - режим работы с данными
-- `apiUrl`: `string` - URL API для загрузки данных (для mode='api')
-- `apiMethod`: `string` (default: `'GET'`) - HTTP метод
-- `apiParams`: `Object` (default: `{}`) - параметры API запроса
-- `searchable`: `boolean` (default: `false`) - включить поиск
-- `filterable`: `boolean` (default: `false`) - включить фильтрацию
-- `sortable`: `boolean` (default: `true`) - включить сортировку
-- `paginated`: `boolean` (default: `true`) - включить пагинацию
-- `selectable`: `boolean` (default: `false`) - включить выбор строк
-- `size`: `'sm' | 'md' | 'lg'` (default: `'md'`)
-- `height`: `string` - высота таблицы
-- `stickyHeader`: `boolean` (default: `true`) - закрепленный заголовок
-- `striped`: `boolean` (default: `false`) - полосатая таблица
-- `bordered`: `boolean` (default: `false`) - с границами
-- `hoverable`: `boolean` (default: `true`) - подсветка при наведении
-- `dense`: `boolean` (default: `false`) - плотный режим
-- `showToolbar`: `boolean` (default: `true`) - показывать toolbar
-- `columnToggle`: `boolean` (default: `false`) - переключение видимости колонок
-- `actions`: `boolean` (default: `false`) - показывать действия
-- `defaultPageSize`: `number` (default: `10`) - размер страницы по умолчанию
-- `pageSizeOptions`: `Array` (default: `[10, 25, 50, 100]`) - опции размера страницы
-- `defaultSort`: `Object` - начальная сортировка: `{ column: 'name', direction: 'asc' }`
-- `loading`: `boolean` (default: `false`) - состояние загрузки
-
-**Events:**
-- `row-click` - клик по строке
-- `row-select` - выбор строки
-- `select-all` - выбрать все
-- `sort` - сортировка
-- `filter` - фильтрация
-- `filter-clear` - очистка фильтров
-- `page-change` - изменение страницы
-- `page-size-change` - изменение размера страницы
-- `edit` - редактирование
-- `delete` - удаление
-- `data-loaded` - данные загружены
-- `error` - ошибка
-- `column-toggle` - переключение колонки
-- `selection-clear` - очистка выбора
-
-**Slots:**
-- `toolbar-actions` - дополнительные действия в toolbar
-- Слоты для кастомизации колонок (по ключу колонки)
-
-**Использование:**
-```vue
-<template>
-  <DXTable
-    :columns="columns"
-    :data="data"
-    searchable
-    filterable
-    sortable
-    paginated
-    @row-click="handleRowClick"
-  />
-</template>
-
-<script setup>
-const columns = [
-  { key: 'id', label: 'ID', sortable: true },
-  { key: 'name', label: 'Название', sortable: true, filterable: true },
-  { key: 'status', label: 'Статус', filterable: true, filterOptions: ['active', 'inactive'] },
-];
-
-const data = [
-  { id: 1, name: 'Товар 1', status: 'active' },
-  { id: 2, name: 'Товар 2', status: 'inactive' },
-];
-</script>
-```
-
-**Использует:**
-- `DXBaseTable` - базовая таблица
-- `DXTableToolbar` - панель инструментов
-- `DXTablePagination` - пагинация
-- `DXTableFiltersPanel` - панель фильтров
-
-### DXSidebarMenu
-
-**Назначение:** Боковое меню навигации с поддержкой поиска, иконок и вложенных секций.
-
-**Props:**
-- `title`: `string` - заголовок сайдбара
-- `sections`: `Array` (required) - секции меню: `[{ title?, items: [{ label, icon?, to?, href?, badge?, children? }] }]`
-- `activeItem`: `string` - активный элемент (to или id)
-- `compact`: `boolean` (default: `false`) - компактный режим
-- `searchable`: `boolean` (default: `false`) - включить поиск
-- `searchPlaceholder`: `string` (default: `'Поиск...'`)
-
-**Events:**
-- `item-click` - клик по элементу меню
-- `toggle-compact` - переключение компактного режима
-
-**Использование:**
-```vue
-<template>
-  <DXSidebarMenu
-    title="Навигация"
-    :sections="menuSections"
-    active-item="/dashboard"
-    :searchable="true"
-  />
-</template>
-
-<script setup>
-const menuSections = [
-  {
-    title: 'Основное',
-    items: [
-      { label: 'Дашборд', icon: HomeIcon, to: '/dashboard' },
-      { label: 'Проекты', icon: FolderIcon, to: '/projects' },
-    ],
-  },
-  {
-    items: [
-      { label: 'Настройки', icon: CogIcon, to: '/settings' },
-    ],
-  },
-];
-</script>
-```
-
-**Использует:**
-- `DXInput` - для поиска по меню
-- `DXIcon` - для иконок пунктов меню
+*Полный список утилит см. в [docs/api/utilities/](./docs/api/utilities/)*
 
 ## Composables API
 
