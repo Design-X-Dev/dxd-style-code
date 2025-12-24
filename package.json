@@ -24,7 +24,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o dxd-style-code",
+    "build-storybook": "storybook build -o storybook",
     "build-storybook:custom": "BASE_PATH=/file/dxd-style-code/ storybook build",
     "prepublishOnly": "npm run build"
   },

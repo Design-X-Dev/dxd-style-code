@@ -3,28 +3,30 @@
     <p v-if="label" class="text-[11px] uppercase tracking-wide text-slate-500 font-semibold">
       {{ label }}
     </p>
-    <div class="flex items-center justify-between gap-2 rounded-lg border border-slate-200 bg-white px-3 py-3">
-      <p class="text-base font-semibold text-slate-900 break-all flex-1 text-center">
+    <div :class="containerClasses">
+      <p 
+        class="font-semibold text-slate-900 break-all flex-1 text-center"
+        :class="textSize"
+      >
         {{ value || "—" }}
       </p>
       <button
         type="button"
-        class="h-9 w-9 inline-flex items-center justify-center rounded-xl border border-slate-200 text-slate-700 hover:border-slate-300 bg-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2"
-        :class="{ 'border-emerald-300 bg-emerald-50': copied }"
+        :class="buttonClasses"
         :aria-label="`Скопировать ${label || 'значение'}`"
         @click="copyToClipboard"
       >
         <DXIcon
           v-if="copied"
           :icon="CheckIcon"
-          size="sm"
+          :size="iconSize"
           :animation="copiedIconAnimation"
           class="text-emerald-600"
         />
         <DXIcon
           v-else
           :icon="copyIcon"
-          size="sm"
+          :size="iconSize"
           :animation="copyIconAnimation"
         />
       </button>
@@ -33,7 +35,9 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { useSize } from "../../../composables/useSize";
+import { useClassComposition } from "../../../composables/useClassComposition";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 import { ClipboardDocumentIcon, ClipboardDocumentCheckIcon, CheckIcon } from "@heroicons/vue/24/outline";
 
@@ -42,6 +46,12 @@ const props = defineProps({
   label: { type: String, default: "" },
   /** Значение для копирования */
   value: { type: String, default: "" },
+  /** Размер: sm | md | lg */
+  size: {
+    type: String,
+    default: "md",
+    validator: (value) => ["sm", "md", "lg"].includes(value),
+  },
   /** Иконка для копирования */
   copyIcon: { type: [Object, Function], default: () => ClipboardDocumentIcon },
   /** Иконка успешного копирования */
@@ -57,6 +67,49 @@ const props = defineProps({
 const emit = defineEmits(["copied"]);
 
 const copied = ref(false);
+
+// Базовые классы контейнера
+const BASE_CONTAINER_CLASSES = "flex items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white";
+
+// Извлекаем padding из useSize для контейнера (без высоты)
+const containerClasses = computed(() => {
+  const fullSizeClass = useSize(props.size, 'input');
+  // Извлекаем только padding классы (px-* и py-*), убираем высоту и размер текста
+  const paddingClasses = fullSizeClass
+    .split(' ')
+    .filter(c => c.startsWith('px-') || c.startsWith('py-'))
+    .join(' ');
+  
+  return useClassComposition(BASE_CONTAINER_CLASSES, paddingClasses);
+});
+
+// Размер текста из useSize
+const textSize = computed(() => useSize(props.size, 'text'));
+
+// Базовые классы кнопки
+const BASE_BUTTON_CLASSES = "inline-flex items-center justify-center rounded-xl border border-slate-200 text-slate-700 hover:border-slate-300 bg-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2";
+
+// Размер кнопки из useSize (только высота и ширина, без padding и text)
+const buttonClasses = computed(() => {
+  const fullSizeClass = useSize(props.size, 'buttonIcon');
+  // Извлекаем только размеры (h-* и w-*), убираем padding и text
+  const sizeClasses = fullSizeClass
+    .split(' ')
+    .filter(c => c.startsWith('h-') || c.startsWith('w-'))
+    .join(' ');
+  
+  return useClassComposition(
+    BASE_BUTTON_CLASSES,
+    sizeClasses,
+    { 'border-emerald-300 bg-emerald-50': copied.value }
+  );
+});
+
+// Размер иконки (маппинг размера компонента на размер иконки)
+const iconSize = computed(() => {
+  const sizeMap = { sm: 'xs', md: 'sm', lg: 'md' };
+  return sizeMap[props.size] || 'sm';
+});
 
 const copyToClipboard = async () => {
   if (!props.value) return;

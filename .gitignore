@@ -41,6 +41,7 @@ lerna-debug.log*
 
 # Storybook
 storybook-static/
+storybook/
 
 # Vite
 .vite/

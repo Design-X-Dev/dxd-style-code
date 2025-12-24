@@ -1,46 +1,49 @@
 <template>
   <DXNav type="pagination" class="flex items-center gap-1" data-component="DXPagination">
     <!-- Previous -->
-    <button
-      type="button"
+    <DXButton
+      variant="ghost"
+      :size="size"
+      icon-only
       :disabled="modelValue <= 1"
-      :class="[navButtonClasses, modelValue <= 1 && 'opacity-50 cursor-not-allowed']"
       @click="goTo(modelValue - 1)"
       aria-label="Предыдущая"
     >
       <DXIcon :icon="ChevronLeftIcon" size="sm" animation="none" />
-    </button>
+    </DXButton>
 
     <!-- Pages -->
     <template v-for="page in visiblePages" :key="page">
       <span v-if="page === '...'" class="px-2 text-slate-400">...</span>
-      <button
+      <DXButton
         v-else
-        type="button"
-        :class="[pageButtonClasses, page === modelValue && activeClasses]"
+        :variant="page === modelValue ? 'primary' : 'ghost'"
+        :size="size"
         :aria-current="page === modelValue ? 'page' : undefined"
         @click="goTo(page)"
       >
         {{ page }}
-      </button>
+      </DXButton>
     </template>
 
     <!-- Next -->
-    <button
-      type="button"
+    <DXButton
+      variant="ghost"
+      :size="size"
+      icon-only
       :disabled="modelValue >= totalPages"
-      :class="[navButtonClasses, modelValue >= totalPages && 'opacity-50 cursor-not-allowed']"
       @click="goTo(modelValue + 1)"
       aria-label="Следующая"
     >
       <DXIcon :icon="ChevronRightIcon" size="sm" animation="none" />
-    </button>
+    </DXButton>
   </DXNav>
 </template>
 
 <script setup>
 import { computed } from "vue";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/outline";
+import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 import DXNav from "../../atoms/DXNav/DXNav.vue";
 
@@ -101,24 +104,5 @@ const visiblePages = computed(() => {
   
   return pages;
 });
-
-const sizeClasses = {
-  sm: "h-7 min-w-7 text-xs",
-  md: "h-9 min-w-9 text-sm",
-  lg: "h-11 min-w-11 text-base",
-};
-
-const navButtonClasses = computed(() => [
-  "inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:border-slate-300 transition-colors",
-  sizeClasses[props.size] || sizeClasses.md,
-]);
-
-const pageButtonClasses = computed(() => [
-  "inline-flex items-center justify-center rounded-lg font-medium transition-colors",
-  sizeClasses[props.size] || sizeClasses.md,
-  "text-slate-600 hover:bg-slate-100",
-]);
-
-const activeClasses = "bg-slate-900 text-white hover:bg-slate-800";
 </script>
 

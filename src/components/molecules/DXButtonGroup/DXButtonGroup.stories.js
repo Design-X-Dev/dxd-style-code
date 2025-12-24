@@ -1,7 +1,9 @@
 import DXButtonGroup from './DXButtonGroup.vue';
 import DXButton from '../../atoms/DXButton/DXButton.vue';
 import DXFlex from '../../atoms/DXFlex/DXFlex.vue';
+import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
 import { ref } from 'vue';
+import { Squares2X2Icon, ListBulletIcon, TableCellsIcon, SquaresPlusIcon } from '@heroicons/vue/24/outline';
 
 export default {
   title: 'Molecules/DXButtonGroup',
@@ -161,6 +163,49 @@ export const Disabled = {
         <DXButton value="left">Left</DXButton>
         <DXButton value="center">Center</DXButton>
         <DXButton value="right">Right</DXButton>
+      </DXButtonGroup>
+    `,
+  }),
+};
+
+export const WithIcons = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Пример группы кнопок с иконками. Иконки размещаются внутри DXButton компонентов и автоматически адаптируются к стилю группы.',
+      },
+    },
+  },
+  render: () => ({
+    components: { DXButtonGroup, DXButton, DXIcon },
+    setup() {
+      const selected = ref('grid');
+      return { 
+        selected,
+        Squares2X2Icon,
+        ListBulletIcon,
+        TableCellsIcon,
+        SquaresPlusIcon,
+      };
+    },
+    template: `
+      <DXButtonGroup v-model="selected" label="View mode">
+        <DXButton value="grid">
+          <DXIcon :icon="Squares2X2Icon" size="sm" />
+          Grid
+        </DXButton>
+        <DXButton value="list">
+          <DXIcon :icon="ListBulletIcon" size="sm" />
+          List
+        </DXButton>
+        <DXButton value="table">
+          <DXIcon :icon="TableCellsIcon" size="sm" />
+          Table
+        </DXButton>
+        <DXButton value="cards">
+          <DXIcon :icon="SquaresPlusIcon" size="sm" />
+          Cards
+        </DXButton>
       </DXButtonGroup>
     `,
   }),

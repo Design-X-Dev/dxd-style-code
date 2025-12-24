@@ -15,10 +15,11 @@ const config = {
     autodocs: 'tag',
   },
   // Настройка базового пути для деплоя в подпапку
+  base: '/files/dxd-style-code/storybook/',
   viteFinal: async (config) => {
     // Базовый путь для статических ресурсов
     // Можно переопределить через переменную окружения BASE_PATH
-    const basePath = process.env.BASE_PATH || '/file/dxd-style-code/';
+    const basePath = process.env.BASE_PATH || '/files/dxd-style-code/storybook/';
     config.base = basePath;
     return config;
   },
