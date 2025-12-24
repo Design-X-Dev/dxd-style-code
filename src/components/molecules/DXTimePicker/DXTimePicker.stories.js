@@ -4,7 +4,7 @@ import DXTimePicker from './DXTimePicker.vue';
 export default {
   title: 'Molecules/DXTimePicker',
   component: DXTimePicker,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:form'],
   parameters: {
     docs: {
       description: {

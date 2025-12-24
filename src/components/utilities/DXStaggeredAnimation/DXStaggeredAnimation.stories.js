@@ -2,12 +2,12 @@ import { ref } from 'vue';
 import DXStaggeredAnimation from './DXStaggeredAnimation.vue';
 import DXCard from '../../atoms/DXCard/DXCard.vue';
 import DXButton from '../../atoms/DXButton/DXButton.vue';
-import DXList from '../../molecules/DXList/DXList.vue';
+import DXList from '../../atoms/DXList/DXList.vue';
 
 export default {
   title: 'Utilities/DXStaggeredAnimation',
   component: DXStaggeredAnimation,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:animation'],
   parameters: {
     docs: {
       description: {

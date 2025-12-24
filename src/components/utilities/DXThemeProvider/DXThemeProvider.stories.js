@@ -6,7 +6,7 @@ import DXButton from '../../atoms/DXButton/DXButton.vue';
 export default {
   title: 'Utilities/DXThemeProvider',
   component: DXThemeProvider,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:provider'],
   parameters: {
     docs: {
       description: {

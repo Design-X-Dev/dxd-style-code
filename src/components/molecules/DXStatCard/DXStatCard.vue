@@ -12,38 +12,41 @@
     <div class="flex items-start justify-between">
       <div class="flex-1">
         <!-- Заголовок -->
-        <div v-if="title" class="text-sm font-medium text-slate-600 mb-1">
+        <DXText v-if="title" tag="div" size="sm" weight="medium" color="muted" class="mb-1">
           {{ title }}
-        </div>
+        </DXText>
 
         <!-- Значение -->
         <div class="flex items-baseline gap-2">
-          <span :class="valueClasses">
+          <DXText tag="span" :size="valueSize" weight="bold" color="default">
             {{ formattedValue }}
-          </span>
+          </DXText>
           <!-- Тренд -->
-          <div
+          <DXText
             v-if="trend"
-            :class="trendClasses"
-            class="flex items-center gap-0.5 text-xs font-medium"
+            tag="div"
+            size="xs"
+            weight="medium"
+            :color="trendColor"
+            class="flex items-center gap-0.5"
           >
             <DXIcon
               :icon="trend.direction === 'up' ? ArrowUpIcon : ArrowDownIcon"
               size="xs"
             />
-            <span>{{ Math.abs(trend.value) }}%</span>
-          </div>
+            <DXText tag="span" size="xs" weight="medium">{{ Math.abs(trend.value) }}%</DXText>
+          </DXText>
         </div>
 
         <!-- Описание -->
-        <div v-if="description" class="text-xs text-slate-500 mt-1">
+        <DXText v-if="description" tag="div" size="xs" color="muted" class="mt-1">
           {{ description }}
-        </div>
+        </DXText>
 
         <!-- Сравнение -->
-        <div v-if="comparison" class="text-xs text-slate-500 mt-1">
+        <DXText v-if="comparison" tag="div" size="xs" color="muted" class="mt-1">
           {{ comparison }}
-        </div>
+        </DXText>
       </div>
 
       <!-- Иконка -->
@@ -62,6 +65,7 @@ import { useClassComposition } from "../../../composables/useClassComposition";
 import { useVariantButton } from "../../../composables/useVariant";
 import DXCard from "../../atoms/DXCard/DXCard.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXText from "../../atoms/DXText/DXText.vue";
 import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/vue/24/outline";
 
 const props = defineProps({
@@ -203,32 +207,32 @@ const formattedValue = computed(() => {
  * 
  * @returns {Array} Массив классов
  */
-const valueClasses = computed(() => {
+const valueSize = computed(() => {
   const sizeMap = {
-    sm: "text-2xl font-bold text-slate-900",
-    md: "text-3xl font-bold text-slate-900",
-    lg: "text-4xl font-bold text-slate-900",
+    sm: "2xl",
+    md: "3xl",
+    lg: "4xl",
   };
   return sizeMap[props.size] || sizeMap.md;
 });
 
 /**
- * Классы для тренда
+ * Цвет тренда
  * 
  * @description
- * Вычисляет классы для отображения тренда на основе направления.
+ * Вычисляет цвет для отображения тренда на основе направления.
  * 
- * @returns {Array} Массив классов
+ * @returns {string} Цвет для DXText
  */
-const trendClasses = computed(() => {
-  if (!props.trend) return [];
+const trendColor = computed(() => {
+  if (!props.trend) return 'default';
   
-  const directionClasses = {
-    up: "text-green-600",
-    down: "text-rose-600",
+  const directionColors = {
+    up: "success",
+    down: "danger",
   };
   
-  return directionClasses[props.trend.direction] || "";
+  return directionColors[props.trend.direction] || "default";
 });
 
 /**

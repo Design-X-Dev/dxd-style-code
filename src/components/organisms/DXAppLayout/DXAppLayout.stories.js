@@ -10,12 +10,14 @@ import DXDropdown from '../DXDropdown/DXDropdown.vue';
 import DXInput from '../../molecules/DXInput/DXInput.vue';
 import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
 import DXTabs from '../DXTabs/DXTabs.vue';
+import DXHeading from '../../atoms/DXHeading/DXHeading.vue';
+import DXText from '../../atoms/DXText/DXText.vue';
 import { MagnifyingGlassIcon, BellIcon, Bars3Icon } from '@heroicons/vue/24/outline';
 
 export default {
   title: 'Organisms/DXAppLayout',
   component: DXAppLayout,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:navigation'],
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -265,8 +267,8 @@ export const Default = {
         </template>
         <template #content>
           <DXContainer>
-            <h1 class="text-2xl font-bold mb-4">Добро пожаловать</h1>
-            <p class="text-slate-600">Это основной контент страницы.</p>
+            <DXHeading level="1" size="2xl" weight="bold" class="mb-4">Добро пожаловать</DXHeading>
+            <DXText tag="p" color="muted">Это основной контент страницы.</DXText>
           </DXContainer>
         </template>
       </DXAppLayout>
@@ -335,8 +337,8 @@ export const WithFullHeader = {
         </template>
         <template #content>
           <DXContainer>
-            <h1 class="text-2xl font-bold mb-4">Дашборд</h1>
-            <p class="text-slate-600">Основной контент страницы.</p>
+            <DXHeading level="1" size="2xl" weight="bold" class="mb-4">Дашборд</DXHeading>
+            <DXText tag="p" color="muted">Основной контент страницы.</DXText>
           </DXContainer>
         </template>
       </DXAppLayout>
@@ -373,8 +375,8 @@ export const OverlayMode = {
         </template>
         <template #content>
           <DXContainer>
-            <h1 class="text-2xl font-bold mb-4">Overlay Mode</h1>
-            <p class="text-slate-600">Сайдбар накладывается поверх контента.</p>
+            <DXHeading level="1" size="2xl" weight="bold" class="mb-4">Overlay Mode</DXHeading>
+            <DXText tag="p" color="muted">Сайдбар накладывается поверх контента.</DXText>
           </DXContainer>
         </template>
       </DXAppLayout>
@@ -409,8 +411,8 @@ export const PushMode = {
         </template>
         <template #content>
           <DXContainer>
-            <h1 class="text-2xl font-bold mb-4">Push Mode</h1>
-            <p class="text-slate-600">Сайдбар сдвигает контент вправо.</p>
+            <DXHeading level="1" size="2xl" weight="bold" class="mb-4">Push Mode</DXHeading>
+            <DXText tag="p" color="muted">Сайдбар сдвигает контент вправо.</DXText>
           </DXContainer>
         </template>
       </DXAppLayout>
@@ -445,8 +447,8 @@ export const WithFooter = {
         </template>
         <template #content>
           <DXContainer>
-            <h1 class="text-2xl font-bold mb-4">Контент</h1>
-            <p class="text-slate-600">Основной контент страницы.</p>
+            <DXHeading level="1" size="2xl" weight="bold" class="mb-4">Контент</DXHeading>
+            <DXText tag="p" color="muted">Основной контент страницы.</DXText>
           </DXContainer>
         </template>
         <template #footer>
@@ -495,8 +497,8 @@ export const CollapsibleSidebar = {
         </template>
         <template #content>
           <DXContainer>
-            <h1 class="text-2xl font-bold mb-4">Коллапсируемый сайдбар</h1>
-            <p class="text-slate-600">Используйте кнопку в header для переключения состояния сайдбара.</p>
+            <DXHeading level="1" size="2xl" weight="bold" class="mb-4">Коллапсируемый сайдбар</DXHeading>
+            <DXText tag="p" color="muted">Используйте кнопку в header для переключения состояния сайдбара.</DXText>
           </DXContainer>
         </template>
       </DXAppLayout>
@@ -573,8 +575,8 @@ export const Minimal = {
         </template>
         <template #content>
           <DXContainer>
-            <h1 class="text-2xl font-bold mb-4">Простое приложение</h1>
-            <p class="text-slate-600">Это минималистичный layout без sidebar и footer.</p>
+            <DXHeading level="1" size="2xl" weight="bold" class="mb-4">Простое приложение</DXHeading>
+            <DXText tag="p" color="muted">Это минималистичный layout без sidebar и footer.</DXText>
           </DXContainer>
         </template>
       </DXAppLayout>
@@ -613,14 +615,14 @@ export const Split = {
         </template>
         <template #content-left>
           <div class="h-full bg-slate-50 p-4">
-            <h2 class="text-lg font-semibold mb-2">Левая панель</h2>
-            <p class="text-sm text-slate-600">Здесь может быть редактор кода или файловый менеджер.</p>
+            <DXHeading level="2" size="lg" weight="semibold" class="mb-2">Левая панель</DXHeading>
+            <DXText tag="p" size="sm" color="muted">Здесь может быть редактор кода или файловый менеджер.</DXText>
           </div>
         </template>
         <template #content-right>
           <div class="h-full bg-white p-4">
-            <h2 class="text-lg font-semibold mb-2">Правая панель</h2>
-            <p class="text-sm text-slate-600">Здесь может быть предпросмотр или результат.</p>
+            <DXHeading level="2" size="lg" weight="semibold" class="mb-2">Правая панель</DXHeading>
+            <DXText tag="p" size="sm" color="muted">Здесь может быть предпросмотр или результат.</DXText>
           </div>
         </template>
       </DXAppLayout>
@@ -669,16 +671,16 @@ export const Tabbed = {
         <template #content>
           <DXContainer>
             <div v-if="activeTab === 'dashboard'">
-              <h1 class="text-2xl font-bold mb-4">Дашборд</h1>
-              <p class="text-slate-600">Контент дашборда.</p>
+              <DXHeading level="1" size="2xl" weight="bold" class="mb-4">Дашборд</DXHeading>
+              <DXText tag="p" color="muted">Контент дашборда.</DXText>
             </div>
             <div v-else-if="activeTab === 'analytics'">
-              <h1 class="text-2xl font-bold mb-4">Аналитика</h1>
-              <p class="text-slate-600">Контент аналитики.</p>
+              <DXHeading level="1" size="2xl" weight="bold" class="mb-4">Аналитика</DXHeading>
+              <DXText tag="p" color="muted">Контент аналитики.</DXText>
             </div>
             <div v-else-if="activeTab === 'settings'">
-              <h1 class="text-2xl font-bold mb-4">Настройки</h1>
-              <p class="text-slate-600">Контент настроек.</p>
+              <DXHeading level="1" size="2xl" weight="bold" class="mb-4">Настройки</DXHeading>
+              <DXText tag="p" color="muted">Контент настроек.</DXText>
             </div>
           </DXContainer>
         </template>

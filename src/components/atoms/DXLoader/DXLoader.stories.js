@@ -3,7 +3,7 @@ import DXLoader from './DXLoader.vue';
 export default {
   title: 'Atoms/DXLoader',
   component: DXLoader,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:feedback'],
   argTypes: {
     size: {
       control: 'select',

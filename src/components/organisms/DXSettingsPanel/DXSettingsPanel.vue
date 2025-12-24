@@ -30,9 +30,9 @@
                   :key="group.id || group.title"
                   class="space-y-4"
                 >
-                  <h4 v-if="group.title" class="text-sm font-semibold text-slate-700">
+                  <DXHeading v-if="group.title" level="4" size="sm" weight="semibold" color="default">
                     {{ group.title }}
-                  </h4>
+                  </DXHeading>
                   <div class="space-y-3">
                     <slot
                       :name="`setting-${group.id || group.title}`"
@@ -48,9 +48,9 @@
                           <label class="text-sm font-medium text-slate-900">
                             {{ setting.label }}
                           </label>
-                          <p v-if="setting.description" class="text-xs text-slate-500 mt-1">
+                          <DXText v-if="setting.description" tag="p" size="xs" color="muted" class="mt-1">
                             {{ setting.description }}
-                          </p>
+                          </DXText>
                         </div>
                         <div class="ml-4">
                           <component
@@ -99,9 +99,9 @@
                 :key="group.id || group.title"
                 class="space-y-4"
               >
-                <h4 v-if="group.title" class="text-sm font-semibold text-slate-700">
+                <DXHeading v-if="group.title" level="4" size="sm" weight="semibold" color="default">
                   {{ group.title }}
-                </h4>
+                </DXHeading>
                 <div class="space-y-3">
                   <div
                     v-for="setting in group.settings"
@@ -152,6 +152,8 @@ import DXSelect from "../../molecules/DXSelect/DXSelect.vue";
 import DXToggle from "../../atoms/DXToggle/DXToggle.vue";
 import DXTabs from "../DXTabs/DXTabs.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
+import DXHeading from "../../atoms/DXHeading/DXHeading.vue";
+import DXText from "../../atoms/DXText/DXText.vue";
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
 
 const props = defineProps({

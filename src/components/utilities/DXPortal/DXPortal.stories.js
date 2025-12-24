@@ -8,7 +8,7 @@ import DXCard from '../../atoms/DXCard/DXCard.vue';
 export default {
   title: 'Utilities/DXPortal',
   component: DXPortal,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:overlay'],
   parameters: {
     docs: {
       description: {

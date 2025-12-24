@@ -5,6 +5,7 @@
     :data-size="size"
     :data-padding="padding"
     :data-center="center"
+    :data-position="position"
   >
     <slot />
   </div>
@@ -22,6 +23,8 @@ const props = defineProps({
   center: { type: Boolean, default: true },
   /** Горизонтальные отступы: none | xs | sm | md | lg | xl */
   padding: { type: String, default: "md" },
+  /** Позиционирование: static | relative | absolute | fixed | sticky */
+  position: { type: String, default: null },
 });
 
 const BASE_CLASSES = "w-full";
@@ -61,10 +64,33 @@ const paddingClass = computed(() => {
 });
 
 /**
+ * Классы позиционирования
+ * 
+ * @description
+ * Определяет CSS position для контейнера.
+ * Используется для создания контекста позиционирования для абсолютно позиционированных дочерних элементов.
+ * 
+ * @returns {string|null} Tailwind CSS класс для позиционирования или null
+ */
+const positionClass = computed(() => {
+  if (!props.position) return null;
+  
+  const positionClasses = {
+    static: "static",
+    relative: "relative",
+    absolute: "absolute",
+    fixed: "fixed",
+    sticky: "sticky",
+  };
+  
+  return positionClasses[props.position] || null;
+});
+
+/**
  * Все классы для контейнера
  * 
  * @description
- * Объединяет базовые классы, размер, отступы и центрирование
+ * Объединяет базовые классы, размер, отступы, центрирование и позиционирование
  * с использованием useClassComposition для единообразного подхода.
  * 
  * @returns {Array} Массив классов для применения к элементу
@@ -74,6 +100,7 @@ const containerClasses = computed(() =>
     BASE_CLASSES,
     sizeClass.value,
     paddingClass.value,
+    positionClass.value,
     {
       "mx-auto": props.center,
     }

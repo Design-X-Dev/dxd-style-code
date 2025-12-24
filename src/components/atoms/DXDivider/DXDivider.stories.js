@@ -3,7 +3,7 @@ import DXDivider from './DXDivider.vue';
 export default {
   title: 'Atoms/DXDivider',
   component: DXDivider,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:feedback'],
   argTypes: {
     orientation: { 
       control: { type: 'select' }, 

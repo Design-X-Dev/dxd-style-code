@@ -3,7 +3,7 @@ import DXFlex from './DXFlex.vue';
 export default {
   title: 'Atoms/DXFlex',
   component: DXFlex,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:layout'],
   parameters: {
     docs: {
       description: {

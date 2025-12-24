@@ -29,7 +29,7 @@
       <div v-if="showHeader || $slots.header" :class="headerClasses">
         <slot name="header">
           <div class="flex items-center justify-between">
-            <h3 class="text-lg font-semibold text-slate-900">Уведомления</h3>
+            <DXHeading level="3" size="lg" weight="semibold" color="default">Уведомления</DXHeading>
             <DXButton
               v-if="unreadCount > 0"
               size="sm"
@@ -144,6 +144,7 @@ import { useSpacing } from "../../../composables/useSpacing";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 import DXBadge from "../../atoms/DXBadge/DXBadge.vue";
+import DXHeading from "../../atoms/DXHeading/DXHeading.vue";
 import DXDropdown from "../DXDropdown/DXDropdown.vue";
 import {
   BellIcon,

@@ -6,7 +6,7 @@ import DXButton from '../../atoms/DXButton/DXButton.vue';
 export default {
   title: 'Utilities/DXObserver',
   component: DXObserver,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:utility'],
   parameters: {
     docs: {
       description: {

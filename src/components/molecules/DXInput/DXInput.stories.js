@@ -18,7 +18,7 @@ import {
 export default {
   title: 'Molecules/DXInput',
   component: DXInput,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:form'],
   argTypes: {
     size: {
       control: 'select',

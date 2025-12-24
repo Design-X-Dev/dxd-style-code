@@ -4,7 +4,7 @@ import { ref } from 'vue';
 export default {
   title: 'Molecules/DXPasswordInput',
   component: DXPasswordInput,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:form'],
 };
 
 export const Default = {

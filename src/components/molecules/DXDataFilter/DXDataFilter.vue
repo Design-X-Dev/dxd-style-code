@@ -7,9 +7,9 @@
     <!-- Заголовок -->
     <div v-if="title || $slots.header" :class="headerClasses">
       <slot name="header">
-        <h3 v-if="title" class="text-lg font-semibold text-slate-900">
+        <DXHeading v-if="title" level="3" size="lg" weight="semibold" color="default">
           {{ title }}
-        </h3>
+        </DXHeading>
       </slot>
     </div>
 
@@ -52,9 +52,9 @@
 
             <!-- Определение фильтра -->
             <div class="flex-1">
-              <label class="block text-sm font-medium text-slate-700 mb-1">
+              <DXText tag="label" size="sm" weight="medium" color="default" class="block mb-1">
                 {{ filter.label || filterDefinitions[filter.id]?.label }}
-              </label>
+              </DXText>
 
               <!-- Текстовый фильтр -->
               <DXInput
@@ -104,9 +104,9 @@
                 :filter="filter"
                 :filter-definition="filterDefinitions[filter.id]"
               >
-                <p class="text-sm text-slate-500">
+                <DXText tag="p" size="sm" color="muted">
                   Используйте slot filter-{{ filter.type }} для кастомного фильтра
-                </p>
+                </DXText>
               </slot>
             </div>
           </div>
@@ -133,6 +133,8 @@ import DXSelect from "../DXSelect/DXSelect.vue";
 import DXDatePicker from "../DXDatePicker/DXDatePicker.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXHeading from "../../atoms/DXHeading/DXHeading.vue";
+import DXText from "../../atoms/DXText/DXText.vue";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
 
 const props = defineProps({

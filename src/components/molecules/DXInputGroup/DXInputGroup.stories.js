@@ -13,7 +13,7 @@ import {
 export default {
   title: 'Molecules/DXInputGroup',
   component: DXInputGroup,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:form'],
 };
 
 export const Default = {

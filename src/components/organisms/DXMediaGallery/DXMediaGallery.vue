@@ -128,12 +128,12 @@
           autoplay
         />
         <div v-if="selectedItem.title || selectedItem.description" class="mt-4">
-          <h3 v-if="selectedItem.title" class="text-lg font-semibold text-slate-900">
+          <DXHeading v-if="selectedItem.title" level="3" size="lg" weight="semibold" color="default">
             {{ selectedItem.title }}
-          </h3>
-          <p v-if="selectedItem.description" class="text-sm text-slate-600 mt-1">
+          </DXHeading>
+          <DXText v-if="selectedItem.description" tag="p" size="sm" color="muted" class="mt-1">
             {{ selectedItem.description }}
-          </p>
+          </DXText>
         </div>
       </div>
       
@@ -175,6 +175,8 @@ import DXModal from "../DXModal/DXModal.vue";
 import DXObserver from "../../utilities/DXObserver/DXObserver.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXHeading from "../../atoms/DXHeading/DXHeading.vue";
+import DXText from "../../atoms/DXText/DXText.vue";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/outline";
 
 const props = defineProps({

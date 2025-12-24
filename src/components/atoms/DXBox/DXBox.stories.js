@@ -3,7 +3,7 @@ import DXBox from './DXBox.vue';
 export default {
   title: 'Atoms/DXBox',
   component: DXBox,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:layout'],
   parameters: {
     docs: {
       description: {

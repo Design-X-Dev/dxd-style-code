@@ -3,7 +3,7 @@ import DXBlockquote from './DXBlockquote.vue';
 export default {
   title: 'Atoms/DXBlockquote',
   component: DXBlockquote,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:typography'],
   argTypes: {
     variant: { control: { type: 'select' }, options: ['default', 'bordered', 'highlighted'] },
   },

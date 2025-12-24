@@ -3,7 +3,7 @@ import DXGrid from './DXGrid.vue';
 export default {
   title: 'Atoms/DXGrid',
   component: DXGrid,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:layout'],
   parameters: {
     docs: {
       description: {

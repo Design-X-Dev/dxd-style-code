@@ -3,7 +3,7 @@ import DXList from './DXList.vue';
 export default {
   title: 'Atoms/DXList',
   component: DXList,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:typography'],
 };
 
 export const Unordered = {

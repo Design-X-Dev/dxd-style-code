@@ -4,7 +4,7 @@ import DXNotificationCenter from './DXNotificationCenter.vue';
 export default {
   title: 'Organisms/DXNotificationCenter',
   component: DXNotificationCenter,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:feedback'],
   parameters: {
     docs: {
       description: {

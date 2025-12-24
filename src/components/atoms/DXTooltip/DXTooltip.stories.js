@@ -3,7 +3,7 @@ import DXTooltip from './DXTooltip.vue';
 export default {
   title: 'Atoms/DXTooltip',
   component: DXTooltip,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:feedback'],
   argTypes: {
     position: { control: { type: 'select' }, options: ['top', 'bottom', 'left', 'right'] },
     color: { control: { type: 'select' }, options: ['dark', 'light', 'primary', 'success', 'danger', 'warning', 'info'] },

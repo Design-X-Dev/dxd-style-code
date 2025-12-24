@@ -7,7 +7,7 @@
     <!-- Заголовок -->
     <div v-if="shouldShowHeader" :class="headerClasses">
       <slot v-if="!compact" name="header">
-        <h2 v-if="title" :class="headerTitleClasses">{{ title }}</h2>
+        <DXHeading v-if="title" level="2" :size="headerSizeMap" weight="bold" color="default" :class="headerTitleClasses">{{ title }}</DXHeading>
       </slot>
       
       <!-- Кнопка переключения compact режима -->
@@ -91,6 +91,7 @@ import DXSidebarMenuItem from './DXSidebarMenuItem.vue';
 import DXInput from '../../molecules/DXInput/DXInput.vue';
 import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
 import DXDivider from '../../atoms/DXDivider/DXDivider.vue';
+import DXHeading from '../../atoms/DXHeading/DXHeading.vue';
 
 const $slots = useSlots();
 
@@ -220,9 +221,17 @@ const headerClasses = computed(() => [
 ]);
 
 const headerTitleClasses = computed(() => [
-  'font-bold text-slate-900',
   HEADER_SIZE_CLASSES[props.headerSize].title
 ]);
+
+const headerSizeMap = computed(() => {
+  const sizeMap = {
+    sm: 'base',
+    md: 'lg',
+    lg: 'xl',
+  };
+  return sizeMap[props.headerSize] || sizeMap.md;
+});
 
 const menuClasses = computed(() => [
   'flex-1 overflow-y-auto py-4 px-3 space-y-6',

@@ -10,7 +10,7 @@ import {
 export default {
   title: 'Molecules/DXTextarea',
   component: DXTextarea,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:form'],
 };
 
 export const Default = {

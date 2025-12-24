@@ -8,13 +8,15 @@
       class="w-10 h-10 text-slate-500 mx-auto"
       :class="animated && 'animate-bounce-slow'"
     />
-    <p class="text-base font-semibold text-slate-900">{{ title }}</p>
-    <p v-if="description" class="text-sm text-slate-600">{{ description }}</p>
+    <DXText tag="p" size="md" weight="semibold" color="default">{{ title }}</DXText>
+    <DXText v-if="description" tag="p" size="sm" color="muted">{{ description }}</DXText>
     <slot name="action" />
   </div>
 </template>
 
 <script setup>
+import DXText from "../../atoms/DXText/DXText.vue";
+
 defineProps({
   /** Иконка (компонент) */
   icon: { type: [Object, Function], required: true },

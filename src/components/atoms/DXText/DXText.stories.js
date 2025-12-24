@@ -3,7 +3,7 @@ import DXText from './DXText.vue';
 export default {
   title: 'Atoms/DXText',
   component: DXText,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:typography'],
   argTypes: {
     size: { control: { type: 'select' }, options: ['xs', 'sm', 'md', 'lg', 'xl'] },
     weight: { control: { type: 'select' }, options: ['normal', 'medium', 'semibold', 'bold'] },

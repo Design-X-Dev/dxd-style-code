@@ -1,5 +1,5 @@
 <template>
-  <div :class="flexClasses" data-component="DXFlex">
+  <div :class="flexClasses" data-component="DXFlex" :data-height="height" :data-shrink="shrink">
     <slot />
   </div>
 </template>
@@ -22,6 +22,10 @@ const props = defineProps({
   gap: { type: String, default: "md" },
   /** Inline flex */
   inline: { type: Boolean, default: false },
+  /** Высота: full | auto | fit */
+  height: { type: String, default: null },
+  /** Flex shrink: 0 | 1 | auto */
+  shrink: { type: [String, Boolean], default: null },
 });
 
 const BASE_CLASSES = "";
@@ -126,11 +130,59 @@ const gapClass = computed(() => {
 });
 
 /**
+ * Классы высоты
+ * 
+ * @description
+ * Определяет высоту flex контейнера.
+ * Используется для растягивания контейнера на всю высоту родителя.
+ * 
+ * @returns {string|null} Tailwind CSS класс для высоты или null
+ */
+const heightClass = computed(() => {
+  if (!props.height) return null;
+  
+  const heightClasses = {
+    full: "h-full",
+    auto: "h-auto",
+    fit: "h-fit",
+  };
+  
+  return heightClasses[props.height] || null;
+});
+
+/**
+ * Классы flex-shrink
+ * 
+ * @description
+ * Определяет поведение сжатия элемента в flex контейнере.
+ * Используется для предотвращения сжатия элементов (shrink-0) или управления им.
+ * 
+ * @returns {string|null} Tailwind CSS класс для flex-shrink или null
+ */
+const shrinkClass = computed(() => {
+  if (props.shrink === null || props.shrink === undefined) return null;
+  
+  // Если передан boolean, true = shrink-0, false = shrink
+  if (typeof props.shrink === 'boolean') {
+    return props.shrink ? "shrink-0" : "shrink";
+  }
+  
+  // Если передан string
+  const shrinkClasses = {
+    "0": "shrink-0",
+    "1": "shrink",
+    auto: "shrink",
+  };
+  
+  return shrinkClasses[props.shrink] || null;
+});
+
+/**
  * Все классы для flex компонента
  * 
  * @description
  * Объединяет все классы flex контейнера (базовый класс, направление,
- * выравнивание, перенос, отступы) с использованием useClassComposition.
+ * выравнивание, перенос, отступы, высота, shrink) с использованием useClassComposition.
  * 
  * @returns {Array} Массив классов для применения к элементу
  */
@@ -142,7 +194,9 @@ const flexClasses = computed(() =>
     justifyClass.value,
     alignClass.value,
     wrapClass.value,
-    gapClass.value
+    gapClass.value,
+    heightClass.value,
+    shrinkClass.value
   )
 );
 </script>

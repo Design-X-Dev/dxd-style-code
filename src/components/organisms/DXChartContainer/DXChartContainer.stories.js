@@ -6,7 +6,7 @@ import DXSelect from '../../molecules/DXSelect/DXSelect.vue';
 export default {
   title: 'Organisms/DXChartContainer',
   component: DXChartContainer,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:data-display'],
   parameters: {
     docs: {
       description: {

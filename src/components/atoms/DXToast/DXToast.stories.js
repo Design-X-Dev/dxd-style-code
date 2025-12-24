@@ -3,7 +3,7 @@ import DXToast from "./DXToast.vue";
 export default {
   title: "Atoms/DXToast",
   component: DXToast,
-  tags: ["autodocs"],
+  tags: ["autodocs", "category:feedback"],
 };
 
 export const Success = {

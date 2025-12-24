@@ -4,7 +4,7 @@ import DXUserProfileCard from './DXUserProfileCard.vue';
 export default {
   title: 'Organisms/DXUserProfileCard',
   component: DXUserProfileCard,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:data-display'],
   parameters: {
     docs: {
       description: {

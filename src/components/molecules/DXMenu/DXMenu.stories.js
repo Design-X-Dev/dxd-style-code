@@ -1,5 +1,7 @@
 import { ref } from 'vue';
 import DXMenu from './DXMenu.vue';
+import DXHeading from '../../atoms/DXHeading/DXHeading.vue';
+import DXText from '../../atoms/DXText/DXText.vue';
 import {
   HomeIcon,
   ChartBarIcon,
@@ -12,7 +14,7 @@ import {
 export default {
   title: 'Molecules/DXMenu',
   component: DXMenu,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:navigation'],
   argTypes: {
     direction: {
       control: { type: 'select' },
@@ -98,8 +100,8 @@ const ContentPlaceholder = `
   <div class="flex-1 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300 p-8 flex items-center justify-center">
     <div class="text-center">
       <div class="text-4xl mb-2">📄</div>
-      <h3 class="text-lg font-semibold text-slate-700">Content Area</h3>
-      <p class="text-sm text-slate-500">Main content goes here</p>
+      <DXHeading level="3" size="lg" weight="semibold" color="default">Content Area</DXHeading>
+      <DXText tag="p" size="sm" color="muted">Main content goes here</DXText>
     </div>
   </div>
 `;
@@ -116,7 +118,7 @@ export const Playground = {
     showHeader: undefined,
     headerSize: 'md',
     cardPadding: 'none',
-    cardVariant: 'default',
+    cardVariant: 'bordered',
   },
   render: (args) => ({
     components: { DXMenu },

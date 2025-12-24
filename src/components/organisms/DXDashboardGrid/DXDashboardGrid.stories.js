@@ -8,7 +8,7 @@ import { UserGroupIcon, ChartBarIcon, CurrencyDollarIcon } from '@heroicons/vue/
 export default {
   title: 'Organisms/DXDashboardGrid',
   component: DXDashboardGrid,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:data-display'],
   parameters: {
     docs: {
       description: {

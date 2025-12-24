@@ -6,7 +6,7 @@
     <!-- Header -->
     <div v-if="showHeader || $slots.header" :class="headerClasses">
       <slot name="header">
-        <h2 class="text-2xl font-bold text-slate-900">Генератор отчетов</h2>
+        <DXHeading level="2" size="2xl" weight="bold" color="default">Генератор отчетов</DXHeading>
       </slot>
     </div>
 
@@ -26,7 +26,7 @@
     <div v-if="$slots.settings || showSettings" :class="settingsClasses">
       <slot name="settings" :settings="reportSettings" :update-setting="updateSetting">
         <DXCard v-if="showSettings" class="p-4">
-          <h3 class="font-semibold mb-4">Настройки отчета</h3>
+          <DXHeading level="3" weight="semibold" class="mb-4">Настройки отчета</DXHeading>
           <div class="space-y-4">
             <DXFormControl label="Формат экспорта">
               <DXSelect
@@ -49,7 +49,7 @@
     <div v-if="$slots.preview || showPreview" :class="previewClasses">
       <slot name="preview" :data="previewData" :columns="columns">
         <DXCard v-if="showPreview" class="p-4">
-          <h3 class="font-semibold mb-4">Предпросмотр</h3>
+          <DXHeading level="3" weight="semibold" class="mb-4">Предпросмотр</DXHeading>
           <DXTable
             :columns="columns"
             :data="previewData"
@@ -91,6 +91,7 @@ import { useClassComposition } from "../../../composables/useClassComposition";
 import { useSpacing } from "../../../composables/useSpacing";
 import DXCard from "../../atoms/DXCard/DXCard.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
+import DXHeading from "../../atoms/DXHeading/DXHeading.vue";
 import DXTable from "../DXTable/DXTable.vue";
 import DXDataFilter from "../../molecules/DXDataFilter/DXDataFilter.vue";
 import DXSelect from "../../molecules/DXSelect/DXSelect.vue";

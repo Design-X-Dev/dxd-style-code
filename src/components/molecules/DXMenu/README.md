@@ -269,7 +269,7 @@ const currentPage = ref('/home');
 | `showHeader` | Boolean | `undefined` | Показывать header (undefined = автоматически) |
 | `headerSize` | String | `'md'` | Размер header: sm, md, lg (только vertical) |
 | `cardPadding` | String | `'none'` | Padding карточки: none, sm, md, lg |
-| `cardVariant` | String | `'default'` | Вариант карточки: default, bordered, elevated, flat |
+| `cardVariant` | String | `'bordered'` | Вариант карточки: bordered, elevated, flat |
 
 ## Структура данных sections
 

@@ -13,7 +13,7 @@
         <!-- Horizontal режим: все в одну строку -->
         <template v-if="direction === 'horizontal'">
           <slot v-if="!compact" name="header">
-            <h2 v-if="title" :class="headerTitleClasses">{{ title }}</h2>
+            <DXHeading v-if="title" level="2" :size="headerSizeMap" weight="bold" color="default" :class="headerTitleClasses">{{ title }}</DXHeading>
           </slot>
           
           <!-- Search inline для horizontal -->
@@ -48,7 +48,7 @@
         <!-- Vertical режим: текущий layout -->
         <template v-else>
           <slot v-if="!compact" name="header">
-            <h2 v-if="title" :class="headerTitleClasses">{{ title }}</h2>
+            <DXHeading v-if="title" level="2" :size="headerSizeMap" weight="bold" color="default" :class="headerTitleClasses">{{ title }}</DXHeading>
           </slot>
           
           <button
@@ -153,6 +153,7 @@ import DXSidebarMenuItem from '../../organisms/DXSidebarMenu/DXSidebarMenuItem.v
 import DXInput from '../DXInput/DXInput.vue';
 import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
 import DXDivider from '../../atoms/DXDivider/DXDivider.vue';
+import DXHeading from '../../atoms/DXHeading/DXHeading.vue';
 
 const $slots = useSlots();
 
@@ -288,9 +289,20 @@ const headerClasses = computed(() => {
 });
 
 const headerTitleClasses = computed(() => [
-  'font-bold text-slate-900',
   props.direction === 'horizontal' ? 'text-base' : HEADER_SIZE_CLASSES[props.headerSize].title
 ]);
+
+const headerSizeMap = computed(() => {
+  if (props.direction === 'horizontal') {
+    return 'base';
+  }
+  const sizeMap = {
+    sm: 'base',
+    md: 'lg',
+    lg: 'xl',
+  };
+  return sizeMap[props.headerSize] || sizeMap.md;
+});
 
 const navClasses = computed(() => {
   if (props.direction === 'horizontal') {

@@ -3,7 +3,7 @@ import DXFormLabel from './DXFormLabel.vue';
 export default {
   title: 'Atoms/DXFormLabel',
   component: DXFormLabel,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:form'],
   argTypes: {
     label: {
       control: 'text',

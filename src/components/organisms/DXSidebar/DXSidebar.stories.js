@@ -8,7 +8,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/outline';
 export default {
   title: 'Organisms/DXSidebar',
   component: DXSidebar,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:navigation'],
   parameters: {
     docs: {
       description: {

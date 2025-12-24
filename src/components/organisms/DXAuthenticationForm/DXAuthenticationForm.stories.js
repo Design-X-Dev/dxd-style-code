@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXAuthenticationForm
-
 Готовая форма аутентификации (логин/регистрация) с валидацией и обработкой ошибок.
 
 ## Назначение

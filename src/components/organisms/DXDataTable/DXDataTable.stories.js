@@ -4,7 +4,7 @@ import DXDataTable from './DXDataTable.vue';
 export default {
   title: 'Organisms/DXDataTable',
   component: DXDataTable,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:data-display'],
   parameters: {
     docs: {
       description: {

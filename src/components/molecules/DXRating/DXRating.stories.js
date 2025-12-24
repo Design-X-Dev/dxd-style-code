@@ -1,11 +1,12 @@
 import { ref } from 'vue';
 import DXRating from './DXRating.vue';
 import DXFormControl from '../DXFormControl/DXFormControl.vue';
+import DXText from '../../atoms/DXText/DXText.vue';
 
 export default {
   title: 'Molecules/DXRating',
   component: DXRating,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:data-display'],
   parameters: {
     docs: {
       description: {
@@ -264,7 +265,7 @@ export const HeartSymbol = {
           symbol="heart"
           color="red"
         />
-        <p class="text-sm text-slate-600">Выбрано: {{ heartRating }}</p>
+        <DXText tag="p" size="sm" color="muted">Выбрано: {{ heartRating }}</DXText>
       </div>
     `,
   }),

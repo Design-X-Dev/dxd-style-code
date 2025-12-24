@@ -3,7 +3,7 @@ import DXProgress from './DXProgress.vue';
 export default {
   title: 'Atoms/DXProgress',
   component: DXProgress,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:feedback'],
   argTypes: {
     value: {
       control: { type: 'range', min: 0, max: 100 },

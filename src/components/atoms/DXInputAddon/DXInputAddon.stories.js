@@ -12,7 +12,7 @@ import {
 export default {
   title: 'Atoms/DXInputAddon',
   component: DXInputAddon,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:form'],
   argTypes: {
     icon: {
       control: false,

@@ -5,7 +5,7 @@ import DXButton from '../../atoms/DXButton/DXButton.vue';
 export default {
   title: 'Organisms/DXModal',
   component: DXModal,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:overlay'],
   argTypes: {
     variant: {
       control: 'select',

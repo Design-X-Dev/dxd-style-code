@@ -3,7 +3,7 @@ import DXValidationIcon from './DXValidationIcon.vue';
 export default {
   title: 'Molecules/DXValidationIcon',
   component: DXValidationIcon,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:form'],
   argTypes: {
     state: {
       control: 'select',

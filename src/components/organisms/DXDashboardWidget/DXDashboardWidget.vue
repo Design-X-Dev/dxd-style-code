@@ -11,9 +11,9 @@
     <div v-if="title || $slots.header || editable" :class="headerClasses">
       <slot name="header">
         <div class="flex items-center justify-between">
-          <h3 v-if="title" class="text-lg font-semibold text-slate-900">
+          <DXHeading v-if="title" level="3" size="lg" weight="semibold" color="default">
             {{ title }}
-          </h3>
+          </DXHeading>
           <div v-if="editable" class="flex items-center gap-2">
             <DXButton
               v-if="refreshable"
@@ -112,6 +112,7 @@ import { useSize } from "../../../composables/useSize";
 import DXCard from "../../atoms/DXCard/DXCard.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXHeading from "../../atoms/DXHeading/DXHeading.vue";
 import DXStatCard from "../../molecules/DXStatCard/DXStatCard.vue";
 import DXChartContainer from "../DXChartContainer/DXChartContainer.vue";
 import DXTable from "../DXTable/DXTable.vue";

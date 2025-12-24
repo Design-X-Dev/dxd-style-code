@@ -12,7 +12,7 @@ import {
 export default {
   title: 'Atoms/DXCheckbox',
   component: DXCheckbox,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:form'],
   argTypes: {
     variant: {
       control: 'select',

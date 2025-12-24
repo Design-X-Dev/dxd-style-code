@@ -9,9 +9,9 @@
     <!-- Заголовок -->
     <div v-if="title || $slots.header" :class="headerClasses">
       <slot name="header">
-        <h3 v-if="title" class="text-lg font-semibold text-slate-900">
+        <DXHeading v-if="title" level="3" size="lg" weight="semibold" color="default">
           {{ title }}
-        </h3>
+        </DXHeading>
       </slot>
     </div>
 
@@ -34,7 +34,7 @@
     <div :class="chartClasses" :style="chartStyles">
       <slot name="chart">
         <div class="flex items-center justify-center h-full text-slate-400">
-          <p class="text-sm">Используйте slot "chart" для вашей библиотеки графиков</p>
+          <DXText tag="p" size="sm">Используйте slot "chart" для вашей библиотеки графиков</DXText>
         </div>
       </slot>
     </div>
@@ -56,14 +56,16 @@
                 { 'opacity-50': !item.visible },
               ]"
             ></div>
-            <span
+            <DXText
+              tag="span"
+              size="sm"
+              color="default"
               :class="[
-                'text-sm text-slate-700',
                 { 'line-through opacity-50': !item.visible },
               ]"
             >
               {{ item.label }}
-            </span>
+            </DXText>
           </div>
         </div>
       </slot>
@@ -77,6 +79,8 @@ import { useClassComposition } from "../../../composables/useClassComposition";
 import { useSpacing } from "../../../composables/useSpacing";
 import DXCard from "../../atoms/DXCard/DXCard.vue";
 import DXSelect from "../../molecules/DXSelect/DXSelect.vue";
+import DXHeading from "../../atoms/DXHeading/DXHeading.vue";
+import DXText from "../../atoms/DXText/DXText.vue";
 
 const props = defineProps({
   /**

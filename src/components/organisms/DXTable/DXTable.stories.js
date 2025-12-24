@@ -2,11 +2,13 @@ import { ref } from 'vue';
 import DXTable from './DXTable.vue';
 import DXButton from '../../atoms/DXButton/DXButton.vue';
 import DXBadge from '../../atoms/DXBadge/DXBadge.vue';
+import DXHeading from '../../atoms/DXHeading/DXHeading.vue';
+import DXText from '../../atoms/DXText/DXText.vue';
 
 export default {
   title: 'Organisms/DXTable',
   component: DXTable,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:data-display'],
 };
 
 // Sample data
@@ -161,11 +163,11 @@ export const WithFilters = {
     },
     template: `
       <div class="p-4">
-        <h3 class="text-lg font-semibold mb-4">Фильтры в заголовках столбцов</h3>
-        <p class="text-sm text-slate-600 mb-4">
+        <DXHeading level="3" size="lg" weight="semibold" class="mb-4">Фильтры в заголовках столбцов</DXHeading>
+        <DXText tag="p" size="sm" color="muted" class="mb-4">
           Кликните на иконку воронки в заголовке столбца, чтобы открыть фильтр.
           Активные фильтры отображаются в панели над таблицей.
-        </p>
+        </DXText>
         <DXTable
           :columns="columns"
           :data="data"
@@ -187,10 +189,10 @@ export const WithFilterOptions = {
     },
     template: `
       <div class="p-4">
-        <h3 class="text-lg font-semibold mb-4">Фильтры с предопределенными опциями</h3>
-        <p class="text-sm text-slate-600 mb-4">
+        <DXHeading level="3" size="lg" weight="semibold" class="mb-4">Фильтры с предопределенными опциями</DXHeading>
+        <DXText tag="p" size="sm" color="muted" class="mb-4">
           Некоторые столбцы имеют предопределенные опции фильтрации.
-        </p>
+        </DXText>
         <DXTable
           :columns="columns"
           :data="data"
@@ -213,11 +215,11 @@ export const WithMultipleFilters = {
     },
     template: `
       <div class="p-4">
-        <h3 class="text-lg font-semibold mb-4">Множественные активные фильтры</h3>
-        <p class="text-sm text-slate-600 mb-4">
+        <DXHeading level="3" size="lg" weight="semibold" class="mb-4">Множественные активные фильтры</DXHeading>
+        <DXText tag="p" size="sm" color="muted" class="mb-4">
           Примените несколько фильтров одновременно. Все активные фильтры 
           отображаются в панели над таблицей с возможностью удаления.
-        </p>
+        </DXText>
         <DXTable
           :columns="columns"
           :data="data"
@@ -421,7 +423,7 @@ export const CustomCells = {
         </template>
         
         <template #cell-role="{ value }">
-          <span class="font-semibold text-blue-600">{{ value }}</span>
+          <DXText tag="span" weight="semibold" color="primary">{{ value }}</DXText>
         </template>
 
         <template #actions="{ row }">

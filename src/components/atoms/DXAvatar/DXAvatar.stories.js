@@ -10,12 +10,11 @@ import {
 export default {
   title: 'Atoms/DXAvatar',
   component: DXAvatar,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:data-display'],
   parameters: {
     docs: {
       description: {
         component: `
-# DXAvatar
 
 Компонент аватара пользователя с поддержкой изображений, инициалов и иконок.
 

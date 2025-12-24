@@ -50,7 +50,7 @@ const defaultItems = [
 export default {
   title: 'Organisms/DXMediaGallery',
   component: DXMediaGallery,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:data-display'],
   parameters: {
     docs: {
       description: {

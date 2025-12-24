@@ -7,7 +7,7 @@ import DXGrid from '../../atoms/DXGrid/DXGrid.vue';
 export default {
   title: 'Utilities/DXBreakpointProvider',
   component: DXBreakpointProvider,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:provider'],
   parameters: {
     docs: {
       description: {

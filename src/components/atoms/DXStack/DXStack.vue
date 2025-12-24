@@ -1,5 +1,6 @@
 <template>
-  <div 
+  <component
+    :is="tag"
     :class="stackClasses" 
     data-component="DXStack" 
     :data-direction="direction"
@@ -8,7 +9,7 @@
     :data-justify="justify"
   >
     <slot />
-  </div>
+  </component>
 </template>
 
 <script setup>
@@ -17,6 +18,8 @@ import { useSize } from "../../../composables/useSize";
 import { useClassComposition } from "../../../composables/useClassComposition";
 
 const props = defineProps({
+  /** HTML тег */
+  tag: { type: String, default: "div" },
   /** Направление: vertical | horizontal */
   direction: { type: String, default: "vertical" },
   /** Отступ между элементами: none | xs | sm | md | lg | xl | 2xl */

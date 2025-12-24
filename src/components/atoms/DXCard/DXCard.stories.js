@@ -3,11 +3,11 @@ import DXCard from './DXCard.vue';
 export default {
   title: 'Atoms/DXCard',
   component: DXCard,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:data-display'],
   argTypes: {
     variant: {
       control: 'select',
-      options: ['default', 'bordered', 'elevated', 'flat'],
+      options: ['bordered', 'elevated', 'flat'],
       description: 'Card variant style'
     },
     padding: {
@@ -20,7 +20,7 @@ export default {
 
 export const Default = {
   args: {
-    variant: 'default',
+    variant: 'bordered',
     padding: 'md',
   },
   render: (args) => ({
@@ -46,17 +46,7 @@ export const Variants = {
     template: `
       <div class="space-y-4">
         <div>
-          <p class="text-sm font-medium text-slate-700 mb-2">Default (border + shadow)</p>
-          <DXCard variant="default">
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">Default Card</h3>
-            <p class="text-sm text-slate-600">
-              Subtle border and shadow for a clean, modern look.
-            </p>
-          </DXCard>
-        </div>
-        
-        <div>
-          <p class="text-sm font-medium text-slate-700 mb-2">Bordered (2px border, no shadow)</p>
+          <p class="text-sm font-medium text-slate-700 mb-2">Bordered (2px border, no shadow) - Default</p>
           <DXCard variant="bordered">
             <h3 class="text-lg font-semibold text-slate-900 mb-2">Bordered Card</h3>
             <p class="text-sm text-slate-600">

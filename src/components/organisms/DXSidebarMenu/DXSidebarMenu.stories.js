@@ -21,7 +21,7 @@ import {
 export default {
   title: 'Organisms/DXSidebarMenu',
   component: DXSidebarMenu,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:navigation'],
   argTypes: {
     showHeader: {
       control: { type: 'boolean' },

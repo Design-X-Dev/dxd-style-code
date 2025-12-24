@@ -4,7 +4,6 @@ export { default as DXAlert } from './DXAlert';
 export { default as DXCloseButton } from './DXCloseButton';
 export { default as DXDropdownDivider } from './DXDropdownDivider';
 export { default as DXMenu } from './DXMenu';
-export { default as DXBaseTable } from './DXBaseTable';
 export { default as DXBreadcrumb } from './DXBreadcrumb';
 export { default as DXButtonGroup } from './DXButtonGroup';
 export { default as DXComboBox } from './DXComboBox';

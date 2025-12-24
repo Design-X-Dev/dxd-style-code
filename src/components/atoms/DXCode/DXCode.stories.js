@@ -3,7 +3,7 @@ import DXCode from './DXCode.vue';
 export default {
   title: 'Atoms/DXCode',
   component: DXCode,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:typography'],
 };
 
 export const Inline = {

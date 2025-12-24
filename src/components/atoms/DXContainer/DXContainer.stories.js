@@ -3,7 +3,7 @@ import DXContainer from './DXContainer.vue';
 export default {
   title: 'Atoms/DXContainer',
   component: DXContainer,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:layout'],
   parameters: {
     docs: {
       description: {

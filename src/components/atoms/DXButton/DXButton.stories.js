@@ -5,7 +5,7 @@ import { PlusIcon, TrashIcon, PencilIcon, HeartIcon } from '@heroicons/vue/24/ou
 export default {
   title: 'Atoms/DXButton',
   component: DXButton,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:form'],
   argTypes: {
     variant: {
       control: 'select',

@@ -42,16 +42,16 @@
             />
             <div class="flex-1">
               <div class="flex items-center gap-2 mb-1">
-                <span class="font-semibold text-slate-900">
+                <DXText tag="span" weight="semibold" color="default">
                   {{ comment.author?.name || "Аноним" }}
-                </span>
-                <span class="text-xs text-slate-500">
+                </DXText>
+                <DXText tag="span" size="xs" color="muted">
                   {{ formatDate(comment.date) }}
-                </span>
+                </DXText>
               </div>
-              <div class="text-sm text-slate-700 mb-2">
+              <DXText tag="div" size="sm" color="default" class="mb-2">
                 {{ comment.text }}
-              </div>
+              </DXText>
               <div class="flex items-center gap-4">
                 <DXButton
                   v-if="showReactions"
@@ -128,6 +128,7 @@ import { useSpacing } from "../../../composables/useSpacing";
 import DXTextarea from "../../molecules/DXTextarea/DXTextarea.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXAvatar from "../../atoms/DXAvatar/DXAvatar.vue";
+import DXText from "../../atoms/DXText/DXText.vue";
 import DXPagination from "../../molecules/DXPagination/DXPagination.vue";
 
 const props = defineProps({

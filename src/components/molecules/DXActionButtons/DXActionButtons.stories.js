@@ -1,20 +1,167 @@
-import DXActionButtons from './DXActionButtons.vue';
-import DXButton from '../../atoms/DXButton/DXButton.vue';
-import DXIcon from '../../atoms/DXIcon/DXIcon.vue';
-import { ShareIcon, ArrowDownTrayIcon, PrinterIcon } from '@heroicons/vue/24/outline';
+import { DXActionButtons } from '../../molecules';
+import { DXButton, DXIcon, DXHeading, DXText, DXSpacer, DXStack, DXCard } from '../../atoms';
+import { ShareIcon, ArrowDownTrayIcon } from '@heroicons/vue/24/outline';
 
 export default {
   title: 'Molecules/DXActionButtons',
   component: DXActionButtons,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:navigation'],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Компонент для отображения группы кнопок действий (просмотр, редактирование, удаление).
+
+## Назначение
+
+DXActionButtons предоставляет стандартизированный набор кнопок действий для работы с элементами интерфейса. Компонент автоматически управляет стилями, размерами и выравниванием кнопок, обеспечивая единообразный вид во всем приложении.
+
+## Архитектура
+
+### Использует
+- \`DXIcon\` - для отображения иконок на кнопках
+- Heroicons - для стандартных иконок действий
+
+### Используется в
+- Таблицы данных - для действий со строками
+- Карточки - для действий с элементами
+- Списки - для действий с элементами списка
+- Модальные окна - для действий с данными
+
+## Внутренняя логика
+
+### Кнопки действий
+Компонент поддерживает три основных действия:
+- **View (Просмотр)** - кнопка для просмотра деталей элемента
+- **Edit (Редактирование)** - кнопка для редактирования элемента
+- **Delete (Удаление)** - кнопка для удаления элемента (красная)
+
+### Размеры
+- \`xs\` - очень маленький размер, подходит для таблиц
+- \`sm\` - маленький размер (по умолчанию)
+- \`md\` - средний размер
+
+### Выравнивание
+- \`left\` - выравнивание по левому краю (по умолчанию)
+- \`center\` - выравнивание по центру
+- \`right\` - выравнивание по правому краю
+
+### Режимы отображения
+- **С текстом** - кнопки с иконками и текстом (по умолчанию)
+- **Только иконки** - компактный режим с иконками без текста (\`iconOnly={true}\`)
+
+## Особенности
+
+### Кастомизация
+- Можно настроить текст каждой кнопки через props
+- Можно заменить иконки через props
+- Можно добавить дополнительные кнопки через default slot
+
+### События
+Компонент эмитит три события:
+- \`@view\` - при клике на кнопку просмотра
+- \`@edit\` - при клике на кнопку редактирования
+- \`@delete\` - при клике на кнопку удаления
+
+### Состояния
+- **Disabled** - все кнопки можно отключить одновременно через prop \`disabled\`
+- **Conditional rendering** - каждая кнопка может быть скрыта через соответствующий prop (\`showView\`, \`showEdit\`, \`showDelete\`)
+        `,
+      },
+    },
+  },
   argTypes: {
+    showView: {
+      control: 'boolean',
+      description: 'Показывать кнопку просмотра',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+        category: 'Visibility',
+      },
+    },
+    showEdit: {
+      control: 'boolean',
+      description: 'Показывать кнопку редактирования',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+        category: 'Visibility',
+      },
+    },
+    showDelete: {
+      control: 'boolean',
+      description: 'Показывать кнопку удаления',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+        category: 'Visibility',
+      },
+    },
+    viewLabel: {
+      control: 'text',
+      description: 'Текст кнопки просмотра',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '"Просмотр"' },
+        category: 'Labels',
+      },
+    },
+    editLabel: {
+      control: 'text',
+      description: 'Текст кнопки редактирования',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '"Редактировать"' },
+        category: 'Labels',
+      },
+    },
+    deleteLabel: {
+      control: 'text',
+      description: 'Текст кнопки удаления',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '"Удалить"' },
+        category: 'Labels',
+      },
+    },
     size: {
       control: 'select',
       options: ['xs', 'sm', 'md'],
+      description: 'Размер кнопок',
+      table: {
+        type: { summary: 'xs | sm | md' },
+        defaultValue: { summary: 'sm' },
+        category: 'Appearance',
+      },
+    },
+    iconOnly: {
+      control: 'boolean',
+      description: 'Показывать только иконки без текста',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+        category: 'Appearance',
+      },
     },
     align: {
       control: 'select',
       options: ['left', 'center', 'right'],
+      description: 'Выравнивание кнопок',
+      table: {
+        type: { summary: 'left | center | right' },
+        defaultValue: { summary: 'left' },
+        category: 'Layout',
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключить все кнопки',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+        category: 'State',
+      },
     },
   },
 };
@@ -22,6 +169,13 @@ export default {
 // Базовый вариант
 export const Default = {
   args: {},
+  parameters: {
+    docs: {
+      description: {
+        story: 'Базовый вариант компонента с кнопками редактирования и удаления (по умолчанию).',
+      },
+    },
+  },
 };
 
 // Только редактирование
@@ -29,6 +183,13 @@ export const EditOnly = {
   args: {
     showEdit: true,
     showDelete: false,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Вариант с только кнопкой редактирования. Полезно, когда удаление недоступно или не требуется.',
+      },
+    },
   },
 };
 
@@ -38,6 +199,13 @@ export const DeleteOnly = {
     showEdit: false,
     showDelete: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Вариант с только кнопкой удаления. Используется для быстрого удаления элементов без возможности редактирования.',
+      },
+    },
+  },
 };
 
 // С кнопкой просмотра
@@ -46,6 +214,13 @@ export const WithView = {
     showView: true,
     showEdit: true,
     showDelete: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Полный набор кнопок: просмотр, редактирование и удаление. Используется когда нужен доступ ко всем действиям.',
+      },
+    },
   },
 };
 
@@ -57,26 +232,43 @@ export const IconOnly = {
     showEdit: true,
     showDelete: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Компактный режим с только иконками. Идеально подходит для таблиц и ограниченного пространства.',
+      },
+    },
+  },
 };
 
 // Размеры
 export const Sizes = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Демонстрация всех доступных размеров компонента. Размер влияет на padding и размер текста кнопок.',
+      },
+    },
+  },
   render: () => ({
-    components: { DXActionButtons },
+    components: { DXActionButtons, DXText, DXSpacer },
     template: `
       <div class="space-y-6">
         <div>
-          <p class="text-xs text-slate-500 mb-2">Extra Small (xs)</p>
+          <DXText size="xs" color="muted">Extra Small (xs)</DXText>
+          <DXSpacer size="md"/>
           <DXActionButtons size="xs" />
         </div>
         
         <div>
-          <p class="text-xs text-slate-500 mb-2">Small (sm) - Default</p>
+          <DXText size="xs" color="muted">Small (sm) - Default</DXText>
+          <DXSpacer size="md"/>
           <DXActionButtons size="sm" />
         </div>
         
         <div>
-          <p class="text-xs text-slate-500 mb-2">Medium (md)</p>
+          <DXText size="xs" color="muted">Medium (md)</DXText>
+          <DXSpacer size="md"/>
           <DXActionButtons size="md" />
         </div>
       </div>
@@ -86,31 +278,48 @@ export const Sizes = {
 
 // Выравнивание
 export const Alignment = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Различные варианты выравнивания кнопок. Выравнивание по правому краю часто используется в таблицах.',
+      },
+    },
+  },
   render: () => ({
-    components: { DXActionButtons },
+    components: { DXActionButtons, DXText, DXStack, DXCard, DXSpacer },
     template: `
-      <div class="space-y-6">
-        <div class="p-4 border border-slate-200 rounded-xl">
-          <p class="text-xs text-slate-500 mb-2">Left (default)</p>
+      <DXStack gap="lg" direction="vertical">
+        <DXCard padding="md" variant="bordered">
+          <DXText size="xs" color="muted">Left (default)</DXText>
+          <DXSpacer size="sm"/>
           <DXActionButtons align="left" />
-        </div>
+        </DXCard>
         
-        <div class="p-4 border border-slate-200 rounded-xl">
-          <p class="text-xs text-slate-500 mb-2">Center</p>
+        <DXCard padding="md" variant="bordered">
+          <DXText size="xs" color="muted">Center</DXText>
+          <DXSpacer size="sm"/>
           <DXActionButtons align="center" />
-        </div>
+        </DXCard>
         
-        <div class="p-4 border border-slate-200 rounded-xl">
-          <p class="text-xs text-slate-500 mb-2">Right</p>
+        <DXCard padding="md" variant="bordered">
+          <DXText size="xs" color="muted">Right</DXText>
+          <DXSpacer size="sm"/>
           <DXActionButtons align="right" />
-        </div>
-      </div>
+        </DXCard>
+      </DXStack>
     `,
   }),
 };
 
 // С дополнительными кнопками (slot)
 export const WithCustomButtons = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Добавление дополнительных кнопок через default slot. Позволяет расширить функциональность компонента кастомными действиями.',
+      },
+    },
+  },
   render: () => ({
     components: { DXActionButtons, DXButton, DXIcon },
     setup() {
@@ -133,6 +342,13 @@ export const WithCustomButtons = {
 
 // В таблице
 export const InTable = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Использование компонента в таблице данных. Обычно используется размер `xs` и выравнивание `right` для компактного отображения в колонке действий.',
+      },
+    },
+  },
   render: () => ({
     components: { DXActionButtons },
     template: `
@@ -180,19 +396,26 @@ export const InTable = {
 
 // В карточках
 export const InCards = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Использование компонента в карточках. Компонент размещается в нижней части карточки для действий с элементом.',
+      },
+    },
+  },
   render: () => ({
-    components: { DXActionButtons },
+    components: { DXActionButtons, DXHeading, DXText },
     template: `
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="p-6 border border-slate-200 rounded-xl bg-white">
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Product Title</h3>
-          <p class="text-sm text-slate-600 mb-4">Product description goes here...</p>
+          <DXHeading level="3" size="lg" weight="semibold" color="default" class="mb-2">Product Title</DXHeading>
+          <DXText tag="p" size="sm" color="muted" class="mb-4">Product description goes here...</DXText>
           <DXActionButtons show-view />
         </div>
         
         <div class="p-6 border border-slate-200 rounded-xl bg-white">
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Another Product</h3>
-          <p class="text-sm text-slate-600 mb-4">Another product description...</p>
+          <DXHeading level="3" size="lg" weight="semibold" color="default" class="mb-2">Another Product</DXHeading>
+          <DXText tag="p" size="sm" color="muted" class="mb-4">Another product description...</DXText>
           <DXActionButtons show-view />
         </div>
       </div>
@@ -206,12 +429,26 @@ export const Disabled = {
     disabled: true,
     showView: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Состояние, когда все кнопки отключены. Используется когда действия недоступны (например, нет прав доступа).',
+      },
+    },
+  },
 };
 
 // Интерактивный пример
 export const Interactive = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Интерактивный пример с обработчиками событий. Демонстрирует работу всех событий компонента: `@view`, `@edit`, `@delete`, а также кастомную кнопку через slot.',
+      },
+    },
+  },
   render: () => ({
-    components: { DXActionButtons },
+    components: { DXActionButtons, DXButton, DXIcon },
     setup() {
       const handleView = () => alert('View clicked!');
       const handleEdit = () => alert('Edit clicked!');
@@ -220,8 +457,17 @@ export const Interactive = {
           alert('Item deleted!');
         }
       };
+      const handleShare = () => {
+        alert('Share clicked! Custom button action.');
+      };
       
-      return { handleView, handleEdit, handleDelete };
+      return { 
+        handleView, 
+        handleEdit, 
+        handleDelete, 
+        handleShare,
+        ShareIcon 
+      };
     },
     template: `
       <div class="p-6 bg-slate-50 rounded-xl">
@@ -231,58 +477,15 @@ export const Interactive = {
           @view="handleView"
           @edit="handleEdit"
           @delete="handleDelete"
-        />
+        >
+          <DXButton variant="outline" size="sm" @click="handleShare">
+            <DXIcon :icon="ShareIcon" size="xs" />
+            Share
+          </DXButton>
+        </DXActionButtons>
       </div>
     `,
   }),
 };
 
-// Все варианты
-export const AllVariants = {
-  render: () => ({
-    components: { DXActionButtons },
-    template: `
-      <div class="space-y-8">
-        <div>
-          <h3 class="text-sm font-semibold text-slate-900 mb-3">Standard (Edit + Delete)</h3>
-          <DXActionButtons />
-        </div>
-        
-        <div>
-          <h3 class="text-sm font-semibold text-slate-900 mb-3">With View</h3>
-          <DXActionButtons show-view />
-        </div>
-        
-        <div>
-          <h3 class="text-sm font-semibold text-slate-900 mb-3">Icon Only</h3>
-          <DXActionButtons icon-only show-view />
-        </div>
-        
-        <div>
-          <h3 class="text-sm font-semibold text-slate-900 mb-3">Different Sizes</h3>
-          <div class="space-y-3">
-            <DXActionButtons size="xs" />
-            <DXActionButtons size="sm" />
-            <DXActionButtons size="md" />
-          </div>
-        </div>
-        
-        <div>
-          <h3 class="text-sm font-semibold text-slate-900 mb-3">Alignment</h3>
-          <div class="space-y-3">
-            <div class="p-3 border border-slate-200 rounded">
-              <DXActionButtons align="left" />
-            </div>
-            <div class="p-3 border border-slate-200 rounded">
-              <DXActionButtons align="center" />
-            </div>
-            <div class="p-3 border border-slate-200 rounded">
-              <DXActionButtons align="right" />
-            </div>
-          </div>
-        </div>
-      </div>
-    `,
-  }),
-};
 

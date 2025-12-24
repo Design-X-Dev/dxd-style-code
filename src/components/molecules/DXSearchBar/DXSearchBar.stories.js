@@ -4,7 +4,7 @@ import DXSearchBar from './DXSearchBar.vue';
 export default {
   title: 'Molecules/DXSearchBar',
   component: DXSearchBar,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:feedback'],
   parameters: {
     docs: {
       description: {

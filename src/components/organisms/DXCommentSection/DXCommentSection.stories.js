@@ -4,7 +4,7 @@ import DXCommentSection from './DXCommentSection.vue';
 export default {
   title: 'Organisms/DXCommentSection',
   component: DXCommentSection,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:feedback'],
   parameters: {
     docs: {
       description: {

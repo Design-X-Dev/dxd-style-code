@@ -4,7 +4,7 @@ import { ref } from "vue";
 export default {
   title: "Atoms/DXToggle",
   component: DXToggle,
-  tags: ["autodocs"],
+  tags: ["autodocs", "category:form"],
   argTypes: {
     size: {
       control: { type: "select" },

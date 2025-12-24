@@ -35,7 +35,7 @@ import { ref } from 'vue';
 export default {
   title: 'Organisms/DXDropdown',
   component: DXDropdown,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:navigation'],
   argTypes: {
     position: {
       control: 'select',

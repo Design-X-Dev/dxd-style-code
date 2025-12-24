@@ -6,7 +6,7 @@ import DXButton from '../../atoms/DXButton/DXButton.vue';
 export default {
   title: 'Utilities/DXTransitionGroup',
   component: DXTransitionGroup,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:animation'],
   parameters: {
     docs: {
       description: {

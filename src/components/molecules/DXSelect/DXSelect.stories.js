@@ -12,7 +12,7 @@ import {
 export default {
   title: 'Molecules/DXSelect',
   component: DXSelect,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:form'],
 };
 
 const options = [

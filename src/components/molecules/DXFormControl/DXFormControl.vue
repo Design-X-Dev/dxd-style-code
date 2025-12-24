@@ -1,13 +1,13 @@
 <template>
   <div class="w-full" data-component="DXFormControl">
     <div class="flex items-center justify-between mb-1">
-      <label v-if="label" class="text-sm font-medium text-slate-700">
+      <DXText v-if="label" tag="label" size="sm" weight="medium" color="default">
         {{ label }}
-        <span v-if="required" class="text-rose-500">*</span>
-      </label>
-      <span v-if="maxLength && showCount" class="text-xs text-slate-500">
+        <DXText v-if="required" tag="span" color="danger">*</DXText>
+      </DXText>
+      <DXText v-if="maxLength && showCount" tag="span" size="xs" color="muted">
         {{ currentLength }} / {{ maxLength }}
-      </span>
+      </DXText>
     </div>
     
     <div class="relative">
@@ -31,17 +31,18 @@
       </div>
     </div>
     
-    <p v-if="error" class="mt-1 text-xs text-rose-500 flex items-center gap-1">
+    <DXText v-if="error" tag="p" size="xs" color="danger" class="mt-1 flex items-center gap-1">
       <DXValidationIcon state="error" size="xs" />
       {{ error }}
-    </p>
-    <p v-else-if="helper" class="mt-1 text-xs text-slate-500">{{ helper }}</p>
+    </DXText>
+    <DXText v-else-if="helper" tag="p" size="xs" color="muted" class="mt-1">{{ helper }}</DXText>
   </div>
 </template>
 
 <script setup>
 import { computed } from "vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXText from "../../atoms/DXText/DXText.vue";
 import DXValidationIcon from "../DXValidationIcon/DXValidationIcon.vue";
 
 const props = defineProps({

@@ -4,7 +4,7 @@ import DXChatInterface from './DXChatInterface.vue';
 export default {
   title: 'Organisms/DXChatInterface',
   component: DXChatInterface,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:feedback'],
   parameters: {
     docs: {
       description: {

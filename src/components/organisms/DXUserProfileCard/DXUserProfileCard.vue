@@ -22,15 +22,15 @@
     <!-- Info -->
     <div :class="infoClasses">
       <slot name="info">
-        <h3 v-if="user?.name" :class="nameClasses">
+        <DXHeading v-if="user?.name" :level="3" :size="nameSize" weight="semibold" color="default">
           {{ user.name }}
-        </h3>
-        <p v-if="user?.role" :class="roleClasses">
+        </DXHeading>
+        <DXText v-if="user?.role" tag="p" :size="roleSize" color="muted" class="mt-1">
           {{ user.role }}
-        </p>
-        <p v-if="user?.bio" :class="bioClasses">
+        </DXText>
+        <DXText v-if="user?.bio" tag="p" :size="bioSize" color="muted" class="mt-2">
           {{ user.bio }}
-        </p>
+        </DXText>
       </slot>
     </div>
 
@@ -98,6 +98,8 @@ import DXCard from "../../atoms/DXCard/DXCard.vue";
 import DXAvatar from "../../atoms/DXAvatar/DXAvatar.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXBadge from "../../atoms/DXBadge/DXBadge.vue";
+import DXHeading from "../../atoms/DXHeading/DXHeading.vue";
+import DXText from "../../atoms/DXText/DXText.vue";
 
 const props = defineProps({
   /**
@@ -235,11 +237,11 @@ const infoClasses = computed(() =>
  * 
  * @returns {string} Tailwind CSS классы
  */
-const nameClasses = computed(() => {
+const nameSize = computed(() => {
   const sizeMap = {
-    sm: "text-lg font-semibold text-slate-900",
-    md: "text-xl font-semibold text-slate-900",
-    lg: "text-2xl font-semibold text-slate-900",
+    sm: "lg",
+    md: "xl",
+    lg: "2xl",
   };
   return sizeMap[props.size] || sizeMap.md;
 });
@@ -252,11 +254,11 @@ const nameClasses = computed(() => {
  * 
  * @returns {string} Tailwind CSS классы
  */
-const roleClasses = computed(() => {
+const roleSize = computed(() => {
   const sizeMap = {
-    sm: "text-sm text-slate-600 mt-1",
-    md: "text-base text-slate-600 mt-1",
-    lg: "text-lg text-slate-600 mt-1",
+    sm: "sm",
+    md: "md",
+    lg: "lg",
   };
   return sizeMap[props.size] || sizeMap.md;
 });
@@ -269,11 +271,11 @@ const roleClasses = computed(() => {
  * 
  * @returns {string} Tailwind CSS классы
  */
-const bioClasses = computed(() => {
+const bioSize = computed(() => {
   const sizeMap = {
-    sm: "text-xs text-slate-500 mt-2",
-    md: "text-sm text-slate-500 mt-2",
-    lg: "text-base text-slate-500 mt-2",
+    sm: "xs",
+    md: "sm",
+    lg: "md",
   };
   return sizeMap[props.size] || sizeMap.md;
 });

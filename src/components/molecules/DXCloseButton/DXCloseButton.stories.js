@@ -3,7 +3,7 @@ import DXCloseButton from './DXCloseButton.vue';
 export default {
   title: 'Molecules/DXCloseButton',
   component: DXCloseButton,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:navigation'],
   argTypes: {
     size: {
       control: 'select',

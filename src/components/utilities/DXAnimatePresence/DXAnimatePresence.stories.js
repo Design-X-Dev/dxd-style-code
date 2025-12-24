@@ -7,7 +7,7 @@ import DXModal from '../../organisms/DXModal/DXModal.vue';
 export default {
   title: 'Utilities/DXAnimatePresence',
   component: DXAnimatePresence,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:animation'],
   parameters: {
     docs: {
       description: {

@@ -5,7 +5,7 @@ import { ref, computed } from 'vue';
 export default {
   title: 'Atoms/DXBackdrop',
   component: DXBackdrop,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:overlay'],
   argTypes: {
     blur: {
       control: 'select',

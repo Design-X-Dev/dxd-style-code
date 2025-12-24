@@ -80,7 +80,7 @@ import { computed, useSlots } from 'vue';
 const slots = useSlots();
 
 // Components
-import DXBaseTable from '../../molecules/DXBaseTable/DXBaseTable.vue';
+import DXBaseTable from '../DXBaseTable/DXBaseTable.vue';
 import DXTableToolbar from '../../molecules/DXTableToolbar/DXTableToolbar.vue';
 import DXTablePagination from '../../molecules/DXTablePagination/DXTablePagination.vue';
 import DXTableFiltersPanel from '../../molecules/DXTableFiltersPanel/DXTableFiltersPanel.vue';

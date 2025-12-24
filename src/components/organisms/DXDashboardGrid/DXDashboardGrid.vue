@@ -31,8 +31,8 @@
           </div>
           <slot name="widget" :widget="widget">
             <div class="p-4 bg-white border border-slate-200 rounded-lg h-full">
-              <h3 class="font-semibold mb-2">{{ widget.title || `Виджет ${widget.id}` }}</h3>
-              <p class="text-sm text-slate-600">Используйте slot widget для кастомного контента</p>
+              <DXHeading level="3" weight="semibold" class="mb-2">{{ widget.title || `Виджет ${widget.id}` }}</DXHeading>
+              <DXText tag="p" size="sm" color="muted">Используйте slot widget для кастомного контента</DXText>
             </div>
           </slot>
         </div>
@@ -47,6 +47,8 @@ import { useClassComposition } from "../../../composables/useClassComposition";
 import { useSpacing } from "../../../composables/useSpacing";
 import { VueDraggableNext as vuedraggable } from "vue-draggable-next";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXHeading from "../../atoms/DXHeading/DXHeading.vue";
+import DXText from "../../atoms/DXText/DXText.vue";
 import { Bars3Icon } from "@heroicons/vue/24/outline";
 
 const props = defineProps({

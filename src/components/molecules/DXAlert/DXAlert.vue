@@ -1,30 +1,30 @@
 <template>
-  <div
+  <DX
     v-if="!dismissed"
     :class="alertClasses"
     role="alert"
     data-component="DXAlert"
     :data-variant="variant"
   >
-    <div class="flex items-start gap-3">
+    <DXFlex align="start" class="gap-3">
       <DXIcon v-if="iconToShow" :icon="iconToShow" size="md" animation="none" :class="iconClasses" />
-      <div class="flex-1 min-w-0">
-        <p v-if="title" class="font-semibold" :class="titleClasses">{{ title }}</p>
-        <div :class="contentClasses">
+      <DXBox class="flex-1 min-w-0">
+        <DXText v-if="title" tag="p" weight="semibold" :color="alertTitleColor">{{ title }}</DXText>
+        <DXBox :class="contentClasses">
           <slot />
-        </div>
-      </div>
+        </DXBox>
+      </DXBox>
       <DXCloseButton
         v-if="dismissible"
         size="sm"
         variant="default"
         @click="dismiss"
       />
-    </div>
-    <div v-if="$slots.actions" class="mt-3 flex gap-2">
+    </DXFlex>
+    <DXFlex v-if="$slots.actions" class="mt-3" gap="sm" :justify="actionsJustify">
       <slot name="actions" />
-    </div>
-  </div>
+    </DXFlex>
+  </DX>
 </template>
 
 <script setup>
@@ -35,7 +35,7 @@ import {
   ExclamationTriangleIcon,
   XCircleIcon,
 } from "@heroicons/vue/24/solid";
-import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import { DX, DXIcon, DXText, DXBox, DXFlex } from "../../atoms";
 import DXCloseButton from "../DXCloseButton/DXCloseButton.vue";
 
 const props = defineProps({
@@ -49,6 +49,8 @@ const props = defineProps({
   showIcon: { type: Boolean, default: true },
   /** Можно закрыть */
   dismissible: { type: Boolean, default: false },
+  /** Выравнивание кнопок действий: left | center | right */
+  actionsAlign: { type: String, default: "left" },
 });
 
 const emit = defineEmits(["dismiss"]);
@@ -109,8 +111,28 @@ const alertClasses = computed(() => [
 ]);
 
 const iconClasses = computed(() => ["w-5 h-5 flex-shrink-0 mt-0.5", styles.value.icon]);
-const titleClasses = computed(() => styles.value.title);
+const alertTitleColor = computed(() => {
+  const colorMap = {
+    info: 'primary',
+    success: 'success',
+    warning: 'warning',
+    danger: 'danger',
+  };
+  return colorMap[props.variant] || 'primary';
+});
 const contentClasses = computed(() => ["text-sm", styles.value.content, props.title && "mt-1"]);
 const closeClasses = computed(() => styles.value.close);
+
+/**
+ * Маппинг actionsAlign prop в justify prop для DXFlex
+ */
+const actionsJustify = computed(() => {
+  const alignMap = {
+    left: "start",
+    center: "center",
+    right: "end",
+  };
+  return alignMap[props.actionsAlign] || "start";
+});
 </script>
 

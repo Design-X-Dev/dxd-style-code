@@ -5,7 +5,7 @@ import { ChartBarIcon, CurrencyDollarIcon } from '@heroicons/vue/24/solid';
 export default {
   title: 'Organisms/DXDashboardWidget',
   component: DXDashboardWidget,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:data-display'],
   parameters: {
     docs: {
       description: {

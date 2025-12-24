@@ -165,8 +165,8 @@ const currentPage = ref('/home');
           A
         </div>
         <div>
-          <h2 class="text-sm font-bold">Admin Panel</h2>
-          <p class="text-xs text-slate-500">v2.0.0</p>
+          <DXHeading level="2" size="sm" weight="bold">Admin Panel</DXHeading>
+          <DXText tag="p" size="xs" color="muted">v2.0.0</DXText>
         </div>
       </div>
     </template>
@@ -257,7 +257,7 @@ const sections = [
         <span class="text-white font-bold">S</span>
       </div>
       <div>
-        <h2 class="text-sm font-bold">Shop Admin</h2>
+        <DXHeading level="2" size="sm" weight="bold">Shop Admin</DXHeading>
       </div>
     </div>
   </template>

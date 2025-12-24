@@ -3,7 +3,7 @@ import DXSkeleton from './DXSkeleton.vue';
 export default {
   title: 'Atoms/DXSkeleton',
   component: DXSkeleton,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:feedback'],
 };
 
 export const Default = {

@@ -34,12 +34,15 @@
             class="cursor-pointer text-slate-400 hover:text-slate-600"
             @click="handleClear"
           />
-          <span
+          <DXText
             v-if="hotkey && !modelValue"
-            class="text-xs text-slate-400 border border-slate-200 rounded px-1.5 py-0.5"
+            tag="span"
+            size="xs"
+            color="muted"
+            class="border border-slate-200 rounded px-1.5 py-0.5"
           >
             {{ hotkeyLabel }}
-          </span>
+          </DXText>
         </div>
       </template>
     </DXInput>
@@ -53,9 +56,9 @@
       >
         <!-- История поиска -->
         <div v-if="showHistory && historyItems.length > 0 && !modelValue" class="p-2">
-          <div class="px-2 py-1 text-xs font-semibold text-slate-500 uppercase">
+          <DXText tag="div" size="xs" weight="semibold" color="muted" class="px-2 py-1 uppercase">
             История поиска
-          </div>
+          </DXText>
           <div
             v-for="(item, index) in historyItems"
             :key="index"
@@ -64,7 +67,7 @@
             @click="selectHistoryItem(item)"
             @mouseenter="selectedHistoryIndex = index"
           >
-            <span>{{ item }}</span>
+            <DXText tag="span">{{ item }}</DXText>
             <DXIcon
               :icon="ClockIcon"
               size="xs"
@@ -83,24 +86,24 @@
             @click="selectSuggestion(suggestion)"
             @mouseenter="selectedSuggestionIndex = index"
           >
-            <div class="font-medium">{{ suggestion.title }}</div>
-            <div v-if="suggestion.category" class="text-xs text-slate-500 mt-0.5">
+            <DXText tag="div" weight="medium">{{ suggestion.title }}</DXText>
+            <DXText v-if="suggestion.category" tag="div" size="xs" color="muted" class="mt-0.5">
               {{ suggestion.category }}
-            </div>
+            </DXText>
           </div>
         </div>
 
         <!-- Фильтры -->
         <div v-if="filters && filters.length > 0" class="p-2 border-t border-slate-200">
-          <div class="px-2 py-1 text-xs font-semibold text-slate-500 uppercase mb-2">
+          <DXText tag="div" size="xs" weight="semibold" color="muted" class="px-2 py-1 uppercase mb-2">
             Фильтры
-          </div>
+          </DXText>
           <div
             v-for="filter in filters"
             :key="filter.id"
             class="mb-2"
           >
-            <label class="block text-xs text-slate-600 mb-1">{{ filter.label }}</label>
+            <DXText tag="label" size="xs" color="muted" class="block mb-1">{{ filter.label }}</DXText>
             <select
               v-model="selectedFilters[filter.id]"
               class="w-full text-sm border border-slate-200 rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-slate-900/10"
@@ -128,6 +131,7 @@ import { useClassComposition } from "../../../composables/useClassComposition";
 import DXInput from "../DXInput/DXInput.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
 import DXLoader from "../../atoms/DXLoader/DXLoader.vue";
+import DXText from "../../atoms/DXText/DXText.vue";
 import {
   MagnifyingGlassIcon,
   XMarkIcon,

@@ -18,9 +18,9 @@
       >
         <div :class="containerClass">
           <div class="flex items-center justify-between flex-shrink-0 mb-4 gap-4">
-            <h3 class="text-lg font-semibold tracking-tight text-slate-900 flex-1">
+            <DXHeading level="3" size="lg" weight="semibold" color="default" class="flex-1">
               <slot name="title">Диалог</slot>
-            </h3>
+            </DXHeading>
             
             <!-- View Mode Switcher -->
             <div v-if="showModeSwitcher" class="flex items-center gap-1 rounded-xl border border-slate-200 bg-slate-50 p-1">
@@ -68,6 +68,7 @@ import {
 } from "@heroicons/vue/24/outline";
 import DXBackdrop from "../../atoms/DXBackdrop/DXBackdrop.vue";
 import DXCloseButton from "../../molecules/DXCloseButton/DXCloseButton.vue";
+import DXHeading from "../../atoms/DXHeading/DXHeading.vue";
 
 const props = defineProps({
   /** Открыто/закрыто */

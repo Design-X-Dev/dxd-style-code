@@ -3,7 +3,7 @@ import DXHeading from './DXHeading.vue';
 export default {
   title: 'Atoms/DXHeading',
   component: DXHeading,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:typography'],
   argTypes: {
     level: { control: { type: 'select' }, options: [1, 2, 3, 4, 5, 6] },
     size: { control: { type: 'select' }, options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'] },

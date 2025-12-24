@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" :class="boxClasses" data-component="DXBox">
+  <component :is="tag" :class="boxClasses" data-component="DXBox" :data-position="position" :data-z-index="zIndex">
     <slot />
   </component>
 </template>
@@ -32,6 +32,12 @@ const props = defineProps({
   shadow: { type: String, default: "" },
   /** Рамка */
   border: { type: Boolean, default: false },
+  /** Позиционирование: static | relative | absolute | fixed | sticky */
+  position: { type: String, default: null },
+  /** z-index: 0 | 10 | 20 | 30 | 40 | 50 | auto */
+  zIndex: { type: String, default: null },
+  /** Inset (top-0 right-0 bottom-0 left-0) */
+  inset: { type: Boolean, default: false },
 });
 
 /**
@@ -174,10 +180,68 @@ const shadowClass = computed(() => {
 });
 
 /**
+ * Классы позиционирования
+ * 
+ * @description
+ * Определяет CSS position для box компонента.
+ * 
+ * @returns {string|null} Tailwind CSS класс для позиционирования или null
+ */
+const positionClass = computed(() => {
+  if (!props.position) return null;
+  
+  const positionClasses = {
+    static: "static",
+    relative: "relative",
+    absolute: "absolute",
+    fixed: "fixed",
+    sticky: "sticky",
+  };
+  
+  return positionClasses[props.position] || null;
+});
+
+/**
+ * Классы z-index
+ * 
+ * @description
+ * Определяет z-index для box компонента.
+ * 
+ * @returns {string|null} Tailwind CSS класс для z-index или null
+ */
+const zIndexClass = computed(() => {
+  if (!props.zIndex) return null;
+  
+  const zIndexClasses = {
+    "0": "z-0",
+    "10": "z-10",
+    "20": "z-20",
+    "30": "z-30",
+    "40": "z-40",
+    "50": "z-50",
+    auto: "z-auto",
+  };
+  
+  return zIndexClasses[props.zIndex] || null;
+});
+
+/**
+ * Класс inset
+ * 
+ * @description
+ * Применяет inset-0 (top-0 right-0 bottom-0 left-0) для абсолютного/фиксированного позиционирования.
+ * 
+ * @returns {string|null} Tailwind CSS класс для inset или null
+ */
+const insetClass = computed(() => {
+  return props.inset ? "inset-0" : null;
+});
+
+/**
  * Все классы для box компонента
  * 
  * @description
- * Объединяет все классы стилизации (padding, margin, rounded, bg, shadow, border)
+ * Объединяет все классы стилизации (padding, margin, rounded, bg, shadow, border, position, zIndex, inset)
  * с использованием useClassComposition для единообразного подхода.
  * 
  * @returns {Array} Массив классов для применения к элементу
@@ -189,6 +253,9 @@ const boxClasses = computed(() =>
     roundedClass.value,
     bgClass.value,
     shadowClass.value,
+    positionClass.value,
+    zIndexClass.value,
+    insetClass.value,
     {
       "border border-slate-200": props.border,
     }

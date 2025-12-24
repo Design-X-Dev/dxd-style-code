@@ -1,4 +1,5 @@
 // Atom components - basic building blocks
+export { default as DX } from './DX';
 export { default as DXAvatar } from './DXAvatar';
 export { default as DXBackdrop } from './DXBackdrop';
 export { default as DXBadge } from './DXBadge';
@@ -17,6 +18,7 @@ export { default as DXGrid } from './DXGrid';
 export { default as DXHeading } from './DXHeading';
 export { default as DXIcon } from './DXIcon';
 export { default as DXIconWrapper } from './DXIconWrapper';
+export { default as DXImage } from './DXImage';
 export { default as DXInputAddon } from './DXInputAddon';
 export { default as DXLabel } from './DXLabel';
 export { default as DXLink } from './DXLink';

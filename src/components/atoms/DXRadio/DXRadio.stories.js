@@ -4,7 +4,7 @@ import { ref } from 'vue';
 export default {
   title: 'Atoms/DXRadio',
   component: DXRadio,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:form'],
   argTypes: {
     variant: {
       control: 'select',

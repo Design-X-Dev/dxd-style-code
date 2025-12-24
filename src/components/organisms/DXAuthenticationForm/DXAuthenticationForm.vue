@@ -7,9 +7,9 @@
     <!-- Header -->
     <div v-if="showHeader || $slots.header" :class="headerClasses">
       <slot name="header">
-        <h2 class="text-2xl font-bold text-slate-900 text-center">
+        <DXHeading level="2" size="2xl" weight="bold" color="default" align="center">
           {{ modeLabels[mode] }}
-        </h2>
+        </DXHeading>
       </slot>
     </div>
 
@@ -42,9 +42,7 @@
             />
           </DXFormControl>
           <div class="flex items-center justify-between">
-            <DXCheckbox v-model="loginForm.remember">
-              Запомнить меня
-            </DXCheckbox>
+            <DXCheckbox v-model="loginForm.remember" size="sm" label="Запомнить меня" />
             <DXLink
               variant="link"
               size="sm"
@@ -116,9 +114,7 @@
               @update:model-value="clearError('confirmPassword')"
             />
           </DXFormControl>
-          <DXCheckbox v-model="registerForm.agreeToTerms">
-            Я согласен с условиями использования
-          </DXCheckbox>
+          <DXCheckbox v-model="registerForm.agreeToTerms" size="sm" label="Я согласен с условиями использования" />
           <DXButton
             variant="primary"
             :loading="loading"
@@ -222,6 +218,7 @@ import DXFormControl from "../../molecules/DXFormControl/DXFormControl.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXCheckbox from "../../atoms/DXCheckbox/DXCheckbox.vue";
 import DXLink from "../../atoms/DXLink/DXLink.vue";
+import DXHeading from "../../atoms/DXHeading/DXHeading.vue";
 import DXAlert from "../../molecules/DXAlert/DXAlert.vue";
 
 const props = defineProps({

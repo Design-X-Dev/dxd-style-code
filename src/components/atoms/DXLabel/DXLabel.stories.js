@@ -3,7 +3,7 @@ import DXLabel from './DXLabel.vue';
 export default {
   title: 'Atoms/DXLabel',
   component: DXLabel,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:typography'],
 };
 
 export const Default = {

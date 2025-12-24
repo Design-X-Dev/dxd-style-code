@@ -5,6 +5,7 @@ export { default as DXAuthenticationForm } from './DXAuthenticationForm';
 export { default as DXChartContainer } from './DXChartContainer';
 export { default as DXChatInterface } from './DXChatInterface';
 export { default as DXCommentSection } from './DXCommentSection';
+export { default as DXBaseTable } from './DXBaseTable';
 export { default as DXDataTable } from './DXDataTable';
 export { default as DXDropdown } from './DXDropdown';
 export { default as DXEmptyState } from './DXEmptyState';

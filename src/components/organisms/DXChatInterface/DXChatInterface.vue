@@ -16,12 +16,12 @@
               size="md"
             />
             <div>
-              <h3 class="font-semibold text-slate-900">
+              <DXHeading level="3" weight="semibold" color="default">
                 {{ chatInfo?.name || "Чат" }}
-              </h3>
-              <p v-if="chatInfo?.status" class="text-xs text-slate-500">
+              </DXHeading>
+              <DXText v-if="chatInfo?.status" tag="p" size="xs" color="muted">
                 {{ chatInfo.status }}
-              </p>
+              </DXText>
             </div>
           </div>
           <slot name="header-actions" />
@@ -160,6 +160,8 @@ import { useSpacing } from "../../../composables/useSpacing";
 import DXAvatar from "../../atoms/DXAvatar/DXAvatar.vue";
 import DXButton from "../../atoms/DXButton/DXButton.vue";
 import DXIcon from "../../atoms/DXIcon/DXIcon.vue";
+import DXHeading from "../../atoms/DXHeading/DXHeading.vue";
+import DXText from "../../atoms/DXText/DXText.vue";
 import DXTextarea from "../../molecules/DXTextarea/DXTextarea.vue";
 import {
   PaperClipIcon,

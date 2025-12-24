@@ -27,7 +27,7 @@ import {
 export default {
   title: "Atoms/DXToggleButton",
   component: DXToggleButton,
-  tags: ["autodocs"],
+  tags: ["autodocs", "category:form"],
   argTypes: {
     size: {
       control: "select",

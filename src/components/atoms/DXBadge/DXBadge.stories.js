@@ -15,7 +15,7 @@ import {
 export default {
   title: 'Atoms/DXBadge',
   component: DXBadge,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:data-display'],
   argTypes: {
     variant: {
       control: 'select',

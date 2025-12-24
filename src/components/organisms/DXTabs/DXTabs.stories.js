@@ -16,7 +16,7 @@ import {
 export default {
   title: 'Organisms/DXTabs',
   component: DXTabs,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:navigation'],
   argTypes: {
     variant: {
       control: 'select',

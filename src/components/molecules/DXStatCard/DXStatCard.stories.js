@@ -15,7 +15,7 @@ const ArrowTrendingUpIconComponent = ArrowTrendingUpIcon;
 export default {
   title: 'Molecules/DXStatCard',
   component: DXStatCard,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:data-display'],
   parameters: {
     docs: {
       description: {

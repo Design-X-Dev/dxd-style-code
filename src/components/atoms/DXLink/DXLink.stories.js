@@ -5,7 +5,7 @@ import { HomeIcon } from '@heroicons/vue/24/outline';
 export default {
   title: 'Atoms/DXLink',
   component: DXLink,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:navigation'],
   parameters: {
     docs: {
       description: {

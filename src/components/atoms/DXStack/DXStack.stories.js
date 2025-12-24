@@ -3,7 +3,7 @@ import DXStack from './DXStack.vue';
 export default {
   title: 'Atoms/DXStack',
   component: DXStack,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:layout'],
   parameters: {
     docs: {
       description: {
