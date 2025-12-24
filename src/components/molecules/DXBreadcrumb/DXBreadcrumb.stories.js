@@ -17,10 +17,91 @@ import {
 export default {
   title: 'Molecules/DXBreadcrumb',
   component: DXBreadcrumb,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'category:navigation'],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+# DXBreadcrumb
+
+Навигационные хлебные крошки для отображения иерархии страниц и навигации.
+
+## Назначение
+
+DXBreadcrumb предоставляет стандартизированный способ отображения пути навигации
+в приложении. Компонент автоматически обрабатывает стилизацию, разделители и
+состояние текущей страницы.
+
+## Архитектура
+
+### Использует
+- \`DXLink\` - все элементы breadcrumb являются ссылками (DXLink компонентами)
+- \`DXIcon\` - для иконок элементов и разделителей
+- \`ChevronRightIcon\` - иконка разделителя по умолчанию
+
+### Используется в
+- Навигация в приложениях
+- Файловые системы
+- E-commerce категории
+- Административные панели
+- Многоуровневая навигация
+
+## Внутренняя логика
+
+### Все элементы - DXLink
+Все элементы breadcrumb рендерятся как \`DXLink\` компоненты, что обеспечивает:
+- Единообразие стилей
+- Правильную семантику
+- Поддержку всех возможностей DXLink (router-link, href, варианты)
+
+### Автоматическое неактивное состояние
+Последний элемент (конечная точка) автоматически получает \`inactive={true}\`:
+- Визуально приглушенный вид
+- Остается кликабельным (если указан href/to)
+- Правильная семантика с \`aria-current="page"\`
+
+### Варианты стилизации
+Через prop \`variant\` можно выбрать стиль ссылок:
+- \`link\` (по умолчанию) - обычные текстовые ссылки
+- \`primary\`, \`secondary\`, \`ghost\`, \`outline\` - варианты с padding и border-radius
+
+### Разделители
+Поддерживает два типа разделителей:
+- \`chevron\` (по умолчанию) - иконка ChevronRightIcon
+- \`slash\` - текстовый разделитель "/"
+
+### Анимация иконок
+Поддерживает анимацию иконок элементов:
+- Глобальная анимация для всех иконок
+- Анимация только для текущей страницы (\`animateCurrentOnly={true}\`)
+- Индивидуальная анимация для каждого элемента
+
+## Особенности
+
+### Структура данных
+Элементы передаются через prop \`items\`:
+\`\`\`js
+[
+  { label: 'Home', href: '/' },
+  { label: 'Products', to: '/products' },
+  { label: 'Current Page' } // Без href/to - будет неактивной ссылкой
+]
+\`\`\`
+
+### Размеры
+Поддерживает три размера: \`sm\`, \`md\` (по умолчанию), \`lg\`.
+Размер влияет на размер текста и иконок.
+
+### Кастомизация разделителей
+Можно кастомизировать разделители через slot \`separator\`.
+        `,
+      },
+    },
+  },
   argTypes: {
     separator: { control: { type: 'select' }, options: ['slash', 'chevron'] },
     size: { control: { type: 'select' }, options: ['sm', 'md', 'lg'] },
+    variant: { control: { type: 'select' }, options: ['link', 'primary', 'secondary', 'ghost', 'outline'] },
     iconAnimation: { control: { type: 'select' }, options: ['none', 'wiggle', 'scale', 'rotate'] },
   },
 };
@@ -164,6 +245,49 @@ export const Sizes = {
         <div>
           <p class="text-xs text-slate-500 mb-2">Large</p>
           <DXBreadcrumb :items="itemsWithIcons" size="lg" />
+        </div>
+      </div>
+    `,
+  }),
+};
+
+export const LinkVariants = {
+  render: () => ({
+    components: { DXBreadcrumb },
+    setup() { 
+      const items = [
+        { label: 'Home', href: '/' },
+        { label: 'Products', href: '/products' },
+        { label: 'Current' },
+      ];
+      
+      return { items };
+    },
+    template: `
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">Link (default)</h3>
+          <DXBreadcrumb :items="items" variant="link" />
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">Ghost</h3>
+          <DXBreadcrumb :items="items" variant="ghost" />
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">Outline</h3>
+          <DXBreadcrumb :items="items" variant="outline" />
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">Primary</h3>
+          <DXBreadcrumb :items="items" variant="primary" />
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">Secondary</h3>
+          <DXBreadcrumb :items="items" variant="secondary" />
         </div>
       </div>
     `,

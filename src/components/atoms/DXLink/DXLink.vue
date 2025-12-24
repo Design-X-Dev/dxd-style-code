@@ -12,12 +12,13 @@
     :data-variant="variant"
     :data-size="size"
     :data-disabled="disabled"
+    :data-inactive="inactive"
     :data-external="isExternal"
     @click="handleClick"
   >
     <slot />
     <DXIcon
-      v-if="showExternalIcon && isExternal && !disabled"
+      v-if="showExternalIcon && isExternal && !disabled && !inactive"
       :icon="ArrowTopRightOnSquareIcon"
       :size="iconSize"
       class="ml-0.5"
@@ -49,6 +50,8 @@ const props = defineProps({
   size: { type: String, default: "md" },
   /** Отключенное состояние */
   disabled: { type: Boolean, default: false },
+  /** Неактивное состояние (визуально приглушенная, но кликабельная) */
+  inactive: { type: Boolean, default: false },
   /** Кастомный aria-label */
   ariaLabel: { type: String, default: null },
   /** Показывать иконку для внешних ссылок */
@@ -162,15 +165,68 @@ const textSizeClass = computed(() => {
 });
 
 /**
+ * Классы padding для вариантов (кроме link)
+ */
+const variantPaddingClass = computed(() => {
+  if (props.variant === "link") return "";
+  
+  // Небольшие отступы в зависимости от размера
+  const paddingMap = {
+    xs: "px-1 py-0.5",
+    sm: "px-1.5 py-0.5",
+    md: "px-2 py-0.5",
+    lg: "px-2.5 py-1",
+    xl: "px-3 py-1",
+  };
+  return paddingMap[props.size] || paddingMap.md;
+});
+
+/**
+ * Классы для неактивного состояния
+ */
+const inactiveVariantClass = computed(() => {
+  if (props.variant === "link") {
+    return "text-slate-600 no-underline cursor-default";
+  }
+  
+  // Для остальных вариантов - базовые цвета без hover, с меньшей opacity для яркости
+  const baseColors = {
+    primary: "bg-slate-800 text-white",
+    secondary: "bg-slate-200 text-slate-700",
+    ghost: "text-slate-600 bg-transparent",
+    outline: "border border-slate-200 text-slate-600 bg-white",
+    success: "bg-emerald-600 text-white",
+    warning: "bg-amber-600 text-white",
+    danger: "bg-rose-600 text-white",
+    info: "bg-blue-600 text-white",
+    soft: "bg-slate-50 text-slate-600",
+  };
+  
+  return useClassComposition(
+    baseColors[props.variant] || baseColors.primary,
+    variantPaddingClass.value,
+    "rounded-lg opacity-75"
+  );
+});
+
+/**
  * Классы варианта стилизации
  */
 const variantClass = computed(() => {
+  if (props.inactive) {
+    return inactiveVariantClass.value;
+  }
+  
   if (props.variant === "link") {
     // Кастомные классы для варианта link
     return "text-blue-600 hover:text-blue-700 underline-offset-2 hover:underline";
   }
-  // Для остальных вариантов используем useVariantButton
-  return useVariantButton(props.variant);
+  // Для остальных вариантов используем useVariantButton + padding + border-radius
+  return useClassComposition(
+    useVariantButton(props.variant),
+    variantPaddingClass.value,
+    "rounded-lg"
+  );
 });
 
 /**
