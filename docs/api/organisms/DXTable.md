@@ -1,188 +1,262 @@
 # DXTable
 
-**Категория:** Organism  
-**Импорт:** `import { DXTable } from 'dxd-style-code'`
+Полнофункциональный компонент таблицы данных с сортировкой, фильтрацией, пагинацией и выбором.
 
-## Назначение
+## Import
 
-Полнофункциональная таблица данных с поддержкой сортировки, фильтрации, поиска, пагинации и выбора строк. Поддерживает локальный и API режимы работы с данными.
+```javascript
+import { DXTable } from 'dxd-style-code';
+```
 
 ## Props
 
-### Данные
+### Data Props
 
-| Prop      | Тип     | По умолчанию | Описание                                                                                                  |
-| --------- | ------- | ------------ | --------------------------------------------------------------------------------------------------------- |
-| `columns` | `Array` | **required** | Конфигурация колонок: `[{ key, label, sortable?, filterable?, filterOptions?, width?, align?, format? }]` |
-| `data`    | `Array` | `[]`         | Данные таблицы                                                                                            |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `columns` | `Array` | `required` | Конфигурация колонок |
+| `data` | `Array` | `[]` | Данные таблицы |
+| `mode` | `String` | `'local'` | Режим данных: `'local'`, `'api'` |
+| `apiUrl` | `String` | - | URL для API режима |
+| `apiMethod` | `String` | `'GET'` | HTTP метод |
+| `apiParams` | `Object` | `{}` | Дополнительные параметры API |
 
-### Режим работы
+### Features Props
 
-| Prop        | Тип                | По умолчанию | Описание                                     |
-| ----------- | ------------------ | ------------ | -------------------------------------------- |
-| `mode`      | `'local' \| 'api'` | `'local'`    | Режим работы с данными                       |
-| `apiUrl`    | `string`           | -            | URL API для загрузки данных (для mode='api') |
-| `apiMethod` | `string`           | `'GET'`      | HTTP метод                                   |
-| `apiParams` | `Object`           | `{}`         | Параметры API запроса                        |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `searchable` | `Boolean` | `false` | Включить поиск |
+| `filterable` | `Boolean` | `false` | Включить фильтры |
+| `sortable` | `Boolean` | `true` | Включить сортировку |
+| `paginated` | `Boolean` | `true` | Включить пагинацию |
+| `selectable` | `Boolean` | `false` | Включить выбор строк |
+| `groupBy` | `String` | - | Группировка по полю |
 
-### Функциональность
+### UI Props
 
-| Prop         | Тип       | По умолчанию | Описание               |
-| ------------ | --------- | ------------ | ---------------------- |
-| `searchable` | `boolean` | `false`      | Включить поиск         |
-| `filterable` | `boolean` | `false`      | Включить фильтрацию    |
-| `sortable`   | `boolean` | `true`       | Включить сортировку    |
-| `paginated`  | `boolean` | `true`       | Включить пагинацию     |
-| `selectable` | `boolean` | `false`      | Включить выбор строк   |
-| `groupBy`    | `string`  | -            | Группировка по колонке |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `String` | `'md'` | Размер: `'sm'`, `'md'`, `'lg'` |
+| `height` | `String` | - | Фиксированная высота |
+| `stickyHeader` | `Boolean` | `true` | Закреплённый заголовок |
+| `striped` | `Boolean` | `false` | Чередование цвета строк |
+| `bordered` | `Boolean` | `false` | Границы ячеек |
+| `hoverable` | `Boolean` | `true` | Подсветка при наведении |
+| `dense` | `Boolean` | `false` | Компактный режим |
 
-### Внешний вид
+### Toolbar Props
 
-| Prop           | Тип                    | По умолчанию | Описание                |
-| -------------- | ---------------------- | ------------ | ----------------------- |
-| `size`         | `'sm' \| 'md' \| 'lg'` | `'md'`       | Размер таблицы          |
-| `height`       | `string`               | -            | Высота таблицы          |
-| `stickyHeader` | `boolean`              | `true`       | Закрепленный заголовок  |
-| `striped`      | `boolean`              | `false`      | Полосатая таблица       |
-| `bordered`     | `boolean`              | `false`      | С границами             |
-| `hoverable`    | `boolean`              | `true`       | Подсветка при наведении |
-| `dense`        | `boolean`              | `false`      | Плотный режим           |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `showToolbar` | `Boolean` | `true` | Показывать тулбар |
+| `columnToggle` | `Boolean` | `false` | Переключатель колонок |
+| `actions` | `Boolean` | `false` | Показывать колонку действий |
 
-### Toolbar и действия
+### Pagination Props
 
-| Prop           | Тип       | По умолчанию | Описание                       |
-| -------------- | --------- | ------------ | ------------------------------ |
-| `showToolbar`  | `boolean` | `true`       | Показывать toolbar             |
-| `columnToggle` | `boolean` | `false`      | Переключение видимости колонок |
-| `actions`      | `boolean` | `false`      | Показывать действия            |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `defaultPageSize` | `Number` | `10` | Размер страницы по умолчанию |
+| `pageSizeOptions` | `Array` | `[10, 25, 50, 100]` | Опции размера страницы |
 
-### Пагинация
+### Other Props
 
-| Prop              | Тип       | По умолчанию        | Описание                                                     |
-| ----------------- | --------- | ------------------- | ------------------------------------------------------------ |
-| `defaultPageSize` | `number`  | `10`                | Размер страницы по умолчанию                                 |
-| `pageSizeOptions` | `Array`   | `[10, 25, 50, 100]` | Опции размера страницы                                       |
-| `defaultSort`     | `Object`  | -                   | Начальная сортировка: `{ column: 'name', direction: 'asc' }` |
-| `loading`         | `boolean` | `false`             | Состояние загрузки                                           |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `defaultSort` | `Object` | - | `{ column: 'name', direction: 'asc' }` |
+| `loading` | `Boolean` | `false` | Состояние загрузки |
+
+## Column Structure
+
+```typescript
+interface Column {
+  key: string;                    // Ключ данных
+  label: string;                  // Заголовок
+  sortable?: boolean;             // Можно сортировать
+  filterable?: boolean;           // Можно фильтровать
+  filterOptions?: Array;          // Опции фильтра
+  width?: string;                 // Ширина ('100px', '20%')
+  align?: 'left'|'center'|'right'; // Выравнивание
+  format?: (value, row) => string; // Форматирование
+  visible?: boolean;              // Видимость (default: true)
+}
+```
 
 ## Events
 
-| Event              | Параметры                    | Описание                   |
-| ------------------ | ---------------------------- | -------------------------- |
-| `row-click`        | `{ row, index }`             | Клик по строке             |
-| `row-select`       | `{ id, selected }`           | Выбор строки               |
-| `select-all`       | `boolean`                    | Выбрать все                |
-| `sort`             | `{ column, direction }`      | Сортировка                 |
-| `filter`           | `{ column, value, filters }` | Фильтрация                 |
-| `filter-clear`     | -                            | Очистка фильтров           |
-| `page-change`      | `number`                     | Изменение страницы         |
-| `page-size-change` | `number`                     | Изменение размера страницы |
-| `edit`             | `{ row, index }`             | Редактирование             |
-| `delete`           | `{ row, index }`             | Удаление                   |
-| `data-loaded`      | `Array`                      | Данные загружены           |
-| `error`            | `Error`                      | Ошибка                     |
-| `column-toggle`    | `{ column, visible }`        | Переключение колонки       |
-| `selection-clear`  | -                            | Очистка выбора             |
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `row-click` | `row` | Клик по строке |
+| `row-select` | `{ id, selected }` | Выбор строки |
+| `select-all` | `Boolean` | Выбор всех строк |
+| `sort` | `{ column, direction }` | Сортировка |
+| `filter` | `{ column, value }` | Фильтрация |
+| `filter-clear` | - | Очистка фильтров |
+| `page-change` | `Number` | Изменение страницы |
+| `page-size-change` | `Number` | Изменение размера страницы |
+| `edit` | `row` | Редактирование строки |
+| `delete` | `row` | Удаление строки |
+| `data-loaded` | `data` | Данные загружены (API режим) |
+| `error` | `Error` | Ошибка загрузки |
 
 ## Slots
 
-| Slot              | Параметры               | Описание                             |
-| ----------------- | ----------------------- | ------------------------------------ |
-| `toolbar-actions` | -                       | Дополнительные действия в toolbar    |
-| `[columnKey]`     | `{ row, value, index }` | Кастомизация ячейки по ключу колонки |
+| Slot | Props | Description |
+|------|-------|-------------|
+| `cell-{key}` | `{ value, row, column }` | Кастомная ячейка |
+| `header-{key}` | `{ column }` | Кастомный заголовок |
+| `toolbar-actions` | - | Действия в тулбаре |
+| `empty` | - | Пустое состояние |
+| `loading` | - | Состояние загрузки |
 
-## Примеры использования
+## Usage
 
-### Базовая таблица
-
-```vue
-<template>
-  <DXTable :columns="columns" :data="data" />
-</template>
-
-<script setup>
-const columns = [
-  { key: "id", label: "ID" },
-  { key: "name", label: "Название" },
-  { key: "status", label: "Статус" },
-];
-
-const data = [
-  { id: 1, name: "Товар 1", status: "active" },
-  { id: 2, name: "Товар 2", status: "inactive" },
-];
-</script>
-```
-
-### Таблица с сортировкой и фильтрацией
+### Basic
 
 ```vue
-<template>
-  <DXTable :columns="columns" :data="data" searchable filterable sortable />
-</template>
-
-<script setup>
-const columns = [
-  { key: "id", label: "ID", sortable: true },
-  { key: "name", label: "Название", sortable: true, filterable: true },
-  {
-    key: "status",
-    label: "Статус",
-    filterable: true,
-    filterOptions: ["active", "inactive", "pending"],
-  },
-];
-</script>
+<DXTable
+  :columns="[
+    { key: 'name', label: 'Имя' },
+    { key: 'email', label: 'Email' },
+    { key: 'role', label: 'Роль' }
+  ]"
+  :data="users"
+/>
 ```
 
-### Таблица с выбором строк
+### With Search and Filters
 
 ```vue
-<template>
-  <DXTable
-    :columns="columns"
-    :data="data"
-    selectable
-    @row-select="handleRowSelect"
-  />
-</template>
+<DXTable
+  :columns="columns"
+  :data="data"
+  searchable
+  filterable
+/>
 ```
 
-### Таблица с API режимом
+### With Selection
 
 ```vue
-<template>
-  <DXTable
-    :columns="columns"
-    mode="api"
-    api-url="/api/users"
-    :api-params="{ status: 'active' }"
-    searchable
-    filterable
-    paginated
-  />
-</template>
+<DXTable
+  :columns="columns"
+  :data="data"
+  selectable
+  @row-select="handleSelect"
+  @select-all="handleSelectAll"
+/>
 ```
 
-## Особенности
+### With Actions Column
 
-- **Два режима работы:** локальный (все операции на клиенте) и API (операции на сервере)
-- **Автоматическая фильтрация:** опции фильтра собираются автоматически из данных, если не указаны явно
-- **Группировка:** поддержка группировки данных по колонке
-- **Кастомизация:** слоты для кастомизации ячеек по ключу колонки
-- **Производительность:** оптимизирована для работы с большими объемами данных
+```vue
+<DXTable
+  :columns="columns"
+  :data="data"
+  actions
+  @edit="handleEdit"
+  @delete="handleDelete"
+/>
+```
 
-## Использует
+### Custom Cell Render
 
-- `DXBaseTable` - базовая таблица
-- `DXTableToolbar` - панель инструментов
-- `DXTablePagination` - пагинация
-- `DXTableFiltersPanel` - панель фильтров
-- Composables: `useTableData`, `useTableSort`, `useTableFilter`, `useTablePagination`, `useTableSelection`, `useTableColumns`
+```vue
+<DXTable :columns="columns" :data="data">
+  <template #cell-status="{ value }">
+    <DXTags :variant="getStatusVariant(value)">
+      {{ value }}
+    </DXTags>
+  </template>
+  
+  <template #cell-avatar="{ row }">
+    <img :src="row.avatar" class="w-8 h-8 rounded-full" />
+  </template>
+</DXTable>
+```
 
-## Используется в
+### With Column Toggle
 
-- Административные панели
-- Списки пользователей, товаров, заказов
-- Отчеты и аналитика
-- Любые места, требующие отображения структурированных данных
+```vue
+<DXTable
+  :columns="columns"
+  :data="data"
+  columnToggle
+/>
+```
+
+### Striped and Bordered
+
+```vue
+<DXTable
+  :columns="columns"
+  :data="data"
+  striped
+  bordered
+/>
+```
+
+### Fixed Height with Scroll
+
+```vue
+<DXTable
+  :columns="columns"
+  :data="data"
+  height="400px"
+  stickyHeader
+/>
+```
+
+### Server-Side Mode
+
+```vue
+<DXTable
+  mode="api"
+  apiUrl="/api/users"
+  :columns="columns"
+  @data-loaded="handleDataLoaded"
+  @error="handleError"
+/>
+```
+
+### With Default Sort
+
+```vue
+<DXTable
+  :columns="columns"
+  :data="data"
+  :defaultSort="{ column: 'createdAt', direction: 'desc' }"
+/>
+```
+
+### Toolbar Actions
+
+```vue
+<DXTable :columns="columns" :data="data" searchable>
+  <template #toolbar-actions>
+    <DXButton size="sm" @click="exportData">
+      <DXIcon :icon="ArrowDownTrayIcon" />
+      Экспорт
+    </DXButton>
+    <DXButton size="sm" @click="addNew">
+      <DXIcon :icon="PlusIcon" />
+      Добавить
+    </DXButton>
+  </template>
+</DXTable>
+```
+
+## Composables Used
+
+- `useTableData` - управление данными
+- `useTableSort` - сортировка
+- `useTableFilter` - фильтрация
+- `useTablePagination` - пагинация
+- `useTableSelection` - выбор строк
+- `useTableColumns` - управление колонками
+
+## See Also
+
+- [DXTableToolbar](../molecules/DXTableToolbar.md)
+- [DXTablePagination](../molecules/DXTablePagination.md)
+- [DXPagination](../molecules/DXPagination.md)

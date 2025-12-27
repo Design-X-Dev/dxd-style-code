@@ -1,101 +1,206 @@
 # DXDashboardGrid
 
-**Категория:** Organism  
-**Импорт:** `import { DXDashboardGrid } from 'dxd-style-code'`
+Сетка для размещения виджетов дашборда с поддержкой drag-and-drop.
 
-## Назначение
+## Import
 
-Сетка для дашборда с поддержкой drag-and-drop для перестановки виджетов и изменения их размеров.
+```javascript
+import { DXDashboardGrid } from 'dxd-style-code';
+```
 
 ## Props
 
-| Prop | Тип | По умолчанию | Описание |
-|------|-----|--------------|----------|
-| `widgets` | `Array` | **required** | Массив виджетов (v-model): `[{ id, x, y, w, h, type, title?, config? }]` |
-| `columns` | `number` | `12` | Количество колонок в сетке |
-| `rowHeight` | `number` | `100` | Высота строки в пикселях |
-| `editable` | `boolean` | `true` | Редактируемый режим (drag-and-drop включен) |
-| `gap` | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Отступ между виджетами |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `widgets` | `Array` | `[]` | Конфигурация виджетов |
+| `columns` | `Number` | `4` | Количество колонок |
+| `gap` | `String` | `'md'` | Отступы между виджетами: `'sm'`, `'md'`, `'lg'` |
+| `draggable` | `Boolean` | `false` | Разрешить перетаскивание |
+| `resizable` | `Boolean` | `false` | Разрешить изменение размера |
+| `responsive` | `Boolean` | `true` | Адаптивная сетка |
+
+## Widget Structure
+
+```typescript
+interface Widget {
+  id: string;
+  x: number;           // Позиция X (колонка)
+  y: number;           // Позиция Y (строка)
+  w: number;           // Ширина (в колонках)
+  h: number;           // Высота (в строках)
+  minW?: number;       // Минимальная ширина
+  minH?: number;       // Минимальная высота
+  maxW?: number;       // Максимальная ширина
+  maxH?: number;       // Максимальная высота
+  static?: boolean;    // Нельзя перемещать
+}
+```
 
 ## Events
 
-| Event | Параметры | Описание |
-|-------|-----------|----------|
-| `update:widgets` | `Array` | Обновление виджетов |
-| `widget-move` | `{ widget, newPosition }` | Перемещение виджета |
-| `widget-resize` | `{ widget, newSize }` | Изменение размера виджета |
-| `widget-add` | `{ widget }` | Добавление виджета |
-| `widget-remove` | `{ widget }` | Удаление виджета |
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:widgets` | `Widget[]` | Изменение конфигурации |
+| `layout-change` | `Widget[]` | Изменение layout |
+| `widget-move` | `{ id, x, y }` | Перемещение виджета |
+| `widget-resize` | `{ id, w, h }` | Изменение размера |
 
 ## Slots
 
-| Slot | Параметры | Описание |
-|------|-----------|----------|
-| `widget` | `{ widget }` | Кастомный контент виджета |
+| Slot | Props | Description |
+|------|-------|-------------|
+| `widget-{id}` | `{ widget }` | Контент виджета по ID |
+| `default` | - | Общий контент виджетов |
 
-## Примеры использования
+## Usage
 
-### Базовый дашборд
+### Basic
+
+```vue
+<DXDashboardGrid
+  :widgets="[
+    { id: 'stats', x: 0, y: 0, w: 2, h: 1 },
+    { id: 'chart', x: 2, y: 0, w: 2, h: 2 },
+    { id: 'table', x: 0, y: 1, w: 2, h: 2 }
+  ]"
+>
+  <template #widget-stats>
+    <DXDashboardWidget title="Статистика">
+      <StatsContent />
+    </DXDashboardWidget>
+  </template>
+  
+  <template #widget-chart>
+    <DXDashboardWidget title="График">
+      <ChartContent />
+    </DXDashboardWidget>
+  </template>
+  
+  <template #widget-table>
+    <DXDashboardWidget title="Таблица">
+      <TableContent />
+    </DXDashboardWidget>
+  </template>
+</DXDashboardGrid>
+```
+
+### Draggable
+
+```vue
+<DXDashboardGrid
+  v-model:widgets="widgets"
+  draggable
+  @layout-change="saveLayout"
+/>
+```
+
+### Resizable
+
+```vue
+<DXDashboardGrid
+  v-model:widgets="widgets"
+  draggable
+  resizable
+/>
+```
+
+### Custom Columns
+
+```vue
+<DXDashboardGrid
+  :widgets="widgets"
+  :columns="6"
+  gap="lg"
+/>
+```
+
+### Static Widgets
+
+```vue
+<DXDashboardGrid
+  :widgets="[
+    { id: 'header', x: 0, y: 0, w: 4, h: 1, static: true },
+    { id: 'content', x: 0, y: 1, w: 3, h: 2 },
+    { id: 'sidebar', x: 3, y: 1, w: 1, h: 2 }
+  ]"
+  draggable
+/>
+```
+
+### Responsive
+
+```vue
+<DXDashboardGrid
+  :widgets="widgets"
+  responsive
+/>
+<!-- Автоматически перестраивается на мобильных -->
+```
+
+### Full Dashboard Example
 
 ```vue
 <template>
-  <DXDashboardGrid
-    v-model:widgets="widgets"
-    :columns="12"
-    :row-height="100"
-    :editable="true"
-  >
-    <template #widget="{ widget }">
-      <DXCard class="h-full">
-        <h3>{{ widget.title }}</h3>
-        <p>Контент виджета</p>
-      </DXCard>
+  <DXAppLayout variant="dashboard">
+    <template #header>
+      <DXHeaderBar appName="Dashboard" />
     </template>
-  </DXDashboardGrid>
+    
+    <template #content>
+      <div class="p-6">
+        <DXDashboardGrid
+          v-model:widgets="dashboardWidgets"
+          :columns="4"
+          gap="md"
+          draggable
+          resizable
+          @layout-change="saveLayout"
+        >
+          <template #widget-revenue>
+            <DXDashboardWidget title="Выручка" :icon="CurrencyDollarIcon">
+              <DXStatCard value="$45,231" :trend="12.5" />
+            </DXDashboardWidget>
+          </template>
+          
+          <template #widget-orders>
+            <DXDashboardWidget title="Заказы" :icon="ShoppingBagIcon">
+              <DXStatCard value="356" :trend="8.2" />
+            </DXDashboardWidget>
+          </template>
+          
+          <template #widget-chart>
+            <DXDashboardWidget title="Продажи" refreshable @refresh="loadChart">
+              <SalesChart :data="salesData" />
+            </DXDashboardWidget>
+          </template>
+          
+          <template #widget-recent-orders>
+            <DXDashboardWidget title="Последние заказы">
+              <RecentOrdersTable :orders="recentOrders" />
+            </DXDashboardWidget>
+          </template>
+        </DXDashboardGrid>
+      </div>
+    </template>
+  </DXAppLayout>
 </template>
 
 <script setup>
-const widgets = ref([
-  { id: 1, w: 4, h: 2, type: 'stat', title: 'Статистика' },
-  { id: 2, w: 4, h: 2, type: 'chart', title: 'График' },
+const dashboardWidgets = ref([
+  { id: 'revenue', x: 0, y: 0, w: 1, h: 1 },
+  { id: 'orders', x: 1, y: 0, w: 1, h: 1 },
+  { id: 'chart', x: 2, y: 0, w: 2, h: 2 },
+  { id: 'recent-orders', x: 0, y: 1, w: 2, h: 2 }
 ]);
+
+function saveLayout(widgets) {
+  localStorage.setItem('dashboardLayout', JSON.stringify(widgets));
+}
 </script>
 ```
 
-### Дашборд с карточками статистики
+## See Also
 
-```vue
-<template>
-  <DXDashboardGrid v-model:widgets="widgets">
-    <template #widget="{ widget }">
-      <DXStatCard
-        v-if="widget.type === 'stat'"
-        :title="widget.config.title"
-        :value="widget.config.value"
-        :icon="widget.config.icon"
-      />
-    </template>
-  </DXDashboardGrid>
-</template>
-```
-
-## Особенности
-
-- **CSS Grid:** Использует CSS Grid для размещения виджетов
-- **Drag-and-Drop:** Поддерживает перетаскивание виджетов за handle
-- **Размеры:** Каждый виджет имеет свойства w (ширина в колонках) и h (высота в строках)
-- **Редактируемый режим:** Можно включать/выключать редактирование
-
-## Использует
-
-- `vue-draggable-next` - для drag-and-drop функциональности
-- `DXStatCard` - для карточек статистики (через slot)
-- `useClassComposition` - для стилей
-- `useSpacing` - для отступов
-
-## Используется в
-
-- Настраиваемые дашборды
-- Панели мониторинга
-- Аналитические панели
-
+- [DXDashboardWidget](./DXDashboardWidget.md)
+- [DXStatCard](../molecules/DXStatCard.md)
+- [DXGrid](../atoms/DXGrid.md)

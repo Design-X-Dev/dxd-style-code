@@ -1,102 +1,195 @@
 # DXAuthenticationForm
 
-**Категория:** Organism  
-**Импорт:** `import { DXAuthenticationForm } from 'dxd-style-code'`
+Готовая форма аутентификации с поддержкой входа, регистрации и восстановления пароля.
 
-## Назначение
+## Import
 
-Готовая форма аутентификации с поддержкой различных режимов (логин, регистрация, восстановление пароля, 2FA) и валидацией.
+```javascript
+import { DXAuthenticationForm } from 'dxd-style-code';
+```
 
 ## Props
 
-| Prop | Тип | По умолчанию | Описание |
-|------|-----|--------------|----------|
-| `mode` | `'login' \| 'register' \| 'forgot-password' \| '2fa'` | `'login'` | Режим формы |
-| `loading` | `boolean` | `false` | Состояние загрузки |
-| `error` | `string` | `''` | Сообщение об ошибке |
-| `errors` | `Object` | `{}` | Ошибки валидации: `{ field: 'error message' }` |
-| `showHeader` | `boolean` | `true` | Показывать header |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `mode` | `String` | `'login'` | Режим: `'login'`, `'register'`, `'forgot-password'`, `'reset-password'` |
+| `title` | `String` | `auto` | Заголовок формы |
+| `submitText` | `String` | `auto` | Текст кнопки отправки |
+| `showSocialLogin` | `Boolean` | `false` | Показать кнопки соцсетей |
+| `socialProviders` | `Array` | `['google', 'github']` | Провайдеры соцсетей |
+| `showRememberMe` | `Boolean` | `true` | Показать "Запомнить меня" |
+| `showForgotPassword` | `Boolean` | `true` | Показать "Забыли пароль?" |
+| `loading` | `Boolean` | `false` | Состояние загрузки |
+| `errors` | `Object` | `{}` | Ошибки валидации |
+| `logo` | `String` | `null` | URL логотипа |
 
 ## Events
 
-| Event | Параметры | Описание |
-|-------|-----------|----------|
-| `submit` | `{ mode, data }` | Отправка формы |
-| `mode-change` | `string` | Изменение режима |
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `submit` | `FormData` | Отправка формы |
+| `social-login` | `String` | Клик по соцсети |
+| `mode-change` | `String` | Изменение режима |
+| `forgot-password` | - | Клик "Забыли пароль?" |
 
-## Slots
+## Usage
 
-| Slot | Описание |
-|------|----------|
-| `header` | Кастомный header |
-| `error` | Кастомное отображение ошибки |
-| `login` | Кастомная форма входа |
-| `register` | Кастомная форма регистрации |
-| `forgot-password` | Кастомная форма восстановления пароля |
-| `2fa` | Кастомная форма 2FA |
+### Login Form
 
-## Примеры использования
+```vue
+<DXAuthenticationForm
+  mode="login"
+  @submit="handleLogin"
+  @forgot-password="showForgotPassword = true"
+  @social-login="handleSocialLogin"
+/>
+```
 
-### Форма входа
+### Registration Form
+
+```vue
+<DXAuthenticationForm
+  mode="register"
+  title="Создать аккаунт"
+  submitText="Зарегистрироваться"
+  :errors="validationErrors"
+  @submit="handleRegister"
+/>
+```
+
+### Forgot Password
+
+```vue
+<DXAuthenticationForm
+  mode="forgot-password"
+  @submit="handleForgotPassword"
+  @mode-change="currentMode = $event"
+/>
+```
+
+### With Social Login
+
+```vue
+<DXAuthenticationForm
+  mode="login"
+  showSocialLogin
+  :socialProviders="['google', 'github', 'facebook']"
+  @social-login="handleSocialLogin"
+/>
+```
+
+### With Logo
+
+```vue
+<DXAuthenticationForm
+  mode="login"
+  logo="/logo.svg"
+  title="Войти в MyApp"
+/>
+```
+
+### Custom Submit
+
+```vue
+<DXAuthenticationForm
+  mode="login"
+  submitText="Войти в систему"
+  :loading="isLoading"
+  @submit="handleLogin"
+/>
+```
+
+### With Errors
+
+```vue
+<DXAuthenticationForm
+  mode="login"
+  :errors="{
+    email: 'Неверный email',
+    password: 'Пароль слишком короткий'
+  }"
+  @submit="handleLogin"
+/>
+```
+
+### Full Example
 
 ```vue
 <template>
-  <DXAuthenticationForm
-    mode="login"
-    :loading="loading"
-    :error="error"
-    :errors="errors"
-    @submit="handleLogin"
-  />
+  <div class="min-h-screen flex items-center justify-center bg-slate-100">
+    <DXCard class="w-full max-w-md">
+      <DXAuthenticationForm
+        :mode="authMode"
+        logo="/logo.svg"
+        showSocialLogin
+        :loading="isLoading"
+        :errors="errors"
+        @submit="handleSubmit"
+        @social-login="handleSocialLogin"
+        @mode-change="authMode = $event"
+        @forgot-password="authMode = 'forgot-password'"
+      />
+    </DXCard>
+  </div>
 </template>
+
+<script setup>
+const authMode = ref('login');
+const isLoading = ref(false);
+const errors = ref({});
+
+async function handleSubmit(formData) {
+  isLoading.value = true;
+  errors.value = {};
+  
+  try {
+    if (authMode.value === 'login') {
+      await auth.login(formData);
+    } else if (authMode.value === 'register') {
+      await auth.register(formData);
+    }
+  } catch (e) {
+    errors.value = e.errors;
+  } finally {
+    isLoading.value = false;
+  }
+}
+</script>
 ```
 
-### Форма регистрации
+## Form Data Structure
 
-```vue
-<template>
-  <DXAuthenticationForm
-    mode="register"
-    :loading="loading"
-    :errors="errors"
-    @submit="handleRegister"
-  />
-</template>
+### Login
+
+```typescript
+interface LoginData {
+  email: string;
+  password: string;
+  rememberMe?: boolean;
+}
 ```
 
-### Кастомная форма
+### Register
 
-```vue
-<template>
-  <DXAuthenticationForm mode="login" @submit="handleSubmit">
-    <template #login>
-      <!-- Кастомная форма входа -->
-    </template>
-  </DXAuthenticationForm>
-</template>
+```typescript
+interface RegisterData {
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+}
 ```
 
-## Особенности
+### Forgot Password
 
-- **Четыре режима:** login, register, forgot-password, 2fa
-- **Валидация:** Поддерживает валидацию через prop `errors`
-- **Автоматическая проверка:** Проверяет заполненность обязательных полей
-- **Кастомизация:** Все элементы формы можно кастомизировать через slots
+```typescript
+interface ForgotPasswordData {
+  email: string;
+}
+```
 
-## Использует
+## See Also
 
-- `DXInput` - для полей ввода
-- `DXPasswordInput` - для полей пароля
-- `DXFormControl` - для валидации
-- `DXButton` - для отправки
-- `DXCheckbox` - для чекбоксов
-- `DXLink` - для ссылок
-- `DXAlert` - для ошибок
-
-## Используется в
-
-- Страницы входа в приложение
-- Регистрация новых пользователей
-- Восстановление пароля
-- Двухфакторная аутентификация
-
+- [DXFormControl](../molecules/DXFormControl.md)
+- [DXInput](../molecules/DXInput.md)
+- [DXPasswordInput](../molecules/DXPasswordInput.md)

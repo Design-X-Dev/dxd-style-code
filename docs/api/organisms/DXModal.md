@@ -1,123 +1,185 @@
 # DXModal
 
-**Категория:** Organism  
-**Импорт:** `import { DXModal } from 'dxd-style-code'`
+Модальное окно с различными вариантами отображения.
 
-## Назначение
+## Import
 
-Модальное окно с различными вариантами отображения: стандартное модальное окно, полноэкранный режим, боковая панель.
+```javascript
+import { DXModal } from 'dxd-style-code';
+```
 
 ## Props
 
-| Prop                 | Тип                                                          | По умолчанию  | Описание                                     |
-| -------------------- | ------------------------------------------------------------ | ------------- | -------------------------------------------- |
-| `open`               | `boolean`                                                    | `false`       | Состояние открытия/закрытия                  |
-| `variant`            | `'modal' \| 'fullscreen' \| 'sidebar-right' \| 'half-right'` | `'modal'`     | Вариант отображения                          |
-| `width`              | `'sm' \| 'md' \| 'lg' \| 'xl'`                               | `'md'`        | Ширина модального окна (для variant='modal') |
-| `closable`           | `boolean`                                                    | `true`        | Показывать кнопку закрытия                   |
-| `showModeSwitcher`   | `boolean`                                                    | `false`       | Показывать переключатель режимов             |
-| `backdropBlur`       | `'none' \| 'sm' \| 'md' \| 'lg' \| 'xl'`                     | `'sm'`        | Уровень размытия backdrop                    |
-| `backdropOpacity`    | `string \| number`                                           | `'40'`        | Прозрачность backdrop (0-100)                |
-| `backdropColor`      | `'slate-900' \| 'gray-900' \| 'black' \| 'white'`            | `'slate-900'` | Цвет backdrop                                |
-| `backdropLockScroll` | `boolean`                                                    | `true`        | Блокировать скролл body при открытии         |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `open` | `Boolean` | `false` | Открыто/закрыто |
+| `variant` | `String` | `'modal'` | Вариант: `'modal'`, `'fullscreen'`, `'sidebar-right'`, `'half-right'` |
+| `width` | `String` | `'md'` | Ширина (для modal): `'sm'`, `'md'`, `'lg'`, `'xl'` |
+| `closable` | `Boolean` | `true` | Можно ли закрыть |
+| `showModeSwitcher` | `Boolean` | `false` | Показывать переключатель режимов |
+| `backdropBlur` | `String` | `'sm'` | Размытие: `'none'`, `'sm'`, `'md'`, `'lg'`, `'xl'` |
+| `backdropOpacity` | `String\|Number` | `'40'` | Прозрачность backdrop (0-100) |
+| `backdropColor` | `String` | `'slate-900'` | Цвет backdrop |
+| `backdropLockScroll` | `Boolean` | `true` | Блокировать скролл body |
 
 ## Events
 
-| Event            | Параметры | Описание                 |
-| ---------------- | --------- | ------------------------ |
-| `close`          | -         | Закрытие модального окна |
-| `opened`         | -         | Модальное окно открыто   |
-| `closed`         | -         | Модальное окно закрыто   |
-| `update:variant` | `string`  | Изменение варианта       |
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `close` | - | Запрос закрытия |
+| `opened` | - | Модал полностью открылся |
+| `closed` | - | Модал полностью закрылся |
+| `update:variant` | `String` | Изменение варианта (при showModeSwitcher) |
 
 ## Slots
 
-| Slot      | Описание                       |
-| --------- | ------------------------------ |
-| `default` | Контент модального окна        |
-| `title`   | Заголовок модального окна      |
-| `actions` | Кнопки действий (обычно внизу) |
+| Slot | Description |
+|------|-------------|
+| `title` | Заголовок модала |
+| `default` | Контент модала |
+| `actions` | Действия в футере |
 
-## Примеры использования
+## Usage
 
-### Базовое модальное окно
-
-```vue
-<template>
-  <DXButton @click="showModal = true">Открыть</DXButton>
-
-  <DXModal
-    :open="showModal"
-    variant="modal"
-    width="md"
-    @close="showModal = false"
-  >
-    <template #title>Заголовок</template>
-    <p>Контент модального окна</p>
-    <template #actions>
-      <DXButton variant="ghost" @click="showModal = false">Отмена</DXButton>
-      <DXButton @click="save">Сохранить</DXButton>
-    </template>
-  </DXModal>
-</template>
-```
-
-### Полноэкранное модальное окно
+### Basic Modal
 
 ```vue
-<template>
-  <DXModal :open="showModal" variant="fullscreen" @close="showModal = false">
-    <template #title>Полноэкранный режим</template>
-    <div>Контент на весь экран</div>
-  </DXModal>
-</template>
+<DXButton @click="showModal = true">Открыть</DXButton>
+
+<DXModal :open="showModal" @close="showModal = false">
+  <template #title>Заголовок модала</template>
+  
+  <p>Контент модального окна</p>
+  
+  <template #actions>
+    <DXButton variant="ghost" @click="showModal = false">Отмена</DXButton>
+    <DXButton @click="handleConfirm">Подтвердить</DXButton>
+  </template>
+</DXModal>
 ```
 
-### Боковая панель
+### Width Sizes
 
 ```vue
-<template>
-  <DXModal
-    :open="showSidebar"
-    variant="sidebar-right"
-    @close="showSidebar = false"
-  >
-    <template #title>Боковая панель</template>
-    <div>Контент боковой панели</div>
-  </DXModal>
-</template>
+<DXModal :open="show" width="sm">Маленький (max-w-md)</DXModal>
+<DXModal :open="show" width="md">Средний (max-w-xl)</DXModal>
+<DXModal :open="show" width="lg">Большой (max-w-3xl)</DXModal>
+<DXModal :open="show" width="xl">Очень большой (max-w-5xl)</DXModal>
 ```
 
-### Модальное окно с переключателем режимов
+### Fullscreen Modal
 
 ```vue
-<template>
-  <DXModal
-    :open="showModal"
-    variant="modal"
-    :show-mode-switcher="true"
-    @close="showModal = false"
-  >
-    <template #title>Адаптивное окно</template>
-    <p>Можно переключать режимы отображения</p>
-  </DXModal>
-</template>
+<DXModal :open="show" variant="fullscreen" @close="show = false">
+  <template #title>Полноэкранный режим</template>
+  <div class="h-full overflow-auto">
+    <!-- Большой контент -->
+  </div>
+</DXModal>
 ```
 
-## Особенности
+### Sidebar Right
 
-- Автоматически блокирует скролл body при открытии
-- Поддерживает клавиатурную навигацию (ESC для закрытия)
-- Автоматически фокусируется на открытии
-- Поддерживает различные варианты отображения для адаптивности
+```vue
+<DXModal :open="show" variant="sidebar-right" @close="show = false">
+  <template #title>Детали</template>
+  <div class="space-y-4">
+    <!-- Контент боковой панели -->
+  </div>
+</DXModal>
+```
 
-## Использует
+### Half Right
 
-- `DXBackdrop` - затемнение фона
-- `DXButton` или `DXCloseButton` - кнопка закрытия
+```vue
+<DXModal :open="show" variant="half-right" @close="show = false">
+  <template #title>Редактор</template>
+  <div class="h-full">
+    <!-- Контент половины экрана справа -->
+  </div>
+</DXModal>
+```
 
-## Используется в
+### With Mode Switcher
 
-- Различных формах подтверждения
-- Детальных просмотрах
-- Настройках и конфигурациях
+```vue
+<DXModal
+  :open="show"
+  v-model:variant="modalVariant"
+  showModeSwitcher
+  @close="show = false"
+>
+  <template #title>Настраиваемый модал</template>
+  <p>Переключайте режимы с помощью кнопок справа от заголовка</p>
+</DXModal>
+```
+
+### Custom Backdrop
+
+```vue
+<DXModal
+  :open="show"
+  backdropBlur="lg"
+  backdropOpacity="60"
+  backdropColor="black"
+  @close="show = false"
+>
+  <template #title>Кастомный backdrop</template>
+  <p>Контент</p>
+</DXModal>
+```
+
+### Non-closable Modal
+
+```vue
+<DXModal
+  :open="show"
+  :closable="false"
+>
+  <template #title>Важное действие</template>
+  <p>Это модальное окно нельзя закрыть кликом по backdrop</p>
+  
+  <template #actions>
+    <DXButton @click="handleComplete">Завершить</DXButton>
+  </template>
+</DXModal>
+```
+
+### Confirmation Dialog
+
+```vue
+<DXModal :open="showConfirm" width="sm" @close="showConfirm = false">
+  <template #title>Подтверждение</template>
+  
+  <p>Вы уверены, что хотите удалить этот элемент?</p>
+  
+  <template #actions>
+    <DXButton variant="ghost" @click="showConfirm = false">
+      Отмена
+    </DXButton>
+    <DXButton variant="danger" @click="handleDelete">
+      Удалить
+    </DXButton>
+  </template>
+</DXModal>
+```
+
+## Animations
+
+| Variant | Animation |
+|---------|-----------|
+| `modal` | fade-scale |
+| `fullscreen` | fade-scale |
+| `sidebar-right` | slide-right |
+| `half-right` | slide-right |
+
+## Accessibility
+
+- Блокировка скролла body
+- Фокус-ловушка внутри модала
+- Закрытие по Escape
+
+## See Also
+
+- [DXBackdrop](../atoms/DXBackdrop.md)
+- [DXCloseButton](../molecules/DXCloseButton.md)

@@ -1,80 +1,132 @@
 # DXBaseTable
 
-**Категория:** Organism  
-**Импорт:** `import { DXBaseTable } from 'dxd-style-code'`
+Базовый компонент таблицы без тулбара и пагинации. Используется внутри DXTable.
 
-## Назначение
+## Import
 
-Базовая таблица для отображения данных. Используется внутри DXTable, но может использоваться самостоятельно для простых случаев.
+```javascript
+import { DXBaseTable } from 'dxd-style-code';
+```
 
 ## Props
 
-| Prop | Тип | По умолчанию | Описание |
-|------|-----|--------------|----------|
-| `columns` | `Array` | **required** | Массив колонок: `[{ key, label, sortable?, filterable?, width?, align?, format? }]` |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `columns` | `Array` | `required` | Конфигурация колонок |
 | `data` | `Array` | `[]` | Данные таблицы |
-| `sortBy` | `string` | `null` | Колонка для сортировки |
-| `sortDirection` | `'asc' \| 'desc'` | `'asc'` | Направление сортировки |
+| `sortBy` | `String` | `null` | Колонка сортировки |
+| `sortDirection` | `String` | `'asc'` | Направление: `'asc'`, `'desc'` |
+| `selectable` | `Boolean` | `false` | Включить выбор строк |
 | `selectedRows` | `Array` | `[]` | Выбранные строки |
-| `selectable` | `boolean` | `false` | Можно ли выбирать строки |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Размер таблицы |
-| `stickyHeader` | `boolean` | `true` | Закрепленный заголовок |
-| `striped` | `boolean` | `false` | Полосатая таблица |
-| `bordered` | `boolean` | `false` | С границами |
-| `hoverable` | `boolean` | `true` | Подсветка при наведении |
-| `loading` | `boolean` | `false` | Состояние загрузки |
+| `actions` | `Boolean` | `false` | Показывать колонку действий |
+| `filterable` | `Boolean` | `false` | Включить фильтры в заголовках |
+| `filters` | `Object` | `{}` | Текущие фильтры |
+| `groupBy` | `String` | `null` | Группировка по полю |
+| `height` | `String` | `null` | Фиксированная высота |
+| `stickyHeader` | `Boolean` | `true` | Закреплённый заголовок |
+| `striped` | `Boolean` | `false` | Чередование цвета строк |
+| `bordered` | `Boolean` | `false` | Границы ячеек |
+| `hoverable` | `Boolean` | `true` | Подсветка при наведении |
+| `dense` | `Boolean` | `false` | Компактный режим |
+| `size` | `String` | `'md'` | Размер: `'sm'`, `'md'`, `'lg'` |
+| `loading` | `Boolean` | `false` | Состояние загрузки |
 
 ## Events
 
-| Event | Параметры | Описание |
-|-------|-----------|----------|
+| Event | Payload | Description |
+|-------|---------|-------------|
 | `sort` | `{ column, direction }` | Сортировка |
 | `filter` | `{ column, value }` | Фильтрация |
-| `row-click` | `{ row, index }` | Клик по строке |
+| `row-click` | `row` | Клик по строке |
 | `row-select` | `{ id, selected }` | Выбор строки |
-| `select-all` | `boolean` | Выбрать все |
+| `select-all` | `Boolean` | Выбор всех строк |
+| `edit` | `row` | Редактирование строки |
+| `delete` | `row` | Удаление строки |
 
 ## Slots
 
-| Slot | Параметры | Описание |
-|------|-----------|----------|
-| `[columnKey]` | `{ row, value, index }` | Кастомизация ячейки по ключу колонки |
+| Slot | Props | Description |
+|------|-------|-------------|
+| `cell-{key}` | `{ value, row, column }` | Кастомная ячейка |
+| `header-{key}` | `{ column }` | Кастомный заголовок |
+| `empty` | - | Пустое состояние |
+| `loading` | - | Состояние загрузки |
 
-## Примеры использования
+## Usage
 
-### Простая таблица
-
-```vue
-<template>
-  <DXBaseTable
-    :columns="columns"
-    :data="data"
-  />
-</template>
-```
-
-### Таблица с сортировкой
+### Basic
 
 ```vue
-<template>
-  <DXBaseTable
-    :columns="columns"
-    :data="data"
-    :sort-by="sortBy"
-    :sort-direction="sortDirection"
-    @sort="handleSort"
-  />
-</template>
+<DXBaseTable
+  :columns="[
+    { key: 'name', label: 'Имя' },
+    { key: 'email', label: 'Email' },
+    { key: 'role', label: 'Роль' }
+  ]"
+  :data="users"
+/>
 ```
 
-## Особенности
+### With Sorting
 
-- **Базовая функциональность:** Предоставляет только базовое отображение данных
-- **Используется в DXTable:** DXTable использует DXBaseTable как основу
-- **Кастомизация:** Поддерживает слоты для кастомизации ячеек
+```vue
+<DXBaseTable
+  :columns="columns"
+  :data="data"
+  :sortBy="sortColumn"
+  :sortDirection="sortDirection"
+  @sort="handleSort"
+/>
+```
 
-## Используется в
+### With Selection
 
-- `DXTable` - полнофункциональная таблица
-- Простые таблицы без дополнительных функций
+```vue
+<DXBaseTable
+  :columns="columns"
+  :data="data"
+  selectable
+  :selectedRows="selected"
+  @row-select="handleSelect"
+  @select-all="handleSelectAll"
+/>
+```
 
+### With Actions
+
+```vue
+<DXBaseTable
+  :columns="columns"
+  :data="data"
+  actions
+  @edit="handleEdit"
+  @delete="handleDelete"
+/>
+```
+
+### Styled Variants
+
+```vue
+<DXBaseTable :columns="columns" :data="data" striped />
+<DXBaseTable :columns="columns" :data="data" bordered />
+<DXBaseTable :columns="columns" :data="data" dense />
+```
+
+### Custom Cells
+
+```vue
+<DXBaseTable :columns="columns" :data="data">
+  <template #cell-status="{ value }">
+    <DXTags :variant="getStatusVariant(value)">
+      {{ value }}
+    </DXTags>
+  </template>
+</DXBaseTable>
+```
+
+Обычно используется через DXTable, который добавляет тулбар и пагинацию.
+
+## See Also
+
+- [DXTable](./DXTable.md)
+- [DXDataTable](./DXDataTable.md)

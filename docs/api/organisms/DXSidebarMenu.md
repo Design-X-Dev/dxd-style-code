@@ -1,152 +1,240 @@
 # DXSidebarMenu
 
-**Категория:** Organism  
-**Импорт:** `import { DXSidebarMenu } from 'dxd-style-code'`
+Боковое меню навигации с поддержкой секций, вложенных элементов и компактного режима.
 
-## Назначение
+## Import
 
-Боковое меню навигации с поддержкой поиска, иконок, вложенных секций и компактного режима.
+```javascript
+import { DXSidebarMenu } from 'dxd-style-code';
+```
 
 ## Props
 
-| Prop                | Тип       | По умолчанию | Описание                                                                                         |
-| ------------------- | --------- | ------------ | ------------------------------------------------------------------------------------------------ |
-| `title`             | `string`  | `''`         | Заголовок сайдбара                                                                               |
-| `sections`          | `Array`   | **required** | Секции меню: `[{ title?, items: [{ label, icon?, to?, href?, badge?, children?, disabled? }] }]` |
-| `activeItem`        | `string`  | -            | Активный элемент (to или id)                                                                     |
-| `compact`           | `boolean` | `false`      | Компактный режим                                                                                 |
-| `searchable`        | `boolean` | `false`      | Включить поиск                                                                                   |
-| `searchPlaceholder` | `string`  | `'Поиск...'` | Placeholder для поиска                                                                           |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `String` | `''` | Заголовок сайдбара |
+| `sections` | `Array` | `required` | Секции меню |
+| `activeItem` | `String` | `''` | Текущий активный элемент (path или id) |
+| `compact` | `Boolean` | `false` | Компактный режим (только иконки) |
+| `collapsible` | `Boolean` | `true` | Можно ли сворачивать |
+| `searchable` | `Boolean` | `false` | Показывать поиск |
+| `showHeader` | `Boolean` | `undefined` | Показывать header (auto если undefined) |
+| `headerSize` | `String` | `'md'` | Размер header: `'sm'`, `'md'`, `'lg'` |
+| `width` | `String` | `'md'` | Ширина: `'sm'`, `'md'`, `'lg'`, `'full'` |
+| `fixed` | `Boolean` | `false` | Фиксированная позиция |
+| `bordered` | `Boolean` | `true` | Показывать бордер справа |
 
-## Events
-
-| Event            | Параметры           | Описание                        |
-| ---------------- | ------------------- | ------------------------------- |
-| `item-click`     | `{ item, section }` | Клик по элементу меню           |
-| `toggle-compact` | `boolean`           | Переключение компактного режима |
-
-## Структура данных
+## Section Structure
 
 ```typescript
-interface MenuSection {
-  title?: string;
-  items: MenuItem[];
+interface Section {
+  title?: string;           // Заголовок секции
+  items: MenuItem[];        // Элементы секции
 }
 
 interface MenuItem {
-  label: string;
-  icon?: Component;
-  to?: string | Object; // Vue Router путь
-  href?: string; // Обычная ссылка
-  badge?: string | number;
-  children?: MenuItem[]; // Вложенные элементы
-  disabled?: boolean;
-  id?: string; // Уникальный идентификатор
+  id?: string;              // Уникальный ID
+  label: string;            // Текст
+  icon?: Component;         // Иконка
+  to?: string;              // Vue Router path
+  href?: string;            // Обычная ссылка
+  badge?: string | number;  // Бейдж
+  badgeVariant?: string;    // Вариант бейджа
+  children?: MenuItem[];    // Вложенные элементы
+  disabled?: boolean;       // Отключен
+  action?: () => void;      // Действие при клике
 }
 ```
 
-## Примеры использования
+## Events
 
-### Базовое меню
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `item-click` | `MenuItem` | Клик по элементу меню |
+| `update:compact` | `Boolean` | Изменение компактного режима |
+
+## Slots
+
+| Slot | Description |
+|------|-------------|
+| `header` | Кастомный header |
+| `footer` | Футер сайдбара |
+
+## Usage
+
+### Basic
+
+```vue
+<DXSidebarMenu
+  title="Приложение"
+  :sections="[
+    {
+      items: [
+        { label: 'Главная', icon: HomeIcon, to: '/' },
+        { label: 'Профиль', icon: UserIcon, to: '/profile' },
+        { label: 'Настройки', icon: CogIcon, to: '/settings' }
+      ]
+    }
+  ]"
+  :activeItem="$route.path"
+/>
+```
+
+### With Sections
+
+```vue
+<DXSidebarMenu
+  :sections="[
+    {
+      title: 'Основное',
+      items: [
+        { label: 'Дашборд', icon: ChartBarIcon, to: '/dashboard' },
+        { label: 'Проекты', icon: FolderIcon, to: '/projects' }
+      ]
+    },
+    {
+      title: 'Настройки',
+      items: [
+        { label: 'Профиль', icon: UserIcon, to: '/profile' },
+        { label: 'Настройки', icon: CogIcon, to: '/settings' }
+      ]
+    }
+  ]"
+/>
+```
+
+### With Nested Items
+
+```vue
+<DXSidebarMenu
+  :sections="[
+    {
+      items: [
+        { label: 'Главная', icon: HomeIcon, to: '/' },
+        {
+          label: 'Товары',
+          icon: CubeIcon,
+          children: [
+            { label: 'Каталог', to: '/products' },
+            { label: 'Категории', to: '/categories' },
+            { label: 'Бренды', to: '/brands' }
+          ]
+        },
+        { label: 'Заказы', icon: ShoppingCartIcon, to: '/orders' }
+      ]
+    }
+  ]"
+/>
+```
+
+### With Badges
+
+```vue
+<DXSidebarMenu
+  :sections="[
+    {
+      items: [
+        { label: 'Входящие', icon: InboxIcon, to: '/inbox', badge: 5 },
+        { label: 'Задачи', icon: ClipboardIcon, to: '/tasks', badge: 12 },
+        { label: 'Уведомления', icon: BellIcon, to: '/notifications', badge: 'new', badgeVariant: 'success' }
+      ]
+    }
+  ]"
+/>
+```
+
+### Compact Mode
+
+```vue
+<DXSidebarMenu
+  :sections="sections"
+  compact
+  collapsible
+/>
+```
+
+### With Search
+
+```vue
+<DXSidebarMenu
+  :sections="sections"
+  searchable
+/>
+```
+
+### Width Variants
+
+```vue
+<DXSidebarMenu :sections="sections" width="sm" /> <!-- 256px -->
+<DXSidebarMenu :sections="sections" width="md" /> <!-- 320px -->
+<DXSidebarMenu :sections="sections" width="lg" /> <!-- 384px -->
+<DXSidebarMenu :sections="sections" width="full" /> <!-- 100% -->
+```
+
+### With Footer
+
+```vue
+<DXSidebarMenu :sections="sections">
+  <template #footer>
+    <div class="flex items-center gap-3">
+      <img src="/avatar.jpg" class="w-8 h-8 rounded-full" />
+      <div>
+        <div class="font-medium">Иван Иванов</div>
+        <div class="text-xs text-slate-500">admin@example.com</div>
+      </div>
+    </div>
+  </template>
+</DXSidebarMenu>
+```
+
+### Fixed Position
+
+```vue
+<DXSidebarMenu
+  :sections="sections"
+  fixed
+  width="md"
+/>
+```
+
+### Full Example
 
 ```vue
 <template>
-  <DXSidebarMenu
-    title="Навигация"
-    :sections="menuSections"
-    active-item="/dashboard"
-  />
-</template>
-
-<script setup>
-const menuSections = [
-  {
-    title: "Основное",
-    items: [
-      { label: "Дашборд", icon: HomeIcon, to: "/dashboard" },
-      { label: "Проекты", icon: FolderIcon, to: "/projects" },
-    ],
-  },
-  {
-    items: [{ label: "Настройки", icon: CogIcon, to: "/settings" }],
-  },
-];
-</script>
-```
-
-### Меню с поиском
-
-```vue
-<template>
-  <DXSidebarMenu
-    :sections="menuSections"
-    :searchable="true"
-    search-placeholder="Поиск по меню..."
-  />
+  <DXAppLayout>
+    <template #sidebar>
+      <DXSidebarMenu
+        title="MyApp"
+        :sections="menuSections"
+        :activeItem="$route.path"
+        collapsible
+        searchable
+        @item-click="handleMenuClick"
+      >
+        <template #footer>
+          <DXDropdown position="left" width="md">
+            <template #trigger>
+              <UserProfileButton :user="currentUser" />
+            </template>
+            <DXDropdownItem @click="logout">Выйти</DXDropdownItem>
+          </DXDropdown>
+        </template>
+      </DXSidebarMenu>
+    </template>
+    
+    <template #content>
+      <router-view />
+    </template>
+  </DXAppLayout>
 </template>
 ```
 
-### Меню с вложенными элементами
+## Composables Used
 
-```vue
-<template>
-  <DXSidebarMenu :sections="menuSections" />
-</template>
+- `useMenu` - логика меню, поиск, compact режим
 
-<script setup>
-const menuSections = [
-  {
-    items: [
-      {
-        label: "Проекты",
-        icon: FolderIcon,
-        to: "/projects",
-        children: [
-          { label: "Все проекты", to: "/projects/all" },
-          { label: "Мои проекты", to: "/projects/my" },
-        ],
-      },
-    ],
-  },
-];
-</script>
-```
+## See Also
 
-### Меню с бейджами
-
-```vue
-<template>
-  <DXSidebarMenu :sections="menuSections" />
-</template>
-
-<script setup>
-const menuSections = [
-  {
-    items: [
-      { label: "Уведомления", icon: BellIcon, to: "/notifications", badge: 5 },
-      { label: "Сообщения", icon: ChatIcon, to: "/messages", badge: 12 },
-    ],
-  },
-];
-</script>
-```
-
-## Особенности
-
-- **Поиск:** Автоматически фильтрует элементы меню по тексту
-- **Компактный режим:** Скрывает текст, оставляя только иконки
-- **Вложенность:** Поддерживает многоуровневую структуру меню
-- **Активное состояние:** Автоматически подсвечивает активный элемент
-- **Vue Router:** Автоматически интегрируется с Vue Router при наличии
-
-## Использует
-
-- `DXInput` - для поиска по меню
-- `DXIcon` - для иконок пунктов меню
-- `useMenu` - composable для управления меню
-
-## Используется в
-
-- `DXAppLayout` - главный layout приложения
-- `DXSidebar` - боковая панель
-- Навигационные панели приложений
+- [DXAppLayout](./DXAppLayout.md)
+- [DXSidebar](./DXSidebar.md)
+- [DXMenu](../molecules/DXMenu.md)

@@ -1,113 +1,234 @@
 # DXWizard
 
-**Категория:** Organism  
-**Импорт:** `import { DXWizard } from 'dxd-style-code'`
+Компонент пошагового мастера (wizard) с индикатором прогресса.
 
-## Назначение
+## Import
 
-Мастер настройки с шагами, валидацией и возможностью сохранения прогресса. Отличается от DXFormWizard более общим назначением (не только для форм, но и для любых пошаговых процессов).
+```javascript
+import { DXWizard } from 'dxd-style-code';
+```
 
 ## Props
 
-| Prop | Тип | По умолчанию | Описание |
-|------|-----|--------------|----------|
-| `steps` | `Array` | **required** | Шаги мастера: `[{ title, description?, schema?, fields? }]` |
-| `currentStep` | `number` | `1` | Текущий шаг (начинается с 1) (v-model) |
-| `wizardData` | `Object` | `{}` | Данные мастера (v-model) |
-| `validationErrors` | `Object` | `{}` | Ошибки валидации: `{ [field]: 'error message' }` |
-| `allowSkip` | `boolean` | `false` | Разрешить пропуск шагов |
-| `saveProgressEnabled` | `boolean` | `false` | Сохранять прогресс |
-| `storageKey` | `string` | `'dx-wizard-progress'` | Ключ для сохранения в localStorage |
-| `loading` | `boolean` | `false` | Состояние загрузки |
-| `showProgress` | `boolean` | `true` | Показывать индикатор прогресса |
-| `showProgressLabel` | `boolean` | `true` | Показывать метку прогресса |
-| `showStepsIndicator` | `boolean` | `true` | Показывать индикатор шагов |
-| `transition` | `string` | `'fade'` | Имя transition |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `Number` | `0` | Текущий шаг (v-model) |
+| `steps` | `Array` | `required` | Конфигурация шагов |
+| `variant` | `String` | `'default'` | Вариант: `'default'`, `'vertical'`, `'compact'` |
+| `linear` | `Boolean` | `true` | Линейная навигация |
+| `showNumbers` | `Boolean` | `true` | Показывать номера шагов |
+| `clickable` | `Boolean` | `false` | Клик по индикатору переключает шаг |
+
+## Step Structure
+
+```typescript
+interface Step {
+  title: string;
+  description?: string;
+  icon?: Component;
+  optional?: boolean;
+  completed?: boolean;
+  error?: boolean;
+}
+```
 
 ## Events
 
-| Event | Параметры | Описание |
-|-------|-----------|----------|
-| `update:currentStep` | `number` | Обновление текущего шага |
-| `update:wizardData` | `Object` | Обновление данных мастера |
-| `next` | `{ step, data }` | Переход к следующему шагу |
-| `prev` | `{ step, data }` | Переход к предыдущему шагу |
-| `complete` | `{ data }` | Завершение мастера |
-| `cancel` | - | Отмена мастера |
-| `step-change` | `{ from, to }` | Изменение шага |
-| `save-progress` | `{ step, data }` | Сохранение прогресса |
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `Number` | Изменение шага |
+| `step-click` | `Number` | Клик по индикатору шага |
 
 ## Slots
 
-| Slot | Параметры | Описание |
-|------|-----------|----------|
-| `step-[number]` | `{ step, stepIndex, formData, errors }` | Контент шага (например, step-1, step-2) |
-| `navigation` | `{ canGoNext, canGoPrev, goNext, goPrev, goToStep, currentStep, totalSteps, save, cancel }` | Кастомная навигация |
+| Slot | Props | Description |
+|------|-------|-------------|
+| `step-{index}` | `{ step, isActive }` | Контент шага |
+| `indicator` | `{ step, index, isActive, isCompleted }` | Кастомный индикатор |
 
-## Примеры использования
+## Usage
 
-### Базовый мастер
+### Basic
+
+```vue
+<DXWizard
+  v-model="currentStep"
+  :steps="[
+    { title: 'Шаг 1' },
+    { title: 'Шаг 2' },
+    { title: 'Шаг 3' }
+  ]"
+>
+  <template #step-0>
+    <p>Контент первого шага</p>
+  </template>
+  
+  <template #step-1>
+    <p>Контент второго шага</p>
+  </template>
+  
+  <template #step-2>
+    <p>Контент третьего шага</p>
+  </template>
+</DXWizard>
+```
+
+### With Descriptions
+
+```vue
+<DXWizard
+  v-model="step"
+  :steps="[
+    { title: 'Личные данные', description: 'Введите имя и email' },
+    { title: 'Аккаунт', description: 'Создайте пароль' },
+    { title: 'Подтверждение', description: 'Проверьте данные' }
+  ]"
+/>
+```
+
+### With Icons
+
+```vue
+<DXWizard
+  v-model="step"
+  :steps="[
+    { title: 'Корзина', icon: ShoppingCartIcon },
+    { title: 'Доставка', icon: TruckIcon },
+    { title: 'Оплата', icon: CreditCardIcon },
+    { title: 'Готово', icon: CheckIcon }
+  ]"
+  :showNumbers="false"
+/>
+```
+
+### Vertical Variant
+
+```vue
+<DXWizard
+  v-model="step"
+  :steps="steps"
+  variant="vertical"
+>
+  <template #step-0>
+    <!-- Контент -->
+  </template>
+</DXWizard>
+```
+
+### Compact Variant
+
+```vue
+<DXWizard
+  v-model="step"
+  :steps="steps"
+  variant="compact"
+/>
+```
+
+### Non-linear Navigation
+
+```vue
+<DXWizard
+  v-model="step"
+  :steps="steps"
+  :linear="false"
+  clickable
+/>
+```
+
+### With Completed/Error States
+
+```vue
+<DXWizard
+  v-model="step"
+  :steps="[
+    { title: 'Шаг 1', completed: true },
+    { title: 'Шаг 2', error: true },
+    { title: 'Шаг 3' }
+  ]"
+/>
+```
+
+### Optional Steps
+
+```vue
+<DXWizard
+  v-model="step"
+  :steps="[
+    { title: 'Обязательный' },
+    { title: 'Опциональный', optional: true },
+    { title: 'Обязательный' }
+  ]"
+/>
+```
+
+### Checkout Flow
 
 ```vue
 <template>
-  <DXWizard
-    :steps="steps"
-    v-model:current-step="currentStep"
-    v-model:wizard-data="wizardData"
-    @complete="handleComplete"
-  >
-    <template #step-1>
-      <div>Шаг 1: Введение</div>
-    </template>
-    <template #step-2>
-      <div>Шаг 2: Настройки</div>
-    </template>
-  </DXWizard>
+  <div class="max-w-3xl mx-auto">
+    <DXWizard
+      v-model="checkoutStep"
+      :steps="checkoutSteps"
+    >
+      <template #step-0>
+        <CartReview :items="cartItems" />
+      </template>
+      
+      <template #step-1>
+        <ShippingForm v-model="shipping" />
+      </template>
+      
+      <template #step-2>
+        <PaymentForm v-model="payment" />
+      </template>
+      
+      <template #step-3>
+        <OrderConfirmation :order="order" />
+      </template>
+    </DXWizard>
+    
+    <div class="flex justify-between mt-8">
+      <DXButton
+        v-if="checkoutStep > 0"
+        variant="ghost"
+        @click="checkoutStep--"
+      >
+        Назад
+      </DXButton>
+      
+      <DXButton
+        @click="nextStep"
+        :loading="isProcessing"
+      >
+        {{ checkoutStep === 3 ? 'Оформить заказ' : 'Далее' }}
+      </DXButton>
+    </div>
+  </div>
 </template>
-
-<script setup>
-const steps = [
-  { title: 'Введение', description: 'Добро пожаловать' },
-  { title: 'Настройки', description: 'Настройте параметры' },
-  { title: 'Завершение', description: 'Проверьте и завершите' },
-];
-</script>
 ```
 
-### Мастер с сохранением прогресса
+### Custom Indicator
 
 ```vue
-<template>
-  <DXWizard
-    :steps="steps"
-    :save-progress-enabled="true"
-    storage-key="my-wizard-progress"
-    @save-progress="handleSaveProgress"
-  >
-    <!-- Шаги -->
-  </DXWizard>
-</template>
+<DXWizard v-model="step" :steps="steps">
+  <template #indicator="{ step, index, isActive, isCompleted }">
+    <div
+      :class="[
+        'w-10 h-10 rounded-full flex items-center justify-center',
+        isCompleted ? 'bg-green-500 text-white' :
+        isActive ? 'bg-blue-500 text-white' :
+        'bg-slate-200 text-slate-600'
+      ]"
+    >
+      <DXIcon v-if="isCompleted" :icon="CheckIcon" />
+      <span v-else>{{ index + 1 }}</span>
+    </div>
+  </template>
+</DXWizard>
 ```
 
-## Особенности
+## See Also
 
-- **Сохранение прогресса:** При `saveProgressEnabled={true}` прогресс сохраняется в localStorage
-- **Валидация:** Поддерживает валидацию через prop `validationErrors`
-- **Навигация:** Можно переходить между шагами, пропускать опциональные шаги
-- **Отличие от DXFormWizard:** DXWizard более общий компонент для любых пошаговых процессов, а не только для форм
-
-## Использует
-
-- `DXProgress` - для индикатора прогресса
-- `DXButton` - для навигации
-- `DXIcon` - для иконок
-- `useClassComposition` - для стилей
-- `useSpacing` - для отступов
-
-## Используется в
-
-- Первоначальная настройка приложения
-- Мастер импорта данных
-- Пошаговая настройка сложных процессов
-- Онбординг новых пользователей
-
+- [DXFormWizard](./DXFormWizard.md)
+- [DXProgress](../atoms/DXProgress.md)
