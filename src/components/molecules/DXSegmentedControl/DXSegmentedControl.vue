@@ -53,7 +53,7 @@
           :key="option.value"
           type="button"
           :ref="el => { if (el) buttonRefs[index] = el }"
-          class="relative z-10 px-4 py-1.5 text-sm font-medium transition-colors duration-150 rounded-lg whitespace-nowrap min-w-[60px] text-center inline-flex items-center justify-center gap-1.5 flex-shrink-0"
+          class="relative z-10 px-4 py-1.5 text-sm font-medium transition-colors duration-150 rounded-lg whitespace-nowrap min-w-[60px] text-center inline-flex items-center justify-center gap-1.5 shrink-0"
           :class="[
             modelValue === option.value
               ? 'text-slate-900'
@@ -143,13 +143,12 @@ const updateIndicator = () => {
   const index = selectedIndex.value;
   if (index >= 0 && buttonRefs.value[index]) {
     const button = buttonRefs.value[index];
-    // В scrollable режиме корректируем позицию на величину скролла,
-    // т.к. absolute элемент не скроллируется вместе с контентом
-    const scrollOffset = props.scrollable && containerRef.value ? containerRef.value.scrollLeft : 0;
+    // Индикатор и кнопки находятся в одном контейнере,
+    // они скроллируются вместе, поэтому offsetLeft используем напрямую
     indicatorStyle.value = {
       width: `${button.offsetWidth}px`,
       height: `${button.offsetHeight}px`,
-      left: `${button.offsetLeft - scrollOffset}px`,
+      left: `${button.offsetLeft}px`,
       top: `${button.offsetTop}px`,
     };
   }
@@ -186,8 +185,7 @@ const updateScrollState = () => {
 
 // Обработчик scroll события
 const handleScroll = () => {
-  updateScrollState();
-  updateIndicator(); // Обновляем позицию индикатора при скролле
+  updateScrollState(); // Обновляем только градиенты, индикатор скроллируется автоматически
 };
 
 // Drag-to-scroll handlers
@@ -234,7 +232,7 @@ const handleButtonClick = (value, event) => {
 };
 
 // Прокрутка к выбранному элементу
-const scrollToSelected = () => {
+const scrollToSelected = (instant = false) => {
   if (!props.scrollable || !containerRef.value) return;
   
   const index = selectedIndex.value;
@@ -245,8 +243,8 @@ const scrollToSelected = () => {
     // Центрируем выбранный элемент
     const scrollPosition = button.offsetLeft - (container.clientWidth / 2) + (button.offsetWidth / 2);
     container.scrollTo({
-      left: scrollPosition,
-      behavior: 'smooth'
+      left: Math.max(0, scrollPosition),
+      behavior: instant ? 'instant' : 'smooth'
     });
   }
 };
@@ -263,14 +261,18 @@ const resizeObserver = ref(null);
 
 onMounted(() => {
   nextTick(() => {
-    updateIndicator();
+    // Сначала мгновенно прокручиваем к выбранному элементу (без анимации)
+    scrollToSelected(true);
+    
+    // После установки позиции скролла — обновляем индикатор и градиенты
     updateScrollState();
-    scrollToSelected(); // Центрируем выбранный элемент при монтировании
+    updateIndicator();
     
     // ResizeObserver для отслеживания изменения размера контейнера
     if (props.scrollable && containerRef.value && window.ResizeObserver) {
       resizeObserver.value = new ResizeObserver(() => {
         updateScrollState();
+        updateIndicator(); // Пересчитываем позицию индикатора при изменении размера
       });
       resizeObserver.value.observe(containerRef.value);
     }
