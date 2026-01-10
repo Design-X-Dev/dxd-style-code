@@ -1,4 +1,7 @@
 import DXSegmentedControl from './DXSegmentedControl.vue';
+import DXCard from '../../atoms/DXCard/DXCard.vue';
+import DXStack from '../../atoms/DXStack/DXStack.vue';
+import DXText from '../../atoms/DXText/DXText.vue';
 import { ref } from 'vue';
 import {
   Squares2X2Icon,
@@ -398,3 +401,233 @@ export const AllVariants = {
   }),
 };
 
+export const Scrollable = {
+  parameters: {
+    docs: {
+      description: {
+        story: `
+**Режим прокрутки (scrollable)**
+
+Включает горизонтальную прокрутку внутри контейнера:
+- Скроллбар скрыт
+- Поддержка drag-to-scroll (перетаскивание мышью)
+- Автоматическое центрирование выбранного элемента
+- Курсор меняется на grab/grabbing
+
+Используйте \`maxWidth\` для ограничения ширины контейнера.
+        `,
+      },
+    },
+  },
+  render: () => ({
+    components: { DXSegmentedControl },
+    setup() {
+      const month = ref(1);
+      const monthOptions = [
+        { value: 1, label: 'Январь' },
+        { value: 2, label: 'Февраль' },
+        { value: 3, label: 'Март' },
+        { value: 4, label: 'Апрель' },
+        { value: 5, label: 'Май' },
+        { value: 6, label: 'Июнь' },
+        { value: 7, label: 'Июль' },
+        { value: 8, label: 'Август' },
+        { value: 9, label: 'Сентябрь' },
+        { value: 10, label: 'Октябрь' },
+        { value: 11, label: 'Ноябрь' },
+        { value: 12, label: 'Декабрь' },
+      ];
+      return { month, monthOptions };
+    },
+    template: `
+      <div class="space-y-6">
+        <div>
+          <p class="text-xs text-slate-500 mb-2">Scrollable с maxWidth="350px" — зажмите и перетащите</p>
+          <DXSegmentedControl 
+            v-model="month" 
+            :options="monthOptions" 
+            scrollable 
+            maxWidth="350px"
+          />
+        </div>
+        <p class="text-sm text-slate-600">Выбрано: <strong>{{ monthOptions.find(o => o.value === month)?.label }}</strong></p>
+      </div>
+    `,
+  }),
+};
+
+export const ScrollableDays = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Выбор дня недели с прокруткой.',
+      },
+    },
+  },
+  render: () => ({
+    components: { DXSegmentedControl },
+    setup() {
+      const day = ref('mon');
+      const dayOptions = [
+        { value: 'mon', label: 'Пн' },
+        { value: 'tue', label: 'Вт' },
+        { value: 'wed', label: 'Ср' },
+        { value: 'thu', label: 'Чт' },
+        { value: 'fri', label: 'Пт' },
+        { value: 'sat', label: 'Сб' },
+        { value: 'sun', label: 'Вс' },
+      ];
+      return { day, dayOptions };
+    },
+    template: `
+      <div class="space-y-4">
+        <p class="text-xs text-slate-500 mb-2">Дни недели — обычный режим (без прокрутки)</p>
+        <DXSegmentedControl v-model="day" :options="dayOptions" />
+        
+        <p class="text-xs text-slate-500 mb-2 mt-6">Дни недели — scrollable с maxWidth="200px"</p>
+        <DXSegmentedControl 
+          v-model="day" 
+          :options="dayOptions" 
+          scrollable 
+          maxWidth="200px"
+        />
+      </div>
+    `,
+  }),
+};
+
+export const ScrollableWithIcons = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Scrollable режим с иконками и счётчиками.',
+      },
+    },
+  },
+  render: () => ({
+    components: { DXSegmentedControl },
+    setup() {
+      const category = ref('all');
+      const categoryOptions = [
+        { value: 'all', icon: DocumentTextIcon, label: 'Все', count: 156 },
+        { value: 'photos', icon: PhotoIcon, label: 'Фото', count: 89 },
+        { value: 'videos', icon: VideoCameraIcon, label: 'Видео', count: 45 },
+        { value: 'audio', icon: MusicalNoteIcon, label: 'Аудио', count: 22 },
+        { value: 'docs', icon: DocumentTextIcon, label: 'Документы', count: 34 },
+        { value: 'charts', icon: ChartBarIcon, label: 'Графики', count: 12 },
+      ];
+      return { category, categoryOptions };
+    },
+    template: `
+      <div class="space-y-4">
+        <p class="text-xs text-slate-500 mb-2">Категории с иконками — scrollable maxWidth="400px"</p>
+        <DXSegmentedControl 
+          v-model="category" 
+          :options="categoryOptions" 
+          scrollable 
+          maxWidth="400px"
+          icon-animation="scale"
+        />
+        <p class="text-sm text-slate-600">Выбрано: <strong>{{ categoryOptions.find(o => o.value === category)?.label }}</strong></p>
+      </div>
+    `,
+  }),
+};
+
+export const ScrollableResponsive = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Scrollable с maxWidth="100%" — занимает всю доступную ширину контейнера. Пример с DX-компонентами.',
+      },
+    },
+  },
+  render: () => ({
+    components: { DXSegmentedControl, DXCard, DXStack, DXText },
+    setup() {
+      const selected = ref('item1');
+      const options = Array.from({ length: 15 }, (_, i) => ({
+        value: `item${i + 1}`,
+        label: `Элемент ${i + 1}`,
+      }));
+      return { selected, options };
+    },
+    template: `
+      <DXStack gap="4">
+        <DXText size="xs" variant="secondary">15 элементов — scrollable maxWidth="100%"</DXText>
+        <DXCard padding="4" variant="outlined">
+          <DXSegmentedControl 
+            v-model="selected" 
+            :options="options" 
+            scrollable 
+            maxWidth="100%"
+          />
+        </DXCard>
+        <DXText size="sm" variant="secondary">Выбрано: <strong>{{ selected }}</strong></DXText>
+      </DXStack>
+    `,
+  }),
+};
+
+export const ScrollableFadeEffect = {
+  parameters: {
+    docs: {
+      description: {
+        story: `
+**Градиенты размытия по краям**
+
+При прокрутке появляются градиенты слева/справа, указывающие на наличие скрытого контента.
+- Градиент **исчезает** когда достигнут край
+- Градиент **появляется** когда есть контент за пределами видимой области
+- Можно отключить через showFade={false}
+        `,
+      },
+    },
+  },
+  render: () => ({
+    components: { DXSegmentedControl },
+    setup() {
+      const withFade = ref(6);
+      const withoutFade = ref(6);
+      const monthOptions = [
+        { value: 1, label: 'Январь' },
+        { value: 2, label: 'Февраль' },
+        { value: 3, label: 'Март' },
+        { value: 4, label: 'Апрель' },
+        { value: 5, label: 'Май' },
+        { value: 6, label: 'Июнь' },
+        { value: 7, label: 'Июль' },
+        { value: 8, label: 'Август' },
+        { value: 9, label: 'Сентябрь' },
+        { value: 10, label: 'Октябрь' },
+        { value: 11, label: 'Ноябрь' },
+        { value: 12, label: 'Декабрь' },
+      ];
+      return { withFade, withoutFade, monthOptions };
+    },
+    template: `
+      <div class="space-y-8">
+        <div>
+          <p class="text-xs text-slate-500 mb-2">С градиентами (по умолчанию) — прокрутите к краям, градиенты исчезнут</p>
+          <DXSegmentedControl 
+            v-model="withFade" 
+            :options="monthOptions" 
+            scrollable 
+            maxWidth="300px"
+          />
+        </div>
+        
+        <div>
+          <p class="text-xs text-slate-500 mb-2">Без градиентов (showFade=false)</p>
+          <DXSegmentedControl 
+            v-model="withoutFade" 
+            :options="monthOptions" 
+            scrollable 
+            maxWidth="300px"
+            :showFade="false"
+          />
+        </div>
+      </div>
+    `,
+  }),
+};
