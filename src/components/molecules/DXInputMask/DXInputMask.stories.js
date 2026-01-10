@@ -4,11 +4,13 @@ import { ref } from 'vue';
 export default {
   title: 'Molecules/DXInputMask',
   component: DXInputMask,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент поля ввода с маской для форматирования ввода (телефоны, карты, даты и т.д.).
 
 ## Назначение

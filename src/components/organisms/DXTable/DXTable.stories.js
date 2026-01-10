@@ -8,11 +8,13 @@ import DXText from '../../atoms/DXText/DXText.vue';
 export default {
   title: 'Organisms/DXTable',
   component: DXTable,
-  tags: ['autodocs', 'category:data-display'],
+  tags: ['autodocs', 'category:data-display', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Полнофункциональная таблица данных с поддержкой сортировки, фильтрации, поиска, пагинации и выбора строк.
 
 ## Назначение

@@ -35,11 +35,13 @@ import { ref } from 'vue';
 export default {
   title: 'Organisms/DXDropdown',
   component: DXDropdown,
-  tags: ['autodocs', 'category:navigation'],
+  tags: ['autodocs', 'category:navigation', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент выпадающего меню с поддержкой различных позиций, размеров и клавиатурной навигации.
 
 ## Назначение

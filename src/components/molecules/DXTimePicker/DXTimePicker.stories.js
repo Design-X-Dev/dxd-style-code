@@ -4,11 +4,13 @@ import DXTimePicker from './DXTimePicker.vue';
 export default {
   title: 'Molecules/DXTimePicker',
   component: DXTimePicker,
-  tags: ['autodocs', 'category:form'],
+  tags: ['autodocs', 'category:form', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент выбора времени с валидацией и поддержкой различных форматов.
 
 ## Назначение

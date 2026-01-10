@@ -15,11 +15,13 @@ import {
 export default {
   title: 'Atoms/DXBadge',
   component: DXBadge,
-  tags: ['autodocs', 'category:data-display'],
+  tags: ['autodocs', 'category:data-display', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент бейджа для отображения статусов, меток и индикаторов с поддержкой иконок.
 
 ## Назначение

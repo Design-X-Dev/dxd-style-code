@@ -5,11 +5,13 @@ import DXButton from '../../atoms/DXButton/DXButton.vue';
 export default {
   title: 'Organisms/DXModal',
   component: DXModal,
-  tags: ['autodocs', 'category:overlay'],
+  tags: ['autodocs', 'category:overlay', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Универсальный компонент модального окна с поддержкой различных вариантов отображения и режимов.
 
 ## Назначение

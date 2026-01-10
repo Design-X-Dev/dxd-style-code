@@ -15,11 +15,13 @@ const ArrowTrendingUpIconComponent = ArrowTrendingUpIcon;
 export default {
   title: 'Molecules/DXStatCard',
   component: DXStatCard,
-  tags: ['autodocs', 'category:data-display'],
+  tags: ['autodocs', 'category:data-display', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Карточка для отображения статистики с иконкой, значением и метаданными.
 
 ## Назначение

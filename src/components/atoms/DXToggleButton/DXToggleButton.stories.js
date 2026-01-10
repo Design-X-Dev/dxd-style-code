@@ -27,11 +27,13 @@ import {
 export default {
   title: "Atoms/DXToggleButton",
   component: DXToggleButton,
-  tags: ["autodocs", "category:form"],
+  tags: ["autodocs", "category:form", "status:ready"],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 
 Компонент кнопки-переключателя с двумя состояниями и различными иконками/вариантами для каждого состояния.
 

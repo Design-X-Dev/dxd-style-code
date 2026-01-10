@@ -3,11 +3,13 @@ import DXContainer from './DXContainer.vue';
 export default {
   title: 'Atoms/DXContainer',
   component: DXContainer,
-  tags: ['autodocs', 'category:layout'],
+  tags: ['autodocs', 'category:layout', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Контейнер с ограниченной шириной для центрирования контента на странице.
 
 ## Назначение

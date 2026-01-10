@@ -12,11 +12,13 @@ import {
 export default {
   title: 'Molecules/DXSelect',
   component: DXSelect,
-  tags: ['autodocs', 'category:form'],
+  tags: ['autodocs', 'category:form', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент выпадающего списка с поддержкой иконок, валидации и интеграции с группами полей.
 
 ## Назначение

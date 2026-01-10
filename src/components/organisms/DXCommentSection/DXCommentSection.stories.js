@@ -4,11 +4,13 @@ import DXCommentSection from './DXCommentSection.vue';
 export default {
   title: 'Organisms/DXCommentSection',
   component: DXCommentSection,
-  tags: ['autodocs', 'category:feedback'],
+  tags: ['autodocs', 'category:feedback', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Секция комментариев с поддержкой вложенности, ответов и модерации.
 
 ## Назначение

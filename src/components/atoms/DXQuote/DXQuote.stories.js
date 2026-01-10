@@ -4,11 +4,13 @@ import DXText from '../DXText/DXText.vue';
 export default {
   title: 'Atoms/DXQuote',
   component: DXQuote,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент для отображения inline-цитат в текстовом контенте.
 
 ## Назначение

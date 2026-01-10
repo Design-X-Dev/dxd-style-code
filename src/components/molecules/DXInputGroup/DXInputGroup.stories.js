@@ -13,11 +13,13 @@ import {
 export default {
   title: 'Molecules/DXInputGroup',
   component: DXInputGroup,
-  tags: ['autodocs', 'category:form'],
+  tags: ['autodocs', 'category:form', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Группа полей ввода с поддержкой аддонов (префиксов и суффиксов) и синхронизацией состояний.
 
 ## Назначение

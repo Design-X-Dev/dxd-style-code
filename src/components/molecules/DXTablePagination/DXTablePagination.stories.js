@@ -4,11 +4,13 @@ import DXTablePagination from './DXTablePagination.vue';
 export default {
   title: 'Molecules/DXTablePagination',
   component: DXTablePagination,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент пагинации для таблиц с информацией о результатах и выбором размера страницы.
 
 ## Назначение

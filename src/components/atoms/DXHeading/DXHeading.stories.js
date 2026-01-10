@@ -3,11 +3,13 @@ import DXHeading from './DXHeading.vue';
 export default {
   title: 'Atoms/DXHeading',
   component: DXHeading,
-  tags: ['autodocs', 'category:typography'],
+  tags: ['autodocs', 'category:typography', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент заголовка с поддержкой уровней (h1-h6), размеров, весов и цветов.
 
 ## Назначение

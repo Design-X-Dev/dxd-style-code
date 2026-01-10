@@ -5,11 +5,13 @@ import DXCard from '../../atoms/DXCard/DXCard.vue';
 export default {
   title: 'Molecules/DXDataFilter',
   component: DXDataFilter,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Комплексный фильтр данных с различными типами условий, группировкой и сохранением фильтров.
 
 ## Назначение

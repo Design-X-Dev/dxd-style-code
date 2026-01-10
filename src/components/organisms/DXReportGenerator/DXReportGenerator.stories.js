@@ -4,11 +4,13 @@ import DXReportGenerator from './DXReportGenerator.vue';
 export default {
   title: 'Organisms/DXReportGenerator',
   component: DXReportGenerator,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Генератор отчетов с фильтрацией, настройками параметров и экспортом в различные форматы.
 
 ## Назначение

@@ -3,11 +3,13 @@ import DXDivider from './DXDivider.vue';
 export default {
   title: 'Atoms/DXDivider',
   component: DXDivider,
-  tags: ['autodocs', 'category:feedback'],
+  tags: ['autodocs', 'category:feedback', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент разделителя для визуального разделения контента с поддержкой горизонтальной и вертикальной ориентации.
 
 ## Назначение

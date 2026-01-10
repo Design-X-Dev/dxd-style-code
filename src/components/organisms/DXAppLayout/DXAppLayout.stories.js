@@ -17,7 +17,7 @@ import { MagnifyingGlassIcon, BellIcon, Bars3Icon } from '@heroicons/vue/24/outl
 export default {
   title: 'Organisms/DXAppLayout',
   component: DXAppLayout,
-  tags: ['autodocs', 'category:navigation'],
+  tags: ['autodocs', 'category:navigation', 'status:ready'],
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -25,6 +25,8 @@ export default {
       iframeHeight: 800,
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Основной макет приложения, объединяющий header, sidebar, content и footer с поддержкой различных вариантов для разных задач.
 
 ## Назначение

@@ -4,11 +4,13 @@ import DXAuthenticationForm from './DXAuthenticationForm.vue';
 export default {
   title: 'Organisms/DXAuthenticationForm',
   component: DXAuthenticationForm,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Готовая форма аутентификации (логин/регистрация) с валидацией и обработкой ошибок.
 
 ## Назначение

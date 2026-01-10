@@ -21,11 +21,12 @@ import {
 export default {
   title: 'Organisms/DXSidebarMenu',
   component: DXSidebarMenu,
-  tags: ['autodocs', 'category:navigation'],
+  tags: ['autodocs', 'category:navigation', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
 
 Компонент меню боковой панели с поддержкой секций, вложенных элементов, поиска и compact режима.
 

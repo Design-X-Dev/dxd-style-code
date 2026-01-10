@@ -7,11 +7,13 @@ import DXGrid from '../../atoms/DXGrid/DXGrid.vue';
 export default {
   title: 'Utilities/DXBreakpointProvider',
   component: DXBreakpointProvider,
-  tags: ['autodocs', 'category:provider'],
+  tags: ['autodocs', 'category:provider', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Провайдер для доступа к текущему брейкпоинту и размерам экрана в компонентах.
 
 ## Назначение

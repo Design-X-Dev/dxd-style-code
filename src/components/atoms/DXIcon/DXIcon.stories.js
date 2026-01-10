@@ -19,11 +19,13 @@ import {
 export default {
   title: 'Atoms/DXIcon',
   component: DXIcon,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент иконки для отображения Heroicons с поддержкой размеров и анимаций.
 
 ## Назначение

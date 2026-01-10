@@ -4,11 +4,13 @@ import DXSettingsPanel from './DXSettingsPanel.vue';
 export default {
   title: 'Organisms/DXSettingsPanel',
   component: DXSettingsPanel,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Панель настроек с категориями, группами настроек и сохранением изменений.
 
 ## Назначение

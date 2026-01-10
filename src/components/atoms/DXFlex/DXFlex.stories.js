@@ -3,11 +3,13 @@ import DXFlex from './DXFlex.vue';
 export default {
   title: 'Atoms/DXFlex',
   component: DXFlex,
-  tags: ['autodocs', 'category:layout'],
+  tags: ['autodocs', 'category:layout', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Flexbox контейнер с полным контролем над направлением, выравниванием и отступами.
 
 ## Назначение

@@ -12,11 +12,13 @@ import {
 export default {
   title: 'Atoms/DXInputAddon',
   component: DXInputAddon,
-  tags: ['autodocs', 'category:form'],
+  tags: ['autodocs', 'category:form', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент аддона для групп полей ввода, используемый для добавления префиксов и суффиксов к полям.
 
 ## Назначение

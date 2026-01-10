@@ -4,11 +4,13 @@ import DXUserProfileCard from './DXUserProfileCard.vue';
 export default {
   title: 'Organisms/DXUserProfileCard',
   component: DXUserProfileCard,
-  tags: ['autodocs', 'category:data-display'],
+  tags: ['autodocs', 'category:data-display', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Карточка профиля пользователя с информацией, действиями и настройками.
 
 ## Назначение

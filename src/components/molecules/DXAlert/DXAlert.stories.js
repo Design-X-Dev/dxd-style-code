@@ -4,11 +4,13 @@ import DXButton from '../../atoms/DXButton/DXButton.vue';
 export default {
   title: 'Molecules/DXAlert',
   component: DXAlert,
-  tags: ['autodocs', 'category:feedback'],
+  tags: ['autodocs', 'category:feedback', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент уведомления с поддержкой различных вариантов, иконок, возможности закрытия и действий.
 
 ## Назначение

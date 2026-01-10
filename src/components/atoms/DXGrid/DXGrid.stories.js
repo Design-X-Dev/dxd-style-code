@@ -3,11 +3,13 @@ import DXGrid from './DXGrid.vue';
 export default {
   title: 'Atoms/DXGrid',
   component: DXGrid,
-  tags: ['autodocs', 'category:layout'],
+  tags: ['autodocs', 'category:layout', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 CSS Grid контейнер с адаптивными колонками и гибкой системой отступов.
 
 ## Назначение

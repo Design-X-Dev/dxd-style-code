@@ -10,11 +10,13 @@ import {
 export default {
   title: 'Molecules/DXTextarea',
   component: DXTextarea,
-  tags: ['autodocs', 'category:form'],
+  tags: ['autodocs', 'category:form', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент многострочного текстового поля с поддержкой иконок, валидации, счетчика символов и интеграции с группами полей.
 
 ## Назначение

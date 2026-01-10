@@ -3,11 +3,13 @@ import DXCode from './DXCode.vue';
 export default {
   title: 'Atoms/DXCode',
   component: DXCode,
-  tags: ['autodocs', 'category:typography'],
+  tags: ['autodocs', 'category:typography', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент для отображения кода с поддержкой inline и block режимов.
 
 ## Назначение

@@ -5,11 +5,13 @@ import DXButton from '../DXButton/DXButton.vue';
 export default {
   title: 'Atoms/DXNav',
   component: DXNav,
-  tags: ['autodocs', 'category:navigation'],
+  tags: ['autodocs', 'category:navigation', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Универсальный компонент для обертки навигационных элементов с автоматическим управлением accessibility.
 
 ## Назначение

@@ -6,11 +6,13 @@ import DXButton from '../../atoms/DXButton/DXButton.vue';
 export default {
   title: 'Utilities/DXThemeProvider',
   component: DXThemeProvider,
-  tags: ['autodocs', 'category:provider'],
+  tags: ['autodocs', 'category:provider', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Провайдер для управления темами и цветовыми схемами приложения.
 
 ## Назначение

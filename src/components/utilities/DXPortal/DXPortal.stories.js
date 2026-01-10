@@ -8,11 +8,13 @@ import DXCard from '../../atoms/DXCard/DXCard.vue';
 export default {
   title: 'Utilities/DXPortal',
   component: DXPortal,
-  tags: ['autodocs', 'category:overlay'],
+  tags: ['autodocs', 'category:overlay', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент-обертка над Vue Teleport для рендеринга контента вне текущей DOM-иерархии.
 
 ## Назначение

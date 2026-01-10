@@ -3,11 +3,13 @@ import DXBlockquote from './DXBlockquote.vue';
 export default {
   title: 'Atoms/DXBlockquote',
   component: DXBlockquote,
-  tags: ['autodocs', 'category:typography'],
+  tags: ['autodocs', 'category:typography', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент для отображения блочных цитат с поддержкой различных вариантов оформления и источника.
 
 ## Назначение

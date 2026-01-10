@@ -6,11 +6,13 @@ import DXText from '../../atoms/DXText/DXText.vue';
 export default {
   title: 'Molecules/DXRating',
   component: DXRating,
-  tags: ['autodocs', 'category:data-display'],
+  tags: ['autodocs', 'category:data-display', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент для отображения и выбора рейтинга с использованием звезд или других символов.
 
 ## Назначение

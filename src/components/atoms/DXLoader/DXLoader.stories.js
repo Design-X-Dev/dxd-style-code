@@ -3,11 +3,13 @@ import DXLoader from './DXLoader.vue';
 export default {
   title: 'Atoms/DXLoader',
   component: DXLoader,
-  tags: ['autodocs', 'category:feedback'],
+  tags: ['autodocs', 'category:feedback', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент индикатора загрузки с поддержкой различных размеров, цветов и текста.
 
 ## Назначение

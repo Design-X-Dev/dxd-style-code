@@ -18,11 +18,13 @@ import {
 export default {
   title: 'Molecules/DXInput',
   component: DXInput,
-  tags: ['autodocs', 'category:form'],
+  tags: ['autodocs', 'category:form', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент поля ввода с поддержкой иконок, валидации и интеграции с группами полей.
 
 ## Назначение

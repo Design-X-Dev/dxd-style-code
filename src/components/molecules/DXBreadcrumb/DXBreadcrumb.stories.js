@@ -17,11 +17,13 @@ import {
 export default {
   title: 'Molecules/DXBreadcrumb',
   component: DXBreadcrumb,
-  tags: ['autodocs', 'category:navigation'],
+  tags: ['autodocs', 'category:navigation', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Навигационные хлебные крошки для отображения иерархии страниц и навигации.
 
 ## Назначение

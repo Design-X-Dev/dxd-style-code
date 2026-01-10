@@ -7,11 +7,13 @@ import DXModal from '../../organisms/DXModal/DXModal.vue';
 export default {
   title: 'Utilities/DXAnimatePresence',
   component: DXAnimatePresence,
-  tags: ['autodocs', 'category:animation'],
+  tags: ['autodocs', 'category:animation', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент для анимаций появления и исчезания элементов с поддержкой условного рендеринга.
 
 ## Назначение

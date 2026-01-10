@@ -3,11 +3,13 @@ import DXEmptyState from './DXEmptyState.vue';
 export default {
   title: 'Organisms/DXEmptyState',
   component: DXEmptyState,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент пустого состояния для отображения, когда нет данных или контента.
 
 ## Назначение

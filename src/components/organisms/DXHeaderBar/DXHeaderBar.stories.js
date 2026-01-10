@@ -22,11 +22,13 @@ import DXBreakpointProvider from '../../utilities/DXBreakpointProvider/DXBreakpo
 export default {
   title: 'Organisms/DXHeaderBar',
   component: DXHeaderBar,
-  tags: ['autodocs', 'category:navigation'],
+  tags: ['autodocs', 'category:navigation', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 
 
 Верхняя панель приложения с навигацией, поиском и действиями.

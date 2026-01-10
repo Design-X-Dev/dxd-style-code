@@ -50,11 +50,13 @@ const defaultItems = [
 export default {
   title: 'Organisms/DXMediaGallery',
   component: DXMediaGallery,
-  tags: ['autodocs', 'category:data-display'],
+  tags: ['autodocs', 'category:data-display', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Галерея изображений или видео с превью, полноэкранным просмотром и навигацией.
 
 ## Назначение

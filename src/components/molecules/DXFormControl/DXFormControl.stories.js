@@ -4,11 +4,13 @@ import { ref } from 'vue';
 export default {
   title: 'Molecules/DXFormControl',
   component: DXFormControl,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент обертки для полей форм с поддержкой лейбла, валидации, иконок и счетчика символов.
 
 ## Назначение

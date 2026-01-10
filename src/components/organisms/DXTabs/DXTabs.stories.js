@@ -16,11 +16,13 @@ import {
 export default {
   title: 'Organisms/DXTabs',
   component: DXTabs,
-  tags: ['autodocs', 'category:navigation'],
+  tags: ['autodocs', 'category:navigation', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент вкладок с поддержкой иконок, счетчиков, различных вариантов оформления и компактного режима.
 
 ## Назначение

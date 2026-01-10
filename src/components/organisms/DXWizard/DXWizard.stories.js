@@ -6,11 +6,13 @@ import DXFormControl from '../../molecules/DXFormControl/DXFormControl.vue';
 export default {
   title: 'Organisms/DXWizard',
   component: DXWizard,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Мастер настройки с шагами, валидацией и возможностью сохранения прогресса.
 
 ## Назначение

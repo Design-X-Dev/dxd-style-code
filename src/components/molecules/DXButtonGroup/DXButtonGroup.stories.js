@@ -8,11 +8,12 @@ import { Squares2X2Icon, ListBulletIcon, TableCellsIcon, SquaresPlusIcon } from 
 export default {
   title: 'Molecules/DXButtonGroup',
   component: DXButtonGroup,
-  tags: ['autodocs', 'category:form'],
+  tags: ['autodocs', 'category:form', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
 
 Группа связанных кнопок для выбора одного или нескольких значений с поддержкой v-model.
 

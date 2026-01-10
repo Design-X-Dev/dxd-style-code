@@ -8,11 +8,13 @@ import { UserGroupIcon, ChartBarIcon, CurrencyDollarIcon } from '@heroicons/vue/
 export default {
   title: 'Organisms/DXDashboardGrid',
   component: DXDashboardGrid,
-  tags: ['autodocs', 'category:data-display'],
+  tags: ['autodocs', 'category:data-display', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Сетка для дашборда с поддержкой drag-and-drop для перестановки виджетов.
 
 ## Назначение

@@ -12,11 +12,13 @@ import {
 export default {
   title: 'Atoms/DXCheckbox',
   component: DXCheckbox,
-  tags: ['autodocs', 'category:form'],
+  tags: ['autodocs', 'category:form', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент чекбокса с поддержкой двух вариантов (нативный и кастомный), различных размеров, цветов и иконок.
 
 ## Назначение

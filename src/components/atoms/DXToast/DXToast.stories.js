@@ -3,11 +3,13 @@ import DXToast from "./DXToast.vue";
 export default {
   title: "Atoms/DXToast",
   component: DXToast,
-  tags: ["autodocs", "category:feedback"],
+  tags: ["autodocs", "category:feedback", "status:ready"],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент уведомления (toast) с поддержкой различных вариантов и иконок.
 
 ## Назначение

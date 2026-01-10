@@ -4,11 +4,13 @@ import { ref } from 'vue';
 export default {
   title: 'Molecules/DXDatePicker',
   component: DXDatePicker,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент выбора даты с поддержкой одиночной даты и диапазона дат.
 
 ## Назначение

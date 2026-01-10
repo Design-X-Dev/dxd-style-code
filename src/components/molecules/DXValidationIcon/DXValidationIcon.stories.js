@@ -3,11 +3,13 @@ import DXValidationIcon from './DXValidationIcon.vue';
 export default {
   title: 'Molecules/DXValidationIcon',
   component: DXValidationIcon,
-  tags: ['autodocs', 'category:form'],
+  tags: ['autodocs', 'category:form', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент иконки валидации для отображения состояния валидации полей форм.
 
 ## Назначение

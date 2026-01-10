@@ -4,11 +4,13 @@ import { ref } from 'vue';
 export default {
   title: 'Molecules/DXFileUpload',
   component: DXFileUpload,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент загрузки файлов с поддержкой drag & drop, предпросмотра и множественного выбора.
 
 ## Назначение

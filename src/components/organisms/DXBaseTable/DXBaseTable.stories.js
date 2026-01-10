@@ -5,11 +5,12 @@ import DXBadge from '../../atoms/DXBadge/DXBadge.vue';
 export default {
   title: 'Organisms/DXBaseTable',
   component: DXBaseTable,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
 
 Базовая таблица данных с поддержкой сортировки, кастомных ячеек и различных вариантов оформления.
 

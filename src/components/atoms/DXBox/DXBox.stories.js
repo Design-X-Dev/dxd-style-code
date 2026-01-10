@@ -3,11 +3,13 @@ import DXBox from './DXBox.vue';
 export default {
   title: 'Atoms/DXBox',
   component: DXBox,
-  tags: ['autodocs', 'category:layout'],
+  tags: ['autodocs', 'category:layout', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Универсальный контейнер с настраиваемыми отступами, фоном, тенью и скруглением.
 
 ## Назначение

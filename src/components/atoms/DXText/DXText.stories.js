@@ -3,11 +3,13 @@ import DXText from './DXText.vue';
 export default {
   title: 'Atoms/DXText',
   component: DXText,
-  tags: ['autodocs', 'category:typography'],
+  tags: ['autodocs', 'category:typography', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент текста с поддержкой различных размеров, весов, цветов и выравнивания.
 
 ## Назначение

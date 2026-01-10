@@ -26,11 +26,13 @@ import {
 export default {
   title: 'Molecules/DXSegmentedControl',
   component: DXSegmentedControl,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент сегментированного контрола для выбора одного значения из группы с плавающим индикатором.
 
 ## Назначение

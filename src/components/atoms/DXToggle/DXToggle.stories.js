@@ -4,11 +4,13 @@ import { ref } from "vue";
 export default {
   title: "Atoms/DXToggle",
   component: DXToggle,
-  tags: ["autodocs", "category:form"],
+  tags: ["autodocs", "category:form", "status:ready"],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент переключателя (toggle switch) с поддержкой различных размеров, цветов и анимаций.
 
 ## Назначение

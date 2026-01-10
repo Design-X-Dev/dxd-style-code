@@ -4,11 +4,13 @@ import { ref } from 'vue';
 export default {
   title: 'Molecules/DXSearchSelect',
   component: DXSearchSelect,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент выбора с поиском, поддерживающий одиночный и множественный выбор.
 
 ## Назначение

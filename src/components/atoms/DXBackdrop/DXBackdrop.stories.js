@@ -5,11 +5,12 @@ import { ref, computed } from 'vue';
 export default {
   title: 'Atoms/DXBackdrop',
   component: DXBackdrop,
-  tags: ['autodocs', 'category:overlay'],
+  tags: ['autodocs', 'category:overlay', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
 
 Компонент фона (backdrop) для модальных окон и overlay элементов с поддержкой размытия и блокировки скролла.
 

@@ -6,11 +6,13 @@ import DXButton from '../../atoms/DXButton/DXButton.vue';
 export default {
   title: 'Utilities/DXTransitionGroup',
   component: DXTransitionGroup,
-  tags: ['autodocs', 'category:animation'],
+  tags: ['autodocs', 'category:animation', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент для групповых анимаций списков элементов с поддержкой различных типов переходов.
 
 ## Назначение

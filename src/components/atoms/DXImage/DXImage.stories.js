@@ -3,11 +3,13 @@ import DXImage from './DXImage.vue';
 export default {
   title: 'Atoms/DXImage',
   component: DXImage,
-  tags: ['autodocs', 'category:data-display'],
+  tags: ['autodocs', 'category:data-display', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Универсальный компонент для отображения изображений с поддержкой lazy loading, fallback и обработки ошибок.
 
 ## Назначение

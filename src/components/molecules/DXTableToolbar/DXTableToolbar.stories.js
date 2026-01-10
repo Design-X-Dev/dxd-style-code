@@ -5,11 +5,13 @@ import DXButton from '../../atoms/DXButton/DXButton.vue';
 export default {
   title: 'Molecules/DXTableToolbar',
   component: DXTableToolbar,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент панели инструментов для таблиц с поддержкой поиска, переключения столбцов и кастомных действий.
 
 ## Назначение

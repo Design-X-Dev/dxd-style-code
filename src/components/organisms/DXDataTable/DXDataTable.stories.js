@@ -4,11 +4,13 @@ import DXDataTable from './DXDataTable.vue';
 export default {
   title: 'Organisms/DXDataTable',
   component: DXDataTable,
-  tags: ['autodocs', 'category:data-display'],
+  tags: ['autodocs', 'category:data-display', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Расширенная таблица с редактированием ячеек, inline-редактированием и расширенными возможностями.
 
 ## Назначение

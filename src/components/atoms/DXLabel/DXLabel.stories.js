@@ -3,11 +3,13 @@ import DXLabel from './DXLabel.vue';
 export default {
   title: 'Atoms/DXLabel',
   component: DXLabel,
-  tags: ['autodocs', 'category:typography'],
+  tags: ['autodocs', 'category:typography', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент лейбла для форм с поддержкой различных размеров, весов и цветов.
 
 ## Назначение

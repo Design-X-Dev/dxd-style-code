@@ -4,11 +4,13 @@ import { ref } from 'vue';
 export default {
   title: 'Atoms/DX',
   component: DX,
-  tags: ['autodocs', 'category:utility'],
+  tags: ['autodocs', 'category:utility', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Универсальный polymorphic компонент, который принимает HTML тег элемента, все его свойства, методы и события, и возвращает его обратно.
 
 ## Назначение

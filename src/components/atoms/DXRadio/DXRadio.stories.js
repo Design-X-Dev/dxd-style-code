@@ -4,11 +4,13 @@ import { ref } from 'vue';
 export default {
   title: 'Atoms/DXRadio',
   component: DXRadio,
-  tags: ['autodocs', 'category:form'],
+  tags: ['autodocs', 'category:form', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент радиокнопки с поддержкой двух вариантов (нативный и кастомный), различных размеров и цветов.
 
 ## Назначение

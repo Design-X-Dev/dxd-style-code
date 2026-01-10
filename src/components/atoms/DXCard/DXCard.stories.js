@@ -3,11 +3,13 @@ import DXCard from './DXCard.vue';
 export default {
   title: 'Atoms/DXCard',
   component: DXCard,
-  tags: ['autodocs', 'category:data-display'],
+  tags: ['autodocs', 'category:data-display', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Универсальный компонент карточки с различными вариантами оформления и настраиваемым padding.
 
 ## Назначение

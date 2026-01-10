@@ -5,11 +5,13 @@ import { ChartBarIcon, CurrencyDollarIcon } from '@heroicons/vue/24/solid';
 export default {
   title: 'Organisms/DXDashboardWidget',
   component: DXDashboardWidget,
-  tags: ['autodocs', 'category:data-display'],
+  tags: ['autodocs', 'category:data-display', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Виджет для дашборда с настройками, обновлением данных и различными типами контента.
 
 ## Назначение

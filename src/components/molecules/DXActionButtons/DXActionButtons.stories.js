@@ -5,11 +5,13 @@ import { ShareIcon, ArrowDownTrayIcon } from '@heroicons/vue/24/outline';
 export default {
   title: 'Molecules/DXActionButtons',
   component: DXActionButtons,
-  tags: ['autodocs', 'category:navigation'],
+  tags: ['autodocs', 'category:navigation', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент для отображения группы кнопок действий (просмотр, редактирование, удаление).
 
 ## Назначение

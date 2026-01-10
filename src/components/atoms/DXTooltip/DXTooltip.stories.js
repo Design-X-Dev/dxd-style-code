@@ -3,11 +3,13 @@ import DXTooltip from './DXTooltip.vue';
 export default {
   title: 'Atoms/DXTooltip',
   component: DXTooltip,
-  tags: ['autodocs', 'category:feedback'],
+  tags: ['autodocs', 'category:feedback', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент подсказки, появляющейся при наведении или фокусе на элементе.
 
 ## Назначение

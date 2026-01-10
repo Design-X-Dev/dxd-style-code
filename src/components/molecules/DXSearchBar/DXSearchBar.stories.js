@@ -4,11 +4,13 @@ import DXSearchBar from './DXSearchBar.vue';
 export default {
   title: 'Molecules/DXSearchBar',
   component: DXSearchBar,
-  tags: ['autodocs', 'category:feedback'],
+  tags: ['autodocs', 'category:feedback', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Поисковая строка с автодополнением и расширенными возможностями поиска.
 
 ## Назначение

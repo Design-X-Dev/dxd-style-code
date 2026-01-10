@@ -15,11 +15,13 @@ const defaultSteps = [
 export default {
   title: 'Organisms/DXFormWizard',
   component: DXFormWizard,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Многошаговая форма с индикатором прогресса и валидацией на каждом шаге.
 
 ## Назначение

@@ -5,11 +5,13 @@ import { PlusIcon, TrashIcon, PencilIcon, HeartIcon } from '@heroicons/vue/24/ou
 export default {
   title: 'Atoms/DXButton',
   component: DXButton,
-  tags: ['autodocs', 'category:form'],
+  tags: ['autodocs', 'category:form', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Универсальный компонент кнопки с поддержкой различных вариантов оформления, размеров и режимов использования.
 
 ## Назначение

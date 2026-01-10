@@ -3,11 +3,13 @@ import DXStack from './DXStack.vue';
 export default {
   title: 'Atoms/DXStack',
   component: DXStack,
-  tags: ['autodocs', 'category:layout'],
+  tags: ['autodocs', 'category:layout', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Вертикальный или горизонтальный стек элементов с единообразными отступами и поддержкой разделителей.
 
 ## Назначение

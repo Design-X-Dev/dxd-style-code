@@ -4,11 +4,13 @@ import { MagnifyingGlassIcon, UserIcon, EnvelopeIcon, LockClosedIcon } from '@he
 export default {
   title: 'Atoms/DXIconWrapper',
   component: DXIconWrapper,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент обертки для позиционирования иконок внутри полей ввода и других элементов.
 
 ## Назначение

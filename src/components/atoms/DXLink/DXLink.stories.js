@@ -5,11 +5,13 @@ import { HomeIcon } from '@heroicons/vue/24/outline';
 export default {
   title: 'Atoms/DXLink',
   component: DXLink,
-  tags: ['autodocs', 'category:navigation'],
+  tags: ['autodocs', 'category:navigation', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент ссылки с поддержкой обычных ссылок и Vue Router.
 
 ## Назначение

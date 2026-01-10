@@ -3,11 +3,13 @@ import DXAccordion from './DXAccordion.vue';
 export default {
   title: 'Organisms/DXAccordion',
   component: DXAccordion,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент аккордеона для отображения раскрывающихся секций контента.
 
 ## Назначение

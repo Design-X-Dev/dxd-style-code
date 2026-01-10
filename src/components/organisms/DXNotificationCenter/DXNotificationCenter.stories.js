@@ -4,11 +4,13 @@ import DXNotificationCenter from './DXNotificationCenter.vue';
 export default {
   title: 'Organisms/DXNotificationCenter',
   component: DXNotificationCenter,
-  tags: ['autodocs', 'category:feedback'],
+  tags: ['autodocs', 'category:feedback', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Центр уведомлений с фильтрацией, группировкой и управлением уведомлениями.
 
 ## Назначение

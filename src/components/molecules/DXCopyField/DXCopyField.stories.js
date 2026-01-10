@@ -10,11 +10,13 @@ import {
 export default {
   title: 'Molecules/DXCopyField',
   component: DXCopyField,
-  tags: ['autodocs', 'category:form'],
+  tags: ['autodocs', 'category:form', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент для отображения значения с возможностью копирования в буфер обмена.
 
 ## Назначение

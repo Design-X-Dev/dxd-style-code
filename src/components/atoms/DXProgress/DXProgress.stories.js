@@ -3,11 +3,13 @@ import DXProgress from './DXProgress.vue';
 export default {
   title: 'Atoms/DXProgress',
   component: DXProgress,
-  tags: ['autodocs', 'category:feedback'],
+  tags: ['autodocs', 'category:feedback', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент прогресс-бара для отображения прогресса выполнения задачи с поддержкой различных размеров, цветов и режимов отображения.
 
 ## Назначение

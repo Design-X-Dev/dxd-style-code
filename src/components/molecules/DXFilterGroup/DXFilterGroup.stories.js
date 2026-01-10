@@ -4,11 +4,13 @@ import { ref } from 'vue';
 export default {
   title: 'Molecules/DXFilterGroup',
   component: DXFilterGroup,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент группы фильтров для выбора одного значения из списка опций с поддержкой счетчиков.
 
 ## Назначение

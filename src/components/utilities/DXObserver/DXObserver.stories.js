@@ -6,11 +6,13 @@ import DXButton from '../../atoms/DXButton/DXButton.vue';
 export default {
   title: 'Utilities/DXObserver',
   component: DXObserver,
-  tags: ['autodocs', 'category:utility'],
+  tags: ['autodocs', 'category:utility', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент для отслеживания видимости элементов с использованием Intersection Observer API.
 
 ## Назначение

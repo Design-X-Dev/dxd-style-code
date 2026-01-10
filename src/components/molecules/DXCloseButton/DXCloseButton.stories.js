@@ -3,11 +3,13 @@ import DXCloseButton from './DXCloseButton.vue';
 export default {
   title: 'Molecules/DXCloseButton',
   component: DXCloseButton,
-  tags: ['autodocs', 'category:navigation'],
+  tags: ['autodocs', 'category:navigation', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент кнопки закрытия с поддержкой различных размеров и вариантов оформления.
 
 ## Назначение

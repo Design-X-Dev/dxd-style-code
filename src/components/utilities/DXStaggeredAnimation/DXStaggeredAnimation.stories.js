@@ -7,11 +7,13 @@ import DXList from '../../atoms/DXList/DXList.vue';
 export default {
   title: 'Utilities/DXStaggeredAnimation',
   component: DXStaggeredAnimation,
-  tags: ['autodocs', 'category:animation'],
+  tags: ['autodocs', 'category:animation', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент для последовательных анимаций элементов с задержкой между ними.
 
 ## Назначение

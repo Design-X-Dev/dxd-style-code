@@ -14,11 +14,13 @@ import {
 export default {
   title: 'Molecules/DXMenu',
   component: DXMenu,
-  tags: ['autodocs', 'category:navigation'],
+  tags: ['autodocs', 'category:navigation', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент меню навигации с поддержкой вертикального и горизонтального режимов, поиска, компактного режима и вложенных элементов.
 
 ## Назначение

@@ -4,11 +4,13 @@ import { ref } from 'vue';
 export default {
   title: 'Molecules/DXComboBox',
   component: DXComboBox,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент комбобокса с поиском и возможностью выбора из списка или ввода кастомного значения.
 
 ## Назначение

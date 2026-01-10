@@ -6,11 +6,13 @@ import DXSelect from '../../molecules/DXSelect/DXSelect.vue';
 export default {
   title: 'Organisms/DXChartContainer',
   component: DXChartContainer,
-  tags: ['autodocs', 'category:data-display'],
+  tags: ['autodocs', 'category:data-display', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Контейнер для графиков с легендой, контролами и настройками отображения.
 
 ## Назначение

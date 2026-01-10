@@ -8,11 +8,13 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/outline';
 export default {
   title: 'Organisms/DXSidebar',
   component: DXSidebar,
-  tags: ['autodocs', 'category:navigation'],
+  tags: ['autodocs', 'category:navigation', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Обертка для боковой панели с поддержкой различных режимов отображения и анимаций.
 
 ## Назначение

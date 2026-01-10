@@ -3,11 +3,13 @@ import DXList from './DXList.vue';
 export default {
   title: 'Atoms/DXList',
   component: DXList,
-  tags: ['autodocs', 'category:typography'],
+  tags: ['autodocs', 'category:typography', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент списка с поддержкой упорядоченных и неупорядоченных списков, различных стилей маркеров и размеров.
 
 ## Назначение

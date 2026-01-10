@@ -4,11 +4,13 @@ import DXChatInterface from './DXChatInterface.vue';
 export default {
   title: 'Organisms/DXChatInterface',
   component: DXChatInterface,
-  tags: ['autodocs', 'category:feedback'],
+  tags: ['autodocs', 'category:feedback', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Интерфейс чата с сообщениями, вводом текста и поддержкой различных типов сообщений.
 
 ## Назначение

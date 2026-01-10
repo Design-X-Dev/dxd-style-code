@@ -3,11 +3,13 @@ import DXFormLabel from './DXFormLabel.vue';
 export default {
   title: 'Atoms/DXFormLabel',
   component: DXFormLabel,
-  tags: ['autodocs', 'category:form'],
+  tags: ['autodocs', 'category:form', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент обертки для полей форм с поддержкой лейбла, ошибок, вспомогательного текста и счетчика символов.
 
 ## Назначение

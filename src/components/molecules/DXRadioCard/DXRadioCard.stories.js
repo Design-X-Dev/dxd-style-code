@@ -4,11 +4,13 @@ import { ref } from 'vue';
 export default {
   title: 'Molecules/DXRadioCard',
   component: DXRadioCard,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент карточки с радиокнопкой для выбора одного варианта из группы с визуальным выделением.
 
 ## Назначение

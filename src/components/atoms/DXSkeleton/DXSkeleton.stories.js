@@ -3,11 +3,13 @@ import DXSkeleton from './DXSkeleton.vue';
 export default {
   title: 'Atoms/DXSkeleton',
   component: DXSkeleton,
-  tags: ['autodocs', 'category:feedback'],
+  tags: ['autodocs', 'category:feedback', 'status:ready'],
   parameters: {
     docs: {
       description: {
         component: `
+**Статус:** 🟢 Готов к использованию
+
 Компонент скелетона для отображения placeholder контента во время загрузки.
 
 ## Назначение
