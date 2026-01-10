@@ -11,8 +11,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXThemeProvider
-
 Провайдер для управления темами и цветовыми схемами приложения.
 
 ## Назначение

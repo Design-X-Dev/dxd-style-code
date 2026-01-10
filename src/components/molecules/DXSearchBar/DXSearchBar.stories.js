@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXSearchBar
-
 Поисковая строка с автодополнением и расширенными возможностями поиска.
 
 ## Назначение

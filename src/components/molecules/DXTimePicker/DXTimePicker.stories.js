@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXTimePicker
-
 Компонент выбора времени с валидацией и поддержкой различных форматов.
 
 ## Назначение

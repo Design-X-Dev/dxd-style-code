@@ -8,8 +8,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXEmptyState
-
 Компонент пустого состояния для отображения, когда нет данных или контента.
 
 ## Назначение

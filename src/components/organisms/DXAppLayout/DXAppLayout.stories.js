@@ -25,8 +25,6 @@ export default {
       iframeHeight: 800,
       description: {
         component: `
-# DXAppLayout
-
 Основной макет приложения, объединяющий header, sidebar, content и footer с поддержкой различных вариантов для разных задач.
 
 ## Назначение

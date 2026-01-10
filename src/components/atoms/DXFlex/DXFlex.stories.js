@@ -8,8 +8,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXFlex
-
 Flexbox контейнер с полным контролем над направлением, выравниванием и отступами.
 
 ## Назначение

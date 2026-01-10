@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXChatInterface
-
 Интерфейс чата с сообщениями, вводом текста и поддержкой различных типов сообщений.
 
 ## Назначение

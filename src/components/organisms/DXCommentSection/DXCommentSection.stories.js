@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXCommentSection
-
 Секция комментариев с поддержкой вложенности, ответов и модерации.
 
 ## Назначение

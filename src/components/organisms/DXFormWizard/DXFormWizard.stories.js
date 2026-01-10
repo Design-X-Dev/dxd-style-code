@@ -20,8 +20,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXFormWizard
-
 Многошаговая форма с индикатором прогресса и валидацией на каждом шаге.
 
 ## Назначение

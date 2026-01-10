@@ -13,8 +13,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXDashboardGrid
-
 Сетка для дашборда с поддержкой drag-and-drop для перестановки виджетов.
 
 ## Назначение

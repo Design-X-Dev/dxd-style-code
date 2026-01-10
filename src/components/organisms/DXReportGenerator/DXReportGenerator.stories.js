@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXReportGenerator
-
 Генератор отчетов с фильтрацией, настройками параметров и экспортом в различные форматы.
 
 ## Назначение

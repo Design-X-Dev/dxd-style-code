@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXPasswordInput
-
 Компонент поля ввода пароля с кнопкой показа/скрытия пароля.
 
 ## Назначение

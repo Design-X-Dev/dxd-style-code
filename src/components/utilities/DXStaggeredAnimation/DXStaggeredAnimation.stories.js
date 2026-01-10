@@ -12,8 +12,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXStaggeredAnimation
-
 Компонент для последовательных анимаций элементов с задержкой между ними.
 
 ## Назначение

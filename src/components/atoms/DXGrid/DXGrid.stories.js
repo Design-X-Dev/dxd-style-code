@@ -8,8 +8,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXGrid
-
 CSS Grid контейнер с адаптивными колонками и гибкой системой отступов.
 
 ## Назначение

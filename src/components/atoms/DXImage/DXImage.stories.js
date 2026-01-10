@@ -8,8 +8,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXImage
-
 Универсальный компонент для отображения изображений с поддержкой lazy loading, fallback и обработки ошибок.
 
 ## Назначение

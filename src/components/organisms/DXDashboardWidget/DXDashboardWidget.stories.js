@@ -10,8 +10,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXDashboardWidget
-
 Виджет для дашборда с настройками, обновлением данных и различными типами контента.
 
 ## Назначение

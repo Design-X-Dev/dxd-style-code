@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXSearchSelect
-
 Компонент выбора с поиском, поддерживающий одиночный и множественный выбор.
 
 ## Назначение

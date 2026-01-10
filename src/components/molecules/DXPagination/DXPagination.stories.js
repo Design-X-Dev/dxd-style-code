@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXPagination
-
 Компонент пагинации для навигации по страницам с поддержкой v-model.
 
 ## Назначение

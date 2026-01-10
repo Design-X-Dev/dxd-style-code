@@ -26,7 +26,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXSidebarMenu
 
 Компонент меню боковой панели с поддержкой секций, вложенных элементов, поиска и compact режима.
 

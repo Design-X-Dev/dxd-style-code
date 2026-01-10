@@ -12,8 +12,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXAnimatePresence
-
 Компонент для анимаций появления и исчезания элементов с поддержкой условного рендеринга.
 
 ## Назначение

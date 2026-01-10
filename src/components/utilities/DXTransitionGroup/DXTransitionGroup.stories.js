@@ -11,8 +11,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXTransitionGroup
-
 Компонент для групповых анимаций списков элементов с поддержкой различных типов переходов.
 
 ## Назначение

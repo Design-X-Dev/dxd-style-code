@@ -10,8 +10,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXNav
-
 Универсальный компонент для обертки навигационных элементов с автоматическим управлением accessibility.
 
 ## Назначение

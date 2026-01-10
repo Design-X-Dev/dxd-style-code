@@ -11,8 +11,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXWizard
-
 Мастер настройки с шагами, валидацией и возможностью сохранения прогресса.
 
 ## Назначение

@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXFilterGroup
-
 Компонент группы фильтров для выбора одного значения из списка опций с поддержкой счетчиков.
 
 ## Назначение

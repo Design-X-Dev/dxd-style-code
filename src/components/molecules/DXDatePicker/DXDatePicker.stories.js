@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXDatePicker
-
 Компонент выбора даты с поддержкой одиночной даты и диапазона дат.
 
 ## Назначение

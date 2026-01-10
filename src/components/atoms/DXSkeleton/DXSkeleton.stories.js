@@ -8,8 +8,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXSkeleton
-
 Компонент скелетона для отображения placeholder контента во время загрузки.
 
 ## Назначение

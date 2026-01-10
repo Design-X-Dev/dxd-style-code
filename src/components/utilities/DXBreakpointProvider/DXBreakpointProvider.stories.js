@@ -12,8 +12,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXBreakpointProvider
-
 Провайдер для доступа к текущему брейкпоинту и размерам экрана в компонентах.
 
 ## Назначение

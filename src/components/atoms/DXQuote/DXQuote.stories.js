@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXQuote
-
 Компонент для отображения inline-цитат в текстовом контенте.
 
 ## Назначение

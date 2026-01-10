@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXSettingsPanel
-
 Панель настроек с категориями, группами настроек и сохранением изменений.
 
 ## Назначение

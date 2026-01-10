@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXInputMask
-
 Компонент поля ввода с маской для форматирования ввода (телефоны, карты, даты и т.д.).
 
 ## Назначение

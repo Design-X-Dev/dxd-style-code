@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXNotificationCenter
-
 Центр уведомлений с фильтрацией, группировкой и управлением уведомлениями.
 
 ## Назначение

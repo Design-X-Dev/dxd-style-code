@@ -55,8 +55,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXMediaGallery
-
 Галерея изображений или видео с превью, полноэкранным просмотром и навигацией.
 
 ## Назначение

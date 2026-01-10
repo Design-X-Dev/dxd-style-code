@@ -20,8 +20,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXStatCard
-
 Карточка для отображения статистики с иконкой, значением и метаданными.
 
 ## Назначение

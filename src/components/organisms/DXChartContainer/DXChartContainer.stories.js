@@ -11,8 +11,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXChartContainer
-
 Контейнер для графиков с легендой, контролами и настройками отображения.
 
 ## Назначение

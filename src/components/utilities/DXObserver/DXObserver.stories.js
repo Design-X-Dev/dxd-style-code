@@ -11,8 +11,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXObserver
-
 Компонент для отслеживания видимости элементов с использованием Intersection Observer API.
 
 ## Назначение

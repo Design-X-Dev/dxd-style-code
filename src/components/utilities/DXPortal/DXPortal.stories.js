@@ -13,8 +13,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXPortal
-
 Компонент-обертка над Vue Teleport для рендеринга контента вне текущей DOM-иерархии.
 
 ## Назначение

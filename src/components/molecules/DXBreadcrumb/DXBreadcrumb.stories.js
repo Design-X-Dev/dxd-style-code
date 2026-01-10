@@ -22,8 +22,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXBreadcrumb
-
 Навигационные хлебные крошки для отображения иерархии страниц и навигации.
 
 ## Назначение

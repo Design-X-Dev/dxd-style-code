@@ -10,7 +10,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXBaseTable
 
 Базовая таблица данных с поддержкой сортировки, кастомных ячеек и различных вариантов оформления.
 

@@ -8,8 +8,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXContainer
-
 Контейнер с ограниченной шириной для центрирования контента на странице.
 
 ## Назначение

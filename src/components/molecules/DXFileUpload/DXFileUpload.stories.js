@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXFileUpload
-
 Компонент загрузки файлов с поддержкой drag & drop, предпросмотра и множественного выбора.
 
 ## Назначение

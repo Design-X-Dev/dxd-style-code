@@ -8,8 +8,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXCode
-
 Компонент для отображения кода с поддержкой inline и block режимов.
 
 ## Назначение

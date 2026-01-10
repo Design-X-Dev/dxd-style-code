@@ -10,8 +10,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXLink
-
 Компонент ссылки с поддержкой обычных ссылок и Vue Router.
 
 ## Назначение

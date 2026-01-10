@@ -9,8 +9,6 @@ export default {
     docs: {
       description: {
         component: `
-# DXUserProfileCard
-
 Карточка профиля пользователя с информацией, действиями и настройками.
 
 ## Назначение
